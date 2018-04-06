@@ -1,0 +1,59 @@
+﻿نمایش فرمول در جدول  
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    SimpleTable9.IntForm=function()
+    {
+    
+    document.title='نمایش فرمول در جدول  ';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    SimpleTable9.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th>ردیف</th>
+ <th  class="Pointer"  ng-click="ChageTableOrder('cityId')"  > <span ng-show="((currentOrder=='cityId') && (rev) )">V</span> <span ng-show="((currentOrder=='cityId') && (!rev) )">^</span>کد شهر</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('cityTitle')"  > <span ng-show="((currentOrder=='cityTitle') && (rev) )">V</span> <span ng-show="((currentOrder=='cityTitle') && (!rev) )">^</span>عنوان شهر</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('CITYPop')"  > <span ng-show="((currentOrder=='CITYPop') && (rev) )">V</span> <span ng-show="((currentOrder=='CITYPop') && (!rev) )">^</span>جمعیت </th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('total')"  > <span ng-show="((currentOrder=='total') && (rev) )">V</span> <span ng-show="((currentOrder=='total') && (!rev) )">^</span>تست 1 </th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('total')"  > <span ng-show="((currentOrder=='total') && (rev) )">V</span> <span ng-show="((currentOrder=='total') && (!rev) )">^</span>تست 2 </th> 
+ </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td>{{$index+1}}</td>
+<td>{{record.cityId}}</td> 
+ <td>{{record.cityTitle}}</td> 
+ <td>{{ShowMoney(record.CITYPop)}}</td> 
+ <td>{{ShowMoney(Num(record.CITYPop)*Num(record.cityId))}}</td> 
+ <td>{{record.cityId}} *** {{record.cityTitle}}</td> 
+                   </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             SimpleTable9.Serach();
+                      });
+    
+     </script>

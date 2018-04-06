@@ -1,0 +1,1438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="PageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TableView">
+        <xs:annotation>
+          <xs:documentation>یک صفحه با قابلیت نمایش و ویرایش جدول</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ScallerForm">
+        <xs:annotation>
+          <xs:documentation>یک صفحه فقط جهت اجرای یک کار و برگردان خروجی تک مقداری </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DetailView">
+        <xs:annotation>
+          <xs:documentation>یک صفحه قابلیت و و ویرایش جدول به صورت کاشی وار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="YesNo">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Yes">
+        <xs:annotation>
+          <xs:documentation>بله</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="No">
+        <xs:annotation>
+          <xs:documentation>خیر</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CheckType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ReqString">
+        <xs:annotation>
+          <xs:documentation>آیا یک متن وارد  شده </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReqDate">
+        <xs:annotation>
+          <xs:documentation>آیا یک تاریخ وارد شده</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReqNumber">
+        <xs:annotation>
+          <xs:documentation>آیا عدد وارد شده</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReqSelect2">
+        <xs:annotation>
+          <xs:documentation>آیا یک عبارت در Select2 وارد شده</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PageParameterType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Html">
+        <xs:annotation>
+          <xs:documentation>ویرایشگر html</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="FileInput">
+        <xs:annotation>
+          <xs:documentation>فایل جهت آپلود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+            <xs:enumeration value="ImageView">
+        <xs:annotation>
+          <xs:documentation>نمایش تصویر</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+                  <xs:enumeration value="DownloadLink">
+        <xs:annotation>
+          <xs:documentation>دریافت فایل</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="TextArea">
+        <xs:annotation>
+          <xs:documentation>کادر متن چند خطی</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="String">
+        <xs:annotation>
+          <xs:documentation>متن</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Date">
+        <xs:annotation>
+          <xs:documentation>تاریخ</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Select2">
+        <xs:annotation>
+          <xs:documentation>کادر انتخاب با قابلیت جست و جو </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Select2Ajax">
+        <xs:annotation>
+          <xs:documentation>کادر انتخاب با قابلیت جست و جو (منبع داده از سرور)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DropDown">
+        <xs:annotation>
+          <xs:documentation>لیست بازشو معمولی</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Color">
+        <xs:annotation>
+          <xs:documentation>رنگ</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Integer">
+        <xs:annotation>
+          <xs:documentation>عدد صحیح</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Float">
+        <xs:annotation>
+          <xs:documentation>عدد اعشاری</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Money">
+        <xs:annotation>
+          <xs:documentation>عدد صحیح کاما دار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Time">
+        <xs:annotation>
+          <xs:documentation>ساعت</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CheckBox">
+        <xs:annotation>
+          <xs:documentation>چک باکس فعال /غیر فعال</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DisplayExpr">
+        <xs:annotation>
+          <xs:documentation>نمایش یک فرمول</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DisplayExprMoney">
+        <xs:annotation>
+          <xs:documentation>نمایش یک فرمول به صورت کامادار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sourceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PageParameter">
+        <xs:annotation>
+          <xs:documentation>پارامتر های صفحه</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="QueryString">
+        <xs:annotation>
+          <xs:documentation>عبارت های آدرس</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Row">
+        <xs:annotation>
+          <xs:documentation>ردیف</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Session">
+        <xs:annotation>
+          <xs:documentation>سشن یا جلسه </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ScallerValues">
+        <xs:annotation>
+          <xs:documentation>از خروجی یک دستور استفاده شود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Expr">
+        <xs:annotation>
+          <xs:documentation>عبارت فرمولی جاوا اسکرپیت</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SpecValue">
+        <xs:annotation>
+          <xs:documentation>مقادیر خاص</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DBType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SQLSERVER">
+        <xs:annotation>
+          <xs:documentation>بانک اطلاعاتی SQL Server</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SelectionModeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OneTime">
+        <xs:annotation>
+          <xs:documentation>یکبار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Selected">
+        <xs:annotation>
+          <xs:documentation>ردیف های انتخاب شده</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NotSelected">
+        <xs:annotation>
+          <xs:documentation>ردیف های انتخاب نشده</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="All">
+        <xs:annotation>
+          <xs:documentation>همه ردیف ها </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="StateModeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NoChange">
+        <xs:annotation>
+          <xs:documentation>بدون تغییر</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Added">
+        <xs:annotation>
+          <xs:documentation>ردیف های جدید</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Changed">
+        <xs:annotation>
+          <xs:documentation>ردیف های تغیر یافته</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Deleted">
+        <xs:annotation>
+          <xs:documentation>ردیف های حذف شده</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="All">
+        <xs:annotation>
+          <xs:documentation>همه</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Theme">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Cerulean">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cosmo">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Cyborg">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Darkly">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Flatly">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Journal">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Lumen">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SuperHero">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Paper">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Readable">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Sandstone">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Simplex">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Slate">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="United">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Spacelab">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Yeti">
+        <xs:annotation>
+          <xs:documentation>یک قالب زیبا:-)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PageParameterSourceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="form">
+        <xs:annotation>
+          <xs:documentation>پارامتر به ورودی توسط کاربری در فرم وارد شود </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="QueryString">
+        <xs:annotation>
+          <xs:documentation>مقدار از عبارت آدرس دریافت شود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Session">
+        <xs:annotation>
+          <xs:documentation>از سشن دریافت شود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SpecValue">
+        <xs:annotation>
+          <xs:documentation>از مقادیر خاص استفاده شود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Expr">
+        <xs:annotation>
+          <xs:documentation>از یک عبارت فرمولی استفاده شود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DefaultValueSourceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="form">
+        <xs:annotation>
+          <xs:documentation>مقدار پیش فرض از یک ورودی فرم بخواند</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Static">
+        <xs:annotation>
+          <xs:documentation>یک عبارت ثابت در نظر بگیرد</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Session">
+        <xs:annotation>
+          <xs:documentation>از سشن مقدار بگیرد</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SpecValue">
+        <xs:annotation>
+          <xs:documentation>مقدار و عبارت های خاص</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Expr">
+        <xs:annotation>
+          <xs:documentation>فرمول</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NULL">
+        <xs:annotation>
+          <xs:documentation>فاقد مقدار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ColumnDefaultValueSourceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Static">
+        <xs:annotation>
+          <xs:documentation>عبارت ثابت</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Session">
+        <xs:annotation>
+          <xs:documentation>سشن</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SpecValue">
+        <xs:annotation>
+          <xs:documentation>مقادیر و عبارت های خاص</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NULL">
+        <xs:annotation>
+          <xs:documentation>مقدار پوچ</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="startValueType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DbValueCommand">
+        <xs:annotation>
+          <xs:documentation>یک روال بانک اطلاعاتی استفاده شود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="actionParameterType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="input">
+        <xs:annotation>
+          <xs:documentation>به عنوان پارامتر ورودی تابع تعریف شود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CondType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Reg">
+        <xs:annotation>
+          <xs:documentation>فلید الزامی است</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReqEmail">
+        <xs:annotation>
+          <xs:documentation>فلید به صورت فرمت ایمیل الزامی است</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="StringLength">
+        <xs:annotation>
+          <xs:documentation>طول عبارت بایستی برابر باشد</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MenuItemType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Link">
+        <xs:annotation>
+          <xs:documentation>لینک عادی</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PDALink">
+        <xs:annotation>
+          <xs:documentation>لینک مخصوص سیستم طبق استاندارد anglur</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PDATextboxLink">
+        <xs:annotation>
+          <xs:documentation>کادر جست و جو یا دارای ورودی</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="JavaScript">
+        <xs:annotation>
+          <xs:documentation>اجرای جاوا اسکرپیت</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LogOut">
+        <xs:annotation>
+          <xs:documentation>خروج از سیستم</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MenuSubItemType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Link">
+        <xs:annotation>
+          <xs:documentation>لینک عادی</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PDALink">
+        <xs:annotation>
+          <xs:documentation>لینک مخصوص سیستم طبق angluer</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="JavaScript">
+        <xs:annotation>
+          <xs:documentation>اجرای جاوا اسکرپیت</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="LogOut">
+        <xs:annotation>
+          <xs:documentation>خروج از سیستم</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ButtonActionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="goToPage">
+        <xs:annotation>
+          <xs:documentation>به یک صفحه خاص برود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="dynLink">
+        <xs:annotation>
+          <xs:documentation>لینک پویا (طبق سیستم angluer) </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="JavaScript">
+        <xs:annotation>
+          <xs:documentation>یک کد جاوا اسکرپیت را اجرا کند</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InsertRecordToTable">
+        <xs:annotation>
+          <xs:documentation>یک رکورد به جدول اضافه کند</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="BatchCommand">
+        <xs:annotation>
+          <xs:documentation>یک مجموعه دستورات را اجرا کند</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ExportXls">
+        <xs:annotation>
+          <xs:documentation>ایجاد خروجی اکسل</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DBSelectCommandParameterSourceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="term">
+        <xs:annotation>
+          <xs:documentation>مقدار ورودی در قسمت جست و جو را می فرستد</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Expr">
+        <xs:annotation>
+          <xs:documentation>یک فرمول</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="QueryString">
+        <xs:annotation>
+          <xs:documentation>یک فرمول</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Session">
+        <xs:annotation>
+          <xs:documentation>یک فرمول</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ValueParameterSource">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="QueryString">
+        <xs:annotation>
+          <xs:documentation>پارامتر موجود در آدرس</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ColumnType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DisplayValue">
+        <xs:annotation>
+          <xs:documentation>نمایش مستقیم مقدار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Image">
+        <xs:annotation>
+          <xs:documentation> 
+            جهت نمایش تصویر استفاده می شود
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DownloadFile">
+        <xs:annotation>
+          <xs:documentation>
+            جهت دریافت بکار می رود
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Money">
+        <xs:annotation>
+          <xs:documentation>نمایش عدد به صورت کاما دار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Boolean">
+        <xs:annotation>
+          <xs:documentation>نمایش عبارت بولین به صورت بله و خیر</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+   
+      <xs:enumeration value="InputString">
+        <xs:annotation>
+          <xs:documentation>کادر ورودی متن</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InputInteger">
+        <xs:annotation>
+          <xs:documentation>کادر ورودی عدد صحیح</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InputFloat">
+        <xs:annotation>
+          <xs:documentation>کادر ورودی عدد اعشار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InputDate">
+        <xs:annotation>
+          <xs:documentation>کادر ورودی تاریخ</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InputMoney">
+        <xs:annotation>
+          <xs:documentation>کادر ورودی عدد صحیح کاما دار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InputCombo">
+        <xs:annotation>
+          <xs:documentation>کادر ورودی بازشو</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InputSelect2">
+        <xs:annotation>
+          <xs:documentation>کادر ورودی بازشو با قابلیت جست و جو</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InputSelect2Ajax">
+        <xs:annotation>
+          <xs:documentation>کادر ورودی بازشو با قابلیت جست و جو</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Expr">
+        <xs:annotation>
+          <xs:documentation>نمایش یک فرمول محاسباتی</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PDALink">
+        <xs:annotation>
+          <xs:documentation>رفتن به لینک خاص (می تواند دینامیک باشد)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AjaxAction">
+        <xs:annotation>
+          <xs:documentation>اجرای دستور ajax</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="JavaScript">
+        <xs:annotation>
+          <xs:documentation>اجرای یک جاوا اسکرپیت</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeleteRow">
+        <xs:annotation>
+          <xs:documentation>حذف یک ردیف از جدول </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Application">
+    <xs:complexType>
+       <xs:annotation><xs:documentation> به تعریف برنامه می پردازد</xs:documentation> </xs:annotation>
+      <xs:sequence>
+        <xs:element name="Menu">
+          <xs:complexType>
+              <xs:annotation><xs:documentation> به تعریف منو می پردازد </xs:documentation> </xs:annotation>
+            <xs:sequence>
+              <xs:element name="Item" maxOccurs="unbounded">
+                
+                <xs:complexType>
+                     <xs:annotation><xs:documentation> یک گزینه از منو</xs:documentation> </xs:annotation>
+                  <xs:sequence>
+                    <xs:element name="SubItem" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="PerKey" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>عنوان مجوز مورد نیاز</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="text" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>متن نمایشی</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Type" type="MenuSubItemType" use="required">
+                          <xs:annotation>
+                            <xs:documentation>نوع منو</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="link" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>آدرس مورد نظر</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="text" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>متن نمایشی </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="link" type="xs:string" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>آدرس</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="placeholder" type="xs:string" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>متن در کادر به توضیحات نمایش داده می شود</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Type" type="MenuItemType" use="required">
+                    <xs:annotation>
+                      <xs:documentation>نوع</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pages">
+          <xs:complexType>
+               <xs:annotation><xs:documentation> گروه صفحات </xs:documentation> </xs:annotation>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Page">
+                <xs:complexType>
+                   <xs:annotation><xs:documentation> یک صفحه  </xs:documentation> </xs:annotation>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="ValueParameter">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>عنوان پارامتر در روال بانک اطلاعاتی </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="value" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>پارامتر مربوط سورس</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="source" type="ValueParameterSource" use="required">
+                          <xs:annotation>
+                            <xs:documentation>منبع پارامتر از کجا باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Note">
+                      <xs:complexType>
+                        <xs:attribute name="Text" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>توضیحات نمایشی در درباره صفحه </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+   
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="1" name="table">
+                      <xs:complexType>
+                         <xs:annotation><xs:documentation> یک جدول جهت نمایش  </xs:documentation> </xs:annotation>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="NewRecordColumnValue">
+                            <xs:complexType>
+                              <xs:attribute name="ColumnName" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>نام ستون در جدول</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="value" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>مقدار پیش فرض شروع</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="DisplayExpr">
+                            <xs:complexType>
+                              <xs:attribute name="title" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>عنوان نمایشی</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Expr" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>فرمول مورد استفاده</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element maxOccurs="unbounded" name="column">
+                            <xs:complexType>
+                               <xs:annotation><xs:documentation> تعریف ستون در جدول </xs:documentation> </xs:annotation>
+                              <xs:sequence>
+                                 <xs:element name="DBSelectCommandParameter" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                               <xs:annotation><xs:documentation> تعریف پارامتر های مربوط به جست وجو کادر جستو جو Select2 </xs:documentation> </xs:annotation>
+                              <xs:attribute name="source" type="DBSelectCommandParameterSourceType" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>منبع پارامتر کجا باشد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Parameter" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>پارامتر مربوط به پارامتر</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="name" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>نام پارامتر در بانک اطلاعاتی</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                                <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
+                                  <xs:complexType>
+                                    <xs:attribute name="text" type="xs:string" use="required">
+                                      <xs:annotation>
+                                        <xs:documentation>متن نمایشی </xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="value" type="xs:string" use="required">
+                                      <xs:annotation>
+                                        <xs:documentation>مقدار گزینه</xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="title" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>عنوان</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="name" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>نام بایستی با نام ستون ردیف های دریافتی یکی باشد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="AjaxActionChange" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>تغییر ردیف بر اساس یک اقدام ajax </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="StaticJavaScriptAfterChange" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>تعیین جاوا اسکرپیت مربوط زمانی تغییر رخ دهد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="type" type="ColumnType" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>نوع ستون را مشخص می کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Caption" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>متن نمایشی برای قسمت عملیات</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="linkSyntax" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>ساختار لینک و نحوه ترکیب آن آنلاگر رعایت شود برای درج فلید رکورد بازیافتی از {{record.fildName}} استفاده شود</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="AskMessage" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>متنی که در زمان انجام عملیات ajax  از کاربر جهت کسب اطمینان می پرسد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="AjaxAction" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>نام اکشن ajax جهت صدا زدن</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="ParameterSyntax" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>نحوه صدا زدن تابع ajax را مشخص می کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Width" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>اندازه تصویر</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Height" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>عرض تصویر</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                                 <xs:attribute name="ShowCond" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>شرطی در صورت برقرار بودن این گزینه عملیاتی نمایش داده شود</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="DBSelect2Command" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>نام روالی برای کادر های جست و جو ajax بکار گرفته می شود</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="codeColumn" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>نام ستون در روال مربوط به جست و جو ajax کادر های جست و جو</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="textColumn" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>نام ستون مقدار نمایشی در روال DBSelect2Command</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                                     <xs:attribute name="TitleParameter" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>عنوان ستون در روال بانک اطلاعاتی جهت نمایش متن نمایشی Select2</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Parameter" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>در فرم های مقدار ورودی آغازین دارند برای نمایش مقدار نمایشی Select2 از کدام ستون استفاده شود</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Sortable" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>آیا جدول قابل مرتب کردن باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="HideActionColumnn" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>ستون عملیات مخفی شود</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="AutoSelectCond" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>شرط مورد نیاز برای انتخاب در شروع بارگذاری به صورت خودکار</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="BasicFilter" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>آیا فیلتر ساده فعال باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="RowNumberColumn" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>آیا ردیف نمایش دهنده شماره ردیف فعال  باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Selectable" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>آیا ردیف ها قابل انتخاب باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+              
+                        <xs:attribute name="Insertable" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>آیا بتوان به جدول ردیف اضافه کرد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="PageParameter">
+                      <xs:complexType mixed="true">
+                         <xs:annotation><xs:documentation> پارامتر صفحه </xs:documentation> </xs:annotation>
+                        <xs:sequence minOccurs="0">
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
+                            <xs:complexType>
+                              <xs:attribute name="text" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>متن نمایشی </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="value" type="xs:unsignedByte" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>مقدار واقعی </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ParameterCheck" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                               <xs:annotation><xs:documentation>اعتبار سنجی صفحه </xs:documentation> </xs:annotation>
+                              <xs:attribute name="Cond" type="CondType" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>نوع بررسی </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="when" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>در چه شرایطی این اعتبار سنجی انجام شود</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="FileAllow" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:annotation>
+                                <xs:documentation>فایل های مجاز جهت</xs:documentation>
+                              </xs:annotation>
+                              <xs:attribute name="ext" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>پسوند مورد نظر بدون نقطه</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                       
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="DBSelectCommandParameter" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                               <xs:annotation><xs:documentation> تعریف پارامتر های مربوط به جست وجو کادر جستو جو Select2 </xs:documentation> </xs:annotation>
+                              <xs:attribute name="source" type="DBSelectCommandParameterSourceType" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>منبع پارامتر کجا باشد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Parameter" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>پارامتر مربوط به پارامتر</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="name" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>نام پارامتر در بانک اطلاعاتی</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="title" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>عنوان نمایشی</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="name" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>نام</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="type" type="PageParameterType" use="required">
+                          <xs:annotation>
+                            <xs:documentation>نوع ورودی </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="MaxFileSize" type="xs:long" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>(کلیوبایت) حداکثر اندازه فایل</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="FilePathAtServer" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>مسیر پوشه جهت ذخیره بروی سرور</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="LinkSyntax" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نحوه آدرس دهی </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Width" type="xs:long" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>اندازه تصویر</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Hegith" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>عرض تصویر</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="source" type="PageParameterSourceType" use="required">
+                          <xs:annotation>
+                            <xs:documentation>منبع پارامتر چه باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="dontSendToDb" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>منبع پارامتر چه باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="DefaultValueSource" type="DefaultValueSourceType" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>مقدار پیش فرض از کدام منبع بخواند</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="DefaultValueParameter" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>پارامتر مقدار پیش فرض </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="DBSelect2Command" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نام روالی برای کادر های جست و جو ajax بکار گرفته می شود</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="codeColumn" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نام ستون در روال مربوط به جست و جو ajax کادر های جست و جو</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="textColumn" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نام ستون مقدار نمایشی در روال DBSelect2Command</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Parameter" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>در فرم های مقدار ورودی آغازین دارند برای نمایش مقدار نمایشی Select2 از کدام ستون استفاده شود</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Disabled" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>آیا پارامتر غیر فعال باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="startValueType" type="startValueType" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نحوه پر شدن در آغار صفحه تعیین می کند </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="TitleParameter" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>عنوان پارامتر را مشخص می کند</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="CustomValidate">
+                      <xs:complexType>
+                         <xs:annotation><xs:documentation> اعتبار سنجی های سفارشی </xs:documentation> </xs:annotation>
+                        <xs:attribute name="Cond" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>شرایطی که بایستی برقرار باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Message" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>متن خطایی که در برقرار نبودن شرایط نمایش می دهد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Button">
+                      <xs:complexType>
+                         <xs:annotation><xs:documentation> تعریف دکمه در صفحه</xs:documentation> </xs:annotation>
+                        <xs:attribute name="title" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>عنوان دکمه</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="action" type="ButtonActionType" use="required">
+                          <xs:annotation>
+                            <xs:documentation>نوع اقدامی دکمه انجام می دهد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="actionParameter" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>پارامتر که دکمه به نیاز دارد نسبت به نوع اقدام</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="BatchCommand">
+                       <xs:annotation><xs:documentation>تعریف دسته های دستور  جهت اجرا </xs:documentation> </xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Command" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                               <xs:annotation><xs:documentation>تعریف یک دستور در دسته دستورات </xs:documentation> </xs:annotation>
+                              <xs:sequence>
+                                <xs:element name="Parameter" maxOccurs="unbounded" minOccurs="0">
+                                  <xs:complexType>
+                                     <xs:annotation><xs:documentation>برای دستورات تعریف پارامتر </xs:documentation> </xs:annotation>
+                                    <xs:sequence>
+                                      <xs:element name="Check" maxOccurs="unbounded" minOccurs="0">
+                                        <xs:complexType>
+                                          <xs:attribute name="Type" type="CheckType">
+                                            <xs:annotation>
+                                              <xs:documentation>نوع بررسی </xs:documentation>
+                                            </xs:annotation>
+                                          </xs:attribute>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                    
+                                    <xs:attribute name="name" type="xs:string">
+                                      <xs:annotation>
+                                        <xs:documentation>نام پارامتر در روال بانک اطلاعاتی </xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="caption" type="xs:string">
+                                      <xs:annotation>
+                                        <xs:documentation>عنوان پارامتر در زمان ارزیابی</xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="sourceType" type="sourceType">
+                                      <xs:annotation>
+                                        <xs:documentation>نوع منبع پارامتر</xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="sourceTypeParameter" type="xs:string">
+                                      <xs:annotation>
+                                        <xs:documentation>پارامتر نسبت به منبع</xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="DefaultValueSource" type="ColumnDefaultValueSourceType" use="optional">
+                                      <xs:annotation>
+                                        <xs:documentation>منبع برای مقدار پیش فرض</xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="DefaultValueParameter" type="xs:string" use="optional">
+                                      <xs:annotation>
+                                        <xs:documentation>پارامتر مربوط به مقدار پیش فرض</xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                      
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="DBCommand" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>نام روال بانک اطلاعاتی جهت اجرا </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Selection" type="SelectionModeType" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>نحوه انتخاب ردیف نسبت انتخاب</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="StateMode" type="StateModeType" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>وضعیت ردیف ها</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>نام دسته دستورات</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="PerKey" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>مجوز مورد نیاز برای اجرا</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Title" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>عنوان </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>نام</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="link" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>لینک صفحه</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ColumnCount" type="xs:unsignedByte" use="required">
+                    <xs:annotation>
+                      <xs:documentation>تعداد ستون ها در یک ردیف برای پارامتر ها و دیتال ویو</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="PerKey" type="xs:string" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>عنوان مجوز مورد نیاز</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="type" type="PageType" use="required">
+                    <xs:annotation>
+                      <xs:documentation>نوع صفحه</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="DBCommand" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>دستور مورد نیاز برای نمایش یا اجرا</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="queryString" type="xs:string" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>تعیین عبارت بایستی به 
+                    /:ParaName/:ParaName2 
+                    باشد
+                  </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ValueDbCommand" type="xs:string" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>عنوان روالی که برای مقدار دهی آغازین پارامتر ها بکار می رود مانند دریافت اطلاعات ورودی برای فرم های ویرایش</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Actions" maxOccurs="1" minOccurs="0">
+          <xs:complexType>
+             <xs:annotation><xs:documentation>تعریف اکشن های ajax </xs:documentation> </xs:annotation>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="action">
+                <xs:complexType>
+                   <xs:annotation><xs:documentation> تعریف اقدام ajax </xs:documentation> </xs:annotation>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="actionParameter">
+                      <xs:complexType>
+                         <xs:annotation><xs:documentation>تعریف پارامتر های ajax </xs:documentation> </xs:annotation>
+                        <xs:attribute name="name" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>نام پارامتر در روال بانک اطلاعاتی</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="type" type="actionParameterType" use="required">
+                          <xs:annotation>
+                            <xs:documentation>نوع پارامتر</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Parameter" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>عنوان پارامتر در جاوا اسکپریت</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>نام اقدام آچاکس</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="DBCommand" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>نام روال بانک اطلاعاتی مورد نیاز</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="PerKey" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>نام مجوز نیاز</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Include" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+             <xs:annotation><xs:documentation> ترکیب کردن یک فایل config دیگر </xs:documentation> </xs:annotation>
+            <xs:attribute name="FilePath" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>نام مسیر فایل </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ImportMenuItems" type="YesNo" use="required">
+              <xs:annotation>
+                <xs:documentation>آیا اجزای منو دریافت شوند</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ImportPages" type="YesNo" use="required">
+              <xs:annotation>
+                <xs:documentation>آیا صفحات بازیابی شوند</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ImportActions" type="YesNo" use="required">
+              <xs:annotation>
+                <xs:documentation>آیا اقدام آچ اکس بازیابی شوند</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DontBuild" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:documentation>برای اینکه یک فایل را نسازد و یا تغییر ندهد</xs:documentation>
+            </xs:annotation>
+            <xs:attribute name="FileName" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation> نام فایل بدون مسیر</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Title" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>عنوان برنامه</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Name" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>نام انگلیسی برنامه</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DBType" type="DBType" use="required">
+        <xs:annotation>
+          <xs:documentation>نوع بانک اطلاعاتی </xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Theme" type="Theme" use="required">
+        <xs:annotation>
+          <xs:documentation>قالب مورد استفاده</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ConnectionSetthing" type="xs:string" use="required">
+        <xs:annotation>
+          <xs:documentation>رشته اتصال بانک اطلاعاتی</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

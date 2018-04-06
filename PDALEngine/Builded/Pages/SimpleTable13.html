@@ -1,0 +1,55 @@
+﻿تغییر در مقادیر به صورت آفلاین
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    SimpleTable13.IntForm=function()
+    {
+    
+    document.title='تغییر در مقادیر به صورت آفلاین';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    SimpleTable13.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > فی</th> 
+ <th  > تعداد</th> 
+ <th  > جمع</th> 
+ </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+  <td><input class="form-control" type="text" id="price_{{record.rndId}}"   onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.total=Num(record.price)*Num(record.count)"   onkeyup="NumberInput(event,this)"    value="{{ShowMoney(record.priceLiquid error: Value cannot be null.
+Parameter name: input}}" ng-model="record.price"  /></td> 
+  <td><input class="form-control" type="text" id="count_{{record.rndId}}"   onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.total=Num(record.price)*Num(record.count)"   onkeyup="NumberInput(event,this)"    value="{{ShowMoney(record.countLiquid error: Value cannot be null.
+Parameter name: input}}" ng-model="record.count"  /></td> 
+<td>{{ShowMoney(record.total)}}</td> 
+                   </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             SimpleTable13.Serach();
+                      });
+    
+     </script>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="PageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TableView">
+        <xs:annotation>
+          <xs:documentation>یک صفحه با قابلیت نمایش و ویرایش جدول</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ScallerForm">
+        <xs:annotation>
+          <xs:documentation>یک صفحه فقط جهت اجرای یک کار و برگردان خروجی تک مقداری </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DetailView">
+        <xs:annotation>
+          <xs:documentation>یک صفحه قابلیت و و ویرایش جدول به صورت کاشی وار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Config">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="dbSETUP"  minOccurs="0">
+          <xs:complexType>
+            <xs:attribute name="address" type="xs:string" use="required" />
+            <xs:attribute name="DBType" type="PageType" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pages">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Page">
+                <xs:complexType>
+                  <xs:attribute name="url" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

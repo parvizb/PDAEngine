@@ -1,0 +1,73 @@
+﻿ثبت و ویرایش و حذف رکورد ها در یک جدول 
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    SimpleTable11.IntForm=function()
+    {
+    
+    document.title='ثبت و ویرایش و حذف رکورد ها در یک جدول ';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    SimpleTable11.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a onclick='SimpleTable11.InsertRecord()' ><button type="button" class="btn btn-default" >ردیف جدید</button></a>
+<a onclick='SimpleTable11.Save()' ><button type="button" class="btn btn-default" >ذخیره</button></a>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th>ردیف</th>
+ <th  class="Pointer"  ng-click="ChageTableOrder('cityId')"  > <span ng-show="((currentOrder=='cityId') && (rev) )">V</span> <span ng-show="((currentOrder=='cityId') && (!rev) )">^</span>شناسه</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('cityTitle')"  > <span ng-show="((currentOrder=='cityTitle') && (rev) )">V</span> <span ng-show="((currentOrder=='cityTitle') && (!rev) )">^</span>عنوان</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('CITYPop')"  > <span ng-show="((currentOrder=='CITYPop') && (rev) )">V</span> <span ng-show="((currentOrder=='CITYPop') && (!rev) )">^</span>جمعیت</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td>{{$index+1}}</td>
+<td>{{record.cityId}}</td> 
+  <td><input class="form-control" type="text" id="cityTitle_{{record.rndId}}" value="{{record.cityTitle}}" ng-change="ChangeState(record);"  ng-model="record.cityTitle"  /></td> 
+   <td><input class="form-control" type="text" id="CITYPop_{{record.rndId}}"   onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"    value="{{ShowMoney(record.CITYPopLiquid error: Value cannot be null.
+Parameter name: input}}" ng-model="record.CITYPop"  /></td> 
+              <td>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a   ng-click="RemoveItem( record)"   >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             SimpleTable11.Serach();
+                      });
+    
+     </script>

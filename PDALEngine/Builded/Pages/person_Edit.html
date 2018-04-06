@@ -1,0 +1,94 @@
+﻿
+
+person_Update_Sp
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">     <span class="red" >*</span>  :</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control" id="txtname" placeholder="" />
+                                        </div>
+    <label for="grade" class="col-sm-2 control-label">     <span class="red" >*</span>  رتبه شغلی:</label>
+    <div class="col-sm-4">
+                                          <select class="form-control" id="txtgrade" >
+      </select>
+    </div>
+     </div>
+     <div class="form-group">
+    <label for="cityid" class="col-sm-2 control-label">     <span class="red" >*</span>  شهر:</label>
+    <div class="col-sm-4">
+      <input type="Number" onkeypress="return blockNonIntNumber(event)"  class="form-control" id="txtcityid" placeholder="" />
+                                        </div>
+    <label for="sextype" class="col-sm-2 control-label">     <span class="red" >*</span>  جنسیت:</label>
+    <div class="col-sm-4">
+                                          <select class="form-control" id="txtsextype" >
+      </select>
+    </div>
+     </div>
+     <div class="form-group">
+    <label for="salaryBase" class="col-sm-2 control-label">     <span class="red" >*</span>  حقوق پایه:</label>
+    <div class="col-sm-4">
+      <input type="Number" onkeypress="return blockNonIntNumber(event)"  class="form-control" id="txtsalaryBase" placeholder="" />
+                                        </div>
+    <label for="examResult" class="col-sm-2 control-label">     <span class="red" >*</span>  نمره آزمون:</label>
+    <div class="col-sm-4">
+      <input type="Number"    class="form-control" id="txtexamResult" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label for="dateBrith" class="col-sm-2 control-label">     <span class="red" >*</span>  تاریخ تولد:</label>
+    <div class="col-sm-4">
+                                          <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtdateBrith')"  class="form-control" id="txtdateBrith" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+    <label for="startTime" class="col-sm-2 control-label">     <span class="red" >*</span>  ساعت شروع کار:</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control" id="txtstartTime" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label for="smailBio" class="col-sm-2 control-label">     <span class="red" >*</span>  خلاصه زندگی :</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control" id="txtsmailBio" placeholder="" />
+                                        </div>
+    <label for="smailHtml" class="col-sm-2 control-label">     <span class="red" >*</span>  سایر توضیحات:</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control" id="txtsmailHtml" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label for="favColor" class="col-sm-2 control-label">     <span class="red" >*</span>  رنگ مورد علاقه:</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control" id="txtfavColor" placeholder="" />
+                                        </div>
+    <label for="picImage" class="col-sm-2 control-label">     <span class="red" >*</span>  تصویر پرسنلی:</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control" id="txtpicImage" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label for="isBroken" class="col-sm-2 control-label">     <span class="red" >*</span>  دارای معولیت جسمی:</label>
+    <div class="col-sm-4">
+      <input type="CheckBox"     id="txtisBroken" placeholder="" />
+                                        </div>
+  </div>
+    </from>
+  <script>
+                                                                                                                         
+    person_Edit.IntForm=function()
+    {
+    
+    document.title='person_Update_Sp';
+    window.fileUploaded=false;
+                                                                                                                                                                                            kamaDatepicker('txtdateBrith', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                                                                                                                
+    }
+    $(document).ready(function () {
+    person_Edit.IntForm();
+        person_Edit.InitStartValues();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="person_Edit.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

@@ -1,0 +1,21 @@
+﻿<form class="form-horizontal" role="form">
+ @{ int i = 0; }
+@{int HeaderSize = (int)Math.Round(((12f / float.Parse(ViewBag.Page.ColumnCount)) * .25f)); int ValueColumnSize = (int)Math.Round(((12f / float.Parse(ViewBag.Page.ColumnCount)) * .25f)); }
+  <div class="form-group">
+  @foreach(var  para in  ViewBag.Page.PageParameters ){
+     if(para.source == "form"){
+             <label for="@para.name" class="col-sm-@(HeaderSize) control-label">@para.title:</label>
+    <div class="col-sm-@(ValueColumnSize)">
+    <input type="text" ng-model="@(Page.name).@(para.name)" class="form-control" id="txt{{Para.name}}" placeholder="" />
+    </div>
+      @{i += 1;}
+       if(i==ViewBag.Page.ColumnCount){
+           @("  </div><div class=\"form-group\">")
+                @{i = 0;}
+      
+      }
+     }
+      
+  }
+   </div>
+</from>

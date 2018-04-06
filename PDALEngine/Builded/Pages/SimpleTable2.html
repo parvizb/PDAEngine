@@ -1,0 +1,53 @@
+﻿جدول ساده بدون پارامتر  با امکانات ساده نمایشی 
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    SimpleTable2.IntForm=function()
+    {
+    
+    document.title='جدول ساده بدون پارامتر  با امکانات ساده نمایشی ';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    SimpleTable2.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th>ردیف</th>
+ <th  class="Pointer"  ng-click="ChageTableOrder('cityId')"  > <span ng-show="((currentOrder=='cityId') && (rev) )">V</span> <span ng-show="((currentOrder=='cityId') && (!rev) )">^</span>کد شهر</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('cityTitle')"  > <span ng-show="((currentOrder=='cityTitle') && (rev) )">V</span> <span ng-show="((currentOrder=='cityTitle') && (!rev) )">^</span>عنوان شهر</th> 
+ </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td>{{$index+1}}</td>
+<td>{{record.cityId}}</td> 
+ <td>{{record.cityTitle}}</td> 
+                   </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             SimpleTable2.Serach();
+                      });
+    
+     </script>

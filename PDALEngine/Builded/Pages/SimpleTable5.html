@@ -1,0 +1,55 @@
+﻿جدول ساده با پارامتر  
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label for="n" class="col-sm-2 control-label">     نام:</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control" id="txtn" placeholder="" />
+                                        </div>
+  </div>
+    </from>
+  <script>
+                 
+    SimpleTable5.IntForm=function()
+    {
+    
+    document.title='جدول ساده با پارامتر  ';
+    window.fileUploaded=false;
+                            
+    }
+    $(document).ready(function () {
+    SimpleTable5.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="SimpleTable5.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > کد شهر</th> 
+ <th  > عنوان شهر</th> 
+ </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+<td>{{record.cityId}}</td> 
+ <td>{{record.cityTitle}}</td> 
+                   </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

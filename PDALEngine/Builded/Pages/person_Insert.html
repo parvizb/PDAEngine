@@ -1,0 +1,126 @@
+﻿
+
+درج با انواع پارامتر ها
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label for="name" class="col-sm-2 control-label">     <span class="red" >*</span>  نام:</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control" id="txtname" placeholder="" />
+                                        </div>
+    <label for="grade" class="col-sm-2 control-label">     <span class="red" >*</span>  رتبه شغلی:</label>
+    <div class="col-sm-4">
+                                          <select class="form-control" id="txtgrade" >
+        <option value="0">رده سوم</option>
+        <option value="1">رده دوم</option>
+        <option value="2">رده یکم</option>
+        <option value="3">رده ارشد</option>
+        <option value="4">ریاست</option>
+      </select>
+    </div>
+     </div>
+     <div class="form-group">
+    <label for="cityid" class="col-sm-2 control-label">     <span class="red" >*</span>  شهر:</label>
+    <div class="col-sm-4">
+                                          <select class="form-control" id="txtcityid" ></select>
+    </div>
+    <label for="sextype" class="col-sm-2 control-label">     <span class="red" >*</span>  جنسیت:</label>
+    <div class="col-sm-4">
+                                          <select class="form-control" id="txtsextype" >
+        <option value="0">مرد</option>
+        <option value="1">زن</option>
+      </select>
+    </div>
+     </div>
+     <div class="form-group">
+    <label for="salaryBase" class="col-sm-2 control-label">     <span class="red" >*</span>  حقوق پایه:</label>
+    <div class="col-sm-4">
+      <input type="Text"  onkeypress="return blockNonIntNumber(event)"  onkeyup="NumberInput(event,this)" class="form-control" id="txtsalaryBase" placeholder="" />
+                                              </div>
+    <label for="examResult" class="col-sm-2 control-label">     <span class="red" >*</span>  نمره آزمون:</label>
+    <div class="col-sm-4">
+      <input type="Number"    class="form-control" id="txtexamResult" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label for="dateBrith" class="col-sm-2 control-label">     <span class="red" >*</span>  تاریخ تولد:</label>
+    <div class="col-sm-4">
+                                          <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtdateBrith')"  class="form-control" id="txtdateBrith" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+    <label for="startTime" class="col-sm-2 control-label">     <span class="red" >*</span>  ساعت شروع کار:</label>
+    <div class="col-sm-4">
+      <input type="Text"  maxlength="8"  onkeypress="return blockNonTimeNumber(event)" class="form-control" id="txtstartTime" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label for="smailBio" class="col-sm-2 control-label">     <span class="red" >*</span>  خلاصه زندگی :</label>
+    <div class="col-sm-4">
+                                          <TextArea class="form-control" id="txtsmailBio" ></TextArea>
+    </div>
+    <label for="smailHtml" class="col-sm-2 control-label">     <span class="red" >*</span>  سایر توضیحات:</label>
+    <div class="col-sm-4">
+      <textarea      class="form-control" id="txtsmailHtml" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label for="favColor" class="col-sm-2 control-label">     <span class="red" >*</span>  رنگ مورد علاقه:</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control white_shadow" id="txtfavColor" placeholder="" />
+                                        </div>
+    <label for="picImage" class="col-sm-2 control-label">     <span class="red" >*</span>  تصویر پرسنلی:</label>
+    <div class="col-sm-4">
+                        <input type="file"       class="form-control" id="txtpicImage"     placeholder="" />
+                            </div>
+     </div>
+     <div class="form-group">
+    <label for="isBroken" class="col-sm-2 control-label">     <span class="red" >*</span>  دارای معولیت جسمی:</label>
+    <div class="col-sm-4">
+      <input type="CheckBox"     id="txtisBroken" placeholder="" />
+                                        </div>
+  </div>
+    </from>
+  <script>
+                            var cityid =null;
+                                                                                             
+    person_Insert.IntForm=function()
+    {
+    
+    document.title='درج با انواع پارامتر ها';
+    window.fileUploaded=false;
+                                    $('#txtgrade').select2({});
+                                    cityid=  Select2AjaxInit('txtcityid',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='person_Insert';
+    DataPass.ParaName='cityid';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                                                                            kamaDatepicker('txtdateBrith', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                                    TinyMceEditor('txtsmailHtml');
+                                    $('#txtfavColor').ColorPicker({
+    color: $('#txtfavColor').val(),
+    onShow: function (colpkr) {
+    $(colpkr).fadeIn(500);
+    return false;
+    },
+    onHide: function (colpkr) {
+    $(colpkr).fadeOut(500);
+    return false;
+    },
+    onChange: function (hsb, hex, rgb) {
+    $('#txtfavColor').css('backgroundColor', '#' + hex);
+    $('#txtfavColor').val('#' + hex);
+    }
+    });
+                                                        
+    }
+    $(document).ready(function () {
+    person_Insert.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="person_Insert.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0F8F768E-E69F-4752-BBA0-08B7535A97D6}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PDALEngine</RootNamespace>
+    <AssemblyName>PDALEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>E:\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DotLiquid">
+      <HintPath>D:\pshop_ang\bin\DotLiquid.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NCalc">
+      <HintPath>E:\NCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\pbvController.cs" />
+    <Compile Include="Controllers\utilController.cs" />
+    <Compile Include="Elements.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="PDAL.CS" />
+    <Compile Include="PDALSect.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="BuildLigid\Pages\DetailView.html" />
+    <Content Include="BuildLigid\scripts\controller.js" />
+    <Content Include="cs.xml" />
+    <Content Include="customJavaScript.js" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\blank.gif" />
+    <Content Include="images\colorpicker_background.png" />
+    <Content Include="images\colorpicker_hex.png" />
+    <Content Include="images\colorpicker_hsb_b.png" />
+    <Content Include="images\colorpicker_hsb_h.png" />
+    <Content Include="images\colorpicker_hsb_s.png" />
+    <Content Include="images\colorpicker_indic.gif" />
+    <Content Include="images\colorpicker_overlay.png" />
+    <Content Include="images\colorpicker_rgb_b.png" />
+    <Content Include="images\colorpicker_rgb_g.png" />
+    <Content Include="images\colorpicker_rgb_r.png" />
+    <Content Include="images\colorpicker_select.gif" />
+    <Content Include="images\colorpicker_submit.png" />
+    <Content Include="images\custom_background.png" />
+    <Content Include="images\custom_hex.png" />
+    <Content Include="images\custom_hsb_b.png" />
+    <Content Include="images\custom_hsb_h.png" />
+    <Content Include="images\custom_hsb_s.png" />
+    <Content Include="images\custom_indic.gif" />
+    <Content Include="images\custom_rgb_b.png" />
+    <Content Include="images\custom_rgb_g.png" />
+    <Content Include="images\custom_rgb_r.png" />
+    <Content Include="images\custom_submit.png" />
+    <Content Include="images\select.png" />
+    <Content Include="images\select2.png" />
+    <Content Include="images\slider.png" />
+    <Content Include="Res\bootstraplite.min.css" />
+    <Content Include="Res\colorpicker.css" />
+    <Content Include="Res\colorpicker.js" />
+    <Content Include="Res\kamadatepicker.min.css" />
+    <Content Include="tinymce\jquery.tinymce.min.js" />
+    <Content Include="tinymce\license.txt" />
+    <Content Include="tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="tinymce\plugins\code\plugin.min.js" />
+    <Content Include="tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="tinymce\plugins\help\img\logo.png" />
+    <Content Include="tinymce\plugins\help\plugin.min.js" />
+    <Content Include="tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="tinymce\plugins\image\plugin.min.js" />
+    <Content Include="tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="tinymce\plugins\link\plugin.min.js" />
+    <Content Include="tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="tinymce\plugins\media\plugin.min.js" />
+    <Content Include="tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="tinymce\plugins\print\plugin.min.js" />
+    <Content Include="tinymce\plugins\save\plugin.min.js" />
+    <Content Include="tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="tinymce\plugins\table\plugin.min.js" />
+    <Content Include="tinymce\plugins\template\plugin.min.js" />
+    <Content Include="tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="tinymce\plugins\toc\plugin.min.js" />
+    <Content Include="tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="tinymce\skins\lightgray\content.min.css" />
+    <Content Include="tinymce\skins\lightgray\content.mobile.min.css" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="tinymce\skins\lightgray\skin.mobile.min.css" />
+    <Content Include="tinymce\themes\inlite\theme.min.js" />
+    <Content Include="tinymce\themes\mobile\theme.min.js" />
+    <Content Include="tinymce\themes\modern\theme.min.js" />
+    <Content Include="tinymce\tinymce.min.js" />
+    <Content Include="welcome.html" />
+    <Content Include="BuildLigid\Pages\ScallerForm.html" />
+    <Content Include="BuildLigid\Pages\TableView.html" />
+    <Content Include="BuildLigid\scripts\AjaxActions.js" />
+    <Content Include="BuildLigid\scripts\config.js" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\Vazir-Thin.eot" />
+    <Content Include="fonts\Vazir-Thin.ttf" />
+    <Content Include="fonts\Vazir-Thin.woff" />
+    <Content Include="fonts\Vazir-Thin.woff2" />
+    <Content Include="BuildLigid\Pages\_PageButton.liquid" />
+    <Content Include="BuildLigid\Pages\_Parameter.liquid">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="images\Thumbs.db" />
+    <Content Include="dontBuild.lst" />
+    <Content Include="XMLFile1.xml" />
+    <None Include="PDA.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Res\angular-route.min.js" />
+    <Content Include="Res\angular.min.js" />
+    <Content Include="Res\bootstrap-rtl.min.css" />
+    <Content Include="Res\bootstrap.min.css" />
+    <Content Include="Res\bootstrap.min.js" />
+    <Content Include="Res\jquery-3.2.1.min.js" />
+    <Content Include="Res\jquery-3.2.1.slim.min.js" />
+    <Content Include="Res\main.css" />
+    <Content Include="Res\toolkit.js" />
+    <Content Include="scripts\jquery-3.2.1.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\ScallerForm.cshtml" />
+    <Content Include="Views\Home\Parameters.cshtml" />
+    <Content Include="tinymce\langs\readme.md" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="R.CONFIG">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Builded\Pages\" />
+    <Folder Include="Builded\Scripts\Controllers\" />
+    <Folder Include="Models\" />
+    <Folder Include="upd\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Default\Index.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52135/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

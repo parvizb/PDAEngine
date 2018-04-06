@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="PageType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="TableView" />
+      <xs:enumeration value="ScallerForm" />
+      <xs:enumeration value="DetailView" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ParameterType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="Html" />
+      <xs:enumeration value="TextArea" />
+      <xs:enumeration value="String" />
+      <xs:enumeration value="Date" />
+      <xs:enumeration value="Select2" />
+      <xs:enumeration value="Select2Ajax" />
+      <xs:enumeration value="DropDown" />
+      <xs:enumeration value="Color" />
+      <xs:enumeration value="Integer" />
+      <xs:enumeration value="Float" />
+      <xs:enumeration value="Money" />
+      <xs:enumeration value="Time" />
+      <xs:enumeration value="CheckBox" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Theme">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="Cerulean" />
+      <xs:enumeration value="Cosmo" />
+      <xs:enumeration value="Cyborg" />
+      <xs:enumeration value="Darkly" />
+      <xs:enumeration value="Flatly" />
+      <xs:enumeration value="Journal" />
+      <xs:enumeration value="Lumen" />
+      <xs:enumeration value="SuperHero" />
+      <xs:enumeration value="Paper" />
+      <xs:enumeration value="Readable" />
+      <xs:enumeration value="Sandstone" />
+      <xs:enumeration value="Simplex" />
+      <xs:enumeration value="Slate" />
+      <xs:enumeration value="United" />
+      <xs:enumeration value="Spacelab" />
+      <xs:enumeration value="Yeti" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Application">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Menu">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Item">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded"  name="SubItem" >
+                      <xs:complexType>
+                        <xs:simpleContent>
+                          <xs:extension base="xs:string">
+                            <xs:attribute name="Type" type="xs:string" use="required"   />
+                            <xs:attribute name="link" type="xs:string"  use="required" />
+                            <xs:attribute name="PerKey" type="xs:string" use="required" />
+                            <xs:attribute name="text" type="xs:string" use="required" />
+                          </xs:extension>
+                        </xs:simpleContent>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Type" type="xs:string" use="required" />
+                  <xs:attribute name="link" type="xs:string" use="required" />
+                  <xs:attribute name="text" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Title" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pages">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Page">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" name="table">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="column">
+                            <xs:complexType>
+                              <xs:attribute name="title" type="xs:string" use="required" />
+                              <xs:attribute name="name" type="xs:string" use="optional" />
+                              <xs:attribute name="type" type="xs:string" use="required" />
+                              <xs:attribute name="Caption" type="xs:string" use="optional" />
+                              <xs:attribute name="linkSyntax" type="xs:string" use="optional" />
+                              <xs:attribute name="AskMessage" type="xs:string" use="optional" />
+                              <xs:attribute name="AjaxAction" type="xs:string" use="optional" />
+                              <xs:attribute name="ParameterSyntax" type="xs:string" use="optional" >
+                             
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="PageParameter">
+                      <xs:complexType mixed="true">
+                        <xs:sequence minOccurs="0">
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
+                            <xs:complexType>
+                              <xs:attribute name="value" type="xs:string" use="required" />
+                              <xs:attribute name="text" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="ParameterCheck">
+                            <xs:complexType>
+                              <xs:attribute name="Cond" type="xs:string" use="required" />
+                              <xs:attribute name="When" type="xs:string" use="optional" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="title" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="ParameterType" use="required" />
+                        <xs:attribute name="source" type="xs:string" use="required" />
+                        <xs:attribute name="sorurceParameter" type="xs:string" use="optional" />
+                        <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                        <xs:attribute name="dontSendToDb" type="xs:string" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomValidate">
+                      <xs:complexType>
+                        <xs:attribute name="Cond" type="xs:string" use="required" />
+                        <xs:attribute name="Message" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Title" type="xs:string" use="required" />
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="link" type="xs:string" use="required" />
+                  <xs:attribute name="ColumnCount" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="PerKey" type="xs:string" use="required" />
+                  <xs:attribute name="type" type="PageType" use="required" />
+                  <xs:attribute name="DBCommand" type="xs:string" use="required" />
+                  <xs:attribute name="queryString" type="xs:string" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Actions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="action" maxOccurs="unbounded" >
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="actionParameter">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="Parameter" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="DBCommand" type="xs:string" use="required" />
+                  <xs:attribute name="PerKey" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Title" type="xs:string" use="required" />
+      <xs:attribute name="Version" type="xs:decimal" use="required" />
+      <xs:attribute name="Name" type="xs:string" use="required" />
+      <xs:attribute name="ObjectAttrName" type="xs:string" use="required" />
+      <xs:attribute name="Theme" type="Theme" use="required" />
+      <xs:attribute name="DBType" type="xs:string" use="required" />
+      <xs:attribute name="ProjectType" type="xs:string" use="required" />
+      <xs:attribute name="ConnectionSetthing" type="xs:string" use="required" />
+      <xs:attribute name="ajaxurlmapping" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

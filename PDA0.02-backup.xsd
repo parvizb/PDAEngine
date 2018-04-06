@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="PageType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="TableView" />
+      <xs:enumeration value="ScallerForm" />
+      <xs:enumeration value="DetailView" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="YesNo">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="Yes" />
+      <xs:enumeration value="No" />
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="PageParameterType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="Html" />
+      <xs:enumeration value="TextArea" />
+      <xs:enumeration value="String" />
+      <xs:enumeration value="Date" />
+      <xs:enumeration value="Select2" />
+      <xs:enumeration value="Select2Ajax" />
+      <xs:enumeration value="DropDown" />
+      <xs:enumeration value="Color" />
+      <xs:enumeration value="Integer" />
+      <xs:enumeration value="Float" />
+      <xs:enumeration value="Money" />
+      <xs:enumeration value="Time" />
+      <xs:enumeration value="CheckBox" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DBType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="SQLSERVER" />
+
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Theme">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="Cerulean" />
+      <xs:enumeration value="Cosmo" />
+      <xs:enumeration value="Cyborg" />
+      <xs:enumeration value="Darkly" />
+      <xs:enumeration value="Flatly" />
+      <xs:enumeration value="Journal" />
+      <xs:enumeration value="Lumen" />
+      <xs:enumeration value="SuperHero" />
+      <xs:enumeration value="Paper" />
+      <xs:enumeration value="Readable" />
+      <xs:enumeration value="Sandstone" />
+      <xs:enumeration value="Simplex" />
+      <xs:enumeration value="Slate" />
+      <xs:enumeration value="United" />
+      <xs:enumeration value="Spacelab" />
+      <xs:enumeration value="Yeti" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PageParameterSourceType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="form" />
+      <xs:enumeration value="QueryString" />
+      <xs:enumeration value="Session" />
+      <xs:enumeration value="SpecValue" />
+      <xs:enumeration value="Expr" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DefaultValueSourceType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="form" />
+      <xs:enumeration value="Static" />
+      <xs:enumeration value="Session" />
+      <xs:enumeration value="SpecValue" />
+      <xs:enumeration value="Expr" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="startValueType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="DbValueCommand" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="actionParameterType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="input" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CondType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="Reg" />
+      <xs:enumeration value="ReqEmail" />
+      <xs:enumeration value="StringLength" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MenuItemType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="Link" />
+      <xs:enumeration value="PDALink" />
+      <xs:enumeration value="PDATextboxLink" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MenuSubItemType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="Link" />
+      <xs:enumeration value="PDALink" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ButtonActionType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="goToPage" />
+      <xs:enumeration value="dynLink" />
+      <xs:enumeration value="JavaScript" />
+      <xs:enumeration value="InsertRecordToTable" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DBSelectCommandParameterSourceType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="term" />
+      <xs:enumeration value="Expr" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ValueParameterSource">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="QueryString" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ColumnType">
+    <xs:restriction base="xs:string" >
+      <xs:enumeration value="DisplayValue" />
+      <xs:enumeration value="Money" />
+      <xs:enumeration value="Boolean" />
+      <xs:enumeration value="DisplayValue" />
+      <xs:enumeration value="InputString" />
+      <xs:enumeration value="InputInteger" />
+      <xs:enumeration value="InputFloat" />
+      <xs:enumeration value="InputDate" />
+      <xs:enumeration value="InputMoney" />
+      <xs:enumeration value="InputCombo" />
+      <xs:enumeration value="Expr" />
+      <xs:enumeration value="PDALink" />
+      <xs:enumeration value="AjaxAction" />
+      <xs:enumeration value="JavaScript" />
+      <xs:enumeration value="DeleteRow" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Application">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Menu">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Item" maxOccurs="unbounded" >
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="SubItem" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="PerKey" type="xs:string" use="required"  />
+                        <xs:attribute name="text" type="xs:string" use="required" />
+                        <xs:attribute name="Type" type="MenuSubItemType" use="required" />
+                        <xs:attribute name="link" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="text" type="xs:string" use="required" />
+                  <xs:attribute name="link" type="xs:string" use="required" />
+                  <xs:attribute name="Type" type="MenuItemType" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pages">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Page">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="ValueParameter">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="value" type="xs:string" use="required" />
+                        <xs:attribute name="source" type="ValueParameterSource" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="table">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="NewRecordColumnValue">
+                            <xs:complexType>
+                              <xs:attribute name="ColumnName" type="xs:string" use="required" />
+                              <xs:attribute name="value" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element maxOccurs="unbounded" name="column">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
+                                  <xs:complexType>
+                                    <xs:attribute name="text" type="xs:string" use="required" />
+                                    <xs:attribute name="value" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="title" type="xs:string" use="required" />
+                              <xs:attribute name="name" type="xs:string" use="optional" />
+                              <xs:attribute name="type" type="ColumnType" use="required" />
+                              <xs:attribute name="Caption" type="xs:string" use="optional" />
+                              <xs:attribute name="linkSyntax" type="xs:string" use="optional" />
+                              <xs:attribute name="AskMessage" type="xs:string" use="optional" />
+                              <xs:attribute name="AjaxAction" type="xs:string" use="optional" />
+                              <xs:attribute name="ParameterSyntax" type="xs:string" use="optional" />
+
+                            </xs:complexType>
+
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="Sortable" type="YesNo" use="optional" />
+                        <xs:attribute name="HideActionColumnn" type="YesNo" use="optional" />
+                        <xs:attribute name="BasicFilter" type="YesNo" use="optional" />
+                        <xs:attribute name="RowNumberColumn" type="YesNo" use="optional" />
+                        <xs:attribute name="Selectable" type="YesNo" use="optional" />
+                        <xs:attribute name="Insertable" type="YesNo" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" name="PageParameter">
+                      <xs:complexType mixed="true">
+                        <xs:sequence minOccurs="0">
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
+                            <xs:complexType>
+                              <xs:attribute name="text" type="xs:string" use="required" />
+                              <xs:attribute name="value" type="xs:unsignedByte" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ParameterCheck">
+                            <xs:complexType>
+                              <xs:attribute name="Cond" type="CondType" use="required" />
+                              <xs:attribute name="when" type="xs:string" use="optional" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element  name="DBSelectCommandParameter" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:complexType>
+                              <xs:attribute name="source" type="DBSelectCommandParameterSourceType" use="required" />
+                              <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="title" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="PageParameterType" use="required" />
+                        <xs:attribute name="source" type="PageParameterSourceType" use="required" />
+                        <xs:attribute name="DefaultValueSource" type="DefaultValueSourceType" use="optional" />
+                        <xs:attribute name="DefaultValueParameter" type="xs:string" use="optional" />
+                        <xs:attribute name="DBSelect2Command" type="xs:string" use="optional" />
+                        <xs:attribute name="codeColumn" type="xs:string" use="optional" />
+                        <xs:attribute name="textColumn" type="xs:string" use="optional" />
+                        <xs:attribute name="Parameter" type="xs:string" use="optional" />
+                        <xs:attribute name="startValueType" type="startValueType" use="optional" />
+                        <xs:attribute name="TitleParameter" type="xs:string" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="CustomValidate">
+                      <xs:complexType>
+                        <xs:attribute name="Cond" type="xs:string" use="required" />
+                        <xs:attribute name="Message" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="Button">
+                      <xs:complexType>
+                        <xs:attribute name="title" type="xs:string" use="required" />
+                        <xs:attribute name="action" type="ButtonActionType" use="required" />
+                        <xs:attribute name="actionParameter" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="Title" type="xs:string" use="required" />
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="link" type="xs:string" use="required" />
+                  <xs:attribute name="ColumnCount" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="PerKey" type="xs:string" use="required" />
+                  <xs:attribute name="type" type="PageType" use="required" />
+                  <xs:attribute name="DBCommand" type="xs:string" use="required" />
+                  <xs:attribute name="queryString" type="xs:string" use="optional" />
+                  <xs:attribute name="ValueDbCommand" type="xs:string" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Actions">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="action">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="actionParameter">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="actionParameterType" use="required" />
+                        <xs:attribute name="Parameter" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="DBCommand" type="xs:string" use="required" />
+                  <xs:attribute name="PerKey" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element  name="Include" minOccurs="0" maxOccurs="unbounded" >
+          <xs:complexType>
+            <xs:attribute name="FilePath" type="xs:string" use="required" />
+            <xs:attribute name="ImportMenuItems" type="YesNo" use="required" />
+            <xs:attribute name="ImportPages" type="YesNo" use="required" />
+            <xs:attribute name="ImportActions" type="YesNo" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Title" type="xs:string" use="required" />
+      <xs:attribute name="Name" type="xs:string" use="required" />
+      <xs:attribute name="DBType" type="DBType" use="required" />
+      <xs:attribute name="Theme" type="Theme" use="required" />
+      <xs:attribute name="ConnectionSetthing" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

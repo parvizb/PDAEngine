@@ -1,0 +1,75 @@
+﻿ورودی های پیشرفته در جدول 
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    SimpleTable12.IntForm=function()
+    {
+    
+    document.title='ورودی های پیشرفته در جدول ';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    SimpleTable12.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+ <th  > شناسه</th> 
+ <th  > نام</th> 
+ <th  > حقوق پایه</th> 
+ <th  > نمره آزمون</th> 
+ <th  > تاریخ تولد</th> 
+ <th  > معلویت جسمی</th> 
+ <th  > جنسیت</th> 
+ <th  > جنسیت</th> 
+ </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td>{{record.id}}</td> 
+  <td><input class="form-control" type="text" id="name_{{record.rndId}}" value="{{record.name}}" ng-change="ChangeState(record);"  ng-model="record.name"  /></td> 
+   <td><input class="form-control" type="text" id="salaryBase_{{record.rndId}}"   onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"    value="{{ShowMoney(record.salaryBaseLiquid error: Value cannot be null.
+Parameter name: input}}" ng-model="record.salaryBase"  /></td> 
+  <td><input class="form-control" type="text" id="examResult_{{record.rndId}}"   value="{{record.examResult}}" ng-change="ChangeState(record);"   ng-model="record.examResult"  /></td> 
+  <td>
+      <input  type="text"  onkeypress="return blockNonDateNumber(event)" ng-change="ChangeState(record);"  created="False" onfocus="if($(this).attr('created')=='False') { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'});  this.focus();  } " data-type="date" id="Text4"   onBlur="ReformatDate(this.id)"  class="form-control"   placeholder="yyyy/mm/dd" max-length="10"    value="{{record.dateBrith}}" ng-model="record.dateBrith"  ></input>
+ </td> 
+  <td><select class="form-control" id="isBroken_{{record.rndId}}"   value="{{record.isBroken}}" ng-change="ChangeState(record);"   ng-model="record.isBroken"  >
+  <option value="False">خیر</option>
+  <option value="True">بله</option>
+</select></td> 
+  <td><select class="form-control" id="sextype_{{record.rndId}}" type="Select2" onfocus="$('#' + this.id ).select2({}).val(this.value).trigger('change');"   value="{{record.sextype}}" ng-change="ChangeState(record);"   ng-model="record.sextype"  >
+  <option value="0">مرد</option>
+  <option value="1">زن</option>
+</select></td> 
+  <td><select class="form-control"   id="cityid_{{record.rndId}}"  valc="{{record.cityid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='SimpleTable12';DataPass.colname='cityid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);"   ng-model="record.cityid"  >
+ <option value="{{record.cityid}}" selected="selected" >
+     {{record.}} </option>
+</select></td> 
+                  </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             SimpleTable12.Serach();
+                      });
+    
+     </script>

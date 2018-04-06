@@ -1,0 +1,167 @@
+﻿{{Page.title}}
+<hr />
+{% include "Parameter" %}
+{% if (Page.NoneFormParameters == 'True' ) -%} 
+<button type="button" class="btn btn-primary" onclick="{{Page.name}}.Serach(this)">نمایش</button>
+{% endif -%}
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+{% include "PageButton" %}
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption>{% for table in Page.tables -%}  {% if table.BasicFilter == 'Yes' -%} جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> {% endif -%}{% endfor -%}</caption>
+ <thead>
+ <tr>
+{% for table in Page.tables -%}  {% if table.Selectable == 'Yes' -%}
+<th><input type="checkbox" id="checkAll" onclick="CheckAllTable(this.checked)"  /></th>
+{% endif -%}
+{% endfor -%}
+{% for table in Page.tables -%}  {% if table.RowNumberColumn == 'Yes' -%}
+<th>ردیف</th>
+{% endif -%}
+{% endfor -%}
+{% for table in Page.tables -%}
+{% for col in table.columns -%}
+{% if (col.type == 'DisplayValue')  or (col.type == 'Image') or  (col.type == 'DownloadFile')   or  (col.type == 'Expr') or     (col.type == 'Money') or  (col.type == 'InputDate') or  (col.type == 'InputSelect2Ajax') or  (col.type == 'InputSelect2') or  (col.type == 'InputCombo')  or  (col.type == 'InputString')  or  (col.type == 'InputInteger')  or  (col.type == 'InputFloat')  or  (col.type == 'InputMoney')  or  (col.type == 'InputCombo') or  (col.type == 'Boolean') -%}
+ <th  {% if table.Sortable == 'Yes' -%} {% if col.Width != '' -%}width='{{col.Width}}'{% endif -%} class="Pointer"  ng-click="ChageTableOrder('{{col.name}}')"  {% endif -%} > {% if table.Sortable == 'Yes' -%}<span ng-show="((currentOrder=='{{col.name}}') && (rev) )">V</span> <span ng-show="((currentOrder=='{{col.name}}') && (!rev) )">^</span>{% endif -%} {{col.title}}</th> 
+{% endif -%}
+{% endfor -%}
+{% endfor -%}
+{% for table in Page.tables -%}  {% if table.HideActionColumnn != 'Yes' -%}
+<th>
+    عملیات
+</th>
+     {% endif -%}{% endfor -%}
+ </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev {% for table in Page.tables -%}  {% if table.BasicFilter == 'Yes' -%} | filter:FilterValue {% endif -%} {% endfor -%}" >
+{% for table in Page.tables -%}
+{% if table.Selectable == 'Yes' -%}
+<th><input type="checkbox" tableCheck="yes" id="selected_{% raw-%}{{record.rndId}}{% endraw -%}" onchange="sendCheckboxToRecord(this)"  /></th>
+{% endif -%}
+{% if table.RowNumberColumn == 'Yes' -%}
+<td>{% raw -%}{{$index+1}}{% endraw -%} </td>
+{% endif -%}
+{% for col in table.columns -%}
+{% if (col.type == 'DisplayValue') -%}
+<td>{{'{{'}}record.{{col.name}}{{'}}}}</td> 
+{% endif -%}
+{% if (col.type == 'Money') -%}
+<td>{{'{{ShowMoney('}}record.{{col.name}}{{'}})}}</td> 
+{% endif -%}
+{% if (col.type == 'Expr') -%}
+<td>{{col.ParameterSyntax}}</td> 
+{% endif -%}
+{% if (col.type == 'Boolean') -%}
+ <td>{{'{{ShowBoolean('}}record.{{col.name}}{{'}})}}</td> 
+{% endif -%}
+{% if (col.type == 'Image') -%}
+ <td><image ng-src='{{col.linkSyntax}}' {% if col.width != '' -%} width="{{col.width}}" {% endif -%}  {% if col.height != '' -%} width="{{col.height}}" {% endif -%}  /></td> 
+{% endif -%}
+{% if (col.type == 'DownloadFile') -%}
+ <td><a  ng-href='{{col.linkSyntax}}' >{{col.Caption}}</a></td> 
+{% endif -%}
+{% if (col.type == 'InputString') -%}
+ <td><input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"  ng-model="record.{{col.name}}"  /></td> 
+{% endif -%}
+ {% if (col.type == 'InputInteger') -%}
+ <td><input class="form-control" type="text"  id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}" onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"    value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"  /></td> 
+{% endif -%}
+{% if (col.type == 'InputFloat') -%}
+ <td><input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"   ng-model="record.{{col.name}}"  /></td> 
+{% endif -%}
+{% if (col.type == 'InputMoney') -%}
+ <td><input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"   onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"   onkeyup="NumberInput(event,this)"    value="{{'{{ShowMoney('}}record.{{col.name}}{{')}}}}" ng-model="record.{{col.name}}"  /></td> 
+{% endif -%}
+{% if (col.type == 'InputDate') -%}
+ <td>
+      <input  type="text"  onkeypress="return blockNonDateNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"  created="False" onfocus="if($(this).attr('created')=='False') {% raw -%} { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'}{% endraw -%});  this.focus();  } " data-type="date" id="Text4"   onBlur="ReformatDate(this.id)"  class="form-control"   placeholder="yyyy/mm/dd" max-length="10"    value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"  ></input>
+ </td> 
+{% endif -%}
+{% if (col.type == 'Html') -%}
+ <td>
+  {{col.Parameter}}
+ </td> 
+{% endif -%}
+{% if (col.type == 'InputCombo') -%}
+ <td><select class="form-control" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"   ng-model="record.{{col.name}}"  >
+{% for opt in col.options -%}
+  <option value="{{opt.value}}">{{opt.text}}</option>
+{% endfor -%}
+</select></td> 
+{% endif -%}
+{% if (col.type == 'InputSelect2') -%}
+ <td><select class="form-control" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}" type="Select2" onfocus="$('#' + this.id ).select2({}).val(this.value).trigger('change');"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"   ng-model="record.{{col.name}}"  >
+{% for opt in col.options -%}
+  <option value="{{opt.value}}">{{opt.text}}</option>
+{% endfor -%}
+</select></td> 
+{% endif -%}
+{% if (col.type == 'InputSelect2Ajax') -%}
+ <td><select class="form-control"   id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"  valc="{{'{{record.'}}{{col.name}}{% raw -%}}}{% endraw -%}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='{{Page.Name}}';DataPass.colname='{{col.name}}';DataPass.Parameters=new Array();{% for Sel2 in col.DBSelectCommandParameters -%}{% if (Sel2.source == 'term' ) -%}DataPass.Parameters.push(toInput('{{Sel2.name}}',term.term));{% endif -%}{% if (Sel2.source == 'Expr' ) -%}DataPass.Parameters.push(toInput('{{Sel2.name}}',{{Sel2.Parameter}}));{% endif -%}{% if (Sel2.source == 'QueryString' ) -%}DataPass.Parameters.push(toInput('{{Sel2.name}}',routeParams.{{Sel2.Parameter}}));{% endif -%}{% endfor -%}return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"   ng-model="record.{{col.name}}"  >
+ <option value="{{'{{record.'}}{{col.name}}{% raw -%}}}{% endraw -%}" selected="selected" >
+     {{'{{record.'}}{{col.TitleParameter}}{% raw -%}}}{% endraw -%}
+ </option>
+</select></td> 
+{% endif -%}
+{% endfor -%}
+{% endfor -%}
+             {% for table in Page.tables -%}  {% if table.HideActionColumnn != 'Yes' -%}
+<td>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+{% for table in Page.tables -%}
+{% for col in table.columns -%}
+{% if (col.type == 'PDALink') -%}
+ <li {% if col.ShowCond != '' -%} ng-show='{{col.ShowCond}}' {% endif -%} ><a href="#/{{col.linkSyntax}}" >{{col.Caption}}</a></li> 
+{% endif -%}
+{% if (col.type == 'AjaxAction') -%}
+ <li {% if col.ShowCond != '' -%} ng-show='{{col.ShowCond}}' {% endif -%}><a  pdaAjaxSyntax="ConfirmAsk('{{col.AskMessage}}',function(){AjaxActions.{{col.AjaxAction}}({{col.ParameterSyntax}})});" >{{col.Caption}}</a></li> 
+{% endif -%}
+{% if (col.type == 'JavaScript') -%}
+ <li {% if col.ShowCond != '' -%} ng-show='{{col.ShowCond}}' {% endif -%}><a  onclick="{{col.ParameterSyntax}}" >{{col.Caption}}</a></li> 
+{% endif -%}
+{% if (col.type == 'DeleteRow') -%}
+ <li {% if col.ShowCond != '' -%} ng-show='{{col.ShowCond}}' {% endif -%}><a   ng-click="RemoveItem( record)"   >{{col.Caption}}</a></li> 
+{% endif -%}
+{% endfor -%}
+{% endfor -%} 
+ </ul>
+</div>
+</td>
+{% endif -%}{% endfor -%}
+     </tr>
+ </thead>
+ <tbody>
+</table>
+     {% for table in Page.tables -%}
+    <form class="form-horizontal" role="form">
+{% assign i=0 -%}
+  <div class="form-group">
+ 
+{% for cqqq in table.DisplayExprs -%}
+       <label for="{{cqqq.title}}" class="col-sm-{{Page.HerSize}} control-label">{{cqqq.title}}:</label>
+          <div class="col-sm-{{Page.ValSize}}">
+                <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{'{{ShowMoney('}}{{cqqq.Expr}}{{'}})}}"   class="form-control"  placeholder="" />
+    </div>
+              {% assign i = i | plus: 1 -%}
+{% if i == Page.ColumnCount -%}
+     </div>
+     <div class="form-group">
+{% assign i = 0 -%}
+{% endif -%}
+{% endfor -%}
+
+{% endfor -%}
+</div>
+     <script>
+         $(document).ready(function () {
+             {% if (Page.NoneFormParameters == 'False' ) -%} 
+             {{Page.name}}.Serach();
+             {% endif -%}
+         });
+    
+     </script>

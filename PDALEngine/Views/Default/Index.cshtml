@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View1</title>
+    <script src="~/scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+   
+    <div>
+        Salam
+        <script>
+            var s = new Object();
+            s.a = 5;
+            $.ajax({
+                type: "POST",
+                url: '/pbv/GetItems',
+                data: JSON.stringify(s), // the data in JSON format.  Note it is *not* a JSON object, is is a literal string in JSON format
+                contentType: "application/json; charset=utf-8", // we are sending in JSON format so we need to specify this
+                dataType: "json", // the data type we want back.  The data will come back in JSON format
+                success: function (data) {
+                    $('#loadingBar').hide();
+
+                  
+
+
+                    // it's a quirk, but the JSON data comes back in a property called "d"; {"d":"Hello Aidy F"}
+                },
+                error: function (xhr, status) {
+
+                    $('#loadingBar').hide();
+              
+
+                    switch (status) {
+
+                    }
+                }
+            });
+
+
+        </script>
+    </div>
+</body>
+</html>

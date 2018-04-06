@@ -1,0 +1,91 @@
+﻿{{Page.title}}
+<hr />
+{% include "Parameter" %}
+ 
+{% if (Page.NoneFormParameters == 'True' ) -%} 
+<button type="button" class="btn btn-primary" onclick="{{Page.name}}.Serach(this)">نمایش</button>
+{% endif -%}
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+{% include "PageButton" %}
+     <script>
+         $(document).ready(function () {
+             {% if (Page.NoneFormParameters == 'False' ) -%} 
+             {{Page.name}}.Serach();
+             {% endif -%}
+         });
+     </script>
+<div class="form-horizontal" role="form" ng-repeat="record in records">
+{% assign i=0 -%}
+  <div class="form-group">
+{% for table in Page.tables -%}
+{% for col in table.columns -%}
+  <label for="{{Para.name}}" class="col-sm-{{Page.HerSize}} control-label">{{col.title}}:</label>
+      <div class="col-sm-{{Page.ValSize}}">
+{% if col.type == 'DisplayValue' -%}
+{{'{{'}}record.{{col.name}}{{'}}}}
+{% endif -%}
+{% if col.type == 'Money' -%}
+{{'{{ShowMoney('}}record.{{col.name}}{{'}})}}
+{% endif -%}
+{% if col.type == 'Boolean' -%}
+{{'{{ShowBoolean('}}record.{{col.name}}{{'}})}}
+{% endif -%}
+{% if (col.type == 'InputString') -%}
+ <input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"  ng-model="record.{{col.name}}" />
+{% endif -%}
+ {% if (col.type == 'InputInteger') -%}
+ <input class="form-control" type="text" id="Text1" onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"  value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}" />
+{% endif -%}
+{% if (col.type == 'InputFloat') -%}
+ <input class="form-control" type="text" id="Text2" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"  ng-model="record.{{col.name}}" />
+{% endif -%}
+{% if (col.type == 'InputMoney') -%}
+ <input class="form-control" type="text" id="Text3" onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"  onkeyup="NumberInput(event,this)" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}" />
+{% endif -%}
+{% if (col.type == 'InputDate') -%}
+      <input type="text" onkeypress="return blockNonDateNumber(event)" created="False" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"  onfocus="if($(this).attr('created')=='False') {% raw -%} { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'}{% endraw -%});  this.focus();  } " data-type="date" id="Text4" onblur="ReformatDate(this.id)" class="form-control" placeholder="yyyy/mm/dd" max-length="10" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"></input>
+{% endif -%}
+          {% if (col.type == 'InputDate') -%}
+      <input type="text" onkeypress="return blockNonDateNumber(event)" created="False" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"  onfocus="if($(this).attr('created')=='False') {% raw -%} { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'}{% endraw -%});  this.focus();  } " data-type="date" id="Text5" onblur="ReformatDate(this.id)" class="form-control" placeholder="yyyy/mm/dd" max-length="10" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"></input>
+{% endif -%}
+{% if (col.type == 'Image') -%}
+ <image ng-src='{{col.linkSyntax}}' {% if col.width != '' -%} width="{{col.width}}" {% endif -%}  {% if col.height != '' -%} width="{{col.height}}" {% endif -%}  /> 
+{% endif -%}
+{% if (col.type == 'DownloadFile') -%}
+ <a  ng-href='{{col.linkSyntax}}' >{{col.Caption}}</a> 
+{% endif -%}
+{% if (col.type == 'InputCombo') -%}
+ <select class="form-control" id="Select1" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"  ng-model="record.{{col.name}}">
+{% for opt in col.options -%}
+       <option value="{{opt.value}}">{{opt.text}}</option>
+{% endfor -%}
+ </select>
+{% endif -%}
+{% if (col.type == 'PDALink') -%}
+ <a {% if col.ShowCond != '' -%} ng-show='{{col.ShowCond}}' {% endif -%} href="#/{{col.linkSyntax}}">
+     <button type="button" class="btn btn-default">{{col.Caption}}</button></a>
+{% endif -%}
+{% if (col.type == 'AjaxAction') -%}
+ <a {% if col.ShowCond != '' -%} ng-show='{{col.ShowCond}}' {% endif -%} pdaajaxsyntax="ConfirmAsk('{{col.AskMessage}}',function(){AjaxActions.{{col.AjaxAction}}({{col.ParameterSyntax}})});">
+     <button type="button" class="btn btn-default">{{col.Caption}}</button></a>
+{% endif -%}
+{% if (col.type == 'JavaScript') -%}
+ <a {% if col.ShowCond != '' -%} ng-show='{{col.ShowCond}}' {% endif -%} onclick="{{col.ParameterSyntax}}">
+     <button type="button" class="btn btn-default">{{col.Caption}}</button></a>
+{% endif -%}
+{% if (col.type == 'DeleteRow') -%}
+ <a {% if col.ShowCond != '' -%} ng-show='{{col.ShowCond}}' {% endif -%} ng-click="RemoveItem( record)">
+     <button type="button" class="btn btn-default">{{col.Caption}}</button></a>
+{% endif -%}
+      </div>
+{% assign i = i | plus: 1 -%}
+{% if i == Page.ColumnCount -%}
+  </div>
+<div class="form-group">
+{% assign i = 0 -%}
+{% endif -%}
+{% endfor -%}
+{% endfor -%}
+    </div>
+</div>
+

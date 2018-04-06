@@ -1,0 +1,51 @@
+﻿جدول ساده بدون پارامتر با پورسیجر 
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    SimpleTable3.IntForm=function()
+    {
+    
+    document.title='جدول ساده بدون پارامتر با پورسیجر ';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    SimpleTable3.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > کد شهر</th> 
+ <th  > عنوان شهر</th> 
+ </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+<td>{{record.cityId}}</td> 
+ <td>{{record.cityTitle}}</td> 
+                   </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             SimpleTable3.Serach();
+                      });
+    
+     </script>

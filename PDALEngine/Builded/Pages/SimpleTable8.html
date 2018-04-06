@@ -1,0 +1,85 @@
+﻿نمایش عبارت های تجمیعی 
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    SimpleTable8.IntForm=function()
+    {
+    
+    document.title='نمایش عبارت های تجمیعی ';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    SimpleTable8.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th>ردیف</th>
+ <th  class="Pointer"  ng-click="ChageTableOrder('cityId')"  > <span ng-show="((currentOrder=='cityId') && (rev) )">V</span> <span ng-show="((currentOrder=='cityId') && (!rev) )">^</span>کد شهر</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('cityTitle')"  > <span ng-show="((currentOrder=='cityTitle') && (rev) )">V</span> <span ng-show="((currentOrder=='cityTitle') && (!rev) )">^</span>عنوان شهر</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('CITYPop')"  > <span ng-show="((currentOrder=='CITYPop') && (rev) )">V</span> <span ng-show="((currentOrder=='CITYPop') && (!rev) )">^</span>جمعیت </th> 
+ </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td>{{$index+1}}</td>
+<td>{{record.cityId}}</td> 
+ <td>{{record.cityTitle}}</td> 
+ <td>{{ShowMoney(record.CITYPop)}}</td> 
+                   </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+       <label for="تعداد ردیف ها " class="col-sm-2 control-label">تعداد ردیف ها :</label>
+          <div class="col-sm-4">
+                <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{ShowMoney(Count('*'))}}"   class="form-control"  placeholder="" />
+    </div>
+                     <label for="مجموع جمعیت  " class="col-sm-2 control-label">مجموع جمعیت  :</label>
+          <div class="col-sm-4">
+                <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{ShowMoney(Sum('CITYPop'))}}"   class="form-control"  placeholder="" />
+    </div>
+                   </div>
+     <div class="form-group">
+       <label for="میانگین جمعیت  " class="col-sm-2 control-label">میانگین جمعیت  :</label>
+          <div class="col-sm-4">
+                <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{ShowMoney(Avg('CITYPop'))}}"   class="form-control"  placeholder="" />
+    </div>
+                     <label for="بیشترین جمعیت  " class="col-sm-2 control-label">بیشترین جمعیت  :</label>
+          <div class="col-sm-4">
+                <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{ShowMoney(Max('CITYPop'))}}"   class="form-control"  placeholder="" />
+    </div>
+                   </div>
+     <div class="form-group">
+       <label for="کمترین جمعیت  " class="col-sm-2 control-label">کمترین جمعیت  :</label>
+          <div class="col-sm-4">
+                <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{ShowMoney(Min('CITYPop'))}}"   class="form-control"  placeholder="" />
+    </div>
+                     <label for="فیلتر شده مجموع جمعیت  " class="col-sm-2 control-label">فیلتر شده مجموع جمعیت  :</label>
+          <div class="col-sm-4">
+                <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{ShowMoney(SubSum('CITYPop'))}}"   class="form-control"  placeholder="" />
+    </div>
+                   </div>
+     <div class="form-group">
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             SimpleTable8.Serach();
+                      });
+    
+     </script>
