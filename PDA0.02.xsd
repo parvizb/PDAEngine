@@ -17,6 +17,11 @@
           <xs:documentation>یک صفحه قابلیت و و ویرایش جدول به صورت کاشی وار</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="Note">
+        <xs:annotation>
+          <xs:documentation>فقط تعدادی متن ساده در آن نمایش داده می شود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="YesNo">
@@ -1078,7 +1083,7 @@
                             <xs:documentation>نحوه آدرس دهی </xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
-                        <xs:attribute name="Width" type="xs:long" use="optional">
+                        <xs:attribute name="Width" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>اندازه تصویر</xs:documentation>
                           </xs:annotation>
@@ -1091,6 +1096,11 @@
                         <xs:attribute name="source" type="PageParameterSourceType" use="required">
                           <xs:annotation>
                             <xs:documentation>منبع پارامتر چه باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="sorurceParameter" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>پارامتر مربوط به منبع پارامتر</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
                         <xs:attribute name="dontSendToDb" type="YesNo" use="optional">

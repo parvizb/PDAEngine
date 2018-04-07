@@ -3,7 +3,7 @@
 <a href='#/{{btn.actionParameter}}' ><button type="button" class="btn btn-default" >{{btn.title}}</button></a>
 {% endif -%}
 {% if btn.action == 'dynLink'  -%}
-<a ng-link='#/{{btn.actionParameter}}' ><button type="button" class="btn btn-default" >{{btn.title}}</button></a>
+<a href='{{btn.actionParameter}}' ><button type="button" class="btn btn-default" >{{btn.title}}</button></a>
 {% endif -%}
 {% if btn.action == 'JavaScript'  -%}
 <a onclick='{{btn.actionParameter}}' ><button type="button" class="btn btn-default" >{{btn.title}}</button></a>

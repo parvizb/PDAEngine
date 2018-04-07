@@ -344,6 +344,12 @@ function ($routeProvider/*, $locationProvider*/) {
             ).
     
                 
+    when('/SimpleTable18', {
+        templateUrl: 'SimpleTable18.htm',
+        controller: 'mainController' }
+            ).
+    
+                
     when('/person_Serach', {
         templateUrl: 'person_Serach.htm',
         controller: 'mainController' }
@@ -360,6 +366,54 @@ function ($routeProvider/*, $locationProvider*/) {
         templateUrl: 'person_Edit.htm',
         controller: 'mainController'
         }).
+                
+    when('/Scaller1', {
+        templateUrl: 'Scaller1.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/Scaller2', {
+        templateUrl: 'Scaller2.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/Scaller3', {
+        templateUrl: 'Scaller3.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/Scaller4', {
+        templateUrl: 'Scaller4.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/Scaller5', {
+        templateUrl: 'Scaller5.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/Scaller6', {
+        templateUrl: 'Scaller6.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/Scaller7', {
+        templateUrl: 'Scaller7.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/OtherInformation', {
+        templateUrl: 'OtherInformation.htm',
+        controller: 'mainController' }
+            ).
+    
                 when('/welcome', {
         templateUrl: 'welcome.html',
         controller: 'mainController'}

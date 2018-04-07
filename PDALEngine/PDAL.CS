@@ -1912,6 +1912,14 @@ namespace PDALEngine
                     paras.Add(i);
 
                 }
+                else if (P.source == "Expr")
+                {
+                    inputParameter i = new inputParameter();
+                    i.key = P.name;
+                    i.value = PDAL.ComputeExpr( P.sorurceParameter,paras,Page).ToString();
+                    paras.Add(i);
+
+                }
             }
 
 

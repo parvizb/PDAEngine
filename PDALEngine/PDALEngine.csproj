@@ -129,6 +129,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App_Data\PDALTest.mdf" />
+    <Content Include="App_Data\PDALTest_log.ldf">
+      <DependentUpon>PDALTest.mdf</DependentUpon>
+    </Content>
+    <Content Include="BuildLigid\Note.html" />
+    <Content Include="BuildLigid\Pages\Note.html" />
     <Content Include="BuildLigid\Pages\DetailView.html" />
     <Content Include="BuildLigid\scripts\controller.js" />
     <Content Include="cs.xml" />
@@ -297,7 +303,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Builded\Pages\" />
     <Folder Include="Builded\Scripts\Controllers\" />
     <Folder Include="Models\" />

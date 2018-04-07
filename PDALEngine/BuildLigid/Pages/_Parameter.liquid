@@ -42,7 +42,7 @@
       <input type="file"       class="form-control" id="txt{{Para.name}}"     placeholder="" />
       {% endif -%}
       {% if para.type == 'ImageView' -%}
-      <input type="image"    linkSyntax="{{para.LinkSyntax}}"    id="txt{{Para.name}}"     placeholder="" />
+      <input type="image"    linkSyntax="{{para.LinkSyntax}}"    id="txt{{Para.name}}"  {% if para.Width != '' -%}width='{{para.Width}}'   {% endif -%}   placeholder="" />
       {% endif -%}
       {% if para.type == 'DownloadLink' -%}
       <a      linkSyntax="{{para.LinkSyntax}}"    id="txt{{Para.name}}"     placeholder="" >دریافت</a>

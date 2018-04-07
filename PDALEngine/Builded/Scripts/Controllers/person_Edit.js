@@ -5,7 +5,11 @@ person_Edit.sendFiles=  function()
 {
     var data = new FormData();
  
-                                                                                                                        $('#loadingBar').show();
+                                                                                                                    var tmp=$('#txtpicImage')[0];
+    if(tmp.files.length>0){
+        data.append('picImage', tmp.files[0]);
+    }
+                    $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -51,6 +55,16 @@ person_Edit.sendFiles=  function()
            $(obj).attr('disabled',false);
            return ;
        }
+              {
+           
+           if(window.fileUploaded!=true)
+           {
+               person_Edit.sendFiles();
+               return ;
+           }
+
+
+       }
               var Entity=new Object();
        Entity.PageName='person_Edit';
        Entity.Parameters=new Array();
@@ -73,9 +87,11 @@ person_Edit.sendFiles=  function()
 
               Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
 
-              Entity.Parameters.push( toInput('smailHtml',$('#txtsmailHtml').val()));
+              Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
 
               Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
+
+              Entity.Parameters.push( toInput('oldImage',$('#txtoldImage').val()));
 
               Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
 
@@ -103,10 +119,10 @@ person_Edit.Validate= function()
     Validator.ClearErrors();
         
     
-    Validator.CheckEmpty('txtname','');
+    Validator.CheckEmpty('txtname','نام');
     
     
-    Validator.CheckRegInteger('txtcityid','شهر');
+    Validator.CheckRegSelect2('txtcityid','شهر');
     
     
     Validator.CheckRegInteger('txtsalaryBase','حقوق پایه');
@@ -119,11 +135,25 @@ person_Edit.Validate= function()
     
     Validator.CheckEmpty('txtsmailBio','خلاصه زندگی ');
     
-    Validator.CheckEmpty('txtsmailHtml','سایر توضیحات');
     
-    Validator.CheckEmpty('txtfavColor','رنگ مورد علاقه');
     
-    Validator.CheckEmpty('txtpicImage','تصویر پرسنلی');
+        var tmp=$('#txtpicImage')[0];
+            if(tmp.files.length>0)
+    {
+        var ex=tmp.files[0].name;
+        ex=ex.substring(ex.lastIndexOf('.')+1);
+        ex=ex.toLowerCase();
+        var isCommit=false;
+        var cc=new Array();
+                isCommit=cc.indexOf(ex)!=-1;
+        if(isCommit==false)
+        {
+            Messager.errors.push(' پسوند فایل در کادر تصویر پرسنلی  مجاز نیست پسوند های مجاز  ' + JSON.stringify(cc));
+  
+
+        }
+    }
+        
     
 
     if(Messager.errors.length!=0)
@@ -175,9 +205,11 @@ person_Edit.Serach=function(obj)
 
     Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
 
-    Entity.Parameters.push( toInput('smailHtml',$('#txtsmailHtml').val()));
+    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
 
     Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
+
+    Entity.Parameters.push( toInput('oldImage',$('#txtoldImage').val()));
 
     Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
 
@@ -221,13 +253,21 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
      
             $('#txtname').val(data.records[0].name);
 
-            $('#txtgrade').val(data.records[0].grade);
 
-            $('#txtcityid').val(data.records[0].cityid);
+$('#txtgrade').select2().val(data.records[0].grade  ) .trigger('change');
+
+
+        var o=document.createElement('option');
+        o.value=data.records[0].cityid;
+        o.innerHTML= data.records[0].city ;
+        cityid.append(o);
+        cityid.val(data.records[0].cityid  ) .trigger('change');
 
             $('#txtsextype').val(data.records[0].sextype);
 
-            $('#txtsalaryBase').val(data.records[0].salaryBase);
+
+$('#txtsalaryBase').val(ShowAsMoney( data.records[0].salaryBase));
+
 
             $('#txtexamResult').val(data.records[0].examResult);
 
@@ -237,9 +277,15 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
 
             $('#txtsmailBio').val(data.records[0].smailBio);
 
-            $('#txtsmailHtml').val(data.records[0].smailHtml);
+ 
+setTimeout(function(){ tinymce.editors['txtsmailHtml'].setContent(data.records[0].smailHtml);},500);
 
-            $('#txtfavColor').val(data.records[0].favColor);
+
+$('#txtfavColor').val(data.records[0].favColor);
+$('#txtfavColor').css('background',$('#txtfavColor').val());
+
+
+$('#txtoldImage').attr( 'src' ,$('#txtoldImage').attr('linkSyntax')  +data.records[0].picImage);
 
             $('#txtpicImage').val(data.records[0].picImage);
 

@@ -1,0 +1,55 @@
+﻿جدول ساده بدون پارامتر
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    Scaller4.IntForm=function()
+    {
+    
+    document.title='جدول ساده بدون پارامتر';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    Scaller4.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a href='#/SimpleTable1' ><button type="button" class="btn btn-default" >لینک به صفحه</button></a>
+<a href='#/person_Edit/{{2-1}}' ><button type="button" class="btn btn-default" >لینک پویا</button></a>
+<a onclick='ExportXls();' ><button type="button" class="btn btn-default" >گرفتن خروجی اکسل</button></a>
+<a onclick='alert("PDAL IS MY FRIEND");' ><button type="button" class="btn btn-default" >اجرای جاوا اسکرپیت</button></a>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > کد شهر</th> 
+ <th  > عنوان شهر</th> 
+ </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+<td>{{record.cityId}}</td> 
+ <td>{{record.cityTitle}}</td> 
+                   </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             Scaller4.Serach();
+                      });
+    
+     </script>
