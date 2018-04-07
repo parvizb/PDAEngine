@@ -139,11 +139,11 @@ Validator.CheckRegFloat = function (id, caption, row) {
 
 
 }
-Validator.CheckRegSelect2 = function (id, caption, len) {
+Validator.CheckRegSelect2 = function (id, caption,row) {
     var val = $("#" + id).val();
     if (val == null) {
         $('#' + id).css('background', 'pink');
-        Messager.errors.push('کادر ' + caption + ' نمی تواند خالی رها شود ');
+        Messager.errors.push((row == null ? "" : " ردیف: " + row + " ") + 'کادر ' + caption + ' نمی تواند خالی رها شود ');
     }
     else {
         $('#' + id).css('background', '');
@@ -312,7 +312,7 @@ function ConfirmAsk(message, strFun) {
 
 function NormalResult() {
     $('a[pdaajaxsyntax]').each(function () { $(this).attr('onClick', $(this).attr('pdaajaxsyntax')) });
-
+    $('[moneytype="yes"]').each(function () { NumberInput(null, $(this)[0]) });
 }
 function Num(v) {
 
@@ -571,8 +571,11 @@ lastRecord = null;
 function MergeNow(v) {
     console.log(JSON.stringify(v));
     var keys = Object.keys(v[0]);
+  
     for (var i = 0; i < keys.length; i++) {
+  
         if ((keys[i] != "rndId") && (keys[i] != "selected") && (keys[i] != "RowState")) {
+            
             lastRecord[keys[i]] = v[0][keys[i]];
         }
     }

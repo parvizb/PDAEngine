@@ -244,6 +244,11 @@ public class Parameter : ILiquidizable
     }
     public object ToLiquid()
     {
+        if (sourceType == null)
+        {
+            new Exception("fuck");
+
+        }
         return Hash.FromAnonymousObject(new { DefaultValueSource=this.DefaultValueSource,DefaultValueParameter=this.DefaultValueParameter, Disabled=this.Disabled, caption=this.caption, name = this.name, sourceType = this.sourceType, sourceTypeParameter = this.sourceTypeParameter, Checks = this.Checks });
 
     }

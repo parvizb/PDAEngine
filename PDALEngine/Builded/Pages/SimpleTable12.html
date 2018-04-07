@@ -39,8 +39,7 @@
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
 <td>{{record.id}}</td> 
   <td><input class="form-control" type="text" id="name_{{record.rndId}}" value="{{record.name}}" ng-change="ChangeState(record);"  ng-model="record.name"  /></td> 
-   <td><input class="form-control" type="text" id="salaryBase_{{record.rndId}}"   onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"    value="{{ShowMoney(record.salaryBaseLiquid error: Value cannot be null.
-Parameter name: input}}" ng-model="record.salaryBase"  /></td> 
+   <td><input class="form-control" type="text" id="salaryBase_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"   value="{{record.salaryBase}}" ng-model="record.salaryBase"  /></td> 
   <td><input class="form-control" type="text" id="examResult_{{record.rndId}}"   value="{{record.examResult}}" ng-change="ChangeState(record);"   ng-model="record.examResult"  /></td> 
   <td>
       <input  type="text"  onkeypress="return blockNonDateNumber(event)" ng-change="ChangeState(record);"  created="False" onfocus="if($(this).attr('created')=='False') { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'});  this.focus();  } " data-type="date" id="Text4"   onBlur="ReformatDate(this.id)"  class="form-control"   placeholder="yyyy/mm/dd" max-length="10"    value="{{record.dateBrith}}" ng-model="record.dateBrith"  ></input>

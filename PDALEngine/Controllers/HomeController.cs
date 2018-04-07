@@ -518,7 +518,7 @@ namespace PDALEngine.Controllers
                         {
                             inputParameter ix = new inputParameter();
                             ix.key = Com.Parameters[q].name;
-                            ix.value = PDAL.GetSession(Com.Parameters[k].sourceTypeParameter);
+                            ix.value = PDAL.GetSession(Com.Parameters[q].sourceTypeParameter);
 
                             initValues.Add(ix);
 
@@ -527,7 +527,7 @@ namespace PDALEngine.Controllers
                         {
                             inputParameter ix = new inputParameter();
                             ix.key = Com.Parameters[q].name;
-                            ix.value = PDAL.GetSpecValue(Com.Parameters[k].sourceTypeParameter);
+                            ix.value = PDAL.GetSpecValue(Com.Parameters[q].sourceTypeParameter);
 
                             initValues.Add(ix);
 
@@ -536,7 +536,7 @@ namespace PDALEngine.Controllers
                         {
                             inputParameter ix = new inputParameter();
                             ix.key = Com.Parameters[q].name;
-                            ix.value = scallerValues[int.Parse(  Com.Parameters[k].sourceTypeParameter)];
+                            ix.value = scallerValues[int.Parse(  Com.Parameters[q].sourceTypeParameter)];
 
                             initValues.Add(ix);
 

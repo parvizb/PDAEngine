@@ -41,8 +41,7 @@
 <td>{{$index+1}}</td>
 <td>{{record.cityId}}</td> 
   <td><input class="form-control" type="text" id="cityTitle_{{record.rndId}}" value="{{record.cityTitle}}" ng-change="ChangeState(record);"  ng-model="record.cityTitle"  /></td> 
-   <td><input class="form-control" type="text" id="CITYPop_{{record.rndId}}"   onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"    value="{{ShowMoney(record.CITYPopLiquid error: Value cannot be null.
-Parameter name: input}}" ng-model="record.CITYPop"  /></td> 
+   <td><input class="form-control" type="text" id="CITYPop_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"   value="{{record.CITYPop}}" ng-model="record.CITYPop"  /></td> 
               <td>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "

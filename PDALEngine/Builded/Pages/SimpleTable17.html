@@ -1,0 +1,89 @@
+﻿جدول های اصل و جزیئات 
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label for="PerId" class="col-sm-2 control-label">     کد شخص:</label>
+    <div class="col-sm-4">
+                                          <select class="form-control" id="txtPerId" ></select>
+    </div>
+    <label for="DateSave" class="col-sm-2 control-label">     تاریخ ثبت:</label>
+    <div class="col-sm-4">
+                                          <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtDateSave')"  class="form-control" id="txtDateSave" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+            var PerId =null;
+                     
+    SimpleTable17.IntForm=function()
+    {
+    
+    document.title='جدول های اصل و جزیئات ';
+    window.fileUploaded=false;
+                PerId=  Select2AjaxInit('txtPerId',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='SimpleTable17';
+    DataPass.ParaName='PerId';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                    kamaDatepicker('txtDateSave', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                
+    }
+    $(document).ready(function () {
+    SimpleTable17.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a onclick='SimpleTable17.InsertRecord()' ><button type="button" class="btn btn-default" >ردیف جدید</button></a>
+<a onclick='SimpleTable17.Save()' ><button type="button" class="btn btn-default" >ثبت</button></a>
+
+
+<div class="table-responsive">
+<table class="table  table-bordered">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > شهر</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+     
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+  <td><select class="form-control"   id="cityid_{{record.rndId}}"  valc="{{record.cityid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='SimpleTable17';DataPass.colname='cityid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetPop_asTable(MergeNow,record.cityid)"   ng-model="record.cityid"  >
+ <option value="{{record.cityid}}" selected="selected" >
+     {{record.}} </option>
+</select></td> 
+              <td>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a   ng-click="RemoveItem( record)"   >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+ </thead>
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             SimpleTable17.Serach();
+                      });
+    
+     </script>

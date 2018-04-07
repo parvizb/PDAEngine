@@ -30,7 +30,7 @@
       <input type="Text"  maxlength="8"  onkeypress="return blockNonTimeNumber(event)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  class="form-control" id="txt{{Para.name}}" placeholder="" />
 {% endif -%}
 {% if para.type == 'Money' -%}
-      <input type="Text"  onkeypress="return blockNonIntNumber(event)"  onkeyup="NumberInput(event,this)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}   class="form-control" id="txt{{Para.name}}" placeholder="" />
+      <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneytype="yes"  onkeyup="NumberInput(event,this)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}   class="form-control" id="txt{{Para.name}}" placeholder="" />
       {% endif -%}
       {% if para.type == 'DisplayExpr' -%}
       <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{'{{'}}{{Para.Parameter}}{{'}}}}"   class="form-control" id="txt{{Para.name}}" placeholder="" />

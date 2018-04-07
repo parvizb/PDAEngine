@@ -189,8 +189,14 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
         $scope.currentOrder=colName;
         $scope.rev=  !$scope.rev;
     }
-    $scope.RemoveItem=function(item)
+    $scope.RemoveItem=function(item,con)
     {
+        console.log(JSON.stringify(item));
+        if (con == null) {
+            window.currentItem = item;
+            ConfirmAsk("آیا مطممن هستید؟", function () { setTimeout('currentScope.RemoveItem(currentItem, "Yes");', 100); });
+            return;
+        }
         if($scope.DeletedRows===undefined)
         {
             $scope.DeletedRows=new Array();
@@ -213,19 +219,26 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
                 $scope.DeletedRows.push(     $scope.records.splice(  $scope.records.indexOf(item),1)[0])
             }
         }
+        if(con!=null)
+        {
+            currentScope.$apply({});
+
+        }
     }
     $scope.MergeNow=window.MergeNow;
     $scope.ChangeState=function(item)
     {
+        console.log("ChangeState",item.RowState);
         window.lastRecord=item;
         if(item.RowState===undefined)
         {
             item.RowState='Changed';
         }
-        if(item.RowState==='NoChange')
+        if(item.RowState=='NoChange')
         {
             item.RowState='Changed';
         }
+        console.log("ChangeState",item.RowState);
     }
 });
 
@@ -321,6 +334,12 @@ function ($routeProvider/*, $locationProvider*/) {
                 
     when('/SimpleTable16', {
         templateUrl: 'SimpleTable16.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable17', {
+        templateUrl: 'SimpleTable17.htm',
         controller: 'mainController' }
             ).
     

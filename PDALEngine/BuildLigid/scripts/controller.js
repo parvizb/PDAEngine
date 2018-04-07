@@ -308,6 +308,9 @@ $('#txt{{para.Name}}').attr( 'href', $('#txt{{para.Name}}').attr('linkSyntax')  
 setTimeout(function(){ tinymce.editors['txt{{para.Name}}'].setContent(data.records[0].{{para.Parameter}});},500);
 {%elseif para.type == 'Select2' %}
 $('#txt{{para.Name}}').select2().val(data.records[0].{{para.Parameter}}  ) .trigger('change');
+{%elseif para.type == 'Money' %}
+$('#txt{{para.Name}}').val(ShowAsMoney( data.records[0].{{para.Parameter}}));
+
 {% else -%}
             $('#txt{{para.Name}}').val(data.records[0].{{para.Parameter}});
 {% endif -%}          
@@ -444,7 +447,7 @@ for (var l=0;l<currentScope.records.length;l++)
     var rec=new Array();//hi
 {% for pa in Com.Parameters -%}
     //YOU ARE ASL
-{% if ( pa.sourceType == 'PageParameter' ) -%}
+{% if  pa.sourceType == 'PageParameter'  -%}
     rec.push(toInput('{{pa.name}}',Para('{{pa.sourceTypeParameter}}')));
 {% endif -%}
 {% if  pa.sourceType == 'QueryString' -%}

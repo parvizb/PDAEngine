@@ -70,7 +70,7 @@
  <td><input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"   ng-model="record.{{col.name}}"  /></td> 
 {% endif -%}
 {% if (col.type == 'InputMoney') -%}
- <td><input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"   onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"   onkeyup="NumberInput(event,this)"    value="{{'{{ShowMoney('}}record.{{col.name}}{{')}}}}" ng-model="record.{{col.name}}"  /></td> 
+ <td><input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%}){% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}}{% endif -%}"   onkeyup="NumberInput(event,this)"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"  /></td> 
 {% endif -%}
 {% if (col.type == 'InputDate') -%}
  <td>

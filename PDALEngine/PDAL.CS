@@ -233,6 +233,33 @@ namespace PDALEngine
 
                         Sb.Append(")");
                     }
+
+                    if (action == "InsertIdentity")
+                    {
+                        Sb.Append("Insert into " + tableName + " ( ");
+                        for (int k = 0; k < Paras.Count; k++)
+                        {
+                            if (k != 0)
+                            {
+                                Sb.Append(",");
+                            }
+                            Sb.Append("[" + Paras[k].key + "]");
+                        }
+                        Sb.Append(") values (");
+                        for (int k = 0; k < Paras.Count; k++)
+                        {
+                            if (k != 0)
+                            {
+                                Sb.Append(",");
+                            }
+                            Sb.Append("@" + Paras[k].key + "");
+                        }
+
+                        Sb.Append(")");
+                        Sb.Append(";Select Scope_Identity() ");
+                    }
+
+
                     if ((action == "Delete") || (action == "DeleteTop"))
                     {
                         Sb.Append("Delete "  + (action=="DeleteTop"?" Top(1) ":"" ) + " from " + tableName + ((Paras.Count!= 0 ?" where ":" " )));
@@ -1440,7 +1467,7 @@ namespace PDALEngine
                 {
                     PageParameter PP = page.DicPageParameters[Com.Parameters[k].sourceTypeParameter];
                     int index = -1;
-                    for (int k2 = 0; k2 < 1; k2++)
+                    for (int k2 = 0; k2 < Math.Min(2, Paras.Length); k2++)
                     {
                         for(int k3=0;k3<Paras[k2].Length;k3++)
                         {
