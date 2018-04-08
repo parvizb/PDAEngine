@@ -15,10 +15,17 @@ namespace PDALEngine
         {
             return "Test";
         }
-        public static int GetCheckPer(string PerKey, String PageName, List<inputParameter> Params)
+        public enum AccessResult
+        {
+            Permitted=200,
+            ReLogin=401,
+            AccessDenied=403
+
+        }
+        public static AccessResult GetCheckPer(string PerKey, String PageName, List<inputParameter> Params)
         {
 
-            return 200;
+            return AccessResult.Permitted;
 
         }
     }

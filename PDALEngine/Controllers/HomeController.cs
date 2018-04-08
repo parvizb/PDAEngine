@@ -93,19 +93,19 @@ namespace PDALEngine.Controllers
             }
             ConvertNullToEmpty(Parameters);
             Page Info = PDAL.FindPage(PageName);
-            int DoAccess = PDALSect.GetCheckPer(Info.PerKey, PageName, Parameters);
+            PDALSect.AccessResult DoAccess = PDALSect.GetCheckPer(Info.PerKey, PageName, Parameters);
            //  PDAL.ConvertValues(Info, Parameters);
             ScallerResult Res = new ScallerResult();
             try
             {
-                if (DoAccess == 403)
+                if (DoAccess ==  PDALSect.AccessResult.AccessDenied)
                 {
                     Res.code = 403;
                     Res.Message = "شما اجازه دسترسی به این قسمت را ندارید";
                     return Json(Res) ;
 
                 }
-                if (DoAccess == 401)
+                if (DoAccess ==  PDALSect.AccessResult.ReLogin)
                 {
                     Res.code = 401;
                     Res.Message = "نیاز به ورود مجدد می باشد";
@@ -140,7 +140,7 @@ namespace PDALEngine.Controllers
         {
             ConvertNullToEmpty(Parameters);
             action Info = PDAL.actionAccess[actionName];
-            int DoAccess = PDALSect.GetCheckPer(Info.PerKey, actionName, Parameters);
+            PDALSect.AccessResult DoAccess = PDALSect.GetCheckPer(Info.PerKey, actionName, Parameters);
             ScallerResult Res = new ScallerResult();
            
              
@@ -150,14 +150,14 @@ namespace PDALEngine.Controllers
             try
             {
 
-                if (DoAccess == 403)
+                if (DoAccess == PDALSect.AccessResult.AccessDenied)
                 {
                     Res.code = 403;
                     Res.Message = "شما اجازه دسترسی به این قسمت را ندارید";
                     return Json(Res);
 
                 }
-                if (DoAccess == 401)
+                if (DoAccess ==  PDALSect.AccessResult.ReLogin)
                 {
                     Res.code = 401;
                     Res.Message = "نیاز به ورود مجدد می باشد";
@@ -193,7 +193,7 @@ namespace PDALEngine.Controllers
         {
             ConvertNullToEmpty(Parameters);
             action Info = PDAL.actionAccess[actionName];
-            int DoAccess = PDALSect.GetCheckPer(Info.PerKey, actionName, Parameters);
+             PDALSect.AccessResult DoAccess = PDALSect.GetCheckPer(Info.PerKey, actionName, Parameters);
             ScallerResult Res = new ScallerResult();
 
 
@@ -203,14 +203,14 @@ namespace PDALEngine.Controllers
             try
             {
 
-                if (DoAccess == 403)
+                if (DoAccess ==  PDALSect.AccessResult.AccessDenied)
                 {
                     Res.code = 403;
                     Res.Message = "شما اجازه دسترسی به این قسمت را ندارید";
                     return Json(Res);
 
                 }
-                if (DoAccess == 401)
+                if (DoAccess ==  PDALSect.AccessResult.ReLogin)
                 {
                     Res.code = 401;
                     Res.Message = "نیاز به ورود مجدد می باشد";
@@ -249,17 +249,17 @@ namespace PDALEngine.Controllers
             }
             ConvertNullToEmpty(Parameters);
             Page Info = PDAL.FindPage(PageName);
-            int  DoAccess = PDALSect.GetCheckPer(Info.PerKey, PageName, Parameters);
+            PDALSect.AccessResult  DoAccess = PDALSect.GetCheckPer(Info.PerKey, PageName, Parameters);
             ScallerResult Res = new ScallerResult();
             PDAL.InitServerSideParametersForSubmit(PageName, ref Parameters);
-            if (DoAccess == 403)
+            if (DoAccess ==    PDALSect.AccessResult.AccessDenied)
             {
                 Res.code = 403;
                 Res.Message = "شما اجازه دسترسی به این قسمت را ندارید";
                 return Json(Res);
 
             }
-            if (DoAccess == 401)
+            if (DoAccess ==  PDALSect.AccessResult.ReLogin)
             {
                 Res.code = 401;
                 Res.Message = "نیاز به ورود مجدد می باشد";
@@ -481,15 +481,15 @@ namespace PDALEngine.Controllers
 
             }    
              ScallerResult Res = new ScallerResult();
-             int DoAccess = PDALSect.GetCheckPer(B.PerKey, PageName, null);
-             if (DoAccess == 403)
+               PDALSect.AccessResult DoAccess = PDALSect.GetCheckPer(B.PerKey, PageName, null);
+             if (DoAccess ==  PDALSect.AccessResult.AccessDenied)
              {
                  Res.code = 403;
                  Res.Message = "شما اجازه دسترسی به این قسمت را ندارید";
                  return Json(Res);
 
              }
-             if (DoAccess == 401)
+             if (DoAccess == PDALSect.AccessResult.ReLogin)
              {
                  Res.code = 401;
                  Res.Message = "نیاز به ورود مجدد می باشد";
@@ -650,18 +650,18 @@ namespace PDALEngine.Controllers
             Page Info=PDAL.FindPage(PageName);
             PDAL.ConvertValues(Info, Parameters);
             ScallerResult Res = new ScallerResult();
-            int DoAccess = PDALSect.GetCheckPer(Info.PerKey, PageName, Parameters);
+            PDALSect.AccessResult DoAccess = PDALSect.GetCheckPer(Info.PerKey, PageName, Parameters);
             PDAL.InitServerSideParametersForSubmit(PageName, ref Parameters);
             string error= PDAL.ValidateAndSetDefaultValue(Info, Parameters);
 
-            if (DoAccess == 403)
+            if (DoAccess ==  PDALSect.AccessResult.Permitted)
             {
                 Res.code = 403;
                 Res.Message = "شما اجازه دسترسی به این قسمت را ندارید";
                 return Json(Res);
 
             }
-            if (DoAccess == 401)
+            if (DoAccess ==  PDALSect.AccessResult.AccessDenied)
             {
                 Res.code = 401;
                 Res.Message = "نیاز به ورود مجدد می باشد";
