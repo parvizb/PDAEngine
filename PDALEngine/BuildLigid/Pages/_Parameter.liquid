@@ -6,37 +6,37 @@
     <label for="{{Para.name}}" class="col-sm-{{Page.HerSize}} control-label">     {% for chk in  para.ParameterChecks -%} {% if chk.Cond == 'Reg' -%}<span class="red" >*</span>  {% endif -%} {% endfor -%} {{para.title}}:</label>
     <div class="col-sm-{{Page.ValSize}}">
 {% if para.type == 'String' -%}
-      <input type="text"   class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} placeholder="" />
+      <input type="text"   class="form-control" id="txt{{Para.name}}" placeholder="{{Para.PlaceHolder}}"  {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} placeholder="" />
 {% endif -%}
 {% if para.type == 'Color' -%}
-      <input type="text"   class="form-control white_shadow" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} placeholder="" />
+      <input type="text"   class="form-control white_shadow" id="txt{{Para.name}}" placeholder="{{Para.PlaceHolder}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} placeholder="" />
 {% endif -%}
 {% if para.type == 'Html' -%}
-      <textarea      class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} />
+      <textarea      class="form-control" id="txt{{Para.name}}" placeholder="{{Para.PlaceHolder}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} />
 {% endif -%}
 {% if para.type == 'Integer' -%}
-      <input type="Number" onkeypress="return blockNonIntNumber(event)"  {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} class="form-control" id="txt{{Para.name}}" placeholder="" />
+      <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="{{Para.PlaceHolder}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} class="form-control" id="txt{{Para.name}}" placeholder="" />
 {% endif -%}
 {% if para.type == 'Float' -%}
-      <input type="Number"    class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} placeholder="" />
+      <input type="Number"  placeholder="{{Para.PlaceHolder}}"  class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} placeholder="" />
 {% endif -%}
 {% if para.type == 'Password' -%}
       <input type="Password"    class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} placeholder="" />
 {% endif -%}
 {% if para.type == 'CheckBox' -%}
-      <input type="CheckBox"     id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} placeholder="" />
+      <input type="CheckBox"  placeholder="{{Para.PlaceHolder}}"   id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%} placeholder="" />
 {% endif -%}
 {% if para.type == 'Time' -%}
-      <input type="Text"  maxlength="8"  onkeypress="return blockNonTimeNumber(event)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  class="form-control" id="txt{{Para.name}}" placeholder="" />
+      <input type="Text"  maxlength="8" placeholder="{{Para.PlaceHolder}}"  onkeypress="return blockNonTimeNumber(event)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  class="form-control" id="txt{{Para.name}}" placeholder="" />
 {% endif -%}
 {% if para.type == 'Money' -%}
-      <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneytype="yes"  onkeyup="NumberInput(event,this)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}   class="form-control" id="txt{{Para.name}}" placeholder="" />
+      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="{{Para.PlaceHolder}}" moneytype="yes"  onkeyup="NumberInput(event,this)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}   class="form-control" id="txt{{Para.name}}" placeholder="" />
       {% endif -%}
       {% if para.type == 'DisplayExpr' -%}
-      <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{'{{'}}{{Para.Parameter}}{{'}}}}"   class="form-control" id="txt{{Para.name}}" placeholder="" />
+      <input type="Text"  onkeypress="return blockNonIntNumber(event)"   placeholder="{{Para.PlaceHolder}}"  disabled='' value="{{'{{'}}{{Para.Parameter}}{{'}}}}"   class="form-control" id="txt{{Para.name}}" placeholder="" />
       {% endif -%}
       {% if para.type == 'DisplayExprMoney' -%}
-      <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{'{{ShowMoney('}}{{Para.Parameter}}{{'}})}}"   class="form-control" id="txt{{Para.name}}" placeholder="" />
+      <input type="Text"  onkeypress="return blockNonIntNumber(event)"   placeholder="{{Para.PlaceHolder}}"  disabled='' value="{{'{{ShowMoney('}}{{Para.Parameter}}{{'}})}}"   class="form-control" id="txt{{Para.name}}" placeholder="" />
       {% endif -%}
       {% if para.type == 'FileInput' -%}
       <input type="file"       class="form-control" id="txt{{Para.name}}"     placeholder="" />

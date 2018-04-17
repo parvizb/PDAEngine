@@ -7,7 +7,7 @@
 <button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
 {% include "PageButton" %}
 <div class="table-responsive">
-<table class="table  table-bordered">
+<table class="table table-bordered table table-striped">
 <caption>{% for table in Page.tables -%}  {% if table.BasicFilter == 'Yes' -%} جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> {% endif -%}{% endfor -%}</caption>
  <thead>
  <tr>
@@ -32,7 +32,7 @@
 </th>
      {% endif -%}{% endfor -%}
  </tr>
-     
+   </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev {% for table in Page.tables -%}  {% if table.BasicFilter == 'Yes' -%} | filter:FilterValue {% endif -%} {% endfor -%}" >
 {% for table in Page.tables -%}
 {% if table.Selectable == 'Yes' -%}
@@ -134,7 +134,7 @@
 </td>
 {% endif -%}{% endfor -%}
      </tr>
- </thead>
+
  <tbody>
 </table>
      {% for table in Page.tables -%}

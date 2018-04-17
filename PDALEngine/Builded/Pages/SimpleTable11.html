@@ -24,7 +24,7 @@
 
 
 <div class="table-responsive">
-<table class="table  table-bordered">
+<table class="table table-bordered table table-striped">
 <caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
@@ -36,7 +36,7 @@
     عملیات
 </th>
       </tr>
-     
+   </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
 <td>{{$index+1}}</td>
 <td>{{record.cityId}}</td> 
@@ -55,7 +55,7 @@
 </div>
 </td>
      </tr>
- </thead>
+
  <tbody>
 </table>
          <form class="form-horizontal" role="form">

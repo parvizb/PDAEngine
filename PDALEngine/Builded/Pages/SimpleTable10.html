@@ -4,7 +4,7 @@
   <div class="form-group">
     <label for="P" class="col-sm-2 control-label">     درصد:</label>
     <div class="col-sm-4">
-      <input type="Number"    class="form-control" id="txtP" placeholder="" />
+      <input type="Number"  placeholder=""  class="form-control" id="txtP" placeholder="" />
                                         </div>
   </div>
     </from>
@@ -27,7 +27,7 @@
 
 
 <div class="table-responsive">
-<table class="table  table-bordered">
+<table class="table table-bordered table table-striped">
 <caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
@@ -37,7 +37,7 @@
  <th  class="Pointer"  ng-click="ChageTableOrder('cityTitle')"  > <span ng-show="((currentOrder=='cityTitle') && (rev) )">V</span> <span ng-show="((currentOrder=='cityTitle') && (!rev) )">^</span>عنوان شهر</th> 
  <th  class="Pointer"  ng-click="ChageTableOrder('CITYPop')"  > <span ng-show="((currentOrder=='CITYPop') && (rev) )">V</span> <span ng-show="((currentOrder=='CITYPop') && (!rev) )">^</span>جمعیت </th> 
  </tr>
-     
+   </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
 <th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
 <td>{{$index+1}}</td>
@@ -45,7 +45,7 @@
  <td>{{record.cityTitle}}</td> 
  <td>{{ShowMoney(record.CITYPop)}}</td> 
                    </tr>
- </thead>
+
  <tbody>
 </table>
          <form class="form-horizontal" role="form">

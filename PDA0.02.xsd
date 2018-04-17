@@ -687,16 +687,16 @@
   <xs:element name="Application">
     <xs:complexType>
        <xs:annotation><xs:documentation> به تعریف برنامه می پردازد</xs:documentation> </xs:annotation>
-      <xs:sequence>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="Menu">
           <xs:complexType>
               <xs:annotation><xs:documentation> به تعریف منو می پردازد </xs:documentation> </xs:annotation>
-            <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded" >
               <xs:element name="Item" maxOccurs="unbounded">
                 
                 <xs:complexType>
                      <xs:annotation><xs:documentation> یک گزینه از منو</xs:documentation> </xs:annotation>
-                  <xs:sequence>
+                  <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element name="SubItem" minOccurs="0" maxOccurs="unbounded">
                       <xs:complexType>
                         <xs:attribute name="PerKey" type="xs:string" use="required">
@@ -721,7 +721,7 @@
                         </xs:attribute>
                       </xs:complexType>
                     </xs:element>
-                  </xs:sequence>
+                  </xs:choice>
                   <xs:attribute name="text" type="xs:string" use="required">
                     <xs:annotation>
                       <xs:documentation>متن نمایشی </xs:documentation>
@@ -744,17 +744,17 @@
                   </xs:attribute>
                 </xs:complexType>
               </xs:element>
-            </xs:sequence>
+            </xs:choice>
           </xs:complexType>
         </xs:element>
         <xs:element name="Pages">
           <xs:complexType>
                <xs:annotation><xs:documentation> گروه صفحات </xs:documentation> </xs:annotation>
-            <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
               <xs:element maxOccurs="unbounded" name="Page">
                 <xs:complexType>
                    <xs:annotation><xs:documentation> یک صفحه  </xs:documentation> </xs:annotation>
-                  <xs:sequence>
+                  <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element minOccurs="0" maxOccurs="unbounded" name="ValueParameter">
                       <xs:complexType>
                         <xs:attribute name="name" type="xs:string" use="required">
@@ -787,7 +787,7 @@
                     <xs:element minOccurs="0" maxOccurs="1" name="table">
                       <xs:complexType>
                          <xs:annotation><xs:documentation> یک جدول جهت نمایش  </xs:documentation> </xs:annotation>
-                        <xs:sequence>
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
                           <xs:element minOccurs="0" maxOccurs="unbounded" name="NewRecordColumnValue">
                             <xs:complexType>
                               <xs:attribute name="ColumnName" type="xs:string" use="required">
@@ -819,7 +819,7 @@
                           <xs:element maxOccurs="unbounded" name="column">
                             <xs:complexType>
                                <xs:annotation><xs:documentation> تعریف ستون در جدول </xs:documentation> </xs:annotation>
-                              <xs:sequence>
+                              <xs:choice minOccurs="0" maxOccurs="unbounded">
                                  <xs:element name="DBSelectCommandParameter" minOccurs="0" maxOccurs="unbounded">
                             <xs:complexType>
                                <xs:annotation><xs:documentation> تعریف پارامتر های مربوط به جست وجو کادر جستو جو Select2 </xs:documentation> </xs:annotation>
@@ -854,7 +854,7 @@
                                     </xs:attribute>
                                   </xs:complexType>
                                 </xs:element>
-                              </xs:sequence>
+                              </xs:choice>
                               <xs:attribute name="title" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>عنوان</xs:documentation>
@@ -947,7 +947,7 @@
                               </xs:attribute>
                             </xs:complexType>
                           </xs:element>
-                        </xs:sequence>
+                        </xs:choice>
                         <xs:attribute name="Sortable" type="YesNo" use="optional">
                           <xs:annotation>
                             <xs:documentation>آیا جدول قابل مرتب کردن باشد</xs:documentation>
@@ -989,7 +989,7 @@
                     <xs:element maxOccurs="unbounded" minOccurs="0" name="PageParameter">
                       <xs:complexType mixed="true">
                          <xs:annotation><xs:documentation> پارامتر صفحه </xs:documentation> </xs:annotation>
-                        <xs:sequence minOccurs="0">
+                        <xs:choice minOccurs="0" maxOccurs="unbounded" >
                           <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
                             <xs:complexType>
                               <xs:attribute name="text" type="xs:string" use="required">
@@ -1052,7 +1052,7 @@
                               </xs:attribute>
                             </xs:complexType>
                           </xs:element>
-                        </xs:sequence>
+                        </xs:choice>
                         <xs:attribute name="title" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>عنوان نمایشی</xs:documentation>
@@ -1183,6 +1183,11 @@
                             <xs:documentation>نوع اقدامی دکمه انجام می دهد</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
+                        <xs:attribute name="PlaceHolder" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>متن توضیح که زمانی چیزی در کادر وارد نشده</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="actionParameter" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>پارامتر که دکمه به نیاز دارد نسبت به نوع اقدام</xs:documentation>
@@ -1193,15 +1198,15 @@
                     <xs:element minOccurs="0" maxOccurs="unbounded" name="BatchCommand">
                        <xs:annotation><xs:documentation>تعریف دسته های دستور  جهت اجرا </xs:documentation> </xs:annotation>
                       <xs:complexType>
-                        <xs:sequence>
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
                           <xs:element name="Command" maxOccurs="unbounded" minOccurs="0">
                             <xs:complexType>
                                <xs:annotation><xs:documentation>تعریف یک دستور در دسته دستورات </xs:documentation> </xs:annotation>
-                              <xs:sequence>
+                              <xs:choice minOccurs="0" maxOccurs="unbounded">
                                 <xs:element name="Parameter" maxOccurs="unbounded" minOccurs="0">
                                   <xs:complexType>
                                      <xs:annotation><xs:documentation>برای دستورات تعریف پارامتر </xs:documentation> </xs:annotation>
-                                    <xs:sequence>
+                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
                                       <xs:element name="Check" maxOccurs="unbounded" minOccurs="0">
                                         <xs:complexType>
                                           <xs:attribute name="Type" type="CheckType">
@@ -1211,7 +1216,7 @@
                                           </xs:attribute>
                                         </xs:complexType>
                                       </xs:element>
-                                    </xs:sequence>
+                                    </xs:choice>
                                     
                                     <xs:attribute name="name" type="xs:string">
                                       <xs:annotation>
@@ -1246,7 +1251,7 @@
                       
                                   </xs:complexType>
                                 </xs:element>
-                              </xs:sequence>
+                              </xs:choice>
                               <xs:attribute name="DBCommand" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>نام روال بانک اطلاعاتی جهت اجرا </xs:documentation>
@@ -1264,7 +1269,7 @@
                               </xs:attribute>
                             </xs:complexType>
                           </xs:element>
-                        </xs:sequence>
+                        </xs:choice>
                         <xs:attribute name="name" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>نام دسته دستورات</xs:documentation>
@@ -1277,7 +1282,7 @@
                         </xs:attribute>
                       </xs:complexType>
                     </xs:element>
-                  </xs:sequence>
+                  </xs:choice>
                   <xs:attribute name="Title" type="xs:string" use="required">
                     <xs:annotation>
                       <xs:documentation>عنوان </xs:documentation>
@@ -1328,17 +1333,17 @@
                   </xs:attribute>
                 </xs:complexType>
               </xs:element>
-            </xs:sequence>
+            </xs:choice>
           </xs:complexType>
         </xs:element>
         <xs:element name="Actions" maxOccurs="1" minOccurs="0">
           <xs:complexType>
              <xs:annotation><xs:documentation>تعریف اکشن های ajax </xs:documentation> </xs:annotation>
-            <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
               <xs:element maxOccurs="unbounded" minOccurs="0" name="action">
                 <xs:complexType>
                    <xs:annotation><xs:documentation> تعریف اقدام ajax </xs:documentation> </xs:annotation>
-                  <xs:sequence>
+                  <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element minOccurs="0" maxOccurs="unbounded" name="actionParameter">
                       <xs:complexType>
                          <xs:annotation><xs:documentation>تعریف پارامتر های ajax </xs:documentation> </xs:annotation>
@@ -1359,7 +1364,7 @@
                         </xs:attribute>
                       </xs:complexType>
                     </xs:element>
-                  </xs:sequence>
+                  </xs:choice>
                   <xs:attribute name="name" type="xs:string" use="required">
                     <xs:annotation>
                       <xs:documentation>نام اقدام آچاکس</xs:documentation>
@@ -1377,10 +1382,10 @@
                   </xs:attribute>
                 </xs:complexType>
               </xs:element>
-            </xs:sequence>
+            </xs:choice>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Include" minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Include" minOccurs="0" maxOccurs="unbounded" >
           <xs:complexType>
              <xs:annotation><xs:documentation> ترکیب کردن یک فایل config دیگر </xs:documentation> </xs:annotation>
             <xs:attribute name="FilePath" type="xs:string" use="required">
@@ -1417,7 +1422,7 @@
             </xs:attribute>
           </xs:complexType>
         </xs:element>
-      </xs:sequence>
+      </xs:choice>
       <xs:attribute name="Title" type="xs:string" use="required">
         <xs:annotation>
           <xs:documentation>عنوان برنامه</xs:documentation>

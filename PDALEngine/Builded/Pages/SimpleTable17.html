@@ -44,7 +44,7 @@
 
 
 <div class="table-responsive">
-<table class="table  table-bordered">
+<table class="table table-bordered table table-striped">
 <caption></caption>
  <thead>
  <tr>
@@ -53,7 +53,7 @@
     عملیات
 </th>
       </tr>
-     
+   </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
   <td><select class="form-control"   id="cityid_{{record.rndId}}"  valc="{{record.cityid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='SimpleTable17';DataPass.colname='cityid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetPop_asTable(MergeNow,record.cityid)"   ng-model="record.cityid"  >
  <option value="{{record.cityid}}" selected="selected" >
@@ -72,7 +72,7 @@
 </div>
 </td>
      </tr>
- </thead>
+
  <tbody>
 </table>
          <form class="form-horizontal" role="form">

@@ -77,12 +77,26 @@ namespace PDALEngine.Controllers
          //     att.AppendChild(doc);
          //
          // }
-   
+       
+           try
+           {
+               SqlConnection Con = PDALEngine.PDAL.GetConnection();
+               Con.Close();
+           }
+           catch(Exception ex)
+           {
+            return     RedirectToAction("GetErrorAsText",  new {  errMsg="عدم امکان با بانک یا عدم پیکربندی صحیح در فایل PDA.Config : " + ex.Message });
+             
+           }
             ViewBag.App = PDAL.App;
             return View();
         }
+       
+        public string GetErrorAsText(string errMsg)
+        {
 
-      
+            return "<div style='direction:rtl' >" + errMsg+"</div>"; 
+        }
 
         [HttpPost()]
         public JsonResult getStartValueFromServer(string PageName, List<inputParameter> Parameters)
@@ -654,7 +668,7 @@ namespace PDALEngine.Controllers
             PDAL.InitServerSideParametersForSubmit(PageName, ref Parameters);
             string error= PDAL.ValidateAndSetDefaultValue(Info, Parameters);
 
-            if (DoAccess ==  PDALSect.AccessResult.Permitted)
+            if (DoAccess ==  PDALSect.AccessResult.AccessDenied)
             {
                 Res.code = 403;
                 Res.Message = "شما اجازه دسترسی به این قسمت را ندارید";

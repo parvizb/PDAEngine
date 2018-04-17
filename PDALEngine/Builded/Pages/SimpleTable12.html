@@ -22,7 +22,7 @@
 
 
 <div class="table-responsive">
-<table class="table  table-bordered">
+<table class="table table-bordered table table-striped">
 <caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
@@ -35,7 +35,7 @@
  <th  > جنسیت</th> 
  <th  > جنسیت</th> 
  </tr>
-     
+   </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
 <td>{{record.id}}</td> 
   <td><input class="form-control" type="text" id="name_{{record.rndId}}" value="{{record.name}}" ng-change="ChangeState(record);"  ng-model="record.name"  /></td> 
@@ -57,7 +57,7 @@
      {{record.}} </option>
 </select></td> 
                   </tr>
- </thead>
+
  <tbody>
 </table>
          <form class="form-horizontal" role="form">

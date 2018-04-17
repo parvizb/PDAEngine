@@ -615,6 +615,7 @@ public class PageParameter : ILiquidizable
     public string LinkSyntax;
     public string Width;
     public string Height;
+    public string PlaceHolder;
     public List<DBSelectCommandParameter> DBSelectCommandParameters = new List<DBSelectCommandParameter>();
     public List<option> options = new List<option>();
     public List<FileAllow> FileAllows = new List<FileAllow>();
@@ -631,6 +632,7 @@ public class PageParameter : ILiquidizable
         this.startValueType = node.Attr("startValueType");
         this.Parameter = node.Attr("Parameter");
         DefaultValueSource=node.Attr("DefaultValueSource");
+        PlaceHolder = node.Attr("PlaceHolder");
         DefaultValueParameter=node.Attr("DefaultValueParameter");
         this.DBSelect2Command = node.Attr("DBSelect2Command");
         this.codeColumn = node.Attr("codeColumn");
@@ -672,7 +674,7 @@ public class PageParameter : ILiquidizable
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new {  Width=this.Width,Height=this.Height,LinkSyntax=this.LinkSyntax   , FileAllows=this.FileAllows ,  FilePathAtServer=this.FilePathAtServer,  MaxFileSize=this.MaxFileSize,  Disabled=this.Disabled, dontSendToDb=this.dontSendToDb, options=this.options,  TitleParameter=this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
+        return Hash.FromAnonymousObject(new { PlaceHolder=this.PlaceHolder, Width=this.Width,Height=this.Height,LinkSyntax=this.LinkSyntax   , FileAllows=this.FileAllows ,  FilePathAtServer=this.FilePathAtServer,  MaxFileSize=this.MaxFileSize,  Disabled=this.Disabled, dontSendToDb=this.dontSendToDb, options=this.options,  TitleParameter=this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
 
     }
 

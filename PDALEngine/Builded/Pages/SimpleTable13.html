@@ -22,7 +22,7 @@
 
 
 <div class="table-responsive">
-<table class="table  table-bordered">
+<table class="table table-bordered table table-striped">
 <caption></caption>
  <thead>
  <tr>
@@ -30,13 +30,13 @@
  <th  > تعداد</th> 
  <th  > جمع</th> 
  </tr>
-     
+   </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
   <td><input class="form-control" type="text" id="price_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.total=Num(record.price)*Num(record.count)"   onkeyup="NumberInput(event,this)"   value="{{record.price}}" ng-model="record.price"  /></td> 
   <td><input class="form-control" type="text" id="count_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.total=Num(record.price)*Num(record.count)"   onkeyup="NumberInput(event,this)"   value="{{record.count}}" ng-model="record.count"  /></td> 
 <td>{{ShowMoney(record.total)}}</td> 
                    </tr>
- </thead>
+
  <tbody>
 </table>
          <form class="form-horizontal" role="form">

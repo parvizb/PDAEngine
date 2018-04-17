@@ -24,19 +24,19 @@
 
 
 <div class="table-responsive">
-<table class="table  table-bordered">
+<table class="table table-bordered table table-striped">
 <caption></caption>
  <thead>
  <tr>
  <th  > کد شهر</th> 
  <th  > عنوان شهر</th> 
  </tr>
-     
+   </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
 <td>{{record.cityId}}</td> 
  <td>{{record.cityTitle}}</td> 
                    </tr>
- </thead>
+
  <tbody>
 </table>
          <form class="form-horizontal" role="form">
