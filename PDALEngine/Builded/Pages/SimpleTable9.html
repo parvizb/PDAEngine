@@ -32,6 +32,7 @@
  <th  class="Pointer"  ng-click="ChageTableOrder('CITYPop')"  > <span ng-show="((currentOrder=='CITYPop') && (rev) )">V</span> <span ng-show="((currentOrder=='CITYPop') && (!rev) )">^</span>جمعیت </th> 
  <th  class="Pointer"  ng-click="ChageTableOrder('total')"  > <span ng-show="((currentOrder=='total') && (rev) )">V</span> <span ng-show="((currentOrder=='total') && (!rev) )">^</span>تست 1 </th> 
  <th  class="Pointer"  ng-click="ChageTableOrder('total')"  > <span ng-show="((currentOrder=='total') && (rev) )">V</span> <span ng-show="((currentOrder=='total') && (!rev) )">^</span>تست 2 </th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('Sim')"  > <span ng-show="((currentOrder=='Sim') && (rev) )">V</span> <span ng-show="((currentOrder=='Sim') && (!rev) )">^</span>سفارشی</th> 
  </tr>
    </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
@@ -41,7 +42,11 @@
  <td>{{ShowMoney(record.CITYPop)}}</td> 
  <td>{{ShowMoney(Num(record.CITYPop)*Num(record.cityId))}}</td> 
  <td>{{record.cityId}} *** {{record.cityTitle}}</td> 
-                   </tr>
+ <td><b> {{record.cityTitle}}</b><u>{{record.cityTitle}}</u></td>
+  <td>
+  
+ </td> 
+                  </tr>
 
  <tbody>
 </table>

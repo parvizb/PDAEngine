@@ -723,7 +723,18 @@ public class option : ILiquidizable
     }
 
 }
+public class CustomHtml:ILiquidizable
+{
+    public string InnerHtml = "";
 
+
+
+    public object ToLiquid()
+    {
+        return Hash.FromAnonymousObject(new { InnerHtml=this.InnerHtml });
+
+    }
+}
 
 public class DontBuild : ILiquidizable
 {
@@ -854,6 +865,8 @@ public class column : ILiquidizable
     public string TitleParameter;
     public string StaticJavaScriptAfterChange;
     public string AjaxActionChange = "";
+
+    public List<CustomHtml> CustomHtmls = new List<CustomHtml>();
     public List<DBSelectCommandParameter> DBSelectCommandParameters = new List<DBSelectCommandParameter>();
     public List<option> options = new List<option>();
     public void ParseEle(XmlNode node)
@@ -890,12 +903,18 @@ public class column : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 DBSelectCommandParameters.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CustomHtml")
+            {
+                CustomHtml Temp = new CustomHtml();
+                Temp.InnerHtml = node.ChildNodes[i].InnerXml;
+                CustomHtmls.Add(Temp);
+            }
         }
 
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { ShowCond=this.ShowCond, Width = this.Width, Height = this.Height, AjaxActionChange = this.AjaxActionChange, StaticJavaScriptAfterChange = this.StaticJavaScriptAfterChange, DBSelectCommandParameters = this.DBSelectCommandParameters, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, TitleParameter = this.TitleParameter, options = this.options, title = this.title, name = this.name, type = this.type, Caption = this.Caption, linkSyntax = this.linkSyntax, AskMessage = this.AskMessage, AjaxAction = this.AjaxAction, ParameterSyntax = this.ParameterSyntax });
+        return Hash.FromAnonymousObject(new { CustomHtmls=this.CustomHtmls , ShowCond=this.ShowCond, Width = this.Width, Height = this.Height, AjaxActionChange = this.AjaxActionChange, StaticJavaScriptAfterChange = this.StaticJavaScriptAfterChange, DBSelectCommandParameters = this.DBSelectCommandParameters, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, TitleParameter = this.TitleParameter, options = this.options, title = this.title, name = this.name, type = this.type, Caption = this.Caption, linkSyntax = this.linkSyntax, AskMessage = this.AskMessage, AjaxAction = this.AjaxAction, ParameterSyntax = this.ParameterSyntax });
 
     }
 

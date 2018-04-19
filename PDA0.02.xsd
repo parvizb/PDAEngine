@@ -599,6 +599,14 @@
           </xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="Html">
+        <xs:annotation>
+          <xs:documentation>
+    جهت نمایش از اجزای سفارشی استفاده می شود 
+    از تگ customHtml استفاده شود
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <xs:enumeration value="DownloadFile">
         <xs:annotation>
           <xs:documentation>
@@ -816,6 +824,7 @@
                               </xs:attribute>
                             </xs:complexType>
                           </xs:element>
+                      
                           <xs:element maxOccurs="unbounded" name="column">
                             <xs:complexType>
                                <xs:annotation><xs:documentation> تعریف ستون در جدول </xs:documentation> </xs:annotation>
@@ -839,7 +848,19 @@
                                 </xs:annotation>
                               </xs:attribute>
                             </xs:complexType>
+                            
                           </xs:element>
+                                <xs:element name="CustomHtml"   minOccurs="0" maxOccurs="unbounded">
+                                  <xs:complexType >
+                                    
+                                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                      <xs:any namespace="##any" processContents="skip" maxOccurs="unbounded" minOccurs="0"></xs:any>
+                                    </xs:choice>
+                                  </xs:complexType>
+
+                                </xs:element>
+                                
+                                
                                 <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
                                   <xs:complexType>
                                     <xs:attribute name="text" type="xs:string" use="required">
@@ -1093,6 +1114,11 @@
                             <xs:documentation>عرض تصویر</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
+                        <xs:attribute name="PlaceHolder" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>متن توضیح که زمانی چیزی در کادر وارد نشده</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="source" type="PageParameterSourceType" use="required">
                           <xs:annotation>
                             <xs:documentation>منبع پارامتر چه باشد</xs:documentation>
@@ -1183,11 +1209,7 @@
                             <xs:documentation>نوع اقدامی دکمه انجام می دهد</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
-                        <xs:attribute name="PlaceHolder" type="xs:string" use="required">
-                          <xs:annotation>
-                            <xs:documentation>متن توضیح که زمانی چیزی در کادر وارد نشده</xs:documentation>
-                          </xs:annotation>
-                        </xs:attribute>
+                 
                         <xs:attribute name="actionParameter" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>پارامتر که دکمه به نیاز دارد نسبت به نوع اقدام</xs:documentation>
