@@ -77,6 +77,12 @@
  <a {% if col.ShowCond != '' -%} ng-show='{{col.ShowCond}}' {% endif -%} ng-click="RemoveItem( record)">
      <button type="button" class="btn btn-default">{{col.Caption}}</button></a>
 {% endif -%}
+{% if (col.type == 'Expr') -%}
+{{col.ParameterSyntax}} 
+{% endif -%}
+          {% if (col.type == 'Html') -%}
+ {% for Cus in col.CustomHtmls -%}{{Cus.InnerHtml}}{% endfor -%}
+{% endif -%}
       </div>
 {% assign i = i | plus: 1 -%}
 {% if i == Page.ColumnCount -%}

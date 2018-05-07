@@ -533,7 +533,13 @@ if(currentScope.DeletedRows!==undefined)
         Enity.PageName='{{Page.name}}';
         Enity.CommandName='{{BC.name}}';
         Enity.records=DataPass;
-        ScallerAjax('BatchCommand',Enity,function(data){
+ScallerAjax('BatchCommand',Enity,function(data){
+    {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
+    Messager.ShowMessage('اطلاعات', data.Message + ' شناسه پیگیری : ' + retrunValue );
+    {% else -%}
+    Messager.ShowMessage('اطلاعات', data.Message );
+    {% end if -%}
+
             Messager.ShowMessage('اطلاعات', data.Message);
             if(JsEventInterface.AfterOkReqSubmit!=null)
             {
@@ -541,7 +547,24 @@ if(currentScope.DeletedRows!==undefined)
             }
             if(data.code==0)
             {
+{% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
                 BackPage();
+{% end if -%}
+{% if Page.SubmitBev == 'Back' -%}
+                BackPage();
+{% end if -%}
+{% if Page.SubmitBev == '' -%}
+BackPage();
+{% end if -%}
+{% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
+goToLink('#/{{Page.SubmitBevParameter}}');
+{% end if -%}
+ 
+{% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
+goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
+{% end if -%}
+
+
             }
             $(obj).attr('disabled',false);
             return;

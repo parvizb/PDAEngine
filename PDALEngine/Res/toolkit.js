@@ -500,7 +500,14 @@ function TinyMceEditor(id) {
 
 
 }
+function goToLink(link) {
+    var d = document.createElement('a');
+    d.href = link;
+    document.body.appendChild(d);
+    d.click();
 
+    document.removeChild(d);
+}
 function Para(id) {
     r = document.getElementById('txt' + id);
     if (r != null) {

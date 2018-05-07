@@ -1,0 +1,98 @@
+﻿مدیریت کالا
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label for="ProductId" class="col-sm-2 control-label">     شناسه:</label>
+    <div class="col-sm-4">
+      <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtProductId" placeholder="" />
+                                        </div>
+    <label for="ProductName" class="col-sm-2 control-label">     عنوان کالا:</label>
+    <div class="col-sm-4">
+      <input type="text"   class="form-control" id="txtProductName" placeholder=""  placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label for="ProductTypeId" class="col-sm-2 control-label">     شناسه نوع کالا:</label>
+    <div class="col-sm-4">
+      <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtProductTypeId" placeholder="" />
+                                        </div>
+    <label for="FactoryId" class="col-sm-2 control-label">     کارخانه:</label>
+    <div class="col-sm-4">
+      <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtFactoryId" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                                         
+    Product_mgt.IntForm=function()
+    {
+    
+    document.title='مدیریت کالا';
+    window.fileUploaded=false;
+                                                                                                    
+    }
+    $(document).ready(function () {
+    Product_mgt.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="Product_mgt.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a href='#/Product_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > شناسه</th> 
+ <th  > عنوان کالا</th> 
+ <th  > شناسه نوع کالا</th> 
+ <th  > واحد جز</th> 
+ <th  > واحد کل</th> 
+ <th  > کارخانه</th> 
+ <th  > تعداد جز</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+<td>{{record.ProductId}}</td> 
+ <td>{{record.ProductName}}</td> 
+ <td>{{record.ProductTypeId}}</td> 
+ <td>{{record.UnitId}}</td> 
+ <td>{{record.UnitBoxId}}</td> 
+ <td>{{record.FactoryId}}</td> 
+ <td>{{record.UnitBoxCount}}</td> 
+                <td>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a href="#/Product_Edit/{{record.ProductId}}" >ویرایش</a></li> 
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.Product_Delete('{{record.ProductId}}')});" >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

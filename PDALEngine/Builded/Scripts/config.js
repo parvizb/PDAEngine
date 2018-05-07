@@ -1,5 +1,5 @@
 ﻿var currentScope=null;
-var mainApp = angular.module("Web_App_Base", ['ngRoute']);
+var mainApp = angular.module("ParvizStorage", ['ngRoute']);
 
 mainApp.controller("mainController",function ($scope, $routeParams) {
     currentScope=$scope;
@@ -248,172 +248,57 @@ function ($routeProvider/*, $locationProvider*/) {
     //$locationProvider.hashPrefix('!');
     $routeProvider.
                 
-    when('/SimpleTable1', {
-        templateUrl: 'SimpleTable1.htm',
+    when('/ProductType_mgt', {
+        templateUrl: 'ProductType_mgt.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/SimpleTable2', {
-        templateUrl: 'SimpleTable2.htm',
+    when('/unit_mgt', {
+        templateUrl: 'unit_mgt.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/SimpleTable3', {
-        templateUrl: 'SimpleTable3.htm',
+    when('/factory_mgt', {
+        templateUrl: 'factory_mgt.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/SimpleTable4', {
-        templateUrl: 'SimpleTable4.htm',
+    when('/Storage_mgt', {
+        templateUrl: 'Storage_mgt.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/SimpleTable5', {
-        templateUrl: 'SimpleTable5.htm',
+    when('/Storage_Insert', {
+        templateUrl: 'Storage_Insert.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/SimpleTable6', {
-        templateUrl: 'SimpleTable6.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable7', {
-        templateUrl: 'SimpleTable7.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable8', {
-        templateUrl: 'SimpleTable8.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable9', {
-        templateUrl: 'SimpleTable9.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable10', {
-        templateUrl: 'SimpleTable10.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable11', {
-        templateUrl: 'SimpleTable11.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable12', {
-        templateUrl: 'SimpleTable12.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable13', {
-        templateUrl: 'SimpleTable13.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable14', {
-        templateUrl: 'SimpleTable14.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable16', {
-        templateUrl: 'SimpleTable16.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable17', {
-        templateUrl: 'SimpleTable17.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable18', {
-        templateUrl: 'SimpleTable18.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/person_Serach', {
-        templateUrl: 'person_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/person_Insert', {
-        templateUrl: 'person_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/person_Edit/:id', {
-        templateUrl: 'person_Edit.htm',
+    when('/Storage_Edit/:StroageId', {
+        templateUrl: 'Storage_Edit.htm',
         controller: 'mainController'
         }).
                 
-    when('/Scaller1', {
-        templateUrl: 'Scaller1.htm',
+    when('/Product_mgt', {
+        templateUrl: 'Product_mgt.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/Scaller2', {
-        templateUrl: 'Scaller2.htm',
+    when('/Product_Insert', {
+        templateUrl: 'Product_Insert.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/Scaller3', {
-        templateUrl: 'Scaller3.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/Scaller4', {
-        templateUrl: 'Scaller4.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/Scaller5', {
-        templateUrl: 'Scaller5.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/Scaller6', {
-        templateUrl: 'Scaller6.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/Scaller7', {
-        templateUrl: 'Scaller7.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/OtherInformation', {
-        templateUrl: 'OtherInformation.htm',
-        controller: 'mainController' }
-            ).
-    
+    when('/Product_Edit/:ProductId', {
+        templateUrl: 'Product_Edit.htm',
+        controller: 'mainController'
+        }).
                 when('/welcome', {
         templateUrl: 'welcome.html',
         controller: 'mainController'}

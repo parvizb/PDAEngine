@@ -455,6 +455,8 @@ public class Page : ILiquidizable
     public string queryString;
     public string ValueDbCommand;
     public string JSStart;
+    public string SubmitBevParameter;
+    public string SubmitBev;
     public List<Note> Notes = new List<Note>();
  
     public List<PageParameter> PageParameters = new List<PageParameter>();
@@ -479,9 +481,10 @@ public class Page : ILiquidizable
         this.title = node.Attr("title");
         this.name = node.Attr("name");
         this.queryString = node.Attr("queryString");
+        this.SubmitBevParameter = node.Attr("SubmitBevParameter");
         this.ValueDbCommand = node.Attr("ValueDbCommand");
         this.JSStart = node.Attr("JSStart");
-
+        this.SubmitBev = node.Attr("SubmitBev");
         for (int i = 0; i < node.ChildNodes.Count; i++)
         {
             if (node.ChildNodes[i].Name == "PageParameter")
@@ -566,7 +569,7 @@ public class Page : ILiquidizable
                 v= (int)Math.Floor( ((12f / float.Parse(ColumnCount)) * .25f));
                 break;
         }
-        return Hash.FromAnonymousObject(new { Notes=this.Notes, MustSendFiles=this.MustSendFiles.ToString() ,  BatchCommands=this.BatchCommands ,NoneFormParameters=this.NoneFormParameters.ToString(),JSStart=this.JSStart,HerSize =h, ValSize =v, Title = this.Title, id = this.id, link = this.link, ColumnCount = this.ColumnCount, PerKey = this.PerKey, type = this.type, DBCommand = this.DBCommand,  name = this.name, queryString = this.queryString, ValueDbCommand = this.ValueDbCommand, PageParameters = this.PageParameters, Buttons = this.Buttons, tables = this.tables, ValueParameters = this.ValueParameters,CustomValidates=this.CustomValidates });
+        return Hash.FromAnonymousObject(new {SubmitBev=this.SubmitBev,SubmitBevParameter=this.SubmitBevParameter , Notes=this.Notes, MustSendFiles=this.MustSendFiles.ToString() ,  BatchCommands=this.BatchCommands ,NoneFormParameters=this.NoneFormParameters.ToString(),JSStart=this.JSStart,HerSize =h, ValSize =v, Title = this.Title, id = this.id, link = this.link, ColumnCount = this.ColumnCount, PerKey = this.PerKey, type = this.type, DBCommand = this.DBCommand,  name = this.name, queryString = this.queryString, ValueDbCommand = this.ValueDbCommand, PageParameters = this.PageParameters, Buttons = this.Buttons, tables = this.tables, ValueParameters = this.ValueParameters,CustomValidates=this.CustomValidates });
 
     }
 

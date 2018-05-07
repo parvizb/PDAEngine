@@ -1,15 +1,15 @@
 ﻿var AjaxActions = new Object();
-AjaxActions.person_Delete =function(   id)
+AjaxActions.Storage_Delete =function(   StroageId)
 { 
     var Entity=new Object();
-    Entity.actionName='person_Delete';
+    Entity.actionName='Storage_Delete';
     Entity.Parameters=new Array();
     if(JsEventInterface.BeforeInitAjaxAction!=null)
     {
         JsEventInterface.BeforeInitAjaxAction(Entity);
 
     }
-      Entity.Parameters.push( toInput('id' ,id));
+      Entity.Parameters.push( toInput('StroageId' ,StroageId));
       if(JsEventInterface.AfterInitAjaxAction!=null)
    {
        JsEventInterface.AfterInitAjaxAction(Entity);
@@ -42,17 +42,17 @@ AjaxActions.person_Delete =function(   id)
    });
    
 }
-AjaxActions.person_Delete_asTable =function(func,   id)
+AjaxActions.Storage_Delete_asTable =function(func,   StroageId)
 { 
     var Entity=new Object();
-    Entity.actionName='person_Delete';
+    Entity.actionName='Storage_Delete';
     Entity.Parameters=new Array();
     if(JsEventInterface.BeforeInitAjaxAction!=null)
     {
         JsEventInterface.BeforeInitAjaxAction(Entity);
 
     }
-        Entity.Parameters.push( toInput('id' ,id));
+        Entity.Parameters.push( toInput('StroageId' ,StroageId));
         if(JsEventInterface.AfterInitAjaxAction!=null)
     {
         JsEventInterface.AfterInitAjaxAction(Entity);
@@ -80,17 +80,17 @@ AjaxActions.person_Delete_asTable =function(func,   id)
    
 }
 
-AjaxActions.GetPop =function(   id)
+AjaxActions.Product_Delete =function(   ProductId)
 { 
     var Entity=new Object();
-    Entity.actionName='GetPop';
+    Entity.actionName='Product_Delete';
     Entity.Parameters=new Array();
     if(JsEventInterface.BeforeInitAjaxAction!=null)
     {
         JsEventInterface.BeforeInitAjaxAction(Entity);
 
     }
-      Entity.Parameters.push( toInput('id' ,id));
+      Entity.Parameters.push( toInput('ProductId' ,ProductId));
       if(JsEventInterface.AfterInitAjaxAction!=null)
    {
        JsEventInterface.AfterInitAjaxAction(Entity);
@@ -123,17 +123,17 @@ AjaxActions.GetPop =function(   id)
    });
    
 }
-AjaxActions.GetPop_asTable =function(func,   id)
+AjaxActions.Product_Delete_asTable =function(func,   ProductId)
 { 
     var Entity=new Object();
-    Entity.actionName='GetPop';
+    Entity.actionName='Product_Delete';
     Entity.Parameters=new Array();
     if(JsEventInterface.BeforeInitAjaxAction!=null)
     {
         JsEventInterface.BeforeInitAjaxAction(Entity);
 
     }
-        Entity.Parameters.push( toInput('id' ,id));
+        Entity.Parameters.push( toInput('ProductId' ,ProductId));
         if(JsEventInterface.AfterInitAjaxAction!=null)
     {
         JsEventInterface.AfterInitAjaxAction(Entity);

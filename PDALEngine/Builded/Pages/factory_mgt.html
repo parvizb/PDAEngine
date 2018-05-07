@@ -1,0 +1,70 @@
+﻿تعریف کارخانه ها
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    factory_mgt.IntForm=function()
+    {
+    
+    document.title='تعریف کارخانه ها';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    factory_mgt.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a onclick='factory_mgt.InsertRecord()' ><button type="button" class="btn btn-default" >ردیف جدید</button></a>
+<a onclick='factory_mgt.Save()' ><button type="button" class="btn btn-default" >ذخیره</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th>ردیف</th>
+ <th  class="Pointer"  ng-click="ChageTableOrder('FactoryId')"  > <span ng-show="((currentOrder=='FactoryId') && (rev) )">V</span> <span ng-show="((currentOrder=='FactoryId') && (!rev) )">^</span>شناسه</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('FactoryName')"  > <span ng-show="((currentOrder=='FactoryName') && (rev) )">V</span> <span ng-show="((currentOrder=='FactoryName') && (!rev) )">^</span>عنوان</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td>{{$index+1}}</td>
+<td>{{record.FactoryId}}</td> 
+  <td><input class="form-control" type="text" id="FactoryName_{{record.rndId}}" value="{{record.FactoryName}}" ng-change="ChangeState(record);"  ng-model="record.FactoryName"  /></td> 
+               <td>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a   ng-click="RemoveItem( record)"   >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             factory_mgt.Serach();
+                      });
+    
+     </script>

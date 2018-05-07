@@ -1350,10 +1350,18 @@ namespace PDALEngine
             switch (key)
             {
                 case "CurrentDateTime":
-                    return DateTime.Now.ToString();
+                    return DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToLongTimeString();
                     break;
                 case "RandomToken":
-                    return new System.Guid().ToString();
+                    string ke = "";
+                    Random r=new  Random(DateTime.Now.Millisecond);
+                    for (int k = 0; k < 10; k++)
+                    {
+                        ke += r.Next(0, 9).ToString();
+
+                    }
+
+                    return ke;
                     break;
                 default:
                     throw new Exception("عبارت ناشناخته");

@@ -266,6 +266,9 @@
     <Content Include="images\Thumbs.db" />
     <Content Include="dontBuild.lst" />
     <Content Include="XMLFile1.xml" />
+    <Content Include="AllSamplePDA.Config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="PDA.Config">
       <SubType>Designer</SubType>
     </None>

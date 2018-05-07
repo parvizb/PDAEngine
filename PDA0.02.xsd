@@ -62,6 +62,34 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
+  
+    <xs:simpleType name="SubmitBevType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Back">
+        <xs:annotation>
+          <xs:documentation>بازگشت به صفحه قبلی</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+       <xs:enumeration value="BackAndShowReturnValue">
+        <xs:annotation>
+          <xs:documentation>بازگشت به صفحه قبلی و نمایش عبارتی بازگشتی به عنوان شناسه پیگیری</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+       <xs:enumeration value="GoToStaticPageWithoutReturnValue">
+        <xs:annotation>
+          <xs:documentation>یک صفحه خاص بدون ترکیب عبارت خروجی برود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+          <xs:enumeration value="GoToStaticPageWithReturnValue">
+        <xs:annotation>
+          <xs:documentation>یک صفحه خاص با ترکیب عبارت خروجی برود</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+    
+      
+        
   <xs:simpleType name="PageParameterType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Html">
@@ -852,8 +880,9 @@
                           </xs:element>
                                 <xs:element name="CustomHtml"   minOccurs="0" maxOccurs="unbounded">
                                   <xs:complexType >
-                                    
+                                   
                                     <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    
                                       <xs:any namespace="##any" processContents="skip" maxOccurs="unbounded" minOccurs="0"></xs:any>
                                     </xs:choice>
                                   </xs:complexType>
@@ -1038,6 +1067,16 @@
                                   <xs:documentation>در چه شرایطی این اعتبار سنجی انجام شود</xs:documentation>
                                 </xs:annotation>
                               </xs:attribute>
+                              <xs:attribute name="Value" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>پارامتر اول </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Value2" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>پارامتر دوم </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                             </xs:complexType>
                           </xs:element>
                           <xs:element name="FileAllow" maxOccurs="unbounded" minOccurs="0">
@@ -1089,6 +1128,7 @@
                             <xs:documentation>نوع ورودی </xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
+                  
                         <xs:attribute name="MaxFileSize" type="xs:long" use="optional">
                           <xs:annotation>
                             <xs:documentation>(کلیوبایت) حداکثر اندازه فایل</xs:documentation>
@@ -1320,6 +1360,16 @@
                       <xs:documentation>لینک صفحه</xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
+                        <xs:attribute name="SubmitBev" type="SubmitBevType" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>رفتاری که پس از ثبت انجام دهد </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                          <xs:attribute name="SubmitBevParameter" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>پارامتر رفتاری که پس از ثبت انجام دهد </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                   <xs:attribute name="ColumnCount" type="xs:unsignedByte" use="required">
                     <xs:annotation>
                       <xs:documentation>تعداد ستون ها در یک ردیف برای پارامتر ها و دیتال ویو</xs:documentation>
