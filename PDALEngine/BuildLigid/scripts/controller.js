@@ -538,7 +538,7 @@ ScallerAjax('BatchCommand',Enity,function(data){
     Messager.ShowMessage('اطلاعات', data.Message + ' شناسه پیگیری : ' + retrunValue );
     {% else -%}
     Messager.ShowMessage('اطلاعات', data.Message );
-    {% end if -%}
+    {% endif -%}
 
             Messager.ShowMessage('اطلاعات', data.Message);
             if(JsEventInterface.AfterOkReqSubmit!=null)
@@ -549,20 +549,20 @@ ScallerAjax('BatchCommand',Enity,function(data){
             {
 {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
                 BackPage();
-{% end if -%}
+{% endif -%}
 {% if Page.SubmitBev == 'Back' -%}
                 BackPage();
-{% end if -%}
+{% endif -%}
 {% if Page.SubmitBev == '' -%}
 BackPage();
-{% end if -%}
+{% endif -%}
 {% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
 goToLink('#/{{Page.SubmitBevParameter}}');
-{% end if -%}
+{% endif -%}
  
 {% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
 goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
-{% end if -%}
+{% endif -%}
 
 
             }
