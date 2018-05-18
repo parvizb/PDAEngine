@@ -686,3 +686,20 @@ function LogOut() {
     document.body.removeChild(a);
 
 }
+
+function GenStyleForTableResponse() {
+    var d = document.getElementsByTagName('table');
+    if (d.length == 0) {
+        return;
+
+    }
+    var th = d[0].getElementsByTagName('th');
+    var r = '';
+    for (var l = 0; l < th.length; l++) {
+        r+='td:nth-of-type(' + (l+1).toString() +'):before { content: "' + th[l].innerText +'"; }'
+
+    }
+    var sty = document.createElement('style');
+    sty.innerHTML = r;
+    document.body.appendChild(sty);
+}

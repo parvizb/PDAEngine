@@ -308,7 +308,9 @@ if(currentScope.DeletedRows!==undefined)
         Enity.PageName='ProductType_mgt';
         Enity.CommandName='Save';
         Enity.records=DataPass;
-        ScallerAjax('BatchCommand',Enity,function(data){
+ScallerAjax('BatchCommand',Enity,function(data){
+        Messager.ShowMessage('اطلاعات', data.Message );
+    
             Messager.ShowMessage('اطلاعات', data.Message);
             if(JsEventInterface.AfterOkReqSubmit!=null)
             {
@@ -316,7 +318,10 @@ if(currentScope.DeletedRows!==undefined)
             }
             if(data.code==0)
             {
-                BackPage();
+BackPage();
+ 
+
+
             }
             $(obj).attr('disabled',false);
             return;

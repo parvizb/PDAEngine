@@ -240,6 +240,8 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
         }
         console.log("ChangeState",item.RowState);
     }
+    GenStyleForTableResponse();
+
 });
 
 var routeParams=null;

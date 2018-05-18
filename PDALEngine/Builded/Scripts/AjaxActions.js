@@ -1,15 +1,15 @@
 ﻿var AjaxActions = new Object();
-AjaxActions.Storage_Delete =function(   StroageId)
+AjaxActions.person_Delete =function(   id)
 { 
     var Entity=new Object();
-    Entity.actionName='Storage_Delete';
+    Entity.actionName='person_Delete';
     Entity.Parameters=new Array();
     if(JsEventInterface.BeforeInitAjaxAction!=null)
     {
         JsEventInterface.BeforeInitAjaxAction(Entity);
 
     }
-      Entity.Parameters.push( toInput('StroageId' ,StroageId));
+      Entity.Parameters.push( toInput('id' ,id));
       if(JsEventInterface.AfterInitAjaxAction!=null)
    {
        JsEventInterface.AfterInitAjaxAction(Entity);
@@ -42,17 +42,17 @@ AjaxActions.Storage_Delete =function(   StroageId)
    });
    
 }
-AjaxActions.Storage_Delete_asTable =function(func,   StroageId)
+AjaxActions.person_Delete_asTable =function(func,   id)
 { 
     var Entity=new Object();
-    Entity.actionName='Storage_Delete';
+    Entity.actionName='person_Delete';
     Entity.Parameters=new Array();
     if(JsEventInterface.BeforeInitAjaxAction!=null)
     {
         JsEventInterface.BeforeInitAjaxAction(Entity);
 
     }
-        Entity.Parameters.push( toInput('StroageId' ,StroageId));
+        Entity.Parameters.push( toInput('id' ,id));
         if(JsEventInterface.AfterInitAjaxAction!=null)
     {
         JsEventInterface.AfterInitAjaxAction(Entity);
@@ -80,17 +80,17 @@ AjaxActions.Storage_Delete_asTable =function(func,   StroageId)
    
 }
 
-AjaxActions.Product_Delete =function(   ProductId)
+AjaxActions.GetPop =function(   id)
 { 
     var Entity=new Object();
-    Entity.actionName='Product_Delete';
+    Entity.actionName='GetPop';
     Entity.Parameters=new Array();
     if(JsEventInterface.BeforeInitAjaxAction!=null)
     {
         JsEventInterface.BeforeInitAjaxAction(Entity);
 
     }
-      Entity.Parameters.push( toInput('ProductId' ,ProductId));
+      Entity.Parameters.push( toInput('id' ,id));
       if(JsEventInterface.AfterInitAjaxAction!=null)
    {
        JsEventInterface.AfterInitAjaxAction(Entity);
@@ -123,17 +123,17 @@ AjaxActions.Product_Delete =function(   ProductId)
    });
    
 }
-AjaxActions.Product_Delete_asTable =function(func,   ProductId)
+AjaxActions.GetPop_asTable =function(func,   id)
 { 
     var Entity=new Object();
-    Entity.actionName='Product_Delete';
+    Entity.actionName='GetPop';
     Entity.Parameters=new Array();
     if(JsEventInterface.BeforeInitAjaxAction!=null)
     {
         JsEventInterface.BeforeInitAjaxAction(Entity);
 
     }
-        Entity.Parameters.push( toInput('ProductId' ,ProductId));
+        Entity.Parameters.push( toInput('id' ,id));
         if(JsEventInterface.AfterInitAjaxAction!=null)
     {
         JsEventInterface.AfterInitAjaxAction(Entity);
