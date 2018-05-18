@@ -538,7 +538,11 @@ ScallerAjax('BatchCommand',Enity,function(data){
     Messager.ShowMessage('اطلاعات', data.Message + ' شناسه پیگیری : ' + retrunValue );
     {% else -%}
     Messager.ShowMessage('اطلاعات', data.Message );
+<<<<<<< HEAD
     {% endif  -%}
+=======
+    {% endif -%}
+>>>>>>> 8d66f90c06ea4d2ccc1df17a9df4f9092bec1fd7
 
             Messager.ShowMessage('اطلاعات', data.Message);
             if(JsEventInterface.AfterOkReqSubmit!=null)
@@ -549,6 +553,7 @@ ScallerAjax('BatchCommand',Enity,function(data){
             {
 {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
                 BackPage();
+<<<<<<< HEAD
 {% endif  -%}
 {% if Page.SubmitBev == 'Back' -%}
                 BackPage();
@@ -563,6 +568,22 @@ goToLink('#/{{Page.SubmitBevParameter}}');
 {% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
 goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
 {% endif  -%}
+=======
+{% endif -%}
+{% if Page.SubmitBev == 'Back' -%}
+                BackPage();
+{% endif -%}
+{% if Page.SubmitBev == '' -%}
+BackPage();
+{% endif -%}
+{% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
+goToLink('#/{{Page.SubmitBevParameter}}');
+{% endif -%}
+ 
+{% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
+goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
+{% endif -%}
+>>>>>>> 8d66f90c06ea4d2ccc1df17a9df4f9092bec1fd7
 
 
             }
