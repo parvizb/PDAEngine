@@ -1319,7 +1319,7 @@ namespace PDALEngine
                     }
                     if (Dt.Columns[q].DataType != typeof(DateTime))
                     {
-                        S.Append("\"" + Dt.Columns[q].ColumnName + "\":\"" + Dt.Rows[k][q].ToString().Replace("\n", "\\n").Replace("\\", "\"") + "\"");
+                        S.Append("\"" + Dt.Columns[q].ColumnName + "\":\"" + Dt.Rows[k][q].ToString().Replace("\n", "\\n").Replace("\\", "\"").Replace("\"","\\\"") + "\"");
                     }
                     else
                     {

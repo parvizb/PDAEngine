@@ -42,50 +42,50 @@ Scaller3.sendFiles=  function()
 }
 
 
-   Scaller3.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if(Scaller3.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-              var Entity=new Object();
-       Entity.PageName='Scaller3';
-       Entity.Parameters=new Array();
-       Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
-
-                      ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
+Scaller3.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if(Scaller3.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+        var Entity=new Object();
+    Entity.PageName='Scaller3';
+    Entity.Parameters=new Array();
+                Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
+    
+                ScallerAjax('ScallerSubmit',Entity,function(data){
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    BackPage();
+    $(obj).attr('disabled',false);
+    return;
        
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
 
-       });
-   };
+});
+};
 Scaller3.Validate= function()
 {
     Validator.ClearErrors();
         
-    Validator.CheckEmpty('txtcityTitle','عنوان');
-    
-
+                                Validator.CheckEmpty('txtcityTitle','عنوان');
+                                                                                            
+        
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
         return false ;
     }
-
+    
     if(Messager.errors.length!=0)
     {
 
@@ -96,6 +96,7 @@ Scaller3.Validate= function()
 
     return Messager.errors.length==0;
 }
+
 
 Scaller3.Serach=function(obj)
 {
@@ -110,34 +111,33 @@ Scaller3.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='Scaller3';
     Entity.Parameters=new Array();
-    Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
-
- 
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+                Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
+    
+                 
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
+    currentScope.records= data.records;
         
-        currentScope.$apply(function(){});
-                $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    currentScope.$apply(function(){});
+        $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
 
 
 
-///Hi ...
-///
+

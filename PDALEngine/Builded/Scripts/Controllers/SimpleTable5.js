@@ -42,48 +42,48 @@ SimpleTable5.sendFiles=  function()
 }
 
 
-   SimpleTable5.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if(SimpleTable5.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-              var Entity=new Object();
-       Entity.PageName='SimpleTable5';
-       Entity.Parameters=new Array();
-       Entity.Parameters.push( toInput('n',$('#txtn').val()));
-
-               ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
+SimpleTable5.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if(SimpleTable5.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+        var Entity=new Object();
+    Entity.PageName='SimpleTable5';
+    Entity.Parameters=new Array();
+                Entity.Parameters.push( toInput('n',$('#txtn').val()));
+    
+        ScallerAjax('ScallerSubmit',Entity,function(data){
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    BackPage();
+    $(obj).attr('disabled',false);
+    return;
        
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
 
-       });
-   };
+});
+};
 SimpleTable5.Validate= function()
 {
     Validator.ClearErrors();
         
-
+        
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
         return false ;
     }
-
+    
     if(Messager.errors.length!=0)
     {
 
@@ -94,6 +94,7 @@ SimpleTable5.Validate= function()
 
     return Messager.errors.length==0;
 }
+
 
 SimpleTable5.Serach=function(obj)
 {
@@ -108,34 +109,33 @@ SimpleTable5.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='SimpleTable5';
     Entity.Parameters=new Array();
-    Entity.Parameters.push( toInput('n',$('#txtn').val()));
-
- 
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+                Entity.Parameters.push( toInput('n',$('#txtn').val()));
+    
+         
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
+    currentScope.records= data.records;
         
-        currentScope.$apply(function(){});
-                                $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    currentScope.$apply(function(){});
+                $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
 
 
 
-///Hi ...
-///
+

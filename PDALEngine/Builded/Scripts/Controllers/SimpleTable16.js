@@ -42,35 +42,35 @@ SimpleTable16.sendFiles=  function()
 }
 
 
-   SimpleTable16.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if(SimpleTable16.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-              var Entity=new Object();
-       Entity.PageName='SimpleTable16';
-       Entity.Parameters=new Array();
-        ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
+SimpleTable16.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if(SimpleTable16.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+        var Entity=new Object();
+    Entity.PageName='SimpleTable16';
+    Entity.Parameters=new Array();
+    ScallerAjax('ScallerSubmit',Entity,function(data){
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    BackPage();
+    $(obj).attr('disabled',false);
+    return;
        
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
 
-       });
-   };
+});
+};
 SimpleTable16.Validate= function()
 {
     Validator.ClearErrors();
@@ -80,7 +80,7 @@ SimpleTable16.Validate= function()
         Validator.ShowErrors();
         return false ;
     }
-
+    
     if(Messager.errors.length!=0)
     {
 
@@ -91,6 +91,7 @@ SimpleTable16.Validate= function()
 
     return Messager.errors.length==0;
 }
+
 
 SimpleTable16.Serach=function(obj)
 {
@@ -105,41 +106,40 @@ SimpleTable16.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='SimpleTable16';
     Entity.Parameters=new Array();
- 
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+     
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
+    currentScope.records= data.records;
         
-        currentScope.$apply(function(){});
-                        for(var l=0;l<currentScope.records.length;l++)
-        { 
-            var record=currentScope.records[l];
-            if(Num(record.CITYPop)>15000)
-            {
-                currentScope.records[l].selected=true;
-                $('#selected_' + currentScope.records[l].rndId).attr('checked',true);
-            }
+    currentScope.$apply(function(){});
+            for(var l=0;l<currentScope.records.length;l++)
+    { 
+        var record=currentScope.records[l];
+        if(Num(record.CITYPop)>15000)
+        {
+            currentScope.records[l].selected=true;
+            $('#selected_' + currentScope.records[l].rndId).attr('checked',true);
         }
-                        $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    }
+            $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
 
 
 
-///Hi ...
-///
+

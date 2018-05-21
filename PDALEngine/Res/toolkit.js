@@ -509,6 +509,7 @@ function goToLink(link) {
     document.removeChild(d);
 }
 function Para(id) {
+
     r = document.getElementById('txt' + id);
     if (r != null) {
         if (r.getAttribute('Type') == 'Number') {

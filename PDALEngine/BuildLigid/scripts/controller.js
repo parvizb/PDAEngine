@@ -50,59 +50,59 @@ var currentButton;
 }
 
 
-   {{Page.name}}.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if({{Page.name}}.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-       {% if Page.MustSendFiles == 'True' -%}
-       {
+{{Page.name}}.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if({{Page.name}}.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+    {% if Page.MustSendFiles == 'True' -%}
+    {
            
-           if(window.fileUploaded!=true)
-           {
-               {{Page.name}}.sendFiles();
-               return ;
-           }
+        if(window.fileUploaded!=true)
+        {
+            {{Page.name}}.sendFiles();
+            return ;
+        }
 
 
-       }
-       {% endif -%}
-       var Entity=new Object();
-       Entity.PageName='{{Page.name}}';
-       Entity.Parameters=new Array();
-{% for para in  Page.PageParameters -%}
-{% if para.source == 'form' -%}
-{% if (para.type == 'Html') -%}
-       Entity.Parameters.push( toInput('{{para.name}}',tinymce.editors['txt{{para.name}}'].contentDocument.body.innerHTML));
-{% else -%}
-       Entity.Parameters.push( toInput('{{para.name}}',$('#txt{{para.name}}').val()));
-{% endif -%} 
-{% endif -%}
-       {% if para.source == 'QueryString' -%}
-       Entity.Parameters.push( toInput('{{para.name}}',routeParams.{{para.Parameter}} ));
+    }
+    {% endif -%}
+    var Entity=new Object();
+    Entity.PageName='{{Page.name}}';
+    Entity.Parameters=new Array();
+    {% for para in  Page.PageParameters -%}
+    {% if para.source == 'form' -%}
+    {% if (para.type == 'Html') -%}
+    Entity.Parameters.push( toInput('{{para.name}}',tinymce.editors['txt{{para.name}}'].contentDocument.body.innerHTML));
+    {% else -%}
+    Entity.Parameters.push( toInput('{{para.name}}',$('#txt{{para.name}}').val()));
+    {% endif -%} 
+    {% endif -%}
+    {% if para.source == 'QueryString' -%}
+    Entity.Parameters.push( toInput('{{para.name}}',routeParams.{{para.Parameter}} ));
 {% endif -%}
 {% endfor -%}
-        ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
+ScallerAjax('ScallerSubmit',Entity,function(data){
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    BackPage();
+    $(obj).attr('disabled',false);
+    return;
        
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
 
-       });
-   };
+});
+};
 {{Page.name}}.Validate= function()
 {
     Validator.ClearErrors();
@@ -140,59 +140,59 @@ var currentButton;
     {% endif -%}
     {% endif -%}
 
-{% for check in para.ParameterChecks -%}
-{% if check.When !='' -%}
-if ({{check.When}}) {
-{% endif -%}
-{% if para.type =='String' or para.type='TextArea' -%}
-{% if check.cond == 'Reg' -%}
-    Validator.CheckEmpty('txt{{para.name}}','{{para.title}}');
-{% endif -%}
-{% if check.cond == 'RegEmail' -%}
-    Validator.RegEmail('txt{{para.name}}','{{para.title}}');
-{% endif -%}
-{% if check.cond == 'StringLength' -%}
-    Validator.CheckStringLength('txt{{para.name}}','{{para.title}}',{{check.Value}});
-{% endif -%}
-{% endif -%}
-{% if para.type =='FileInput' -%}
-{% if check.cond == 'Reg' -%}
-Validator.CheckEmpty('txt{{para.name}}','{{para.title}}');
-{% endif -%}
-{% endif -%}
-{% if para.type =='Float' -%}
-{% if check.cond == 'Reg' -%}
-    Validator.CheckRegFloat('txt{{para.name}}','{{para.title}}');
-{% endif -%}
-{% endif -%}
-{% if para.type =='Integer' or para.type == 'Money' -%}
-{% if check.cond == 'Reg' -%}
-    Validator.CheckRegInteger('txt{{para.name}}','{{para.title}}');
-{% endif -%}
-{% if check.cond == 'StringLength' -%}
-    Validator.CheckStringLength('txt{{para.name}}','{{para.title}}',{{check.Value}});
-{% endif -%}
-{% endif -%}
-{% if para.type =='Select2Ajax' or para.type=='Select2'  -%}
-    Validator.CheckRegSelect2('txt{{para.name}}','{{para.title}}');
-{% endif -%}
-{% if para.type =='Date' -%}
-{% if check.cond == 'Reg' -%}
-    Validator.CheckRegDate('txt{{para.name}}','{{para.title}}');
-{% endif -%}
-{% endif -%}
-{% if check.When !='' -%}
-}
+    {% for check in para.ParameterChecks -%}
+    {% if check.When !='' -%}
+    if ({{check.When}}) {
         {% endif -%}
-{% endfor -%}
-{% endfor -%}
+        {% if para.type =='String' or para.type='TextArea' -%}
+        {% if check.cond == 'Reg' -%}
+        Validator.CheckEmpty('txt{{para.name}}','{{para.title}}');
+        {% endif -%}
+        {% if check.cond == 'RegEmail' -%}
+        Validator.RegEmail('txt{{para.name}}','{{para.title}}');
+        {% endif -%}
+        {% if check.cond == 'StringLength' -%}
+        Validator.CheckStringLength('txt{{para.name}}','{{para.title}}',{{check.Value}});
+        {% endif -%}
+        {% endif -%}
+        {% if para.type =='FileInput' -%}
+        {% if check.cond == 'Reg' -%}
+        Validator.CheckEmpty('txt{{para.name}}','{{para.title}}');
+        {% endif -%}
+        {% endif -%}
+        {% if para.type =='Float' -%}
+        {% if check.cond == 'Reg' -%}
+        Validator.CheckRegFloat('txt{{para.name}}','{{para.title}}');
+        {% endif -%}
+        {% endif -%}
+        {% if para.type =='Integer' or para.type == 'Money' -%}
+        {% if check.cond == 'Reg' -%}
+        Validator.CheckRegInteger('txt{{para.name}}','{{para.title}}');
+        {% endif -%}
+        {% if check.cond == 'StringLength' -%}
+        Validator.CheckStringLength('txt{{para.name}}','{{para.title}}',{{check.Value}});
+        {% endif -%}
+        {% endif -%}
+        {% if para.type =='Select2Ajax' or para.type=='Select2'  -%}
+        Validator.CheckRegSelect2('txt{{para.name}}','{{para.title}}');
+        {% endif -%}
+        {% if para.type =='Date' -%}
+        {% if check.cond == 'Reg' -%}
+        Validator.CheckRegDate('txt{{para.name}}','{{para.title}}');
+        {% endif -%}
+        {% endif -%}
+        {% if check.When !='' -%}
+    }
+    {% endif -%}
+    {% endfor -%}
+    {% endfor -%}
 
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
         return false ;
     }
-{% for c in Page.CustomValidates -%}
+    {% for c in Page.CustomValidates -%}
     if (!( {{c.Cond}} ))
     {
         Messager.errors.push('{{c.Message}}');
@@ -210,6 +210,7 @@ Validator.CheckEmpty('txt{{para.name}}','{{para.title}}');
     return Messager.errors.length==0;
 }
 
+
 {{Page.name}}.Serach=function(obj)
 {
     $(obj).attr('disabled',true);
@@ -223,65 +224,64 @@ Validator.CheckEmpty('txt{{para.name}}','{{para.title}}');
     var Entity=new Object();
     Entity.PageName='{{Page.name}}';
     Entity.Parameters=new Array();
-{% for para in  Page.PageParameters -%}
-{% if para.source == 'form'   -%}
-{% if (para.type == 'Html') -%}
+    {% for para in  Page.PageParameters -%}
+    {% if para.source == 'form'   -%}
+    {% if (para.type == 'Html') -%}
     Entity.Parameters.push( toInput('{{para.name}}',tinymce.editors['txt{{para.name}}'].contentDocument.body.innerHTML));
-{% else -%}
+    {% else -%}
     Entity.Parameters.push( toInput('{{para.name}}',$('#txt{{para.name}}').val()));
-{% endif -%} 
-{% endif -%}
-{% if para.source == 'QueryString' -%}
+    {% endif -%} 
+    {% endif -%}
+    {% if para.source == 'QueryString' -%}
     Entity.Parameters.push( toInput('{{para.name}}',routeParams.{{para.Parameter}} ));
 {% endif -%}
 {% endfor -%}
  
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
+    currentScope.records= data.records;
         
-        currentScope.$apply(function(){});
-        {% for tab in  Page.tables -%}
-        {% if tab.AutoSelectCond != '' -%}
-        for(var l=0;l<currentScope.records.length;l++)
-        { 
-            var record=currentScope.records[l];
-            if({{tab.AutoSelectCond}})
-            {
-                currentScope.records[l].selected=true;
-                $('#selected_' + currentScope.records[l].rndId).attr('checked',true);
-            }
+    currentScope.$apply(function(){});
+    {% for tab in  Page.tables -%}
+    {% if tab.AutoSelectCond != '' -%}
+    for(var l=0;l<currentScope.records.length;l++)
+    { 
+        var record=currentScope.records[l];
+        if({{tab.AutoSelectCond}})
+        {
+            currentScope.records[l].selected=true;
+            $('#selected_' + currentScope.records[l].rndId).attr('checked',true);
         }
-        {% endif -%}
-        {% endfor -%}
-        $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    }
+    {% endif -%}
+    {% endfor -%}
+    $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
 
-
 {% if Page.ValueDbCommand != '' -%}
 {{Page.name}}.InitStartValues=function(){
-var Entity=new Object();
-Entity.PageName='{{Page.name}}';
-Entity.Parameters=new Array();
-{% for para in  Page.ValueParameters -%}
-{% if (para.source == 'QueryString') -%}
-Entity.Parameters.push( toInput('{{para.name}}',routeParams.{{para.value}}));
+    var Entity=new Object();
+    Entity.PageName='{{Page.name}}';
+    Entity.Parameters=new Array();
+    {% for para in  Page.ValueParameters -%}
+    {% if (para.source == 'QueryString') -%}
+    Entity.Parameters.push( toInput('{{para.name}}',routeParams.{{para.value}}));
 {% endif -%}
 {% endfor -%}
    
@@ -289,9 +289,9 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-{% for para in  Page.PageParameters -%}
-{% if (para.startValueType == 'DbValueCommand') -%}
-{% if para.type == 'Select2Ajax' %}
+        {% for para in  Page.PageParameters -%}
+        {% if (para.startValueType == 'DbValueCommand') -%}
+        {% if para.type == 'Select2Ajax' %}
         var o=document.createElement('option');
         o.value=data.records[0].{{para.Parameter}};
         o.innerHTML= data.records[0].{{para.TitleParameter}} ;
@@ -310,9 +310,20 @@ setTimeout(function(){ tinymce.editors['txt{{para.Name}}'].setContent(data.recor
 $('#txt{{para.Name}}').select2().val(data.records[0].{{para.Parameter}}  ) .trigger('change');
 {%elseif para.type == 'Money' %}
 $('#txt{{para.Name}}').val(ShowAsMoney( data.records[0].{{para.Parameter}}));
+{%elseif para.type == 'FileInput' %}
+//Uncan do now for file
+
+
+{%elseif para.type == 'CheckBox' %}
+console.log( data.records[0].{{para.Parameter}});
+if( data.records[0].{{para.Parameter}}=='True')
+{
+    $('#txt{{para.Name}}').attr('checked',true);
+
+}
 
 {% else -%}
-            $('#txt{{para.Name}}').val(data.records[0].{{para.Parameter}});
+$('#txt{{para.Name}}').val(data.records[0].{{para.Parameter}});
 {% endif -%}          
 {% endif -%}
 {% endfor -%}
@@ -335,6 +346,7 @@ return;
 
 }
 {% endif -%}
+
 
 {% for table in Page.tables -%}
 {% if table.Insertable == 'Yes' -%}
@@ -361,74 +373,73 @@ return;
 }
 {% endif -%}
 {% endfor -%}
-///Hi ...
-///{{Page.BatchCommands.Size}}
+
 {% for BC in Page.BatchCommands -%}
 {{Page.name}}.{{BC.name}}_Validate=function()
 {
-Validator.ClearErrors();
-{% for Com in BC.Commands -%}
-{% for pa in Com.Parameters -%}
-{% for chk in pa.Checks -%}
-{% if pa.sourceType == 'PageParameter' -%}
-{% if chk.Type == 'ReqString' -%}
-Validator.CheckEmpty('txt{{pa.sourceTypeParameter}}','{{pa.caption}}');
-{% endif -%}
-{% if chk.Type == 'ReqDate' -%}
-Validator.CheckRegDate('txt{{pa.sourceTypeParameter}}','{{pa.caption}}');
-{% endif -%}
-{% if chk.Type == 'ReqNumber' -%}
-Validator.CheckRegFloat('txt{{pa.sourceTypeParameter}}','{{pa.caption}}');
-{% endif -%}
-{% if chk.Type == 'ReqSelect2' -%}
-Validator.CheckRegSelect2('txt{{pa.sourceTypeParameter}}','{{pa.caption}}');
-{% endif -%}
-{% endif -%}
-{% endfor -%}
-{% endfor -%}
-{% endfor -%}
-{% for Com in BC.Commands -%}
-for (var l=0;l<currentScope.records.length;l++)
-{
-    var r=currentScope.records[l];
+    Validator.ClearErrors();
+    {% for Com in BC.Commands -%}
+    {% for pa in Com.Parameters -%}
+    {% for chk in pa.Checks -%}
+    {% if pa.sourceType == 'PageParameter' -%}
+    {% if chk.Type == 'ReqString' -%}
+    Validator.CheckEmpty('txt{{pa.sourceTypeParameter}}','{{pa.caption}}');
+    {% endif -%}
+    {% if chk.Type == 'ReqDate' -%}
+    Validator.CheckRegDate('txt{{pa.sourceTypeParameter}}','{{pa.caption}}');
+    {% endif -%}
+    {% if chk.Type == 'ReqNumber' -%}
+    Validator.CheckRegFloat('txt{{pa.sourceTypeParameter}}','{{pa.caption}}');
+    {% endif -%}
+    {% if chk.Type == 'ReqSelect2' -%}
+    Validator.CheckRegSelect2('txt{{pa.sourceTypeParameter}}','{{pa.caption}}');
+    {% endif -%}
+    {% endif -%}
+    {% endfor -%}
+    {% endfor -%}
+    {% endfor -%}
+    {% for Com in BC.Commands -%}
+    for (var l=0;l<currentScope.records.length;l++)
+    {
+        var r=currentScope.records[l];
 
-{% if Com.Selection !='All' -%}
-    if(r.selected == {% if (Com.Selection == 'Selected') -%}false{% else -%}true{% endif -%}){
+        {% if Com.Selection !='All' -%}
+        if(r.selected == {% if (Com.Selection == 'Selected') -%}false{% else -%}true{% endif -%}){
       continue;
-     }
+}
 {% endif -%}
 {% if Com.StateMode !='All' -%}
-   if(r.RowState !='{{Com.StateMode}}'){
-     continue;
-   }
+if(r.RowState !='{{Com.StateMode}}'){
+    continue;
+}
 {% endif -%}
 {% for pa in Com.Parameters -%}
 {% for chk in pa.Checks -%}
 {% if pa.sourceType == 'Row' -%}
 {% if chk.Type == 'ReqString' -%}
    
-    Validator.CheckEmpty('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}}',r.viewIndex+1);
+Validator.CheckEmpty('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}}',r.viewIndex+1);
 {% endif -%}
 {% if chk.Type == 'ReqDate' -%}
-    Validator.CheckRegDate('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}}',r.viewIndex+1);
+Validator.CheckRegDate('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}}',r.viewIndex+1);
 {% endif -%}
 {% if chk.Type == 'ReqNumber' -%}
-    Validator.CheckRegFloat('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}}',r.viewIndex+1);
+Validator.CheckRegFloat('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}}',r.viewIndex+1);
 {% endif -%}
 {% if chk.Type == 'ReqSelect2' -%}
-    Validator.CheckRegSelect2('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}}',r.viewIndex+1);
+Validator.CheckRegSelect2('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}}',r.viewIndex+1);
 {% endif -%}
 {% endif -%}
 {% endfor -%}
 {% endfor -%}
 }
 {% endfor -%}
-    if (Messager.errors.length!=0)
-    {
-        Validator.ShowErrors();
-        return false;
-    }
-    return true;
+if (Messager.errors.length!=0)
+{
+    Validator.ShowErrors();
+    return false;
+}
+return true;
 }
 {{Page.name}}.{{BC.name}}=function()
 { 
@@ -437,38 +448,38 @@ for (var l=0;l<currentScope.records.length;l++)
         return ;
     }
     var DataPass=new Array();
-{% for Com in BC.Commands -%}
+    {% for Com in BC.Commands -%}
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-{% if Com.Selection == 'OneTime' -%}
+    {% if Com.Selection == 'OneTime' -%}
     var rec=new Array();//hi
-{% for pa in Com.Parameters -%}
+    {% for pa in Com.Parameters -%}
     //YOU ARE ASL
-{% if  pa.sourceType == 'PageParameter'  -%}
+    {% if  pa.sourceType == 'PageParameter'  -%}
     rec.push(toInput('{{pa.name}}',Para('{{pa.sourceTypeParameter}}')));
-{% endif -%}
-{% if  pa.sourceType == 'QueryString' -%}
+    {% endif -%}
+    {% if  pa.sourceType == 'QueryString' -%}
     rec.push(toInput('{{pa.name}}', routeParams.{{para.sourceTypeParameter}}  ) );
 {% endif -%}
 {% if  pa.sourceType == 'Expr' -%}
-    rec.push(toInput('{{pa.name}}',  {{para.sourceTypeParameter}}  ) );
+rec.push(toInput('{{pa.name}}',  {{para.sourceTypeParameter}}  ) );
 {% endif -%}
 {% endfor -%}
-    informationRecords.push(rec);
-    t.push(informationRecords);
-    DataPass.push(t);
+informationRecords.push(rec);
+t.push(informationRecords);
+DataPass.push(t);
 {% else -%}
-    for (var l=0;l<currentScope.records.length;l++)
-    {
-        var r=currentScope.records[l];
+for (var l=0;l<currentScope.records.length;l++)
+{
+    var r=currentScope.records[l];
 
-{% if Com.Selection !='All' -%}
-        if(r.selected == {% if (Com.Selection == 'Selected') -%}false{% else -%}true{% endif -%}){
+    {% if Com.Selection !='All' -%}
+    if(r.selected == {% if (Com.Selection == 'Selected') -%}false{% else -%}true{% endif -%}){
       continue;
-        }
+}
 {% endif -%}
 {% if Com.StateMode !='All' -%}
 if(r.RowState !='{{Com.StateMode}}'){
@@ -496,104 +507,102 @@ informationRecords.push(rec);
 }
 
 if(currentScope.DeletedRows!==undefined)
-    {
+{
     for (var l=0;l<currentScope.DeletedRows.length;l++)
-        {
+    {
         var r=currentScope.DeletedRows[l];
 
      
-{% if Com.StateMode !='All' -%}
-            if(r.RowState !='{{Com.StateMode}}'){
-                continue;
-            }
-{% endif -%}
-            var rec=new Array();//hi
-{% for pa in Com.Parameters -%}
-{% if  pa.sourceType == 'PageParameter' -%}
-            rec.push(toInput('{{pa.name}}',Para('{{pa.sourceTypeParameter}}')));
-{% endif -%}
-{% if  pa.sourceType == 'Row' -%}
-            rec.push(toInput('{{pa.name}}', ( r['{{pa.sourceTypeParameter}}']===undefined ? "": r['{{pa.sourceTypeParameter}}'])  ));
-{% endif -%}
-{% if  pa.sourceType == 'QueryString' -%}
-            rec.push(toInput('{{pa.name}}', routeParams.{{para.sourceTypeParameter}}  ) );
+        {% if Com.StateMode !='All' -%}
+        if(r.RowState !='{{Com.StateMode}}'){
+            continue;
+        }
+        {% endif -%}
+        var rec=new Array();//hi
+        {% for pa in Com.Parameters -%}
+        {% if  pa.sourceType == 'PageParameter' -%}
+        rec.push(toInput('{{pa.name}}',Para('{{pa.sourceTypeParameter}}')));
+        {% endif -%}
+        {% if  pa.sourceType == 'Row' -%}
+        rec.push(toInput('{{pa.name}}', ( r['{{pa.sourceTypeParameter}}']===undefined ? "": r['{{pa.sourceTypeParameter}}'])  ));
+        {% endif -%}
+        {% if  pa.sourceType == 'QueryString' -%}
+        rec.push(toInput('{{pa.name}}', routeParams.{{para.sourceTypeParameter}}  ) );
 {% endif -%}
 {% if  pa.sourceType == 'Expr' -%}
-            rec.push(toInput('{{pa.name}}',  {{para.sourceTypeParameter}}  ) );
+rec.push(toInput('{{pa.name}}',  {{para.sourceTypeParameter}}  ) );
 {% endif -%}
 {% endfor -%}
-            informationRecords.push(rec);
-        }
-    }
-    t.push(informationRecords);
-    DataPass.push(t);
+informationRecords.push(rec);
+}
+}
+t.push(informationRecords);
+DataPass.push(t);
 {% endif -%}
 {% endfor -%}
-        var Enity=new Object();
-        Enity.PageName='{{Page.name}}';
-        Enity.CommandName='{{BC.name}}';
-        Enity.records=DataPass;
+var Enity=new Object();
+Enity.PageName='{{Page.name}}';
+Enity.CommandName='{{BC.name}}';
+Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
     {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
     Messager.ShowMessage('اطلاعات', data.Message + ' شناسه پیگیری : ' + retrunValue );
     {% else -%}
     Messager.ShowMessage('اطلاعات', data.Message );
-<<<<<<< HEAD
+ 
     {% endif  -%}
-=======
-    {% endif -%}
->>>>>>> 8d66f90c06ea4d2ccc1df17a9df4f9092bec1fd7
-
-            Messager.ShowMessage('اطلاعات', data.Message);
-            if(JsEventInterface.AfterOkReqSubmit!=null)
-            {
-                JsEventInterface.AfterOkReqSubmit(Entity,data);
-            }
-            if(data.code==0)
-            {
-{% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
-                BackPage();
-<<<<<<< HEAD
-{% endif  -%}
-{% if Page.SubmitBev == 'Back' -%}
-                BackPage();
-{% endif  -%}
-{% if Page.SubmitBev == '' -%}
-BackPage();
-{% endif  -%}
-{% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
-goToLink('#/{{Page.SubmitBevParameter}}');
-{% endif  -%}
  
-{% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
-goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
-{% endif  -%}
-=======
-{% endif -%}
-{% if Page.SubmitBev == 'Back' -%}
-                BackPage();
-{% endif -%}
-{% if Page.SubmitBev == '' -%}
-BackPage();
-{% endif -%}
-{% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
-goToLink('#/{{Page.SubmitBevParameter}}');
-{% endif -%}
+  
  
-{% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
-goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
-{% endif -%}
->>>>>>> 8d66f90c06ea4d2ccc1df17a9df4f9092bec1fd7
 
-
-            }
-            $(obj).attr('disabled',false);
-            return;
-        },function(data)
-        {
-            $(obj).attr('disabled',false);
-            return;
-        });
-        console.log(JSON.stringify(Enity));
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
+    if(data.code==0)
+    {
+        {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
+        BackPage();
+ 
+        {% endif  -%}
+        {% if Page.SubmitBev == 'Back' -%}
+        BackPage();
+        {% endif  -%}
+        {% if Page.SubmitBev == '' -%}
+        BackPage();
+        {% endif  -%}
+        {% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
+        goToLink('#/{{Page.SubmitBevParameter}}');
+        {% endif  -%}
+ 
+        {% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
+        goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
+        {% endif  -%}
+ 
+     
+        {% if Page.SubmitBev == 'Back' -%}
+        BackPage();
+        {% endif -%}
+        {% if Page.SubmitBev == '' -%}
+        BackPage();
+        {% endif -%}
+        {% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
+        goToLink('#/{{Page.SubmitBevParameter}}');
+        {% endif -%}
+ 
+        {% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
+        goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
+        {% endif -%}
+ 
+    }
+    $(obj).attr('disabled',false);
+    return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+});
+console.log(JSON.stringify(Enity));
+}
 {% endfor -%}

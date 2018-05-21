@@ -42,35 +42,35 @@ SimpleTable4.sendFiles=  function()
 }
 
 
-   SimpleTable4.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if(SimpleTable4.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-              var Entity=new Object();
-       Entity.PageName='SimpleTable4';
-       Entity.Parameters=new Array();
-        ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
+SimpleTable4.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if(SimpleTable4.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+        var Entity=new Object();
+    Entity.PageName='SimpleTable4';
+    Entity.Parameters=new Array();
+    ScallerAjax('ScallerSubmit',Entity,function(data){
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    BackPage();
+    $(obj).attr('disabled',false);
+    return;
        
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
 
-       });
-   };
+});
+};
 SimpleTable4.Validate= function()
 {
     Validator.ClearErrors();
@@ -80,7 +80,7 @@ SimpleTable4.Validate= function()
         Validator.ShowErrors();
         return false ;
     }
-
+    
     if(Messager.errors.length!=0)
     {
 
@@ -91,6 +91,7 @@ SimpleTable4.Validate= function()
 
     return Messager.errors.length==0;
 }
+
 
 SimpleTable4.Serach=function(obj)
 {
@@ -105,32 +106,31 @@ SimpleTable4.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='SimpleTable4';
     Entity.Parameters=new Array();
- 
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+     
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
+    currentScope.records= data.records;
         
-        currentScope.$apply(function(){});
-                                $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    currentScope.$apply(function(){});
+                $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
 
 
 
-///Hi ...
-///
+

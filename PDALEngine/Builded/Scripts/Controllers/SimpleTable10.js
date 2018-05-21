@@ -42,48 +42,48 @@ SimpleTable10.sendFiles=  function()
 }
 
 
-   SimpleTable10.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if(SimpleTable10.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-              var Entity=new Object();
-       Entity.PageName='SimpleTable10';
-       Entity.Parameters=new Array();
-       Entity.Parameters.push( toInput('P',$('#txtP').val()));
-
-               ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
+SimpleTable10.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if(SimpleTable10.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+        var Entity=new Object();
+    Entity.PageName='SimpleTable10';
+    Entity.Parameters=new Array();
+                Entity.Parameters.push( toInput('P',$('#txtP').val()));
+    
+        ScallerAjax('ScallerSubmit',Entity,function(data){
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    BackPage();
+    $(obj).attr('disabled',false);
+    return;
        
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
 
-       });
-   };
+});
+};
 SimpleTable10.Validate= function()
 {
     Validator.ClearErrors();
         
-
+        
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
         return false ;
     }
-
+    
     if(Messager.errors.length!=0)
     {
 
@@ -94,6 +94,7 @@ SimpleTable10.Validate= function()
 
     return Messager.errors.length==0;
 }
+
 
 SimpleTable10.Serach=function(obj)
 {
@@ -108,55 +109,54 @@ SimpleTable10.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='SimpleTable10';
     Entity.Parameters=new Array();
-    Entity.Parameters.push( toInput('P',$('#txtP').val()));
-
- 
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+                Entity.Parameters.push( toInput('P',$('#txtP').val()));
+    
+         
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
+    currentScope.records= data.records;
         
-        currentScope.$apply(function(){});
-                                $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    currentScope.$apply(function(){});
+                $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
 
 
 
-///Hi ...
-///
+
 SimpleTable10.SaveNow_Validate=function()
 {
-Validator.ClearErrors();
-Validator.CheckRegFloat('txtP','درصد');
-for (var l=0;l<currentScope.records.length;l++)
-{
-    var r=currentScope.records[l];
-
-    if(r.selected == false){
-      continue;
-     }
-}
-    if (Messager.errors.length!=0)
+    Validator.ClearErrors();
+                                        Validator.CheckRegFloat('txtP','درصد');
+                                for (var l=0;l<currentScope.records.length;l++)
     {
-        Validator.ShowErrors();
-        return false;
-    }
-    return true;
+        var r=currentScope.records[l];
+
+                if(r.selected == false){
+      continue;
+}
+}
+if (Messager.errors.length!=0)
+{
+    Validator.ShowErrors();
+    return false;
+}
+return true;
 }
 SimpleTable10.SaveNow=function()
 { 
@@ -165,18 +165,18 @@ SimpleTable10.SaveNow=function()
         return ;
     }
     var DataPass=new Array();
-    var t=new Array();
+        var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
     for (var l=0;l<currentScope.records.length;l++)
-    {
-        var r=currentScope.records[l];
+{
+    var r=currentScope.records[l];
 
         if(r.selected == false){
       continue;
-        }
+}
 var rec=new Array();//hi
 
 
@@ -187,45 +187,52 @@ informationRecords.push(rec);
 }
 
 if(currentScope.DeletedRows!==undefined)
-    {
+{
     for (var l=0;l<currentScope.DeletedRows.length;l++)
-        {
+    {
         var r=currentScope.DeletedRows[l];
 
      
-            var rec=new Array();//hi
-            rec.push(toInput('id', ( r['cityId']===undefined ? "": r['cityId'])  ));
-            rec.push(toInput('n',Para('P')));
-            informationRecords.push(rec);
-        }
-    }
-    t.push(informationRecords);
-    DataPass.push(t);
-        var Enity=new Object();
-        Enity.PageName='SimpleTable10';
-        Enity.CommandName='SaveNow';
-        Enity.records=DataPass;
+                var rec=new Array();//hi
+                                rec.push(toInput('id', ( r['cityId']===undefined ? "": r['cityId'])  ));
+                                rec.push(toInput('n',Para('P')));
+                        informationRecords.push(rec);
+}
+}
+t.push(informationRecords);
+DataPass.push(t);
+var Enity=new Object();
+Enity.PageName='SimpleTable10';
+Enity.CommandName='SaveNow';
+Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
         Messager.ShowMessage('اطلاعات', data.Message );
-    
-            Messager.ShowMessage('اطلاعات', data.Message);
-            if(JsEventInterface.AfterOkReqSubmit!=null)
-            {
-                JsEventInterface.AfterOkReqSubmit(Entity,data);
-            }
-            if(data.code==0)
-            {
-BackPage();
+ 
+     
+  
  
 
-
-            }
-            $(obj).attr('disabled',false);
-            return;
-        },function(data)
-        {
-            $(obj).attr('disabled',false);
-            return;
-        });
-        console.log(JSON.stringify(Enity));
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
+    if(data.code==0)
+    {
+                                BackPage();
+                 
+         
+     
+                        BackPage();
+                 
+         
+    }
+    $(obj).attr('disabled',false);
+    return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+});
+console.log(JSON.stringify(Enity));
+}

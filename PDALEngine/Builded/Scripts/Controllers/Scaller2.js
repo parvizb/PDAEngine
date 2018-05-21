@@ -42,52 +42,52 @@ Scaller2.sendFiles=  function()
 }
 
 
-   Scaller2.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if(Scaller2.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-              var Entity=new Object();
-       Entity.PageName='Scaller2';
-       Entity.Parameters=new Array();
-       Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
-
-              Entity.Parameters.push( toInput('CITYPop',$('#txtCITYPop').val()));
-
-               ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
+Scaller2.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if(Scaller2.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+        var Entity=new Object();
+    Entity.PageName='Scaller2';
+    Entity.Parameters=new Array();
+                Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
+    
+                    Entity.Parameters.push( toInput('CITYPop',$('#txtCITYPop').val()));
+    
+        ScallerAjax('ScallerSubmit',Entity,function(data){
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    BackPage();
+    $(obj).attr('disabled',false);
+    return;
        
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
 
-       });
-   };
+});
+};
 Scaller2.Validate= function()
 {
     Validator.ClearErrors();
         
-    Validator.CheckEmpty('txtcityTitle','عنوان');
-    
-
+                                Validator.CheckEmpty('txtcityTitle','عنوان');
+                                                                                            
+        
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
         return false ;
     }
-
+    
     if(Messager.errors.length!=0)
     {
 
@@ -98,6 +98,7 @@ Scaller2.Validate= function()
 
     return Messager.errors.length==0;
 }
+
 
 Scaller2.Serach=function(obj)
 {
@@ -112,36 +113,35 @@ Scaller2.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='Scaller2';
     Entity.Parameters=new Array();
-    Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
-
-    Entity.Parameters.push( toInput('CITYPop',$('#txtCITYPop').val()));
-
- 
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+                Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
+    
+                    Entity.Parameters.push( toInput('CITYPop',$('#txtCITYPop').val()));
+    
+         
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
+    currentScope.records= data.records;
         
-        currentScope.$apply(function(){});
-                $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    currentScope.$apply(function(){});
+        $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
 
 
 
-///Hi ...
-///
+

@@ -46,91 +46,91 @@ person_Insert.sendFiles=  function()
 }
 
 
-   person_Insert.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if(person_Insert.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-              {
+person_Insert.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if(person_Insert.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+        {
            
-           if(window.fileUploaded!=true)
-           {
-               person_Insert.sendFiles();
-               return ;
-           }
+        if(window.fileUploaded!=true)
+        {
+            person_Insert.sendFiles();
+            return ;
+        }
 
 
-       }
-              var Entity=new Object();
-       Entity.PageName='person_Insert';
-       Entity.Parameters=new Array();
-       Entity.Parameters.push( toInput('name',$('#txtname').val()));
-
-              Entity.Parameters.push( toInput('grade',$('#txtgrade').val()));
-
-              Entity.Parameters.push( toInput('cityid',$('#txtcityid').val()));
-
-              Entity.Parameters.push( toInput('sextype',$('#txtsextype').val()));
-
-              Entity.Parameters.push( toInput('salaryBase',$('#txtsalaryBase').val()));
-
-              Entity.Parameters.push( toInput('examResult',$('#txtexamResult').val()));
-
-              Entity.Parameters.push( toInput('dateBrith',$('#txtdateBrith').val()));
-
-              Entity.Parameters.push( toInput('startTime',$('#txtstartTime').val()));
-
-              Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
-
-              Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
-
-              Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
-
-              Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
-
-              Entity.Parameters.push( toInput('isBroken',$('#txtisBroken').val()));
-
-               ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
+    }
+        var Entity=new Object();
+    Entity.PageName='person_Insert';
+    Entity.Parameters=new Array();
+                Entity.Parameters.push( toInput('name',$('#txtname').val()));
+    
+                    Entity.Parameters.push( toInput('grade',$('#txtgrade').val()));
+    
+                    Entity.Parameters.push( toInput('cityid',$('#txtcityid').val()));
+    
+                    Entity.Parameters.push( toInput('sextype',$('#txtsextype').val()));
+    
+                    Entity.Parameters.push( toInput('salaryBase',$('#txtsalaryBase').val()));
+    
+                    Entity.Parameters.push( toInput('examResult',$('#txtexamResult').val()));
+    
+                    Entity.Parameters.push( toInput('dateBrith',$('#txtdateBrith').val()));
+    
+                    Entity.Parameters.push( toInput('startTime',$('#txtstartTime').val()));
+    
+                    Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
+    
+                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
+    
+                    Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
+    
+                    Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
+    
+                    Entity.Parameters.push( toInput('isBroken',$('#txtisBroken').val()));
+    
+        ScallerAjax('ScallerSubmit',Entity,function(data){
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    BackPage();
+    $(obj).attr('disabled',false);
+    return;
        
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
 
-       });
-   };
+});
+};
 person_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-    Validator.CheckEmpty('txtname','نام');
-    
-    
-    Validator.CheckRegSelect2('txtcityid','شهر');
-    
-    
-    Validator.CheckRegInteger('txtsalaryBase','حقوق پایه');
-    
-    Validator.CheckRegFloat('txtexamResult','نمره آزمون');
-    
-    Validator.CheckRegDate('txtdateBrith','تاریخ تولد');
-    
-    
-    
-    
-        var tmp=$('#txtpicImage')[0];
+                                Validator.CheckEmpty('txtname','نام');
+                                                                                            
+                                                                            
+                                                        Validator.CheckRegSelect2('txtcityid','شهر');
+                                    
+                                                                            
+                                                        Validator.CheckRegInteger('txtsalaryBase','حقوق پایه');
+                                                            
+                                                Validator.CheckRegFloat('txtexamResult','نمره آزمون');
+                                                            
+                                                                        Validator.CheckRegDate('txtdateBrith','تاریخ تولد');
+                                    
+                                                                            
+                                                                            
+                                                                            
+                                                                                var tmp=$('#txtpicImage')[0];
         if(tmp.files.length>0)
     {
         if(tmp.files[0].size/1024 > 2048)
@@ -156,15 +156,15 @@ person_Insert.Validate= function()
         }
     }
         
-Validator.CheckEmpty('txtpicImage','تصویر پرسنلی');
-    
-
+                                        Validator.CheckEmpty('txtpicImage','تصویر پرسنلی');
+                                                                    
+                                                                        
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
         return false ;
     }
-
+    
     if(Messager.errors.length!=0)
     {
 
@@ -175,6 +175,7 @@ Validator.CheckEmpty('txtpicImage','تصویر پرسنلی');
 
     return Messager.errors.length==0;
 }
+
 
 person_Insert.Serach=function(obj)
 {
@@ -189,58 +190,57 @@ person_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='person_Insert';
     Entity.Parameters=new Array();
-    Entity.Parameters.push( toInput('name',$('#txtname').val()));
-
-    Entity.Parameters.push( toInput('grade',$('#txtgrade').val()));
-
-    Entity.Parameters.push( toInput('cityid',$('#txtcityid').val()));
-
-    Entity.Parameters.push( toInput('sextype',$('#txtsextype').val()));
-
-    Entity.Parameters.push( toInput('salaryBase',$('#txtsalaryBase').val()));
-
-    Entity.Parameters.push( toInput('examResult',$('#txtexamResult').val()));
-
-    Entity.Parameters.push( toInput('dateBrith',$('#txtdateBrith').val()));
-
-    Entity.Parameters.push( toInput('startTime',$('#txtstartTime').val()));
-
-    Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
-
-    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
-
-    Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
-
-    Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
-
-    Entity.Parameters.push( toInput('isBroken',$('#txtisBroken').val()));
-
- 
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+                Entity.Parameters.push( toInput('name',$('#txtname').val()));
+    
+                    Entity.Parameters.push( toInput('grade',$('#txtgrade').val()));
+    
+                    Entity.Parameters.push( toInput('cityid',$('#txtcityid').val()));
+    
+                    Entity.Parameters.push( toInput('sextype',$('#txtsextype').val()));
+    
+                    Entity.Parameters.push( toInput('salaryBase',$('#txtsalaryBase').val()));
+    
+                    Entity.Parameters.push( toInput('examResult',$('#txtexamResult').val()));
+    
+                    Entity.Parameters.push( toInput('dateBrith',$('#txtdateBrith').val()));
+    
+                    Entity.Parameters.push( toInput('startTime',$('#txtstartTime').val()));
+    
+                    Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
+    
+                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
+    
+                    Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
+    
+                    Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
+    
+                    Entity.Parameters.push( toInput('isBroken',$('#txtisBroken').val()));
+    
+         
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
+    currentScope.records= data.records;
         
-        currentScope.$apply(function(){});
-                $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    currentScope.$apply(function(){});
+        $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
 
 
 
-///Hi ...
-///
+
