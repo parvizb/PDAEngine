@@ -33,10 +33,10 @@
  </tr>
    </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
-<td>{{$index+1}}</td>
-<td>{{record.cityId}}</td> 
- <td>{{record.cityTitle}}</td> 
- <td>{{ShowMoney(record.CITYPop)}}</td> 
+<td data-label="ردیف">{{$index+1}}</td>
+<td data-label='کد شهر'>{{record.cityId}}</td> 
+ <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
+ <td data-label='جمعیت '>{{ShowMoney(record.CITYPop)}}</td> 
                    </tr>
 
  <tbody>

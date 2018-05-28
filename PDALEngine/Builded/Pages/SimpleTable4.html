@@ -31,8 +31,8 @@
  </tr>
    </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
-<td>{{record.cityId}}</td> 
- <td>{{record.cityTitle}}</td> 
+<td data-label='کد شهر'>{{record.cityId}}</td> 
+ <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
                    </tr>
 
  <tbody>

@@ -33,8 +33,8 @@
    </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
 <th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
-<td>{{record.cityId}}</td> 
- <td>{{record.cityTitle}}</td> 
+<td data-label='کد شهر'>{{record.cityId}}</td> 
+ <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
                    </tr>
 
  <tbody>

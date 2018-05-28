@@ -108,4 +108,52 @@ z-index:100;
 
 }
 
- 
+ @media screen and (max-width: 640px) {
+  table {
+    
+  }
+  table thead tr {
+    position: absolute;
+    top: -9999em;
+    left: -9999em;
+  }
+  table tr {
+    border: 1px solid #0a0a0a;
+    display: block;
+  }
+  table tr + tr {
+    margin-top: 1.5rem;
+  }
+  table td {
+    border: none;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-bottom: 1px solid #0a0a0a;
+    padding-left: 50%;
+    position: relative;
+  }
+    table td .form-control {
+     width:50% !important;
+    }
+  table td:before {
+    content: attr(data-label);
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-left: 0;
+    width: 50%;
+    text-align:left;
+    position: relative;
+    z-index: 1;
+    border-left:1px solid;
+    padding:1px;
+  }
+  
+}

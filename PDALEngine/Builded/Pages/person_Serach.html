@@ -53,15 +53,15 @@
       </tr>
    </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
-<td>{{record.id}}</td> 
- <td>{{record.name}}</td> 
- <td>{{record.grade}}</td> 
- <td>{{record.cityid}}</td> 
- <td>{{record.salaryBase}}</td> 
- <td>{{record.examResult}}</td> 
- <td>{{record.dateBrith}}</td> 
- <td>{{record.picImage}}</td> 
-                <td>
+<td data-label='شناسه'>{{record.id}}</td> 
+ <td data-label='نام'>{{record.name}}</td> 
+ <td data-label='رتبه شغلی'>{{record.grade}}</td> 
+ <td data-label='شهر'>{{record.cityid}}</td> 
+ <td data-label='حقوق پایه'>{{record.salaryBase}}</td> 
+ <td data-label='نمره آزمون'>{{record.examResult}}</td> 
+ <td data-label='تاریخ تولد'>{{record.dateBrith}}</td> 
+ <td data-label='تصویر پرسنلی'>{{record.picImage}}</td> 
+                <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

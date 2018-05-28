@@ -38,11 +38,11 @@
       </tr>
    </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
-<td>{{$index+1}}</td>
-<td>{{record.cityId}}</td> 
-  <td><input class="form-control" type="text" id="cityTitle_{{record.rndId}}" value="{{record.cityTitle}}" ng-change="ChangeState(record);"  ng-model="record.cityTitle"  /></td> 
-   <td><input class="form-control" type="text" id="CITYPop_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"   value="{{record.CITYPop}}" ng-model="record.CITYPop"  /></td> 
-              <td>
+<td data-label="ردیف">{{$index+1}}</td>
+<td data-label='شناسه'>{{record.cityId}}</td> 
+  <td data-label='عنوان'><input class="form-control" type="text" id="cityTitle_{{record.rndId}}" value="{{record.cityTitle}}" ng-change="ChangeState(record);"  ng-model="record.cityTitle"  /></td> 
+   <td data-label='جمعیت'><input class="form-control" type="text" id="CITYPop_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"   value="{{record.CITYPop}}" ng-model="record.CITYPop"  /></td> 
+              <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

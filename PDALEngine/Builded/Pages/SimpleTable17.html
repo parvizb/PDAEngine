@@ -55,11 +55,11 @@
       </tr>
    </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
-  <td><select class="form-control"   id="cityid_{{record.rndId}}"  valc="{{record.cityid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='SimpleTable17';DataPass.colname='cityid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetPop_asTable(MergeNow,record.cityid)"   ng-model="record.cityid"  >
+  <td data-label='شهر'><select class="form-control"   id="cityid_{{record.rndId}}"  valc="{{record.cityid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='SimpleTable17';DataPass.colname='cityid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetPop_asTable(MergeNow,record.cityid)"   ng-model="record.cityid"  >
  <option value="{{record.cityid}}" selected="selected" >
      {{record.}} </option>
 </select></td> 
-              <td>
+              <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">
