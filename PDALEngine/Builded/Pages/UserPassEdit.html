@@ -1,0 +1,40 @@
+﻿
+
+تغییر گذاواژه 
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="rPassword" class="col-sm-3 control-label">     گذاواژه:</label>
+    <div   class="col-sm-9">
+    
+            <input type="Password"    class="form-control" id="txtrPassword" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label  for="rrPassword" class="col-sm-3 control-label">     تکرار گذرواژه:</label>
+    <div   class="col-sm-9">
+    
+            <input type="Password"    class="form-control" id="txtrrPassword" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                                         
+    UserPassEdit.IntForm=function()
+    {
+    
+    document.title='تغییر گذاواژه ';
+    window.fileUploaded=false;
+                                                                                                    
+    }
+    $(document).ready(function () {
+    UserPassEdit.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="UserPassEdit.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

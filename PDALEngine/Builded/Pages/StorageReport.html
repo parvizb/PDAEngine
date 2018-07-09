@@ -1,0 +1,113 @@
+﻿گزارش موجودی کالا
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="id_factory" class="col-sm-2 control-label">     کارخانه:</label>
+    <div   class="col-sm-2">
+    
+                                                <select class="form-control" id="txtid_factory" ></select>
+    </div>
+    <label  for="id_product" class="col-sm-2 control-label">     نوع کالا:</label>
+    <div   class="col-sm-2">
+    
+                                                <select class="form-control" id="txtid_product" ></select>
+    </div>
+    <label  for="stuff_name" class="col-sm-2 control-label">     عنوان کالا:</label>
+    <div   class="col-sm-2">
+      <input type="text"   class="form-control" id="txtstuff_name" placeholder=""  placeholder="" />
+          
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="id_stragoe" class="col-sm-2 control-label">     <span class="red" >*</span>  انبار :</label>
+    <div   class="col-sm-2">
+    
+                                                <select class="form-control" id="txtid_stragoe" ></select>
+    </div>
+  </div>
+    </from>
+  <script>
+            var id_factory =null;
+                var id_product =null;
+                        var id_stragoe =null;
+             
+    StorageReport.IntForm=function()
+    {
+    
+    document.title='گزارش موجودی کالا';
+    window.fileUploaded=false;
+                id_factory=  Select2AjaxInit('txtid_factory',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='StorageReport';
+    DataPass.ParaName='id_factory';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                id_product=  Select2AjaxInit('txtid_product',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='StorageReport';
+    DataPass.ParaName='id_product';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                        id_stragoe=  Select2AjaxInit('txtid_stragoe',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='StorageReport';
+    DataPass.ParaName='id_stragoe';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('Q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                    
+    }
+    $(document).ready(function () {
+    StorageReport.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="StorageReport.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a onclick='ExportXls();' ><button type="button" class="btn btn-default" >خروجی اکسل</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th>ردیف</th>
+ <th  class="Pointer"  ng-click="ChageTableOrder('stuffname')"  > <span ng-show="((currentOrder=='stuffname') && (rev) )">V</span> <span ng-show="((currentOrder=='stuffname') && (!rev) )">^</span>عنوان کالا</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('BCount')"  > <span ng-show="((currentOrder=='BCount') && (rev) )">V</span> <span ng-show="((currentOrder=='BCount') && (!rev) )">^</span>تعداد کل</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('COUNT')"  > <span ng-show="((currentOrder=='COUNT') && (rev) )">V</span> <span ng-show="((currentOrder=='COUNT') && (!rev) )">^</span>تعداد جز</th> 
+ </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td data-label="ردیف">{{$index+1}}</td>
+<td data-label='عنوان کالا'>{{record.stuffname}}</td> 
+ <td data-label='تعداد کل'>{{record.BCount}}</td> 
+ <td data-label='تعداد جز'>{{record.COUNT}}</td> 
+                   </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+       <label for="مجموع تعداد جز" class="col-sm-2 control-label">مجموع تعداد جز:</label>
+          <div class="col-sm-2">
+                <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{ShowMoney(SubSum('COUNT'))}}"   class="form-control"  placeholder="" />
+    </div>
+                     <label for="مجموع تعداد کل" class="col-sm-2 control-label">مجموع تعداد کل:</label>
+          <div class="col-sm-2">
+                <input type="Text"  onkeypress="return blockNonIntNumber(event)"     disabled='' value="{{ShowMoney(SubSum('BCount'))}}"   class="form-control"  placeholder="" />
+    </div>
+              
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

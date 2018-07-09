@@ -49,7 +49,7 @@
  
 @foreach(var  menu in  ViewBag.App.Menus) {
 foreach(var item in  menu.Items ){
-  if ((item.Type != "PDATextboxLink") && ((item.PerKey == "") || (PDALEngine.PDALSect.GetCheckPer(item.PerKey, null, null)==200)))
+  if ((item.Type != "PDATextboxLink") && ((item.PerKey == "") || (PDALEngine.PDALSect.GetCheckPer(item.PerKey, null, null)==PDALEngine.PDALSect.AccessResult.Permitted)))
   {
       @:<li @if (item.SubItems.Count > 0) {<text> class="dropdown"</text> }><a @if (item.SubItems.Count > 0) {<text>  class="dropdown-toggle" data-toggle="dropdown"  </text> } @if((item.Type=="Link") || (item.Type=="PDALink")){<text>
           href="@((item.Type=="Link"?item.link:"#/"+ item.link))" 
@@ -57,7 +57,7 @@ foreach(var item in  menu.Items ){
           onclick="@((item.Type=="JavaScript"?item.link:"LogOut()"))" 
           </text>} > @if (item.SubItems.Count>0) { <text><b class="caret"></b></text> }  @(item.text) </a> @if (item.SubItems.Count > 0) {<text><ul class="dropdown-menu">@foreach (var mitem in item.SubItems)
                                                                                                                                                                           {
-                                                                                                                                                                              if ((mitem.PerKey == "") || (PDALEngine.PDALSect.GetCheckPer(mitem.PerKey, null, null) == 200))
+                                                                                                                                                                              if ((mitem.PerKey == "") || (PDALEngine.PDALSect.GetCheckPer(mitem.PerKey, null, null) == PDALEngine.PDALSect.AccessResult.Permitted))
                                                                                                                                                                               {  <text><li  ><a @if ((mitem.Type == "Link") || (mitem.Type == "PDALink"))
                                                                                                                                                                                                                                                                                                                               {<text>
           href="@((mitem.Type == "Link" ? mitem.link : "#/" + mitem.link))" 
@@ -84,6 +84,7 @@ foreach(var item in  menu.Items ){
 </nav>
     <div ng-view>
     </div>
+    @ViewBag.App.CopyRightMessage
      @foreach (var pages in ViewBag.App.Pagess)
      {
          foreach (var Page in pages._Pages)
@@ -127,6 +128,36 @@ data-dismiss="modal">تایید
 </div><!-- /.modal-content -->
 </div><!-- /.modal -->
 </div>
+
+ 
+        <div class="modal fade" id="DInputBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+</button>
+<h4 class="modal-title" id="DInputBoxTitle">
+ 
+</h4>
+</div>
+<div class="modal-body" name="inputBody">
+ 
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default"
+data-dismiss="modal">انصراف
+</button>
+<button type="button" class="btn btn-default"
+data-dismiss="modal" onclick ="window.confirmInputBox();">تایید
+</button>
+
+
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+ 
+
 
   <div class="modal fade" id="myModalYesNo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
@@ -195,7 +226,15 @@ data-dismiss="modal">تایید
 
 
 
-
+   
 </div>
+   <script>
+   @foreach (Notifaction n in ViewBag.App.Notifactions)
+   {
+     @("Not_"+n.name +"();");
+
+   }
+
+   </script>
     </body>
 </html>

@@ -42,35 +42,49 @@ factory_mgt.sendFiles=  function()
 }
 
 
-   factory_mgt.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if(factory_mgt.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-              var Entity=new Object();
-       Entity.PageName='factory_mgt';
-       Entity.Parameters=new Array();
-        ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
-       
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+factory_mgt.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if(factory_mgt.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+        var Entity=new Object();
+    Entity.PageName='factory_mgt';
+    Entity.Parameters=new Array();
+    ScallerAjax('ScallerSubmit',Entity,function(data){
 
-       });
-   };
+        Messager.ShowMessage('اطلاعات', data.Message );
+ 
+     
+  
+ 
+
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+ 
+                                BackPage();
+                 
+         
+     
+  
+
+
+    $(obj).attr('disabled',false);
+    return;
+       
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
+};
 factory_mgt.Validate= function()
 {
     Validator.ClearErrors();
@@ -80,7 +94,7 @@ factory_mgt.Validate= function()
         Validator.ShowErrors();
         return false ;
     }
-
+    
     if(Messager.errors.length!=0)
     {
 
@@ -91,6 +105,7 @@ factory_mgt.Validate= function()
 
     return Messager.errors.length==0;
 }
+
 
 factory_mgt.Serach=function(obj)
 {
@@ -105,27 +120,27 @@ factory_mgt.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='factory_mgt';
     Entity.Parameters=new Array();
- 
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+     
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
-        
-        currentScope.$apply(function(){});
-                                $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    currentScope.records= data.records;
+    setTimeout(StoreCache, 200);
+    currentScope.$apply(function(){});
+                $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
@@ -142,49 +157,60 @@ factory_mgt.InsertRecord=function()
     currentScope.$apply();
                                     
 }
-///Hi ...
-///
+
 factory_mgt.Save_Validate=function()
 {
-Validator.ClearErrors();
-for (var l=0;l<currentScope.records.length;l++)
-{
-    var r=currentScope.records[l];
-
-   if(r.RowState !='Added'){
-     continue;
-   }
-   
-    Validator.CheckEmpty('FactoryName_' + r.rndId,'عنوان',r.viewIndex+1);
-}
-for (var l=0;l<currentScope.records.length;l++)
-{
-    var r=currentScope.records[l];
-
-   if(r.RowState !='Changed'){
-     continue;
-   }
-   
-    Validator.CheckEmpty('FactoryId_' + r.rndId,'شناسه',r.viewIndex+1);
-   
-    Validator.CheckEmpty('FactoryName_' + r.rndId,'عنوان',r.viewIndex+1);
-}
-for (var l=0;l<currentScope.records.length;l++)
-{
-    var r=currentScope.records[l];
-
-   if(r.RowState !='Deleted'){
-     continue;
-   }
-   
-    Validator.CheckEmpty('FactoryId_' + r.rndId,'شناسه',r.viewIndex+1);
-}
-    if (Messager.errors.length!=0)
+    Validator.ClearErrors();
+                                                                                                    for (var l=0;l<currentScope.records.length;l++)
     {
-        Validator.ShowErrors();
-        return false;
-    }
-    return true;
+        var r=currentScope.records[l];
+
+        if(r.RowState !='Added'){
+    continue;
+}
+   
+Validator.CheckEmpty('factory_name_' + r.rndId,'عنوان کارخانه',r.viewIndex+1);
+}
+    for (var l=0;l<currentScope.records.length;l++)
+    {
+        var r=currentScope.records[l];
+
+        if(r.RowState !='Changed'){
+    continue;
+}
+   
+Validator.CheckEmpty('factory_id_' + r.rndId,'شناسه کارخانه',r.viewIndex+1);
+   
+Validator.CheckEmpty('factory_name_' + r.rndId,'عنوان کارخانه',r.viewIndex+1);
+}
+    for (var l=0;l<currentScope.records.length;l++)
+    {
+        var r=currentScope.records[l];
+
+        if(r.RowState !='Deleted'){
+    continue;
+}
+   
+Validator.CheckEmpty('factory_id_' + r.rndId,'شناسه کارخانه',r.viewIndex+1);
+}
+
+for(var l=0;l<currentScope.records.length;l++)
+{ 
+    var record=currentScope.records[l];
+    
+}
+
+
+
+
+
+
+if (Messager.errors.length!=0)
+{
+    Validator.ShowErrors();
+    return false;
+}
+return true;
 }
 factory_mgt.Save=function()
 { 
@@ -193,142 +219,151 @@ factory_mgt.Save=function()
         return ;
     }
     var DataPass=new Array();
+        var t=new Array();
+    var  informationRecords=new Array()
+    var NullFix=new Array();
+    NullFix.push(toInput('fake',Para('fake')));
+    informationRecords.push(NullFix);
+    for (var l=0;l<currentScope.records.length;l++)
+{
+    var r=currentScope.records[l];
+
+    if(r.RowState !='Added'){
+    continue;
+}
+var rec=new Array();//hi
+
+
+rec.push(toInput('factory_name', ( r['factory_name']===undefined ? "": r['factory_name'])  ));
+informationRecords.push(rec);
+}
+
+if(currentScope.DeletedRows!==undefined)
+{
+    for (var l=0;l<currentScope.DeletedRows.length;l++)
+    {
+        var r=currentScope.DeletedRows[l];
+
+     
+                if(r.RowState !='Added'){
+            continue;
+        }
+                var rec=new Array();//hi
+                                rec.push(toInput('factory_name', ( r['factory_name']===undefined ? "": r['factory_name'])  ));
+                informationRecords.push(rec);
+}
+}
+t.push(informationRecords);
+DataPass.push(t);
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
     for (var l=0;l<currentScope.records.length;l++)
-    {
-        var r=currentScope.records[l];
+{
+    var r=currentScope.records[l];
 
-if(r.RowState !='Added'){
+    if(r.RowState !='Changed'){
     continue;
 }
 var rec=new Array();//hi
 
 
-rec.push(toInput('FactoryName', ( r['FactoryName']===undefined ? "": r['FactoryName'])  ));
+rec.push(toInput('factory_id', ( r['factory_id']===undefined ? "": r['factory_id'])  ));
+
+rec.push(toInput('factory_name', ( r['factory_name']===undefined ? "": r['factory_name'])  ));
 informationRecords.push(rec);
 }
 
 if(currentScope.DeletedRows!==undefined)
-    {
+{
     for (var l=0;l<currentScope.DeletedRows.length;l++)
-        {
+    {
         var r=currentScope.DeletedRows[l];
 
      
-            if(r.RowState !='Added'){
-                continue;
-            }
-            var rec=new Array();//hi
-            rec.push(toInput('FactoryName', ( r['FactoryName']===undefined ? "": r['FactoryName'])  ));
-            informationRecords.push(rec);
+                if(r.RowState !='Changed'){
+            continue;
         }
-    }
-    t.push(informationRecords);
-    DataPass.push(t);
+                var rec=new Array();//hi
+                                rec.push(toInput('factory_id', ( r['factory_id']===undefined ? "": r['factory_id'])  ));
+                                        rec.push(toInput('factory_name', ( r['factory_name']===undefined ? "": r['factory_name'])  ));
+                informationRecords.push(rec);
+}
+}
+t.push(informationRecords);
+DataPass.push(t);
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
     for (var l=0;l<currentScope.records.length;l++)
-    {
-        var r=currentScope.records[l];
+{
+    var r=currentScope.records[l];
 
-if(r.RowState !='Changed'){
+    if(r.RowState !='Deleted'){
     continue;
 }
 var rec=new Array();//hi
 
 
-rec.push(toInput('FactoryId', ( r['FactoryId']===undefined ? "": r['FactoryId'])  ));
-
-rec.push(toInput('FactoryName', ( r['FactoryName']===undefined ? "": r['FactoryName'])  ));
+rec.push(toInput('factory_id', ( r['factory_id']===undefined ? "": r['factory_id'])  ));
 informationRecords.push(rec);
 }
 
 if(currentScope.DeletedRows!==undefined)
-    {
+{
     for (var l=0;l<currentScope.DeletedRows.length;l++)
-        {
+    {
         var r=currentScope.DeletedRows[l];
 
      
-            if(r.RowState !='Changed'){
-                continue;
-            }
-            var rec=new Array();//hi
-            rec.push(toInput('FactoryId', ( r['FactoryId']===undefined ? "": r['FactoryId'])  ));
-            rec.push(toInput('FactoryName', ( r['FactoryName']===undefined ? "": r['FactoryName'])  ));
-            informationRecords.push(rec);
+                if(r.RowState !='Deleted'){
+            continue;
         }
-    }
-    t.push(informationRecords);
-    DataPass.push(t);
-    var t=new Array();
-    var  informationRecords=new Array()
-    var NullFix=new Array();
-    NullFix.push(toInput('fake',Para('fake')));
-    informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
-    {
-        var r=currentScope.records[l];
-
-if(r.RowState !='Deleted'){
-    continue;
+                var rec=new Array();//hi
+                                rec.push(toInput('factory_id', ( r['factory_id']===undefined ? "": r['factory_id'])  ));
+                informationRecords.push(rec);
 }
-var rec=new Array();//hi
-
-
-rec.push(toInput('FactoryId', ( r['FactoryId']===undefined ? "": r['FactoryId'])  ));
-informationRecords.push(rec);
 }
-
-if(currentScope.DeletedRows!==undefined)
-    {
-    for (var l=0;l<currentScope.DeletedRows.length;l++)
-        {
-        var r=currentScope.DeletedRows[l];
-
-     
-            if(r.RowState !='Deleted'){
-                continue;
-            }
-            var rec=new Array();//hi
-            rec.push(toInput('FactoryId', ( r['FactoryId']===undefined ? "": r['FactoryId'])  ));
-            informationRecords.push(rec);
-        }
-    }
-    t.push(informationRecords);
-    DataPass.push(t);
-        var Enity=new Object();
-        Enity.PageName='factory_mgt';
-        Enity.CommandName='Save';
-        Enity.records=DataPass;
+t.push(informationRecords);
+DataPass.push(t);
+var Enity=new Object();
+Enity.PageName='factory_mgt';
+Enity.CommandName='Save';
+Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
         Messager.ShowMessage('اطلاعات', data.Message );
-    
-            Messager.ShowMessage('اطلاعات', data.Message);
-            if(JsEventInterface.AfterOkReqSubmit!=null)
-            {
-                JsEventInterface.AfterOkReqSubmit(Entity,data);
-            }
-            if(data.code==0)
-            {
-BackPage();
+ 
+     
+  
  
 
-
-            }
-            $(obj).attr('disabled',false);
-            return;
-        },function(data)
-        {
-            $(obj).attr('disabled',false);
-            return;
-        });
-        console.log(JSON.stringify(Enity));
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
+    ///you are asl
+    if(data.code==0)
+    {
+                                BackPage();
+                 
+         
+     
+                        BackPage();
+                 
+         
+    }
+    $(obj).attr('disabled',false);
+    return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+});
+console.log(JSON.stringify(Enity));
+}
+

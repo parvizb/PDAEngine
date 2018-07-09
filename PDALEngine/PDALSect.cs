@@ -9,11 +9,19 @@ namespace PDALEngine
     {
         public static bool isLogined()
         {
-            return true;
+          return   HttpContext.Current.Session["UserName"]!=null;
         }
         public static string  GetUserName()
         {
-            return "Test";
+            if (HttpContext.Current.Session["UserName"] == null)
+            {
+                return null;
+
+            }
+            else
+            {
+              return   HttpContext.Current.Session["UserName"].ToString();
+            }
         }
         public enum AccessResult
         {
@@ -24,9 +32,25 @@ namespace PDALEngine
         }
         public static AccessResult GetCheckPer(string PerKey, String PageName, List<inputParameter> Params)
         {
+            if (PerKey == "")
+            {
+                return AccessResult.Permitted;
 
-            return AccessResult.Permitted;
+            }
+            if (isLogined() == false)
+            {
+                return AccessResult.ReLogin;
 
+            }
+            Dictionary<string, string> r = (Dictionary<string, string>)(HttpContext.Current.Session["Per"]);
+            if (r.ContainsKey(PerKey) == false)
+            {
+                return AccessResult.AccessDenied;
+            }
+            else
+            {
+                return AccessResult.Permitted;
+            }
         }
     }
 }

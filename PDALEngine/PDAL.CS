@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using System.Globalization;
+using System.Security.Cryptography;
 namespace PDALEngine
 {
     public class inputParameter
@@ -21,25 +22,91 @@ namespace PDALEngine
     }
     public static  class Convertor
     {
-      static    PersianCalendar Ps = new PersianCalendar();
-        public static string PerDateToMilDate(string val)
+
+        private static readonly byte[] initVectorBytes = Encoding.ASCII.GetBytes("tu89geji340t89u2");
+
+        // This constant is used to determine the keysize of the encryption algorithm.
+        private const int keysize = 256;
+        //انکریپت جدید 
+        public static string Encrypt(string plainText, string passPhrase)
         {
-            if (val == null)
-            {
-                return null;
+            byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            PasswordDeriveBytes password = new PasswordDeriveBytes(passPhrase, null);
 
+            byte[] keyBytes = password.GetBytes(keysize / 8);
+            using (RijndaelManaged symmetricKey = new RijndaelManaged())
+            {
+                symmetricKey.Mode = CipherMode.CBC;
+                using (ICryptoTransform encryptor = symmetricKey.CreateEncryptor(keyBytes, initVectorBytes))
+                {
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                        {
+                            cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
+                            cryptoStream.FlushFinalBlock();
+                            byte[] cipherTextBytes = memoryStream.ToArray();
+                            return Convert.ToBase64String(cipherTextBytes);
+                        }
+                    }
+                }
             }
 
-            if (val == "")
-            {
-                return null;
-
-            }
-
-            string[] date = val.ToString().Split('/');
-
-            return Ps.ToDateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]), 0, 0, 0, 0).ToShortDateString();
         }
+        //دیکپریت قدیمی 
+        public static string Decrypt(string cipherText, string passPhrase)
+        {
+            byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
+            PasswordDeriveBytes password = new PasswordDeriveBytes(passPhrase, null);
+
+            byte[] keyBytes = password.GetBytes(keysize / 8);
+            using (RijndaelManaged symmetricKey = new RijndaelManaged())
+            {
+                symmetricKey.Mode = CipherMode.CBC;
+                using (ICryptoTransform decryptor = symmetricKey.CreateDecryptor(keyBytes, initVectorBytes))
+                {
+                    using (MemoryStream memoryStream = new MemoryStream(cipherTextBytes))
+                    {
+                        using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                        {
+                            byte[] plainTextBytes = new byte[cipherTextBytes.Length];
+                            int decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+                            return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+      static    PersianCalendar Ps = new PersianCalendar();
+      public static string PerDateToMilDate(string val)
+      {
+          if (val == null)
+          {
+              return null;
+
+          }
+
+          if (val == "")
+          {
+              return null;
+
+          }
+
+          string[] date = val.ToString().Split('/');
+          if (date.Length == 1)
+          {
+              return Ps.ToDateTime(int.Parse(date[0].Substring(0, 4)), int.Parse(date[0].Substring(4, 2)), int.Parse(date[0].Substring(6, 2)), 0, 0, 0, 0).ToShortDateString();
+
+          }
+          else
+          {
+              return Ps.ToDateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]), 0, 0, 0, 0).ToShortDateString();
+          }
+
+      }
         public static string MilToPerDate( DateTime val)
         {
             return Ps.GetYear(val).ToString("D4") + "/" + Ps.GetMonth(val).ToString("D2") + "/" + Ps.GetDayOfMonth(val).ToString("D2");
@@ -212,7 +279,7 @@ namespace PDALEngine
                     StringBuilder Sb = new StringBuilder();
                     if (action == "Insert")
                     {
-                      Sb.Append("Insert into " + tableName + " ( " );
+                      Sb.Append("Insert into [" + tableName + "] ( " );
                         for (int k = 0; k < Paras.Count; k++)
                         {
                             if (k != 0)
@@ -236,7 +303,7 @@ namespace PDALEngine
 
                     if (action == "InsertIdentity")
                     {
-                        Sb.Append("Insert into " + tableName + " ( ");
+                        Sb.Append("Insert into [" + tableName + "] ( ");
                         for (int k = 0; k < Paras.Count; k++)
                         {
                             if (k != 0)
@@ -262,7 +329,7 @@ namespace PDALEngine
 
                     if ((action == "Delete") || (action == "DeleteTop"))
                     {
-                        Sb.Append("Delete "  + (action=="DeleteTop"?" Top(1) ":"" ) + " from " + tableName + ((Paras.Count!= 0 ?" where ":" " )));
+                        Sb.Append("Delete "  + (action=="DeleteTop"?" Top(1) ":"" ) + " from [" + tableName +"]" + ((Paras.Count!= 0 ?" where ":" " )));
                         for (int k = 0; k < Paras.Count; k++)
                         {
                             if (k != 0)
@@ -276,13 +343,13 @@ namespace PDALEngine
                     }
                     if(action=="SelectAll")
                     {
-                        Sb.Append("Select * from " + tableName );
+                        Sb.Append("Select * from [" + tableName +"]" );
 
 
                     }
                        if(action=="SelectOne")
                     {
-                        Sb.Append("Select Top(1) * from " + tableName );
+                        Sb.Append("Select Top(1) * from [" + tableName +"]" );
                         Sb.Append(" Where ");
                            for (int k = 0; k < Paras.Count; k++)
                         {
@@ -296,7 +363,7 @@ namespace PDALEngine
                     }
                     if ((action == "Update") || (action == "UpdateTop"))
                     {
-                        Sb.Append("Update " + (action == "UpdateTop" ? " Top(1) " : "") + tableName + " Set " ) ;
+                        Sb.Append("Update " + (action == "UpdateTop" ? " Top(1) " : "") +"["+ tableName + "]" + " Set " ) ;
                         bool fr = true;
                         for (int k = 0; k < Paras.Count; k++)
                         {
@@ -537,6 +604,145 @@ namespace PDALEngine
 
 
         }
+        public static string GetAllPer()
+        {
+            List<string> Per = new List<string>();
+            foreach (var M in App.Menus)
+            {
+                foreach (var n in M.Items)
+                {
+                    foreach(SubItem q in n.SubItems)
+                    {
+                        if (Per.Contains(q.PerKey) == false)
+                        {
+                            Per.Add(q.PerKey);
+                        }
+                    }
+                }
+            }
+            foreach (var P in App.Pagess)
+            {
+                foreach (var PP in P._Pages)
+                {
+                    if (Per.Contains(PP.PerKey) == false)
+                    {
+                        Per.Add(PP.PerKey);
+                    }
+                    foreach (var l in PP.BatchCommands)
+                    {
+                        if (Per.Contains(l.PerKey) == false)
+                        {
+                            Per.Add(l.PerKey);
+                        }
+
+                    }
+
+                }
+
+            }
+            foreach (var a in App.Actionss)
+            {
+                foreach(var b in a.actions)
+                {
+
+                    if (Per.Contains(b.PerKey) == false)
+                    {
+                        Per.Add(b.PerKey);
+                    }
+
+                }
+
+            }
+            string r="";
+            foreach (string x in Per)
+            {
+                r += x + "</br>";
+
+            }
+            return r;
+        }
+        public static string CreatePageToTableView(string Proc)
+        {
+            string CommandLine = "" + Proc;
+
+            DataTable Dt = PDAL.ReadDataTableNotCommand("select * from information_schema.parameters where specific_name='" + CommandLine + "'");
+          
+
+            StringBuilder Sb = new StringBuilder();
+            Sb.Append("<Page Title=\"" + CommandLine + "\" name=\"" + CommandLine + "\" link=\"" + CommandLine + "\" ColumnCount=\"2\" PerKey=\"" + CommandLine + "\" type=\"TableView\" DBCommand=\"" + CommandLine + "\">");
+            string tq = "Sb.Append(\"{0}\");\r\n";
+            SqlConnection Con = GetConnection();
+            SqlCommand Com = new SqlCommand(CommandLine);
+            Com.Connection = Con;
+            Com.CommandType = CommandType.StoredProcedure;
+            for (int k = 0; k < Dt.Rows.Count; k++)
+            {
+                if (Dt.Rows[k]["DATA_TYPE"].ToString().Contains("date") == false)
+                {
+                    Com.Parameters.AddWithValue(Dt.Rows[k]["PARAMETER_NAME"].ToString(), "0");
+                }
+                else
+                {
+                    Com.Parameters.AddWithValue(Dt.Rows[k]["PARAMETER_NAME"].ToString(), DateTime.Now);
+
+                }
+            }
+            if (Com.Connection.State == ConnectionState.Closed)
+            {
+                Com.Connection.Open();
+            }
+            DataTable ResultDt = new DataTable();
+            SqlDataAdapter Da = new SqlDataAdapter(Com);
+            Da.Fill(ResultDt);
+            if (Com.Connection.State == ConnectionState.Open)
+            {
+                Com.Connection.Close();
+            }
+            Sb.AppendLine(String.Format("<table>"));
+            for (int k = 0; k < ResultDt.Columns.Count; k++)
+            {
+
+                Sb.AppendLine(String.Format("<column title=\"{0}\" name=\"{1}\" type=\"DisplayValue\" ></column>", GetDesc(ResultDt.Columns[k].ColumnName), ResultDt.Columns[k].ColumnName));
+
+            }
+            string column = "";
+     
+
+
+
+  
+
+
+
+
+
+
+            Sb.AppendLine(String.Format("</table>"));
+
+            List<String> SQLDATAType = new List<string>();
+            SQLDATAType.AddRange(new String[] { "image", "text", "uniqueidentifier", "tinyint", "smallint", "intsmalldatetime", "real", "moneydatetime", "float", "sql_variant", "ntext", "bit", "decimal", "numeric", "smallmoney", "bigint", "varbinary", "varchar", "binary", "char", "timestamp", "nvarchar", "nchar", "xml", "sysname", "datetime", "int" });
+            List<String> DataType = new List<string>();
+            DataType.AddRange(new string[] { "fileInput", "String", "String", "DropDown", "Integer", "DateTime", "Float", "Date", "Float", "String", "String", "CheckBox", "Float", "Float", "Integer", "Integer", "Hidden", "String", "String", "String", "timestamp", "String", "String", "XmlDocument", "String", "Date", "Integer" });
+
+            for (int k = 0; k < Dt.Rows.Count; k++)
+            {
+                Sb.AppendLine(String.Format("<PageParameter " + (DataType[SQLDATAType.IndexOf(Dt.Rows[k]["DATA_TYPE"].ToString())].ToString() == "Integer" ? "DefaultValueSource=\"Static\" DefaultValueParameter=\"-1\"" : "") + " title=\"{0}\" name=\"{1}\" type=\"{2}\" source=\"form\" > </PageParameter>", GetDesc(Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1)), Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1), DataType[SQLDATAType.IndexOf(Dt.Rows[k]["DATA_TYPE"].ToString())]));
+
+
+            }
+             
+
+            Sb.AppendLine("</Page>\r\n");
+         
+
+
+     
+
+
+            return Sb.ToString();
+        }
+
+
         public static string mgtAllonce(string tableName)
         {
             string CommandLine = ""+ tableName +"_Serach";
@@ -632,7 +838,7 @@ namespace PDALEngine
 
             for (int k = 0; k < Dt.Rows.Count; k++)
             {
-                Sb.AppendLine(String.Format("<PageParameter title=\"{0}\" name=\"{1}\" type=\"{2}\" source=\"form\" > </PageParameter>", GetDesc(Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1)), Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1), DataType[SQLDATAType.IndexOf(Dt.Rows[k]["DATA_TYPE"].ToString())]));
+                Sb.AppendLine(String.Format("<PageParameter " + (DataType[SQLDATAType.IndexOf(Dt.Rows[k]["DATA_TYPE"].ToString())].ToString()=="Integer" ? "DefaultValueSource=\"Static\" DefaultValueParameter=\"-1\"" : "") + " title=\"{0}\" name=\"{1}\" type=\"{2}\" source=\"form\" > </PageParameter>", GetDesc(Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1)), Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1), DataType[SQLDATAType.IndexOf(Dt.Rows[k]["DATA_TYPE"].ToString())]));
 
 
             }
@@ -1283,6 +1489,9 @@ namespace PDALEngine
         }
         public static Page FindPage(string name)
         {
+
+
+
             return PDAL.PageAccess[name];
 
         }
@@ -1536,6 +1745,21 @@ namespace PDALEngine
                              }
 
                          }
+                         if (DefaultType == "Expr")
+                         {
+
+                             for (int row = 1; row < Paras.Length; row++)
+                             {
+                                 if (Paras[row][index].value == null)
+                                 {
+                                     lastParameters = new List<inputParameter>( Paras[row]);
+
+                                     Paras[row][index].value = PDAL.ComputeExpr(Com.Parameters[k].DefaultValueParameter, lastParameters, page).ToString() ;
+                                 }
+
+                             }
+
+                         }
                          if (DefaultType == "NULL")
                          {
 
@@ -1612,33 +1836,13 @@ namespace PDALEngine
                         continue;
 
                     }
-                    if (typ == "InputDate")
-                    {
-                        for (int row = 1; row < Paras.Length; row++)
-                        {
 
-                            Paras[row][index].value = Convertor.PerDateToMilDate(Paras[row][index].value);
-                        }
-
-
-                    }
-              
-                    if (typ == "InputMoney")
-                    {
-
-
-                        for (int row = 1; row < Paras.Length; row++)
-                        {
-
-                            Paras[row][index].value = Convertor.MoneyToInteger(Paras[row][index].value);
-                        }
-                    }
                     if (DefaultType == "Static")
                     {
 
                         for (int row = 1; row < Paras.Length; row++)
                         {
-                            if (Paras[row][index].value ==null)
+                            if (Paras[row][index].value == null)
                             {
                                 Paras[row][index].value = Com.Parameters[k].DefaultValueParameter;
                             }
@@ -1662,7 +1866,7 @@ namespace PDALEngine
                     if (DefaultType == "Session")
                     {
 
-                        for (int row =1; row < Paras.Length; row++)
+                        for (int row = 1; row < Paras.Length; row++)
                         {
                             if (Paras[row][index].value == null)
                             {
@@ -1685,6 +1889,32 @@ namespace PDALEngine
                         }
 
                     }
+
+
+
+
+                    if (typ == "InputDate")
+                    {
+                        for (int row = 1; row < Paras.Length; row++)
+                        {
+
+                            Paras[row][index].value = Convertor.PerDateToMilDate(Paras[row][index].value);
+                        }
+
+
+                    }
+
+                    if (typ == "InputMoney")
+                    {
+
+
+                        for (int row = 1; row < Paras.Length; row++)
+                        {
+
+                            Paras[row][index].value = Convertor.MoneyToInteger(Paras[row][index].value);
+                        }
+                    }
+                 
                 }
 
             }
@@ -1762,7 +1992,7 @@ namespace PDALEngine
 
              }
 
-             if ((typ == "String") || (typ == "TextArea") || (typ == "Html") || (typ == "DropDown") || (typ == "Select2") || (typ == "Select2Ajax"))
+             if ((typ == "String") || (typ == "TextArea") ||   (typ == "Password") ||  (typ == "Html") || (typ == "DropDown") || (typ == "Select2") || (typ == "Select2Ajax"))
              {
 
                  args.Result = val;
@@ -1778,6 +2008,40 @@ namespace PDALEngine
              }
                
 
+            }
+            if (name == "Hash")
+            {
+                string key = args.Parameters[0].ParsedExpression.ToString().Replace("'", "");
+                string v=args.Parameters[0].ParsedExpression.ToString().Replace("'", "");
+                string typ = PageInfo.DicPageParameters[key].type;
+                string val = null;
+                for (int k = 0; k < lastParameters.Count; k++)
+                {
+                    if (lastParameters[k].key == key)
+                    {
+                        val = lastParameters[k].value.ToString();
+
+                    }
+
+                }
+                args.Result = Convertor.Encrypt(val,val);
+            }
+            if (name == "Dehash")
+            {
+                string key = args.Parameters[0].ParsedExpression.ToString().Replace("'", "");
+                string v=args.Parameters[0].ParsedExpression.ToString().Replace("'", "");
+                string typ = PageInfo.DicPageParameters[key].type;
+                string val = null;
+                for (int k = 0; k < lastParameters.Count; k++)
+                {
+                    if (lastParameters[k].key == key)
+                    {
+                        val = lastParameters[k].value.ToString();
+
+                    }
+
+                }
+                args.Result = Convertor.Decrypt(val, val);
             }
             return ;
         }

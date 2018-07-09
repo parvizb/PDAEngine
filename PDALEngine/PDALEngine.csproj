@@ -304,6 +304,7 @@
     <Content Include="R.CONFIG">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Builded\Pages\" />

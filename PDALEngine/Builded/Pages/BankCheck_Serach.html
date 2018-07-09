@@ -1,0 +1,199 @@
+﻿مدیریت چک های بانک
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="BankCheckId" class="col-sm-2 control-label">     شناسه چک:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtBankCheckId" placeholder="" />
+                                        </div>
+    <label  for="SerailCheck" class="col-sm-2 control-label">     سریال چک:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtSerailCheck" placeholder=""  placeholder="" />
+          
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="startdate" class="col-sm-2 control-label">     از تاریخ:</label>
+    <div   class="col-sm-4">
+    
+                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtstartdate')"  class="form-control" id="txtstartdate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+    <label  for="enddate" class="col-sm-2 control-label">     تا تاریخ:</label>
+    <div   class="col-sm-4">
+    
+                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtenddate')"  class="form-control" id="txtenddate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="BackAccID" class="col-sm-2 control-label">     حساب بانک:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtBackAccID" ></select>
+    </div>
+    <label  for="Startamount" class="col-sm-2 control-label">     از مبلغ:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtStartamount" placeholder="" />
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="endamount" class="col-sm-2 control-label">     تا مبلغ:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtendamount" placeholder="" />
+                                              </div>
+    <label  for="CheckType" class="col-sm-2 control-label">     نوع چک:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtCheckType" >
+        <option value="-1">همه</option>
+        <option value="0">پرداختی</option>
+        <option value="1">دریافتی</option>
+      </select>
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="CusAccId" class="col-sm-2 control-label">     مشتری:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtCusAccId" ></select>
+    </div>
+    <label  for="bankName" class="col-sm-2 control-label">     نام بانک:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtbankName" placeholder=""  placeholder="" />
+          
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="bankBranch" class="col-sm-2 control-label">     نام شعبه:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtbankBranch" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="bankAccNo" class="col-sm-2 control-label">     شماره حساب:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtbankAccNo" placeholder=""  placeholder="" />
+          
+                                              </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                                            var BackAccID =null;
+                                        var CusAccId =null;
+                                     
+    BankCheck_Serach.IntForm=function()
+    {
+    
+    document.title='مدیریت چک های بانک';
+    window.fileUploaded=false;
+                                                                    kamaDatepicker('txtstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                kamaDatepicker('txtenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                            BackAccID=  Select2AjaxInit('txtBackAccID',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='BankCheck_Serach';
+    DataPass.ParaName='BackAccID';
+    DataPass.Parameters=new Array();
+        return JSON.stringify(DataPass);
+    });
+                                                                                                        CusAccId=  Select2AjaxInit('txtCusAccId',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='BankCheck_Serach';
+    DataPass.ParaName='CusAccId';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                                                            
+    }
+    $(document).ready(function () {
+    BankCheck_Serach.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="BankCheck_Serach.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a href='#/BankCheck_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > شناسه چک</th> 
+ <th  > سریال چک</th> 
+ <th  > تاریخ موعد چک</th> 
+ <th  > تاریخ تحویل</th> 
+ <th  > مبلغ</th> 
+ <th  > نوع چک</th> 
+ <th  > مشتری</th> 
+ <th  > توضیحات</th> 
+ <th  >  بانک</th> 
+ <th  > آخرین وضعیت</th> 
+ <th  > چک قبل از سیستم</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+<td data-label='شناسه چک'>{{record.BankCheckId}}</td> 
+ <td data-label='سریال چک'>{{record.SerailCheck}}</td> 
+ <td data-label='تاریخ موعد چک'>{{record.BankPayDate}}</td> 
+ <td data-label='تاریخ تحویل'>{{record.BankGetmentDate}}</td> 
+ <td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
+  <td data-label='نوع چک'>
+    <span ng-show="record.CheckType=='0'">پرداختی</span>
+  <span ng-show="record.CheckType=='1'">دریافتی</span>
+ </td> 
+ <td data-label='مشتری'>{{record.CusAccId_title}}</td> 
+ <td data-label='توضیحات'>{{record.Descr}}</td> 
+ <td data-label=' بانک'>{{record.bankName}} {{record.bankBranch}} {{record.bankAccNo}}</td> 
+  <td data-label='آخرین وضعیت'>
+    <span ng-show="record.lastOpt=='-1'">در جریان</span>
+  <span ng-show="record.lastOpt=='1'">وصول شده</span>
+  <span ng-show="record.lastOpt=='2'">برگشت خورده</span>
+  <span ng-show="record.lastOpt=='3'">منتقل شده</span>
+  <span ng-show="record.lastOpt=='4'">منتقل وصول شده</span>
+  <span ng-show="record.lastOpt=='5'">خرج شده</span>
+  <span ng-show="record.lastOpt=='6'">مرجوع شده </span>
+ </td> 
+  <td data-label='چک قبل از سیستم'>{{ShowBoolean(record.oldCheck)}}</td> 
+                       <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a href="#/BankCheck_Edit/{{record.BankCheckId}}" >ویرایش</a></li> 
+ <li ng-show='((record.CheckType=="1")  && (record.lastOpt=="-1" )) ' ><a href="#/BankCheckToPayGetCheck/{{record.BankCheckId}}" >وصول چک</a></li> 
+ <li ng-show='((record.CheckType=="0")  && (record.lastOpt=="-1" )) ' ><a href="#/BankCheckToPayPaymentCheck/{{record.BankCheckId}}" >وصول چک</a></li> 
+ <li ng-show='(((record.CheckType=="1")  && (In(record.CheckType,"-1","3") ) )|| ( (record.CheckType=="0")   &&  (record.lastOpt=="-1" )  ) ) ' ><a href="#/BankCheckToBack/{{record.BankCheckId}}" >برگشت چک</a></li> 
+ <li ng-show='((record.CheckType=="1")  && (record.lastOpt=="-1" ))' ><a href="#/MoveToAccBank/{{record.BankCheckId}}" >انتقال چک به حساب بانکی</a></li> 
+ <li ng-show='((record.CheckType=="1")  && (record.lastOpt=="3" )) ' ><a href="#/PayMoveCheck/{{record.BankCheckId}}" >وصول چک منتقل شده</a></li> 
+ <li ng-show='((record.CheckType=="1")  && (record.lastOpt=="-1" )) ' ><a href="#/SendCheckToPerson/{{record.BankCheckId}}" >خرج چک دریافتی </a></li> 
+ <li ><a href="#/BankCheckOptDetail/{{record.BankCheckId}}" >اقدامات انجام شده</a></li> 
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.BankCheck_Delete('{{record.BankCheckId}}')});" >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

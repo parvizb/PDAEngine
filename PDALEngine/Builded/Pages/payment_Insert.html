@@ -1,0 +1,86 @@
+﻿
+
+پرداختی جدید
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="payment_amount" class="col-sm-2 control-label">     <span class="red" >*</span>  مبلغ پرداختی:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" onchange='currentScope.$apply({});' class="form-control" id="txtpayment_amount" placeholder="" />
+                                              </div>
+    <label  for="cus_id" class="col-sm-2 control-label">     <span class="red" >*</span>  کد مشتری :</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtcus_id" ></select>
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="dis_amount" class="col-sm-2 control-label">     مبلغ تخفیف:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" onchange='currentScope.$apply({});' class="form-control" id="txtdis_amount" placeholder="" />
+                                              </div>
+    <label  for="payment_Date" class="col-sm-2 control-label">     <span class="red" >*</span>  تاریخ پرداخت:</label>
+    <div   class="col-sm-4">
+    
+                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtpayment_Date')"  class="form-control" id="txtpayment_Date" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="descr" class="col-sm-2 control-label">     توضیحات:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtdescr" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="total" class="col-sm-2 control-label">     جمع:</label>
+    <div   class="col-sm-4">
+    
+                        <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Num(Para('dis_amount'))+Num(Para('payment_amount')))}}"   class="form-control" id="txttotal" placeholder="" />
+                                  </div>
+     </div>
+     <div class="form-group">
+    <label  for="acc_id" class="col-sm-2 control-label">     <span class="red" >*</span>  کد حساب محل پرداخت :</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtacc_id" ></select>
+    </div>
+  </div>
+    </from>
+  <script>
+                    var cus_id =null;
+                                                var acc_id =null;
+             
+    payment_Insert.IntForm=function()
+    {
+    
+    document.title='پرداختی جدید';
+    window.fileUploaded=false;
+                                        cus_id=  Select2AjaxInit('txtcus_id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='payment_Insert';
+    DataPass.ParaName='cus_id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                            kamaDatepicker('txtpayment_Date', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                            acc_id=  Select2AjaxInit('txtacc_id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='payment_Insert';
+    DataPass.ParaName='acc_id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                    
+    }
+    $(document).ready(function () {
+    payment_Insert.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="payment_Insert.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

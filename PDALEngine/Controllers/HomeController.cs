@@ -21,7 +21,77 @@ namespace PDALEngine.Controllers
     {
         //
         // GET: /Home/
+        public ActionResult Login(String Message="")
+        {
+            ViewBag.Message = Message;
+          
+            return View();
+        }
 
+
+        public ActionResult LogOut()
+        {
+            Session["UserName"] = null;
+            Session["Per"] = null;
+
+            return RedirectToAction("Login");
+        }
+
+
+        [HttpPost]
+        public ActionResult Login(string txtUserId, string txtPassword)
+        {
+            try
+            {
+                string R="CheckLogin";
+                List<inputParameter> Lis=new List<inputParameter>();
+                inputParameter p =new inputParameter();
+                p.key="UserId";
+                p.value=txtUserId;
+                Lis.Add(p);
+                   p =new inputParameter();
+                p.key="Password";
+                p.value=Convertor.Encrypt(txtPassword,txtPassword);
+                Lis.Add(p);
+
+
+               int r= int.Parse(PDAL.ReadRecords(ref R, Lis).Rows[0][0].ToString());
+               if (r == 0)
+               {
+                   return Login("نام کاربری یا گذرواژه نادرست است");
+
+               }
+               else
+               {
+                   Session["UserName"] = txtUserId;
+                   Dictionary<string, string> Per = new Dictionary<string, string>();
+                   R = "GetAllPerForUser";
+                    Lis = new List<inputParameter>();
+                     p = new inputParameter();
+                   p.key = "UserId";
+                   p.value = txtUserId;
+                   Lis.Add(p);
+                
+
+
+                   DataTable Dt= PDAL.ReadRecords(ref R, Lis);
+                   foreach (DataRow Dr in Dt.Rows)
+                   {
+                       Per.Add(Dr["PerKey"].ToString(),"-");
+
+                   }
+                   Session["Per"] = Per;
+                   return RedirectToAction("Index", "Home");
+               }
+            }
+            catch
+            {
+
+                return Login("خطای نامشخص");
+            }
+
+
+        }
         public ActionResult Index()
         {
             DateTime CreateTime = new FileInfo(Server.MapPath("~/PDA.Config")).LastWriteTime;
@@ -88,6 +158,12 @@ namespace PDALEngine.Controllers
             return     RedirectToAction("GetErrorAsText",  new {  errMsg="عدم امکان با بانک یا عدم پیکربندی صحیح در فایل PDA.Config : " + ex.Message });
              
            }
+           if (PDALSect.isLogined() == false)
+           {
+               return RedirectToAction("Login");
+
+           }
+
             ViewBag.App = PDAL.App;
             return View();
         }
@@ -205,6 +281,11 @@ namespace PDALEngine.Controllers
     
         public JsonResult AjaxActionTable(string actionName, List<inputParameter> Parameters)
         {
+            if (Parameters == null)
+            {
+
+                Parameters = new List<inputParameter>();
+            }
             ConvertNullToEmpty(Parameters);
             action Info = PDAL.actionAccess[actionName];
              PDALSect.AccessResult DoAccess = PDALSect.GetCheckPer(Info.PerKey, actionName, Parameters);
@@ -262,6 +343,11 @@ namespace PDALEngine.Controllers
                 Parameters = new List<inputParameter>();
             }
             ConvertNullToEmpty(Parameters);
+            if (PDAL.loaded == false)
+            {
+                PDAL.load();
+
+            }
             Page Info = PDAL.FindPage(PageName);
             PDALSect.AccessResult  DoAccess = PDALSect.GetCheckPer(Info.PerKey, PageName, Parameters);
             ScallerResult Res = new ScallerResult();
@@ -344,6 +430,13 @@ namespace PDALEngine.Controllers
 
             DataTable Dt = PDAL.ReadRecords(ref Pp.DBSelect2Command, Parameters);
             List<item> it = new List<item>();
+            for (int k = 0; k < Pp.options.Count; k++)
+            {
+                item i = new item();
+                i.id = Pp.options[k].value;
+                i.text = Pp.options[k].text;
+                it.Add(i);
+            }
             for (int k = 0; k < Dt.Rows.Count; k++)
             {
                 item i = new item();
@@ -351,6 +444,7 @@ namespace PDALEngine.Controllers
                 i.text = Dt.Rows[k][Pp.textColumn].ToString();
                 it.Add(i);
             }
+      
 
             obj o = new obj();
             o.results = it.ToArray();
@@ -451,6 +545,13 @@ namespace PDALEngine.Controllers
 
             DataTable Dt = PDAL.ReadRecords(ref Pp.DBSelect2Command, Parameters);
             List<item> it = new List<item>();
+            for (int k = 0; k < Pp.options.Count; k++)
+            {
+                item i = new item();
+                i.id = Pp.options[k].value;
+                i.text = Pp.options[k].text;
+                it.Add(i);
+            }
             for (int k = 0; k < Dt.Rows.Count; k++)
             {
                 item i = new item();
@@ -646,11 +747,7 @@ namespace PDALEngine.Controllers
         
         }
 
-        [HttpPost(), HttpGet()]
-        public ActionResult LogOut()
-        {
-            return Redirect("/Home/LogIn");
-        }
+ 
 
     
         [HttpPost()]
@@ -719,6 +816,7 @@ namespace PDALEngine.Controllers
 
         private static void ConvertNullToEmpty(List<inputParameter> Parameters)
         {
+             
             for (int k = 0; k < Parameters.Count; k++)
             {
                 Parameters[k].value = (Parameters[k].value == null ? "" : Parameters[k].value);

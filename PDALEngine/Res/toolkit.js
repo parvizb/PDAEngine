@@ -154,6 +154,7 @@ Validator.CheckRegSelect2 = function (id, caption,row) {
 function BackPage() {
 
     window.history.back(-1);
+    setTimeout(LoadCache, 1000);
 }
 
 Validator.ShowErrors = function () {
@@ -190,6 +191,15 @@ Messager.ShowInfo = function (title) {
     $('.modal-body').html(str);
     $('#myModal').modal()
 }
+function LoadCache() {
+    
+        if (Dic[document.title] != null) {
+            currentScope.records = Dic[document.title];
+            currentScope.$apply();
+        }
+        
+ 
+}
 function TableViewAjax(name, data, fnOk, fnFailOk) {
     Ajax('Home', name, JSON.stringify(data), function (dx) {
 
@@ -212,8 +222,9 @@ function TableViewAjax(name, data, fnOk, fnFailOk) {
 
 
             }
+      
             fnOk(dx);
-
+        
         }
 
     },
@@ -314,12 +325,51 @@ function NormalResult() {
     $('a[pdaajaxsyntax]').each(function () { $(this).attr('onClick', $(this).attr('pdaajaxsyntax')) });
     $('[moneytype="yes"]').each(function () { NumberInput(null, $(this)[0]) });
 }
+
+function In(value) {
+    for (var l = 1; l < arguments; l++) {
+        if (value == arguments[l]) {
+            return true;
+        }
+    }
+    return false;
+}
+var targetFuns = null;
+var Plen = 0;
+
+function confirmInputBox() {
+    var arrays = new Array();
+    for (var l = 0; l < Plen; l++) {
+        arrays.push($('#arg' + l).val());
+
+    }
+    targetFuns(arrays);
+     
+}
+
+function InputBox(title,captions, fun) {
+    Plen = captions.length;
+    targetFuns = fun;
+
+    var s = '';
+   
+    for (var l = 0; l < captions.length; l++) {
+        s += ' <form class="form-horizontal"  role="form"> <div class="form-group"> <label class="col-sm-3  control-label " > ' + captions[l] + ' </label>  <div  class="col-sm-9" ><input type="text"   class="form-control" id="arg' + l + '" /></div></div></form>';
+    }
+  
+ 
+    $('#DInputBoxTitle').html(title);
+    $('[name="inputBody"]')[0].innerHTML = s;
+    $('#DInputBox').modal();
+}
+
 function Num(v) {
 
     try {
         if (v === undefined) {
             return 0;
         }
+        v = v.toString();
         return parseFloat(v.replace(/,/g, ''));
     }
     catch (ex) {
@@ -509,14 +559,21 @@ function goToLink(link) {
     document.removeChild(d);
 }
 function Para(id) {
-
+ 
     r = document.getElementById('txt' + id);
     if (r != null) {
         if (r.getAttribute('Type') == 'Number') {
             return parseFloat($('#txt' + id).val());
         }
         else {
-            return $('#txt' + id).val()
+            if ($('#txt' + id).attr('moneymode') != 'yes') {
+                return $('#txt' + id).val()
+            }
+            else {
+
+                return Num(   $('#txt' + id).val());
+            }
+         
         }
     }
     else {
@@ -525,7 +582,10 @@ function Para(id) {
     }
 
 }
+function Query(id) {
 
+    return routeParams[id];
+}
 
 var JsEventInterface = new Object();
 JsEventInterface.beforeValidate = null;
@@ -588,6 +648,7 @@ function MergeNow(v) {
         }
     }
     currentScope.$apply({});
+    NormalResult();
 }
 function GoValuePage(e, st, link) {
  
@@ -687,7 +748,13 @@ function LogOut() {
     document.body.removeChild(a);
 
 }
-
+var TempRecords = null;
+var tit = null;
+var Dic = new Array();
+function StoreCache() {
+  
+  Dic[document.title]= currentScope.records;
+}
 function GenStyleForTableResponse() {
     var d = document.getElementsByTagName('table');
     if (d.length == 0) {

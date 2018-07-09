@@ -27,7 +27,10 @@ AjaxActions.{{action.name}} =function({% for act in action.actionParameters %}  
 
        }
        Messager.ShowMessage('اطلاعات', data.Message);
-       window.CurrentSerachMethod();
+       if(window.CurrentSerachMethod!=null)
+       {
+           window.CurrentSerachMethod();
+       }
        if(JsEventInterface.AfterOkReqInitAjaxAction!=null)
        {
            JsEventInterface.AfterOkReqInitAjaxAction(Entity,data);
@@ -42,6 +45,8 @@ AjaxActions.{{action.name}} =function({% for act in action.actionParameters %}  
            JsEventInterface.BeforeFailReqInitAjaxAction(Entity,data);
 
        }
+      
+       Messager.ShowMessage('خطا', data);
        return;
 
    });

@@ -1,4 +1,4 @@
-﻿تعریف کارخانه ها
+﻿تعریف کارخانه 
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
@@ -9,7 +9,7 @@
     factory_mgt.IntForm=function()
     {
     
-    document.title='تعریف کارخانه ها';
+    document.title='تعریف کارخانه ';
     window.fileUploaded=false;
     
     }
@@ -29,18 +29,18 @@
  <thead>
  <tr>
 <th>ردیف</th>
- <th  class="Pointer"  ng-click="ChageTableOrder('FactoryId')"  > <span ng-show="((currentOrder=='FactoryId') && (rev) )">V</span> <span ng-show="((currentOrder=='FactoryId') && (!rev) )">^</span>شناسه</th> 
- <th  class="Pointer"  ng-click="ChageTableOrder('FactoryName')"  > <span ng-show="((currentOrder=='FactoryName') && (rev) )">V</span> <span ng-show="((currentOrder=='FactoryName') && (!rev) )">^</span>عنوان</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('factory_id')"  > <span ng-show="((currentOrder=='factory_id') && (rev) )">V</span> <span ng-show="((currentOrder=='factory_id') && (!rev) )">^</span>شناسه کارخانه</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('factory_name')"  > <span ng-show="((currentOrder=='factory_name') && (rev) )">V</span> <span ng-show="((currentOrder=='factory_name') && (!rev) )">^</span>عنوان کارخانه</th> 
 <th>
     عملیات
 </th>
       </tr>
    </thead>
      <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
-<td>{{$index+1}}</td>
-<td>{{record.FactoryId}}</td> 
-  <td><input class="form-control" type="text" id="FactoryName_{{record.rndId}}" value="{{record.FactoryName}}" ng-change="ChangeState(record);"  ng-model="record.FactoryName"  /></td> 
-               <td>
+<td data-label="ردیف">{{$index+1}}</td>
+<td data-label='شناسه کارخانه'>{{record.factory_id}}</td> 
+  <td data-label='عنوان کارخانه'><input class="form-control" type="text" id="factory_name_{{record.rndId}}" value="{{record.factory_name}}" ng-change="ChangeState(record);"  ng-model="record.factory_name"  /></td> 
+               <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

@@ -1,0 +1,125 @@
+﻿
+
+ویرایش چک بانکی
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="SerailCheck" class="col-sm-2 control-label">     <span class="red" >*</span>  سریال چک:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtSerailCheck" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="CheckType" class="col-sm-2 control-label">     <span class="red" >*</span>  نوع چک:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtCheckType" onchange='currentScope.$apply({});' >
+        <option value="0">پرداختی</option>
+        <option value="1">دریافتی</option>
+      </select>
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="BankPayDate" class="col-sm-2 control-label">     <span class="red" >*</span>  تاریخ موعد چک:</label>
+    <div   class="col-sm-4">
+    
+                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtBankPayDate')"  class="form-control" id="txtBankPayDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+    <label  for="BankGetmentDate" class="col-sm-2 control-label">     <span class="red" >*</span>  تاریخ تحویل:</label>
+    <div   class="col-sm-4">
+    
+                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtBankGetmentDate')"  class="form-control" id="txtBankGetmentDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+     </div>
+     <div class="form-group">
+    <label  ng-show='Para("CheckType")=="0"'  for="BackAccID" class="col-sm-2 control-label">     <span class="red" >*</span>  حساب بانک:</label>
+    <div   ng-show='Para("CheckType")=="0"'  class="col-sm-4">
+    
+                                                <select class="form-control" id="txtBackAccID" ></select>
+    </div>
+    <label  for="amount" class="col-sm-2 control-label">     <span class="red" >*</span>  مبلغ:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtamount" placeholder="" />
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="CusAccId" class="col-sm-2 control-label">     <span class="red" >*</span>  مشتری:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtCusAccId" ></select>
+    </div>
+    <label  for="Descr" class="col-sm-2 control-label">     توضیحات:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtDescr" placeholder=""  placeholder="" />
+          
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  ng-show='Para("CheckType")=="1"'  for="bankName" class="col-sm-2 control-label">     <span class="red" >*</span>  نام بانک:</label>
+    <div   ng-show='Para("CheckType")=="1"'  class="col-sm-4">
+      <input type="text"   class="form-control" id="txtbankName" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  ng-show='Para("CheckType")=="1"'  for="bankBranch" class="col-sm-2 control-label">     <span class="red" >*</span>  نام شعبه:</label>
+    <div   ng-show='Para("CheckType")=="1"'  class="col-sm-4">
+      <input type="text"   class="form-control" id="txtbankBranch" placeholder=""  placeholder="" />
+          
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  ng-show='Para("CheckType")=="1"  '  for="bankAccNo" class="col-sm-2 control-label">     <span class="red" >*</span>  شماره حساب:</label>
+    <div   ng-show='Para("CheckType")=="1"  '  class="col-sm-4">
+      <input type="text"   class="form-control" id="txtbankAccNo" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="oldCheck" class="col-sm-2 control-label">     <span class="red" >*</span>  چک قبل از سیستم:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtoldCheck" >
+        <option value="False">خیر</option>
+        <option value="True">بله</option>
+      </select>
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                                                    var BackAccID =null;
+                        var CusAccId =null;
+                                                     
+    BankCheck_Edit.IntForm=function()
+    {
+    
+    document.title='ویرایش چک بانکی';
+    window.fileUploaded=false;
+                                                                                            kamaDatepicker('txtBankPayDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                kamaDatepicker('txtBankGetmentDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                            BackAccID=  Select2AjaxInit('txtBackAccID',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='BankCheck_Edit';
+    DataPass.ParaName='BackAccID';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                        CusAccId=  Select2AjaxInit('txtCusAccId',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='BankCheck_Edit';
+    DataPass.ParaName='CusAccId';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                                                                                                            
+    }
+    $(document).ready(function () {
+    BankCheck_Edit.IntForm();
+        BankCheck_Edit.InitStartValues();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="BankCheck_Edit.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

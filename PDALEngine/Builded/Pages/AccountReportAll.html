@@ -1,0 +1,58 @@
+﻿مانده حساب های بانکی
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    AccountReportAll.IntForm=function()
+    {
+    
+    document.title='مانده حساب های بانکی';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    AccountReportAll.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a onclick='ExportXls();' ><button type="button" class="btn btn-default" >خروجی اکسل</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > کد حساب</th> 
+ <th  > عنوان حساب</th> 
+ <th  > محل حساب</th> 
+ <th  > شعبه حساب</th> 
+ <th  > مجموع</th> 
+ </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+<td data-label='کد حساب'>{{record.acc_id}}</td> 
+ <td data-label='عنوان حساب'>{{record.acc_name}}</td> 
+ <td data-label='محل حساب'>{{record.acc_position}}</td> 
+ <td data-label='شعبه حساب'>{{record.acc_brch}}</td> 
+ <td data-label='مجموع'>{{ShowMoney(record.suma)}}</td> 
+                   </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             AccountReportAll.Serach();
+                      });
+    
+     </script>

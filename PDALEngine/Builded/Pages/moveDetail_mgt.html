@@ -1,0 +1,79 @@
+﻿ریز انتقالی کالا
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+                 
+    moveDetail_mgt.IntForm=function()
+    {
+    
+    document.title='ریز انتقالی کالا';
+    window.fileUploaded=false;
+                            
+    }
+    $(document).ready(function () {
+    moveDetail_mgt.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a onclick='moveDetail_mgt.InsertRecord()' ><button type="button" class="btn btn-default" >ردیف جدید</button></a>
+<a onclick='moveDetail_mgt.Save()' ><button type="button" class="btn btn-default" >ذخیره</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th>ردیف</th>
+ <th  class="Pointer"  ng-click="ChageTableOrder('mSDid')"  > <span ng-show="((currentOrder=='mSDid') && (rev) )">V</span> <span ng-show="((currentOrder=='mSDid') && (!rev) )">^</span>شناسه ریز</th> 
+ <th  width='25%'class="Pointer"  ng-click="ChageTableOrder('stuffid')"  > <span ng-show="((currentOrder=='stuffid') && (rev) )">V</span> <span ng-show="((currentOrder=='stuffid') && (!rev) )">^</span>کالا</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('count')"  > <span ng-show="((currentOrder=='count') && (rev) )">V</span> <span ng-show="((currentOrder=='count') && (!rev) )">^</span>تعداد جز</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('BCount')"  > <span ng-show="((currentOrder=='BCount') && (rev) )">V</span> <span ng-show="((currentOrder=='BCount') && (!rev) )">^</span>تعداد کل</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('descr')"  > <span ng-show="((currentOrder=='descr') && (rev) )">V</span> <span ng-show="((currentOrder=='descr') && (!rev) )">^</span>توضیحات</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td data-label="ردیف">{{$index+1}}</td>
+<td data-label='شناسه ریز'>{{record.mSDid}}</td> 
+   <td data-label='کالا'><select class="form-control"   id="stuffid_{{record.rndId}}"  valc="{{record.stuffid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='moveDetail_mgt';DataPass.colname='stuffid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetProduct_asTable(MergeNow,record.stuffid);;record.total=Num(record.Count)*Num(record.stuffPrice);NormalResult();"   ng-model="record.stuffid"  >
+ <option value="{{record.stuffid}}" selected="selected" >
+     {{record.stuff_name}} </option>
+</select></td> 
+  <td data-label='تعداد جز'><input class="form-control" type="text" id="count_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.BCount=Num(record.count)/Num(record.BoxCount);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.count}}" ng-model="record.count"  /></td> 
+  <td data-label='تعداد کل'><input class="form-control" type="text" id="BCount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.count=Num(record.BCount)*Num(record.BoxCount);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.BCount}}" ng-model="record.BCount"  /></td> 
+ <td data-label='توضیحات'><input class="form-control" type="text" id="descr_{{record.rndId}}" value="{{record.descr}}" ng-change="ChangeState(record);"  ng-model="record.descr"  /></td> 
+               <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a   ng-click="RemoveItem( record)"   >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             moveDetail_mgt.Serach();
+                      });
+    
+     </script>

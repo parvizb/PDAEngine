@@ -55,6 +55,8 @@ public class Application : ILiquidizable
     /// </summary>
     public string Theme;
     /// <summary>
+    /// 
+    public string CopyRightMessage;
     /// منو های 
     /// </summary>
     public List<Menu> Menus = new List<Menu>();
@@ -67,13 +69,15 @@ public class Application : ILiquidizable
     /// </summary>
     public List<Actions> Actionss = new List<Actions>();
     public List<DontBuild> DontBuilds = new List<DontBuild>();
+    public List<Notifaction> Notifactions = new List<Notifaction>();
+
     public void ParseEle(XmlNode node)
     {
 
         this.Title = node.Attr("Title");
         this.Version = node.Attr("Version");
         this.Name = node.Attr("Name");
- 
+        this.CopyRightMessage = node.Attr("CopyRightMessage");
         this.ConnectionSetthing = node.Attr("ConnectionSetthing");
  
         this.Theme = node.Attr("Theme");
@@ -84,6 +88,12 @@ public class Application : ILiquidizable
                 Menu Temp = new Menu();
                 Temp.ParseEle(node.ChildNodes[i]);
                 Menus.Add(Temp);
+            }
+            if (node.ChildNodes[i].Name == "Notifaction")
+            {
+                Notifaction Temp = new Notifaction();
+                Temp.ParseEle(node.ChildNodes[i]);
+                Notifactions.Add(Temp);
             }
             if (node.ChildNodes[i].Name == "Pages")
             {
@@ -145,7 +155,7 @@ public class Application : ILiquidizable
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { Theme=this.Theme, Title = this.Title, Version = this.Version, Name = this.Name,   ConnectionSetthing = this.ConnectionSetthing,  Menus = this.Menus, Pagess = this.Pagess, Actionss = this.Actionss });
+        return Hash.FromAnonymousObject(new {Notifactions=this.Notifactions,CopyRightMessage=this.CopyRightMessage, Theme=this.Theme, Title = this.Title, Version = this.Version, Name = this.Name,   ConnectionSetthing = this.ConnectionSetthing,  Menus = this.Menus, Pagess = this.Pagess, Actionss = this.Actionss });
 
     }
 
@@ -155,6 +165,7 @@ public class BatchCommand : ILiquidizable
     public string name;
     public string PerKey;
     public List<Command> Commands = new List<Command>();
+    public List<CommandCustomValidate> CommandCustomValidates = new List<CommandCustomValidate>();
     public void ParseEle(XmlNode node)
     {
 
@@ -168,13 +179,18 @@ public class BatchCommand : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 Commands.Add(Temp);
             }
-
+            if (node.ChildNodes[i].Name == "CommandCustomValidate")
+            {
+                CommandCustomValidate Temp = new CommandCustomValidate();
+                Temp.ParseEle(node.ChildNodes[i]);
+                CommandCustomValidates.Add(Temp);
+            }
         }
 
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { PerKey=this.PerKey, name = this.name, Commands = this.Commands });
+        return Hash.FromAnonymousObject(new { CommandCustomValidates=this.CommandCustomValidates, PerKey = this.PerKey, name = this.name, Commands = this.Commands });
 
     }
 
@@ -210,6 +226,49 @@ public class Command : ILiquidizable
     }
 
 }
+public class Notifaction : ILiquidizable
+{
+    public string name;
+    public string AjaxActionName;
+    public string TimeFire;
+    public string Message;
+    public string PageName;
+    public string ParameterSyntax;
+    public string returnSyntax;
+    public List<Check> Checks = new List<Check>();
+    public void ParseEle(XmlNode node)
+    {
+
+        this.name = node.Attr("name");
+        this.TimeFire = node.Attr("TimeFire");
+        this.AjaxActionName = node.Attr("AjaxActionName");
+        PageName = node.Attr("PageName");
+        ParameterSyntax = node.Attr("ParameterSyntax");
+        returnSyntax = node.Attr("returnSyntax");
+        this.Message = node.Attr("Message");
+        for (int i = 0; i < node.ChildNodes.Count; i++)
+        {
+      
+
+        }
+
+    }
+    public object ToLiquid()
+    {
+        if (AjaxActionName == null)
+        {
+            new Exception("fuck");
+
+        }
+        return Hash.FromAnonymousObject(new { ParameterSyntax = this.ParameterSyntax, returnSyntax = this.returnSyntax, PageName = this.PageName, TimeFire = this.TimeFire, name = this.name, AjaxActionName = this.AjaxActionName, Message = this.Message });
+
+    }
+
+}
+
+
+
+
 public class Parameter : ILiquidizable
 {
     public string name;
@@ -456,6 +515,7 @@ public class Page : ILiquidizable
     public string ValueDbCommand;
     public string JSStart;
     public string SubmitBevParameter;
+    public string ShowCond;
     public string SubmitBev;
     public List<Note> Notes = new List<Note>();
  
@@ -470,7 +530,7 @@ public class Page : ILiquidizable
     public Boolean MustSendFiles = false;
     public void ParseEle(XmlNode node)
     {
-
+        this.ShowCond = node.Attr("ShowCond");
         this.Title = node.Attr("Title");
         this.id = node.Attr("id");
         this.link = node.Attr("link");
@@ -569,7 +629,7 @@ public class Page : ILiquidizable
                 v= (int)Math.Floor( ((12f / float.Parse(ColumnCount)) * .25f));
                 break;
         }
-        return Hash.FromAnonymousObject(new {SubmitBev=this.SubmitBev,SubmitBevParameter=this.SubmitBevParameter , Notes=this.Notes, MustSendFiles=this.MustSendFiles.ToString() ,  BatchCommands=this.BatchCommands ,NoneFormParameters=this.NoneFormParameters.ToString(),JSStart=this.JSStart,HerSize =h, ValSize =v, Title = this.Title, id = this.id, link = this.link, ColumnCount = this.ColumnCount, PerKey = this.PerKey, type = this.type, DBCommand = this.DBCommand,  name = this.name, queryString = this.queryString, ValueDbCommand = this.ValueDbCommand, PageParameters = this.PageParameters, Buttons = this.Buttons, tables = this.tables, ValueParameters = this.ValueParameters,CustomValidates=this.CustomValidates });
+        return Hash.FromAnonymousObject(new {ShowCond=this.ShowCond,SubmitBev=this.SubmitBev,SubmitBevParameter=this.SubmitBevParameter , Notes=this.Notes, MustSendFiles=this.MustSendFiles.ToString() ,  BatchCommands=this.BatchCommands ,NoneFormParameters=this.NoneFormParameters.ToString(),JSStart=this.JSStart,HerSize =h, ValSize =v, Title = this.Title, id = this.id, link = this.link, ColumnCount = this.ColumnCount, PerKey = this.PerKey, type = this.type, DBCommand = this.DBCommand,  name = this.name, queryString = this.queryString, ValueDbCommand = this.ValueDbCommand, PageParameters = this.PageParameters, Buttons = this.Buttons, tables = this.tables, ValueParameters = this.ValueParameters,CustomValidates=this.CustomValidates });
 
     }
 
@@ -591,7 +651,33 @@ public void ParseEle(XmlNode node) {
 
  }
 
- }
+ }
+
+  public class CommandCustomValidate : ILiquidizable
+  {
+      public string Cond;
+      public string Message;
+      public string For;
+      public void ParseEle(XmlNode node)
+      {
+
+          this.Cond = node.Attr("Cond");
+          this.Message = node.Attr("Message");
+          this.For = node.Attr("For");
+          for (int i = 0; i < node.ChildNodes.Count; i++)
+          {
+
+          }
+
+      }
+      public object ToLiquid()
+      {
+          return Hash.FromAnonymousObject(new {For=this.For ,Cond = this.Cond, Message = this.Message });
+
+      }
+
+  }
+
  
 
 
@@ -622,14 +708,18 @@ public class PageParameter : ILiquidizable
     public List<DBSelectCommandParameter> DBSelectCommandParameters = new List<DBSelectCommandParameter>();
     public List<option> options = new List<option>();
     public List<FileAllow> FileAllows = new List<FileAllow>();
+    public string ChangeBev;
+    public string ShowCond;
     public void ParseEle(XmlNode node)
     {
 
         this.title = node.Attr("title");
         this.name = node.Attr("name");
+        this.ShowCond = node.Attr("ShowCond");
         this.type = node.Attr("type");
         this.source = node.Attr("source");
         this.Disabled = node.Attr("Disabled");
+        this.ChangeBev = node.Attr("ChangeBev");
         this.dontSendToDb = node.Attr("dontSendToDb");
         this.sorurceParameter = node.Attr("sorurceParameter");
         this.startValueType = node.Attr("startValueType");
@@ -677,7 +767,7 @@ public class PageParameter : ILiquidizable
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { PlaceHolder=this.PlaceHolder, Width=this.Width,Height=this.Height,LinkSyntax=this.LinkSyntax   , FileAllows=this.FileAllows ,  FilePathAtServer=this.FilePathAtServer,  MaxFileSize=this.MaxFileSize,  Disabled=this.Disabled, dontSendToDb=this.dontSendToDb, options=this.options,  TitleParameter=this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
+        return Hash.FromAnonymousObject(new {ShowCond=this.ShowCond, ChangeBev=this.ChangeBev, PlaceHolder=this.PlaceHolder, Width=this.Width,Height=this.Height,LinkSyntax=this.LinkSyntax   , FileAllows=this.FileAllows ,  FilePathAtServer=this.FilePathAtServer,  MaxFileSize=this.MaxFileSize,  Disabled=this.Disabled, dontSendToDb=this.dontSendToDb, options=this.options,  TitleParameter=this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
 
     }
 

@@ -35,15 +35,22 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
         });
 
     }
-
+    $scope.In=window.In;
+    $scope.routeParams=window.routeParams;
     $scope.Num=function(v)
     {
+      
+        if (v == "") {
+            return 0;
+        }
+        
         try
         {
             if(v===undefined)
             {
                 return 0;
             }
+            v=v.toString();
             return parseFloat(v.replace(/,/g,''));
         }
         catch(ex)
@@ -135,6 +142,7 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
     
         return sum;
     }
+    $scope.Query=window.Query;
     $scope.Avg=function(name)
     {
         console.log(currentScope.records);
@@ -164,10 +172,15 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
         return currentScope.records.length;
     }
     $scope.$apply();
-   
+    $scope.Round=function(v)
+    {
+        return Math.round(v);
+
+
+    }
     $scope.ShowMoney=function(v)
     {
-      
+  
         try
         {
             if(typeof(v)=='undefined')
@@ -225,6 +238,8 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
 
         }
     }
+    $scope.NormalResult=window.NormalResult;
+    
     $scope.MergeNow=window.MergeNow;
     $scope.ChangeState=function(item)
     {
@@ -273,3 +288,21 @@ function ($routeProvider/*, $locationProvider*/) {
     
     );
 }]);
+
+
+{% for Not in App.Notifactions -%}
+function Not_{{Not.name}}()
+{
+    AjaxActions.{{Not.AjaxActionName}}_asTable(function(records){
+      
+        if({{Not.returnSyntax}})
+        {
+            
+            ConfirmAsk('{{Not.Message}}',function(){goToLink("#{{Not.PageName}}")});
+
+        }
+    }{% if Not.ParameterSyntax != '' -%},{{Not.ParameterSyntax}}{% endif -%});
+
+    setTimeout("Not_{{Not.name}}",60000*{{Not.TimeFire}});
+}
+{% endfor -%}

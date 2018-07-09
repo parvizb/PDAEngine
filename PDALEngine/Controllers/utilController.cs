@@ -23,6 +23,18 @@ namespace PDALEngine.Controllers
         {
             return PDAL.mgtAllonce(id);
         }
+        public string CreatePage(string id)
+        {
+            return PDAL.CreatePageToTableView(id);
+
+        }
+        public string ShowAllPers()
+        {
+            return PDAL.GetAllPer();
+
+        }
+
+
         public string CreateScallerTableView(string id)
         {
             return PDAL.mgtAllonce(id);

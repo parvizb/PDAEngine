@@ -1,0 +1,83 @@
+﻿عملیات انجام شده بروی چک
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+                 
+    BankCheckOptDetail.IntForm=function()
+    {
+    
+    document.title='عملیات انجام شده بروی چک';
+    window.fileUploaded=false;
+                            
+    }
+    $(document).ready(function () {
+    BankCheckOptDetail.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a onclick='BankCheckOptDetail.Save()' ><button type="button" class="btn btn-default" >ذخیره</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+ <th  class="Pointer"  ng-click="ChageTableOrder('BankCheckOptId')"  > <span ng-show="((currentOrder=='BankCheckOptId') && (rev) )">V</span> <span ng-show="((currentOrder=='BankCheckOptId') && (!rev) )">^</span>شناسه عملیات</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('OptType')"  > <span ng-show="((currentOrder=='OptType') && (rev) )">V</span> <span ng-show="((currentOrder=='OptType') && (!rev) )">^</span>عملیات</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('OptDate')"  > <span ng-show="((currentOrder=='OptDate') && (rev) )">V</span> <span ng-show="((currentOrder=='OptDate') && (!rev) )">^</span>تاریخ عملیات</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('OptDescr')"  > <span ng-show="((currentOrder=='OptDescr') && (rev) )">V</span> <span ng-show="((currentOrder=='OptDescr') && (!rev) )">^</span>توضیحات</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('CusAccId_title')"  > <span ng-show="((currentOrder=='CusAccId_title') && (rev) )">V</span> <span ng-show="((currentOrder=='CusAccId_title') && (!rev) )">^</span>مشتری</th> 
+ <th  class="Pointer"  ng-click="ChageTableOrder('acc_title')"  > <span ng-show="((currentOrder=='acc_title') && (rev) )">V</span> <span ng-show="((currentOrder=='acc_title') && (!rev) )">^</span>حساب</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td data-label='شناسه عملیات'>{{record.BankCheckOptId}}</td> 
+  <td data-label='عملیات'>
+    <span ng-show="record.OptType=='1'">وصول</span>
+  <span ng-show="record.OptType=='2'">برگشت</span>
+  <span ng-show="record.OptType=='3'">انتقال به حساب</span>
+  <span ng-show="record.OptType=='4'">منتقل شده وصول شده</span>
+  <span ng-show="record.OptType=='5'">خرج</span>
+ </td> 
+   <td data-label='تاریخ عملیات'>
+      <input  type="text"  onkeypress="return blockNonDateNumber(event)" id="OptDate_{{record.rndId}}" ng-change="ChangeState(record);"  created="False" onfocus="if($(this).attr('created')=='False') { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'});  this.focus();  } " data-type="date"   onBlur="ReformatDate(this.id)"  class="form-control"   placeholder="yyyy/mm/dd" max-length="10"    value="{{record.OptDate}}" ng-model="record.OptDate"  ></input>
+ </td> 
+ <td data-label='توضیحات'><input class="form-control" type="text" id="OptDescr_{{record.rndId}}" value="{{record.OptDescr}}" ng-change="ChangeState(record);"  ng-model="record.OptDescr"  /></td> 
+ <td data-label='مشتری'>{{record.CusAccId_title}}</td> 
+ <td data-label='حساب'>{{record.acc_title}}</td> 
+               <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید؟',function(){AjaxActions.BankCheckOptDelete({{record.BankCheckOptId}})});" >لغو</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             BankCheckOptDetail.Serach();
+                      });
+    
+     </script>

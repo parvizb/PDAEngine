@@ -1,0 +1,119 @@
+﻿
+
+ویرایش جنس
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="id_factory" class="col-sm-2 control-label">     <span class="red" >*</span>  کارخانه:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtid_factory" ></select>
+    </div>
+    <label  for="id_product" class="col-sm-2 control-label">     <span class="red" >*</span>  نوع کالا:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtid_product" ></select>
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="stuff_name" class="col-sm-2 control-label">     <span class="red" >*</span>  عنوان:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtstuff_name" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="unit_id" class="col-sm-2 control-label">     <span class="red" >*</span>  شناسه واحد:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtunit_id" ></select>
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="unitbox_id" class="col-sm-2 control-label">     <span class="red" >*</span>  واحد کلی:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtunitbox_id" ></select>
+    </div>
+    <label  for="boxcount" class="col-sm-2 control-label">     <span class="red" >*</span>  تعداد کل به جز:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtboxcount" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+    <label  for="price" class="col-sm-2 control-label">     <span class="red" >*</span>  قیمت:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtprice" placeholder="" />
+                                              </div>
+    <label  for="descr" class="col-sm-2 control-label">     توضیحات:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtdescr" placeholder=""  placeholder="" />
+          
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="includeaddingBill" class="col-sm-2 control-label">     شامل مالیات ارزش افزوده نشود:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtincludeaddingBill" >
+        <option value="0">خیر</option>
+        <option value="1">بله</option>
+      </select>
+    </div>
+  </div>
+    </from>
+  <script>
+                    var id_factory =null;
+                var id_product =null;
+                        var unit_id =null;
+                var unitbox_id =null;
+                                             
+    stuff_Edit.IntForm=function()
+    {
+    
+    document.title='ویرایش جنس';
+    window.fileUploaded=false;
+                                        id_factory=  Select2AjaxInit('txtid_factory',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='stuff_Edit';
+    DataPass.ParaName='id_factory';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                id_product=  Select2AjaxInit('txtid_product',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='stuff_Edit';
+    DataPass.ParaName='id_product';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                        unit_id=  Select2AjaxInit('txtunit_id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='stuff_Edit';
+    DataPass.ParaName='unit_id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                unitbox_id=  Select2AjaxInit('txtunitbox_id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='stuff_Edit';
+    DataPass.ParaName='unitbox_id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                                                                                    
+    }
+    $(document).ready(function () {
+    stuff_Edit.IntForm();
+        stuff_Edit.InitStartValues();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="stuff_Edit.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

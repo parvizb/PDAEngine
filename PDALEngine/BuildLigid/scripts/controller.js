@@ -78,6 +78,9 @@ var currentButton;
     {% if para.source == 'form' -%}
     {% if (para.type == 'Html') -%}
     Entity.Parameters.push( toInput('{{para.name}}',tinymce.editors['txt{{para.name}}'].contentDocument.body.innerHTML));
+    {% elseif (para.type == 'CheckBox') -%}
+    Entity.Parameters.push( toInput('{{para.name}}', $('#txt{{para.name}}').val()) );
+  
     {% else -%}
     Entity.Parameters.push( toInput('{{para.name}}',$('#txt{{para.name}}').val()));
     {% endif -%} 
@@ -87,12 +90,45 @@ var currentButton;
 {% endif -%}
 {% endfor -%}
 ScallerAjax('ScallerSubmit',Entity,function(data){
+
+    {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
+    Messager.ShowMessage('اطلاعات', data.Message + ' شناسه پیگیری : ' + retrunValue );
+    {% else -%}
+    Messager.ShowMessage('اطلاعات', data.Message );
+ 
+    {% endif  -%}
+ 
+  
+ 
+
     Messager.ShowMessage('اطلاعات', data.Message);
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
-    BackPage();
+ 
+        {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
+        BackPage();
+ 
+        {% endif  -%}
+        {% if Page.SubmitBev == 'Back' -%}
+        BackPage();
+        {% endif  -%}
+        {% if Page.SubmitBev == '' -%}
+        BackPage();
+        {% endif  -%}
+        {% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
+        goToLink('#/{{Page.SubmitBevParameter}}');
+        {% endif  -%}
+ 
+        {% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
+        goToLink('#/{{Page.SubmitBevParameter}}/'  + data.retrunValue );
+        {% endif  -%}
+ 
+     
+  
+
+
     $(obj).attr('disabled',false);
     return;
        
@@ -240,7 +276,7 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
     currentScope.records= data.records;
-        
+    setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     {% for tab in  Page.tables -%}
     {% if tab.AutoSelectCond != '' -%}
@@ -335,7 +371,7 @@ else
     BackPage();
 }
                 
-           
+currentScope.$apply();
 return;
           
 },function(data)
@@ -434,6 +470,36 @@ Validator.CheckRegSelect2('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}
 {% endfor -%}
 }
 {% endfor -%}
+{% for c in BC.CommandCustomValidates -%}
+{% if c.For == 'OneTime' -%}
+if (!( {{c.Cond}} ))
+{
+    Messager.errors.push('{{c.Message}}');
+}
+{% endif -%}
+
+{% endfor -%}
+
+for(var l=0;l<currentScope.records.length;l++)
+{ 
+    var record=currentScope.records[l];
+    {% for c in BC.CommandCustomValidates -%}
+    {% if c.For == 'EachRow' -%}
+    if (!( {{c.Cond}} ))
+    {
+        Messager.errors.push('ردیف '  + (l+1).toString() + ':{{c.Message}}');
+    }
+    {% endif -%}
+
+    {% endfor -%}
+
+}
+
+
+
+
+
+
 if (Messager.errors.length!=0)
 {
     Validator.ShowErrors();
@@ -462,7 +528,7 @@ return true;
     rec.push(toInput('{{pa.name}}',Para('{{pa.sourceTypeParameter}}')));
     {% endif -%}
     {% if  pa.sourceType == 'QueryString' -%}
-    rec.push(toInput('{{pa.name}}', routeParams.{{para.sourceTypeParameter}}  ) );
+    rec.push(toInput('{{pa.name}}', routeParams.{{pa.sourceTypeParameter}}  ) );
 {% endif -%}
 {% if  pa.sourceType == 'Expr' -%}
 rec.push(toInput('{{pa.name}}',  {{para.sourceTypeParameter}}  ) );
@@ -497,7 +563,7 @@ rec.push(toInput('{{pa.name}}',Para('{{pa.sourceTypeParameter}}')));
 rec.push(toInput('{{pa.name}}', ( r['{{pa.sourceTypeParameter}}']===undefined ? "": r['{{pa.sourceTypeParameter}}'])  ));
 {% endif -%}
 {% if  pa.sourceType == 'QueryString' -%}
-rec.push(toInput('{{pa.name}}', routeParams.{{para.sourceTypeParameter}}  ) );
+rec.push(toInput('{{pa.name}}', routeParams.{{pa.sourceTypeParameter}}  ) );
 {% endif -%}
 {% if  pa.sourceType == 'Expr' -%}
 rec.push(toInput('{{pa.name}}',  {{para.sourceTypeParameter}}  ) );
@@ -527,7 +593,7 @@ if(currentScope.DeletedRows!==undefined)
         rec.push(toInput('{{pa.name}}', ( r['{{pa.sourceTypeParameter}}']===undefined ? "": r['{{pa.sourceTypeParameter}}'])  ));
         {% endif -%}
         {% if  pa.sourceType == 'QueryString' -%}
-        rec.push(toInput('{{pa.name}}', routeParams.{{para.sourceTypeParameter}}  ) );
+        rec.push(toInput('{{pa.name}}', routeParams.{{pa.sourceTypeParameter}}  ) );
 {% endif -%}
 {% if  pa.sourceType == 'Expr' -%}
 rec.push(toInput('{{pa.name}}',  {{para.sourceTypeParameter}}  ) );
@@ -560,6 +626,7 @@ ScallerAjax('BatchCommand',Enity,function(data){
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
+    ///you are asl
     if(data.code==0)
     {
         {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
@@ -577,7 +644,7 @@ ScallerAjax('BatchCommand',Enity,function(data){
         {% endif  -%}
  
         {% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
-        goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
+        goToLink('#/{{Page.SubmitBevParameter}}/'  + data.retrunValue );
         {% endif  -%}
  
      
@@ -592,7 +659,7 @@ ScallerAjax('BatchCommand',Enity,function(data){
         {% endif -%}
  
         {% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
-        goToLink('#/{{Page.SubmitBevParameter}}/'  + retrunValue );
+        goToLink('#/{{Page.SubmitBevParameter}}/'  + data.retrunValue );
         {% endif -%}
  
     }
@@ -606,3 +673,4 @@ ScallerAjax('BatchCommand',Enity,function(data){
 console.log(JSON.stringify(Enity));
 }
 {% endfor -%}
+

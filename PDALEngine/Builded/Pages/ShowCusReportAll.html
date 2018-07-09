@@ -1,0 +1,87 @@
+﻿عملکرد مشتریان
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="cus_group_id" class="col-sm-2 control-label">     گروه مشتریان:</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtcus_group_id" ></select>
+    </div>
+  </div>
+    </from>
+  <script>
+            var cus_group_id =null;
+             
+    ShowCusReportAll.IntForm=function()
+    {
+    
+    document.title='عملکرد مشتریان';
+    window.fileUploaded=false;
+                cus_group_id=  Select2AjaxInit('txtcus_group_id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='ShowCusReportAll';
+    DataPass.ParaName='cus_group_id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                    
+    }
+    $(document).ready(function () {
+    ShowCusReportAll.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="ShowCusReportAll.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > شناسه مشتری</th> 
+ <th  > نام</th> 
+ <th  > نام خانوادگی</th> 
+ <th  > آدرس</th> 
+ <th  > شماره همراه</th> 
+ <th  > مانده</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+<td data-label='شناسه مشتری'>{{record.cus_acc_id}}</td> 
+ <td data-label='نام'>{{record.cus_fname}}</td> 
+ <td data-label='نام خانوادگی'>{{record.cus_lname}}</td> 
+ <td data-label='آدرس'>{{record.cus_addr}}</td> 
+ <td data-label='شماره همراه'>{{record.cus_mobile}}</td> 
+ <td data-label='مانده'>{{ShowMoney(record.amount)}}</td> 
+              <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

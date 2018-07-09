@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  
   <xs:simpleType name="PageType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="TableView">
@@ -24,6 +26,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
+  
   <xs:simpleType name="YesNo">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Yes">
@@ -34,6 +37,21 @@
       <xs:enumeration value="No">
         <xs:annotation>
           <xs:documentation>خیر</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ForTypeCommand">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OneTime">
+        <xs:annotation>
+          <xs:documentation>یکبار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EachRow">
+        <xs:annotation>
+          <xs:documentation>هردیف</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
@@ -95,6 +113,11 @@
       <xs:enumeration value="Html">
         <xs:annotation>
           <xs:documentation>ویرایشگر html</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Password">
+        <xs:annotation>
+          <xs:documentation>گذرواژه</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="FileInput">
@@ -228,6 +251,20 @@
       <xs:enumeration value="SQLSERVER">
         <xs:annotation>
           <xs:documentation>بانک اطلاعاتی SQL Server</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ChangeBevType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None">
+        <xs:annotation>
+          <xs:documentation>هیج کاری انجام ندهد</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ReCalcExprs">
+        <xs:annotation>
+          <xs:documentation>هیج کاری انجام ندهد</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>
@@ -444,6 +481,11 @@
           <xs:documentation>سشن</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="Expr">
+        <xs:annotation>
+          <xs:documentation>عبارت محاسباتی</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <xs:enumeration value="SpecValue">
         <xs:annotation>
           <xs:documentation>مقادیر و عبارت های خاص</xs:documentation>
@@ -627,6 +669,13 @@
           </xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="RangeValues">
+        <xs:annotation>
+          <xs:documentation>
+           جهت نمایش عدد به صورت عبارت های معنی (مقادیر دارای محدوده)
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <xs:enumeration value="Html">
         <xs:annotation>
           <xs:documentation>
@@ -639,6 +688,13 @@
         <xs:annotation>
           <xs:documentation>
             جهت دریافت بکار می رود
+          </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="RunningTotalValues">
+        <xs:annotation>
+          <xs:documentation>
+           عبارت های دنبال دار محاسباتی
           </xs:documentation>
         </xs:annotation>
       </xs:enumeration>
@@ -720,11 +776,29 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
+
+  <xs:complexType name="BasicElement">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="DPaste">
+          <xs:annotation >
+            <xs:documentation>به کپی برداری از یک المان می پردازند</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="CsQueryPath"  />
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+
   <xs:element name="Application">
     <xs:complexType>
        <xs:annotation><xs:documentation> به تعریف برنامه می پردازد</xs:documentation> </xs:annotation>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="Menu">
+     
           <xs:complexType>
               <xs:annotation><xs:documentation> به تعریف منو می پردازد </xs:documentation> </xs:annotation>
             <xs:choice minOccurs="0" maxOccurs="unbounded" >
@@ -1047,7 +1121,7 @@
                                   <xs:documentation>متن نمایشی </xs:documentation>
                                 </xs:annotation>
                               </xs:attribute>
-                              <xs:attribute name="value" type="xs:unsignedByte" use="required">
+                              <xs:attribute name="value" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>مقدار واقعی </xs:documentation>
                                 </xs:annotation>
@@ -1062,7 +1136,7 @@
                                   <xs:documentation>نوع بررسی </xs:documentation>
                                 </xs:annotation>
                               </xs:attribute>
-                              <xs:attribute name="when" type="xs:string" use="optional">
+                              <xs:attribute name="When" type="xs:string" use="optional">
                                 <xs:annotation>
                                   <xs:documentation>در چه شرایطی این اعتبار سنجی انجام شود</xs:documentation>
                                 </xs:annotation>
@@ -1128,7 +1202,12 @@
                             <xs:documentation>نوع ورودی </xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
-                  
+                        <xs:attribute name="ShowCond" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>شرایط نمایش پارامتر </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+
                         <xs:attribute name="MaxFileSize" type="xs:long" use="optional">
                           <xs:annotation>
                             <xs:documentation>(کلیوبایت) حداکثر اندازه فایل</xs:documentation>
@@ -1177,6 +1256,11 @@
                         <xs:attribute name="DefaultValueSource" type="DefaultValueSourceType" use="optional">
                           <xs:annotation>
                             <xs:documentation>مقدار پیش فرض از کدام منبع بخواند</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="ChangeBev" type="ChangeBevType" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>در زمان تغییر چه عملی را انجام دهد</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
                         <xs:attribute name="DefaultValueParameter" type="xs:string" use="optional">
@@ -1261,6 +1345,31 @@
                        <xs:annotation><xs:documentation>تعریف دسته های دستور  جهت اجرا </xs:documentation> </xs:annotation>
                       <xs:complexType>
                         <xs:choice minOccurs="0" maxOccurs="unbounded">
+                          <xs:element minOccurs="0" name="CommandCustomValidate">
+                            <xs:complexType>
+                              <xs:annotation>
+                                <xs:documentation> اعتبار سنجی های سفارشی </xs:documentation>
+                              </xs:annotation>
+                              <xs:attribute name="Cond" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>شرایطی که بایستی برقرار باشد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="For" type="ForTypeCommand" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>شرایطی که بایستی برقرار باشد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="Message" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>متن خطایی که در برقرار نبودن شرایط نمایش می دهد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+
+
+
                           <xs:element name="Command" maxOccurs="unbounded" minOccurs="0">
                             <xs:complexType>
                                <xs:annotation><xs:documentation>تعریف یک دستور در دسته دستورات </xs:documentation> </xs:annotation>
@@ -1305,6 +1414,7 @@
                                         <xs:documentation>منبع برای مقدار پیش فرض</xs:documentation>
                                       </xs:annotation>
                                     </xs:attribute>
+                                    
                                     <xs:attribute name="DefaultValueParameter" type="xs:string" use="optional">
                                       <xs:annotation>
                                         <xs:documentation>پارامتر مربوط به مقدار پیش فرض</xs:documentation>
@@ -1457,6 +1567,89 @@
             </xs:choice>
           </xs:complexType>
         </xs:element>
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="action">
+                <xs:complexType>
+                   <xs:annotation><xs:documentation> تعریف اقدام ajax </xs:documentation> </xs:annotation>
+                  <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="actionParameter">
+                      <xs:complexType>
+                         <xs:annotation><xs:documentation>تعریف پارامتر های ajax </xs:documentation> </xs:annotation>
+                        <xs:attribute name="name" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>نام پارامتر در روال بانک اطلاعاتی</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="type" type="actionParameterType" use="required">
+                          <xs:annotation>
+                            <xs:documentation>نوع پارامتر</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Parameter" type="xs:string" use="required">
+                          <xs:annotation>
+                            <xs:documentation>عنوان پارامتر در جاوا اسکپریت</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:choice>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>نام اقدام آچاکس</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="DBCommand" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>نام روال بانک اطلاعاتی مورد نیاز</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="PerKey" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>نام مجوز نیاز</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+        <xs:element name="Notifaction" minOccurs="0" maxOccurs="unbounded" >
+          <xs:complexType >
+            <xs:attribute name="name" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>نام اعلان</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="AjaxActionName" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>نام اقدام آژاکس</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="TimeFire" type="xs:unsignedInt" use="required">
+              <xs:annotation>
+                <xs:documentation>هر چند دقیقه اجرا شود</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Message" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>پیغام زمان اعلان</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="PageName" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>صفحه مورد نظر</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ParameterSyntax" type="xs:string" use="optional">
+              <xs:annotation>
+                <xs:documentation>روال ارسال مقدار </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="returnSyntax" type="xs:string" use="required">
+              <xs:annotation>
+                <xs:documentation>روال برگردان مقدار </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+          
+          
+        </xs:element>
         <xs:element name="Include" minOccurs="0" maxOccurs="unbounded" >
           <xs:complexType>
              <xs:annotation><xs:documentation> ترکیب کردن یک فایل config دیگر </xs:documentation> </xs:annotation>
@@ -1518,6 +1711,11 @@
       <xs:attribute name="ConnectionSetthing" type="xs:string" use="required">
         <xs:annotation>
           <xs:documentation>رشته اتصال بانک اطلاعاتی</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CopyRightMessage" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>متن کپی رایت</xs:documentation>
         </xs:annotation>
       </xs:attribute>
     </xs:complexType>

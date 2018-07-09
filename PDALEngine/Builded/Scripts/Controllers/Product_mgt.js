@@ -1,11 +1,11 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
-var Product_mgt=new Object();
+var product_mgt=new Object();
 var currentButton;
-Product_mgt.sendFiles=  function()
+product_mgt.sendFiles=  function()
 {
     var data = new FormData();
  
-                                        $('#loadingBar').show();
+        $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -21,7 +21,7 @@ Product_mgt.sendFiles=  function()
             window.fileUploaded=true;
             $('#loadingBar').hide();
             $('#fileStatus').hide();
-            Product_mgt.Submit(currentButton);
+            product_mgt.Submit(currentButton);
         } else {
             if((xhr.status==500) && (xhr.readyState == 4))
             {
@@ -36,63 +36,65 @@ Product_mgt.sendFiles=  function()
          
         }
     };
-    xhr.open('POST', "Home/SendFiles?PageName=Product_mgt");
+    xhr.open('POST', "Home/SendFiles?PageName=product_mgt");
     // xhr.setRequestHeader("Content-type", "multipart/form-data");
     xhr.send(data);
 }
 
 
-   Product_mgt.Submit= function(obj)
-   {
-       currentButton=obj;
-       $(obj).attr('disabled',true);
-       if(Product_mgt.Validate()==false)
-       {
-           $(obj).attr('disabled',false);
-           return ;
-       }
-              var Entity=new Object();
-       Entity.PageName='Product_mgt';
-       Entity.Parameters=new Array();
-       Entity.Parameters.push( toInput('ProductId',$('#txtProductId').val()));
+product_mgt.Submit= function(obj)
+{
+    currentButton=obj;
+    $(obj).attr('disabled',true);
+    if(product_mgt.Validate()==false)
+    {
+        $(obj).attr('disabled',false);
+        return ;
+    }
+        var Entity=new Object();
+    Entity.PageName='product_mgt';
+    Entity.Parameters=new Array();
+    ScallerAjax('ScallerSubmit',Entity,function(data){
 
-              Entity.Parameters.push( toInput('ProductName',$('#txtProductName').val()));
+        Messager.ShowMessage('اطلاعات', data.Message );
+ 
+     
+  
+ 
 
-              Entity.Parameters.push( toInput('ProductTypeId',$('#txtProductTypeId').val()));
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+ 
+                                BackPage();
+                 
+         
+     
+  
 
-              Entity.Parameters.push( toInput('FactoryId',$('#txtFactoryId').val()));
 
-               ScallerAjax('ScallerSubmit',Entity,function(data){
-       Messager.ShowMessage('اطلاعات', data.Message);
-       if(JsEventInterface.AfterOkReqSubmit!=null)
-       {
-           JsEventInterface.AfterOkReqSubmit(Entity,data);
-       }
-       BackPage();
-       $(obj).attr('disabled',false);
-       return;
+    $(obj).attr('disabled',false);
+    return;
        
-       },function(data)
-       {
-           $(obj).attr('disabled',false);
-           return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
 
-       });
-   };
-Product_mgt.Validate= function()
+});
+};
+product_mgt.Validate= function()
 {
     Validator.ClearErrors();
-        
     
-    
-    
-
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
         return false ;
     }
-
+    
     if(Messager.errors.length!=0)
     {
 
@@ -104,53 +106,264 @@ Product_mgt.Validate= function()
     return Messager.errors.length==0;
 }
 
-Product_mgt.Serach=function(obj)
+
+product_mgt.Serach=function(obj)
 {
     $(obj).attr('disabled',true);
-    if(Product_mgt.Validate()==false)
+    if(product_mgt.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
 
-    window.CurrentSerachMethod=Product_mgt.Serach;
+    window.CurrentSerachMethod=product_mgt.Serach;
     var Entity=new Object();
-    Entity.PageName='Product_mgt';
+    Entity.PageName='product_mgt';
     Entity.Parameters=new Array();
-    Entity.Parameters.push( toInput('ProductId',$('#txtProductId').val()));
-
-    Entity.Parameters.push( toInput('ProductName',$('#txtProductName').val()));
-
-    Entity.Parameters.push( toInput('ProductTypeId',$('#txtProductTypeId').val()));
-
-    Entity.Parameters.push( toInput('FactoryId',$('#txtFactoryId').val()));
-
- 
-    TableViewAjax('getTableViewRecords',Entity,function(data){
+     
+TableViewAjax('getTableViewRecords',Entity,function(data){
           
-        currentScope.records= data.records;
-        
-        currentScope.$apply(function(){});
-                                $('[type="Select2Ajax"]').each(function(){
-            $(this).val($(this).attr('valc'));
-
-        });
-        NormalResult();
-        
-        $(obj).attr('disabled',false);
-        return;
-          
-    },function(data)
-    {
-        $(obj).attr('disabled',false);
-        return;
+    currentScope.records= data.records;
+    setTimeout(StoreCache, 200);
+    currentScope.$apply(function(){});
+                $('[type="Select2Ajax"]').each(function(){
+        $(this).val($(this).attr('valc'));
 
     });
+    NormalResult();
+        
+    $(obj).attr('disabled',false);
+    return;
+          
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+
+});
 
 
 }
 
 
 
-///Hi ...
-///
+product_mgt.InsertRecord=function()
+{
+    var temp=new Object();
+    temp.RowState='Added';
+    temp.selected = false;
+    temp.rndId = Math.round(Math.random() * 99999999999999);
+        currentScope.records.push(temp);
+    currentScope.$apply();
+                                    
+}
+
+product_mgt.Save_Validate=function()
+{
+    Validator.ClearErrors();
+                                                                                                    for (var l=0;l<currentScope.records.length;l++)
+    {
+        var r=currentScope.records[l];
+
+        if(r.RowState !='Added'){
+    continue;
+}
+   
+Validator.CheckEmpty('product_name_' + r.rndId,'عنوان کالا',r.viewIndex+1);
+}
+    for (var l=0;l<currentScope.records.length;l++)
+    {
+        var r=currentScope.records[l];
+
+        if(r.RowState !='Changed'){
+    continue;
+}
+   
+Validator.CheckEmpty('product_id_' + r.rndId,'شناسه کالا',r.viewIndex+1);
+   
+Validator.CheckEmpty('product_name_' + r.rndId,'عنوان کالا',r.viewIndex+1);
+}
+    for (var l=0;l<currentScope.records.length;l++)
+    {
+        var r=currentScope.records[l];
+
+        if(r.RowState !='Deleted'){
+    continue;
+}
+   
+Validator.CheckEmpty('product_id_' + r.rndId,'شناسه کالا',r.viewIndex+1);
+}
+
+for(var l=0;l<currentScope.records.length;l++)
+{ 
+    var record=currentScope.records[l];
+    
+}
+
+
+
+
+
+
+if (Messager.errors.length!=0)
+{
+    Validator.ShowErrors();
+    return false;
+}
+return true;
+}
+product_mgt.Save=function()
+{ 
+    if(  product_mgt.Save_Validate()==false)
+    {
+        return ;
+    }
+    var DataPass=new Array();
+        var t=new Array();
+    var  informationRecords=new Array()
+    var NullFix=new Array();
+    NullFix.push(toInput('fake',Para('fake')));
+    informationRecords.push(NullFix);
+    for (var l=0;l<currentScope.records.length;l++)
+{
+    var r=currentScope.records[l];
+
+    if(r.RowState !='Added'){
+    continue;
+}
+var rec=new Array();//hi
+
+
+rec.push(toInput('product_name', ( r['product_name']===undefined ? "": r['product_name'])  ));
+informationRecords.push(rec);
+}
+
+if(currentScope.DeletedRows!==undefined)
+{
+    for (var l=0;l<currentScope.DeletedRows.length;l++)
+    {
+        var r=currentScope.DeletedRows[l];
+
+     
+                if(r.RowState !='Added'){
+            continue;
+        }
+                var rec=new Array();//hi
+                                rec.push(toInput('product_name', ( r['product_name']===undefined ? "": r['product_name'])  ));
+                informationRecords.push(rec);
+}
+}
+t.push(informationRecords);
+DataPass.push(t);
+    var t=new Array();
+    var  informationRecords=new Array()
+    var NullFix=new Array();
+    NullFix.push(toInput('fake',Para('fake')));
+    informationRecords.push(NullFix);
+    for (var l=0;l<currentScope.records.length;l++)
+{
+    var r=currentScope.records[l];
+
+    if(r.RowState !='Changed'){
+    continue;
+}
+var rec=new Array();//hi
+
+
+rec.push(toInput('product_id', ( r['product_id']===undefined ? "": r['product_id'])  ));
+
+rec.push(toInput('product_name', ( r['product_name']===undefined ? "": r['product_name'])  ));
+informationRecords.push(rec);
+}
+
+if(currentScope.DeletedRows!==undefined)
+{
+    for (var l=0;l<currentScope.DeletedRows.length;l++)
+    {
+        var r=currentScope.DeletedRows[l];
+
+     
+                if(r.RowState !='Changed'){
+            continue;
+        }
+                var rec=new Array();//hi
+                                rec.push(toInput('product_id', ( r['product_id']===undefined ? "": r['product_id'])  ));
+                                        rec.push(toInput('product_name', ( r['product_name']===undefined ? "": r['product_name'])  ));
+                informationRecords.push(rec);
+}
+}
+t.push(informationRecords);
+DataPass.push(t);
+    var t=new Array();
+    var  informationRecords=new Array()
+    var NullFix=new Array();
+    NullFix.push(toInput('fake',Para('fake')));
+    informationRecords.push(NullFix);
+    for (var l=0;l<currentScope.records.length;l++)
+{
+    var r=currentScope.records[l];
+
+    if(r.RowState !='Deleted'){
+    continue;
+}
+var rec=new Array();//hi
+
+
+rec.push(toInput('product_id', ( r['product_id']===undefined ? "": r['product_id'])  ));
+informationRecords.push(rec);
+}
+
+if(currentScope.DeletedRows!==undefined)
+{
+    for (var l=0;l<currentScope.DeletedRows.length;l++)
+    {
+        var r=currentScope.DeletedRows[l];
+
+     
+                if(r.RowState !='Deleted'){
+            continue;
+        }
+                var rec=new Array();//hi
+                                rec.push(toInput('product_id', ( r['product_id']===undefined ? "": r['product_id'])  ));
+                informationRecords.push(rec);
+}
+}
+t.push(informationRecords);
+DataPass.push(t);
+var Enity=new Object();
+Enity.PageName='product_mgt';
+Enity.CommandName='Save';
+Enity.records=DataPass;
+ScallerAjax('BatchCommand',Enity,function(data){
+        Messager.ShowMessage('اطلاعات', data.Message );
+ 
+     
+  
+ 
+
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    ///you are asl
+    if(data.code==0)
+    {
+                                BackPage();
+                 
+         
+     
+                        BackPage();
+                 
+         
+    }
+    $(obj).attr('disabled',false);
+    return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+});
+console.log(JSON.stringify(Enity));
+}
+

@@ -1,0 +1,148 @@
+﻿مدیریت پرداختی ها
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="payment_id" class="col-sm-2 control-label">     شناسه پرداخت:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtpayment_id" placeholder="" />
+                                        </div>
+    <label  for="payment_amount" class="col-sm-2 control-label">     مبلغ پرداختی:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtpayment_amount" placeholder="" />
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="cus_id" class="col-sm-2 control-label">     کد مشتری :</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtcus_id" ></select>
+    </div>
+    <label  for="dis_amount" class="col-sm-2 control-label">     مبلغ تخفیف:</label>
+    <div   class="col-sm-4">
+    
+            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtdis_amount" placeholder="" />
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="payment_Date_start" class="col-sm-2 control-label">     تاریخ شروع:</label>
+    <div   class="col-sm-4">
+    
+                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtpayment_Date_start')"  class="form-control" id="txtpayment_Date_start" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+    <label  for="payment_Date_end" class="col-sm-2 control-label">     تاریخ پایان:</label>
+    <div   class="col-sm-4">
+    
+                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtpayment_Date_end')"  class="form-control" id="txtpayment_Date_end" placeholder="yyyy/mm/dd" max-length="10" ></input>
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="descr" class="col-sm-2 control-label">     توضیحات:</label>
+    <div   class="col-sm-4">
+      <input type="text"   class="form-control" id="txtdescr" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="acc_id" class="col-sm-2 control-label">     کد حساب محل پرداخت :</label>
+    <div   class="col-sm-4">
+    
+                                                <select class="form-control" id="txtacc_id" ></select>
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                            var cus_id =null;
+                                                var acc_id =null;
+             
+    payment_Serach.IntForm=function()
+    {
+    
+    document.title='مدیریت پرداختی ها';
+    window.fileUploaded=false;
+                                                                cus_id=  Select2AjaxInit('txtcus_id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='payment_Serach';
+    DataPass.ParaName='cus_id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                            kamaDatepicker('txtpayment_Date_start', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                kamaDatepicker('txtpayment_Date_end', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                    acc_id=  Select2AjaxInit('txtacc_id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='payment_Serach';
+    DataPass.ParaName='acc_id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                    
+    }
+    $(document).ready(function () {
+    payment_Serach.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="payment_Serach.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a href='#/payment_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th>ردیف</th>
+ <th  > شناسه پرداخت</th> 
+ <th  > مبلغ پرداختی</th> 
+ <th  > کد مشتری </th> 
+ <th  > مبلغ تخفیف</th> 
+ <th  > مجموع</th> 
+ <th  > تاریخ</th> 
+ <th  > توضیحات</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+<td data-label="ردیف">{{$index+1}}</td>
+<td data-label='شناسه پرداخت'>{{record.payment_id}}</td> 
+ <td data-label='مبلغ پرداختی'>{{ShowMoney(record.payment_amount)}}</td> 
+ <td data-label='کد مشتری '>{{record.cus_id}}</td> 
+ <td data-label='مبلغ تخفیف'>{{ShowMoney(record.dis_amount)}}</td> 
+ <td data-label='مجموع'>{{ShowMoney(Num(record.payment_amount)+Num(record.dis_amount))}}</td> 
+ <td data-label='تاریخ'>{{record.payment_Date}}</td> 
+ <td data-label='توضیحات'>{{record.descr}}</td> 
+                <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a href="#/payment_Edit/{{record.payment_id}}" >ویرایش</a></li> 
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.payment_Delete('{{record.payment_id}}')});" >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

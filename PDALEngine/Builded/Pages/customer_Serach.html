@@ -1,0 +1,142 @@
+﻿مدیریت مشتریان
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="cus_acc_id" class="col-sm-2 control-label">     شناسه مشتری:</label>
+    <div   class="col-sm-2">
+    
+            <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtcus_acc_id" placeholder="" />
+                                        </div>
+    <label  for="cus_fname" class="col-sm-2 control-label">     نام:</label>
+    <div   class="col-sm-2">
+      <input type="text"   class="form-control" id="txtcus_fname" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="cus_lname" class="col-sm-2 control-label">     نام خانوادگی:</label>
+    <div   class="col-sm-2">
+      <input type="text"   class="form-control" id="txtcus_lname" placeholder=""  placeholder="" />
+          
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="cus_addr" class="col-sm-2 control-label">     آدرس:</label>
+    <div   class="col-sm-2">
+      <input type="text"   class="form-control" id="txtcus_addr" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="cus_phone" class="col-sm-2 control-label">     شماره تلفن:</label>
+    <div   class="col-sm-2">
+      <input type="text"   class="form-control" id="txtcus_phone" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="cus_mobile" class="col-sm-2 control-label">     شماره همراه:</label>
+    <div   class="col-sm-2">
+      <input type="text"   class="form-control" id="txtcus_mobile" placeholder=""  placeholder="" />
+          
+                                              </div>
+     </div>
+     <div class="form-group">
+    <label  for="cus_group_id" class="col-sm-2 control-label">     گروه مشتریان:</label>
+    <div   class="col-sm-2">
+    
+                                                <select class="form-control" id="txtcus_group_id" ></select>
+    </div>
+    <label  for="cus_descr" class="col-sm-2 control-label">     توضیحات:</label>
+    <div   class="col-sm-2">
+      <input type="text"   class="form-control" id="txtcus_descr" placeholder=""  placeholder="" />
+          
+                                              </div>
+    <label  for="cus_remainBefore" class="col-sm-2 control-label">     مانده از قبل:</label>
+    <div   class="col-sm-2">
+    
+            <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtcus_remainBefore" placeholder="" />
+                                        </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                                                            var cus_group_id =null;
+                             
+    customer_Serach.IntForm=function()
+    {
+    
+    document.title='مدیریت مشتریان';
+    window.fileUploaded=false;
+                                                                                                                                                                cus_group_id=  Select2AjaxInit('txtcus_group_id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='customer_Serach';
+    DataPass.ParaName='cus_group_id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                                    
+    }
+    $(document).ready(function () {
+    customer_Serach.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="customer_Serach.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a href='#/customer_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > شناسه مشتری</th> 
+ <th  > نام</th> 
+ <th  > نام خانوادگی</th> 
+ <th  > آدرس</th> 
+ <th  > شماره تلفن</th> 
+ <th  > شماره همراه</th> 
+ <th  > گروه مشتریان</th> 
+ <th  > توضیحات</th> 
+ <th  > مانده از قبل</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+<td data-label='شناسه مشتری'>{{record.cus_acc_id}}</td> 
+ <td data-label='نام'>{{record.cus_fname}}</td> 
+ <td data-label='نام خانوادگی'>{{record.cus_lname}}</td> 
+ <td data-label='آدرس'>{{record.cus_addr}}</td> 
+ <td data-label='شماره تلفن'>{{record.cus_phone}}</td> 
+ <td data-label='شماره همراه'>{{record.cus_mobile}}</td> 
+ <td data-label='گروه مشتریان'>{{record.cus_group_id}}</td> 
+ <td data-label='توضیحات'>{{record.cus_descr}}</td> 
+ <td data-label='مانده از قبل'>{{record.cus_remainBefore}}</td> 
+                <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a href="#/customer_Edit/{{record.cus_acc_id}}" >ویرایش</a></li> 
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.customer_Delete('{{record.cus_acc_id}}')});" >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

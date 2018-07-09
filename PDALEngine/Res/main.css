@@ -3,6 +3,10 @@
     direction:rtl;
     padding: 5px;
     text-align: center;
+    font-size:small !important;
+}
+table {
+    font-size:small !important;
 }
 @font-face {
     font-family: 'vazir';
@@ -108,23 +112,29 @@ z-index:100;
 
 }
 
+select   {
+width:80% !important;
+}
+
+
+
  @media screen and (max-width: 640px) {
   table {
     
   }
-  table thead tr {
+  .table thead tr {
     position: absolute;
     top: -9999em;
     left: -9999em;
   }
-  table tr {
+  .table tr {
     border: 1px solid #0a0a0a;
     display: block;
   }
-  table tr + tr {
+  .table tr + tr {
     margin-top: 1.5rem;
   }
-  table td {
+  .table td {
     border: none;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -139,10 +149,13 @@ z-index:100;
     padding-left: 50%;
     position: relative;
   }
-    table td .form-control {
+    .table-responsive {
+    overflow:visible;
+    }
+    .table td .form-control {
      width:50% !important;
     }
-  table td:before {
+  .table td:before {
     content: attr(data-label);
     display: inline-block;
     font-weight: bold;
