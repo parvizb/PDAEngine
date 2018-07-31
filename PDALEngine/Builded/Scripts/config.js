@@ -595,6 +595,29 @@ function ($routeProvider/*, $locationProvider*/) {
         templateUrl: 'ShowPerInRole.htm',
         controller: 'mainController'
         }).
+                
+    when('/Service_mgt', {
+        templateUrl: 'Service_mgt.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/ServiceFactor_Serach', {
+        templateUrl: 'ServiceFactor_Serach.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/ServiceFactor_Insert', {
+        templateUrl: 'ServiceFactor_Insert.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/ServiceFactor_Edit/:ServiceFactorId', {
+        templateUrl: 'ServiceFactor_Edit.htm',
+        controller: 'mainController'
+        }).
                 when('/welcome', {
         templateUrl: 'welcome.html',
         controller: 'mainController'}

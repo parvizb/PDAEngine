@@ -1,0 +1,240 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.App.Title</title>
+        <script src="~/Res/jquery-3.2.1.min.js"></script>
+    
+    <link href="~/Res/bootstrap@(ViewBag.App.Theme==""?"":("."+ViewBag.App.Theme)).min.css" rel="stylesheet" />
+   
+    <script src="~/Res/bootstrap.min.js"></script>
+    <link href="~/Res/bootstrap-rtl.min.css" rel="stylesheet" />
+    <script src="~/Res/angular.min.js"></script>
+    <script src="~/Res/angular-route.min.js"></script>
+    <link href="~/Res/main.css" rel="stylesheet" />
+      <link href="~/Res/select2.min.css" rel="stylesheet" />
+     <script src="~/Res/toolkit.js"></script>
+     <script src="~/Res/kamadatepicker.min.js"></script>
+        <script src="~/Res/select2.min.js"></script>
+    <link href="~/Res/kamadatepicker.min.css" rel="stylesheet" />
+    <script src="~/tinymce/tinymce.min.js"></script>
+    <link href="~/Res/colorpicker.css" rel="stylesheet" />
+    <script src="~/Res/colorpicker.js"></script>
+    
+    <script src="~/customJavaScript.js"></script>
+    <script>
+        window.confirmFun = null;
+    </script>
+</head>
+<body ng-app="@ViewBag.App.Name"   >
+<div id="loadingBar" class="loadingBar" style="display:none" ></div>
+<div id="fileStatus" class="progress progress-striped" style="display:none">
+ <div id="progessStatus" class="progress-bar progress-bar-info" role="progressbar"
+ aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+ style="width: 30%;">
+ <span class="sr-only">در حال ارسال فایل ها </span>
+ </div>
+</div>
+
+<nav class="NotPrintable navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">@ViewBag.App.Title</a>
+      <button data-toggle="collapse" class="btn visible-xs " data-target="#menu">...</button>
+    </div>
+<ul class="nav navbar-nav" class="collapse" id="menu">
+
+ 
+@foreach(var  menu in  ViewBag.App.Menus) {
+foreach(var item in  menu.Items ){
+  if ((item.Type != "PDATextboxLink") && ((item.PerKey == "") || (PDALEngine.PDALSect.GetCheckPer(item.PerKey, null, null)==PDALEngine.PDALSect.AccessResult.Permitted)))
+  {
+      @:<li @if (item.SubItems.Count > 0) {<text> class="dropdown"</text> }><a @if (item.SubItems.Count > 0) {<text>  class="dropdown-toggle" data-toggle="dropdown"  </text> } @if((item.Type=="Link") || (item.Type=="PDALink")){<text>
+          href="@((item.Type=="Link"?item.link:"#/"+ item.link))" 
+          </text>} @if((item.Type=="JavaScript") || (item.Type=="LogOut")){<text>
+          onclick="@((item.Type=="JavaScript"?item.link:"LogOut()"))" 
+          </text>} > @if (item.SubItems.Count>0) { <text><b class="caret"></b></text> }  @(item.text) </a> @if (item.SubItems.Count > 0) {<text><ul class="dropdown-menu">@foreach (var mitem in item.SubItems)
+                                                                                                                                                                          {
+                                                                                                                                                                              if ((mitem.PerKey == "") || (PDALEngine.PDALSect.GetCheckPer(mitem.PerKey, null, null) == PDALEngine.PDALSect.AccessResult.Permitted))
+                                                                                                                                                                              {  <text><li  ><a @if ((mitem.Type == "Link") || (mitem.Type == "PDALink"))
+                                                                                                                                                                                                                                                                                                                              {<text>
+          href="@((mitem.Type == "Link" ? mitem.link : "#/" + mitem.link))" 
+          </text>} @if ((mitem.Type == "JavaScript") || (mitem.Type == "LogOut"))
+                   {<text>
+          onclick="@((mitem.Type == "JavaScript" ? mitem.link : "LogOut()"))"</text>} >@mitem.text</a></li></text>}
+                                                                                                                                                                          }</ul></text> }</li>
+         
+  }
+
+      if (item.Type == "PDATextboxLink")
+      {
+<text>
+    <form class="navbar-form navbar-left" role="search"> 
+<div class="form-group">
+<input type="text" class="form-control" onkeyup="GoValuePage(event,this.value,'@item.link')" placeholder="@item.placeholder">
+</div></form>
+</text>
+      }
+}
+}
+</ul>
+</div>
+</nav>
+    <div ng-view>
+    </div>
+    @ViewBag.App.CopyRightMessage
+     @foreach (var pages in ViewBag.App.Pagess)
+     {
+         foreach (var Page in pages._Pages)
+         {
+            <text>
+             <script type="text/ng-template" id="@(Page.name).htm" >
+             <div ng-include="'Builded/Pages/@(Page.name).html'"></div>
+            </script>
+           </text>}}
+       <script src="~/builded/scripts/config.js"></script>
+          @foreach (var pages in ViewBag.App.Pagess)
+          {
+              foreach (var Page in pages._Pages)
+              {
+                    <text>
+              <script src="~/Builded/Scripts/Controllers/@(Page.name).js"></script>
+           </text>
+              }
+          }
+      
+    <script src="~/builded/scripts/AjaxActions.js"></script>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+</button>
+<h4 class="modal-title" id="myModalLabel">
+ 
+</h4>
+</div>
+<div class="modal-body">
+ 
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default"
+data-dismiss="modal">تایید
+</button>
+
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+
+ 
+        <div class="modal fade" id="DInputBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+</button>
+<h4 class="modal-title" id="DInputBoxTitle">
+ 
+</h4>
+</div>
+<div class="modal-body" name="inputBody">
+ 
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default"
+data-dismiss="modal">انصراف
+</button>
+<button type="button" class="btn btn-default"
+data-dismiss="modal" onclick ="window.confirmInputBox();">تایید
+</button>
+
+
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+ 
+
+
+  <div class="modal fade" id="myModalYesNo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+</button>
+<h4 class="modal-title" id="myModalLabel">
+ 
+</h4>
+</div>
+<div class="modal-body">
+ 
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default"
+data-dismiss="modal">خیر
+</button>
+    <button type="button" class="btn btn-default"
+data-dismiss="modal" onclick="window.confirmFun()">بله
+</button>
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+</button>
+<h4 class="modal-title" id="myModalLabel">
+ 
+</h4>
+</div>
+<div class="modal-body">
+ 
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default"
+data-dismiss="modal">تایید
+</button>
+
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+
+  <div class="modal fade" id="myModelSendingFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+</button>
+<h4 class="modal-title" id="myModalLabel">
+ 
+</h4>
+</div>
+<div class="modal-body">
+   <label id="filePos"></label>
+</div>
+<div class="modal-footer">
+ 
+</div>
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+
+
+
+   
+</div>
+   <script>
+   @foreach (Notifaction n in ViewBag.App.Notifactions)
+   {
+     @("Not_"+n.name +"();");
+
+   }
+
+   </script>
+    </body>
+</html>

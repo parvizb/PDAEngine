@@ -305,6 +305,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Home\Login.cshtml" />
+    <None Include="Properties\PublishProfiles\1.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Builded\Pages\" />

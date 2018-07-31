@@ -1,0 +1,5 @@
+﻿@ViewBag.Page.title
+<hr />
+@{Html.RenderPartial("~\\Views\\Home\\Parameters.cshtml")}
+<button type="button" class="btn btn-primary" onclick="{{Page.name}}.Submit(this)">تایید</button>
+<button type="button" class="btn btn-warning" onclick="BackPage()">بازگشت</button>

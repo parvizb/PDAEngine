@@ -1377,3 +1377,89 @@ AjaxActions.User_Delete_asTable =function(func,   UserId)
    
 }
 
+AjaxActions.ServiceFactor_Delete =function(   ServiceFactorId)
+{ 
+    var Entity=new Object();
+    Entity.actionName='ServiceFactor_Delete';
+    Entity.Parameters=new Array();
+    if(JsEventInterface.BeforeInitAjaxAction!=null)
+    {
+        JsEventInterface.BeforeInitAjaxAction(Entity);
+
+    }
+      Entity.Parameters.push( toInput('ServiceFactorId' ,ServiceFactorId));
+      if(JsEventInterface.AfterInitAjaxAction!=null)
+   {
+       JsEventInterface.AfterInitAjaxAction(Entity);
+
+   }
+   ScallerAjax('AjaxAction',Entity,function(data){
+       if(JsEventInterface.BeforeOkReqInitAjaxAction!=null)
+       {
+           JsEventInterface.BeforeOkReqInitAjaxAction(Entity,data);
+
+       }
+       Messager.ShowMessage('اطلاعات', data.Message);
+       if(window.CurrentSerachMethod!=null)
+       {
+           window.CurrentSerachMethod();
+       }
+       if(JsEventInterface.AfterOkReqInitAjaxAction!=null)
+       {
+           JsEventInterface.AfterOkReqInitAjaxAction(Entity,data);
+
+       }
+       return;
+          
+   },function(data) 
+   {
+       if(JsEventInterface.BeforeFailReqInitAjaxAction!=null)
+       {
+           JsEventInterface.BeforeFailReqInitAjaxAction(Entity,data);
+
+       }
+      
+       Messager.ShowMessage('خطا', data);
+       return;
+
+   });
+   
+}
+AjaxActions.ServiceFactor_Delete_asTable =function(func,   ServiceFactorId)
+{ 
+    var Entity=new Object();
+    Entity.actionName='ServiceFactor_Delete';
+    Entity.Parameters=new Array();
+    if(JsEventInterface.BeforeInitAjaxAction!=null)
+    {
+        JsEventInterface.BeforeInitAjaxAction(Entity);
+
+    }
+        Entity.Parameters.push( toInput('ServiceFactorId' ,ServiceFactorId));
+        if(JsEventInterface.AfterInitAjaxAction!=null)
+    {
+        JsEventInterface.AfterInitAjaxAction(Entity);
+
+    }
+    TableViewAjax('AjaxActionTable',Entity,function(data){
+        if(JsEventInterface.BeforeOkReqInitAjaxAction!=null)
+        {
+            JsEventInterface.BeforeOkReqInitAjaxAction(Entity,data);
+
+        }
+        func(data.records);
+        return;
+          
+    },function(data) 
+    {
+        if(JsEventInterface.BeforeFailReqInitAjaxAction!=null)
+        {
+            JsEventInterface.BeforeFailReqInitAjaxAction(Entity,data);
+
+        }
+        return;
+
+    });
+   
+}
+

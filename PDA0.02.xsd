@@ -264,7 +264,7 @@
       </xs:enumeration>
       <xs:enumeration value="ReCalcExprs">
         <xs:annotation>
-          <xs:documentation>هیج کاری انجام ندهد</xs:documentation>
+          <xs:documentation>همه محاسبات آنلاگر مجددا محاسبه کند</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
     </xs:restriction>

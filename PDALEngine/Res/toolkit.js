@@ -153,7 +153,7 @@ Validator.CheckRegSelect2 = function (id, caption,row) {
 }
 function BackPage() {
 
-    window.history.back(-1);
+    window.history.back(0);
     setTimeout(LoadCache, 1000);
 }
 

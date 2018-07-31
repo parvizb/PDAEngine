@@ -1490,7 +1490,15 @@ namespace PDALEngine
         public static Page FindPage(string name)
         {
 
+            if (PDAL.PageAccess == null)
+            {
+                if (PDAL.loaded == false)
+                {
 
+                    PDAL.load();
+                }
+
+            }
 
             return PDAL.PageAccess[name];
 

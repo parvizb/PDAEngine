@@ -49,7 +49,7 @@ namespace PDALEngine.Controllers
                 p.key="UserId";
                 p.value=txtUserId;
                 Lis.Add(p);
-                   p =new inputParameter();
+                p =new inputParameter();
                 p.key="Password";
                 p.value=Convertor.Encrypt(txtPassword,txtPassword);
                 Lis.Add(p);
@@ -115,14 +115,16 @@ namespace PDALEngine.Controllers
             {
                 if (needToBuildFiles == true)
                 {
+
+                     
                     PDAL.load();
                 }
 
             }
             if (needToBuildFiles)
             {
-                PDAL.BuildApp();
-               System.IO.File.WriteAllText(Server.MapPath("~/builded.dat"), ""); 
+              PDAL.BuildApp();
+              System.IO.File.WriteAllText(Server.MapPath("~/builded.dat"), ""); 
             }
           
          // nodes = Xml.GetElementsByTagName("xs:element" );

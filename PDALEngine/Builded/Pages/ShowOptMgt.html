@@ -103,7 +103,7 @@
  <td data-label='حساب'>{{record.Acc}}</td> 
  <td data-label='عنوان مشتری'>{{record.CusAcc}}</td> 
  <td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
-                      <td data-label=''>
+                       <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">
@@ -118,6 +118,7 @@
  <li ng-show='(record.p==5)' ><a href="#/moveStorage_Edit/{{record.id}}" >مشاهده انتقال انبار</a></li> 
  <li ng-show='(record.p==5)' ><a href="#/moveDetail_mgt/{{record.id}}" >جزییات انتقال انبار</a></li> 
  <li ng-show='(record.p==6)' ><a href="#/MoveAcc_Edit/{{record.id}}" >مشاهده انتقالی بین حساب</a></li> 
+ <li ng-show='(record.p==7)' ><a href="#/ServiceFactor_Edit/{{record.id}}" >مشاهده فاکتور</a></li> 
 
  </ul>
 </div>
