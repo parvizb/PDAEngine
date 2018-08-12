@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var AccountReportAll=new Object();
+
 var currentButton;
 AccountReportAll.sendFiles=  function()
 {
@@ -56,9 +60,8 @@ AccountReportAll.Submit= function(obj)
     Entity.Parameters=new Array();
     ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -68,7 +71,7 @@ AccountReportAll.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -123,9 +126,16 @@ AccountReportAll.Serach=function(obj)
      
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.AccountReportAllrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.AccountReportAllrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -144,7 +154,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

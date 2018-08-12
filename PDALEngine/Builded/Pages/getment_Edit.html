@@ -4,47 +4,80 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="get_amount" class="col-sm-2 control-label">     <span class="red" >*</span>  مبلغ دریافتی:</label>
+    <label  for="get_amount" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ دریافتی
+      :</label>
     <div   class="col-sm-4">
-    
-            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" onchange='currentScope.$apply({});' class="form-control" id="txtget_amount" placeholder="" />
-                                              </div>
-    <label  for="get_discount" class="col-sm-2 control-label">     <span class="red" >*</span>  تخفیف دریافتی:</label>
-    <div   class="col-sm-4">
-    
-            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" onchange='currentScope.$apply({});' class="form-control" id="txtget_discount" placeholder="" />
-                                              </div>
-     </div>
-     <div class="form-group">
-    <label  for="cus_acc_id" class="col-sm-2 control-label">     <span class="red" >*</span>  شناسه مشتری:</label>
-    <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtcus_acc_id" ></select>
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input   class="form-control" id="txtgetment_Editget_amount" placeholder="" />
+                                                                      
     </div>
-    <label  for="acc_id" class="col-sm-2 control-label">     <span class="red" >*</span>  کد حساب:</label>
+    <label  for="get_discount" class="col-sm-2 control-label">     <span class="red" >*</span>        تخفیف دریافتی
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtacc_id" ></select>
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input   class="form-control" id="txtgetment_Editget_discount" placeholder="" />
+                                                                      
     </div>
      </div>
      <div class="form-group">
-    <label  for="get_date" class="col-sm-2 control-label">     <span class="red" >*</span>  تاریخ:</label>
+    <label  for="cus_acc_id" class="col-sm-2 control-label">     <span class="red" >*</span>        شناسه مشتری
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtget_date')"  class="form-control" id="txtget_date" placeholder="yyyy/mm/dd" max-length="10" ></input>
+   
+      
+                                                                                                      <select class="form-control" id="txtgetment_Editcus_acc_id" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
-    <label  for="descr" class="col-sm-2 control-label">     توضیحات:</label>
+    <label  for="acc_id" class="col-sm-2 control-label">     <span class="red" >*</span>        کد حساب
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtdescr" placeholder=""  placeholder="" />
+   
+      
+                                                                                                      <select class="form-control" id="txtgetment_Editacc_id" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="get_date" class="col-sm-2 control-label">     <span class="red" >*</span>        تاریخ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtgetment_Editget_date')"  class="form-control" id="txtgetment_Editget_date" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
-                                              </div>
+    </div>
+    <label  for="descr" class="col-sm-2 control-label">           توضیحات
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtgetment_Editdescr" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
-    <label  for="total" class="col-sm-2 control-label">     جمع:</label>
+    <label  for="total" class="col-sm-2 control-label">           جمع
+      :</label>
     <div   class="col-sm-4">
-    
-                        <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Num(Para('get_amount'))+Num(Para('get_discount')))}}"   class="form-control" id="txttotal" placeholder="" />
-                                  </div>
+   
+      
+                                                                  <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Num(Para('get_amount'))+Num(Para('get_discount')))}}"   class="form-control" id="txtgetment_Edittotal" placeholder="" />
+                                                          
+    </div>
   </div>
     </from>
   <script>
@@ -53,10 +86,10 @@
                                      
     getment_Edit.IntForm=function()
     {
-    
-    document.title=' ویرایش دریافتی ';
+        document.title=' ویرایش دریافتی ';
+        window.pageName='getment_Edit';
     window.fileUploaded=false;
-                                                                                        cus_acc_id=  Select2AjaxInit('txtcus_acc_id',function(term, page){
+                                                                                        cus_acc_id=  Select2AjaxInit('txtgetment_Editcus_acc_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='getment_Edit';
     DataPass.ParaName='cus_acc_id';
@@ -64,7 +97,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                acc_id=  Select2AjaxInit('txtacc_id',function(term, page){
+                                acc_id=  Select2AjaxInit('txtgetment_Editacc_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='getment_Edit';
     DataPass.ParaName='acc_id';
@@ -72,7 +105,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtget_date', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                    kamaDatepicker('txtgetment_Editget_date', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                                                 
     }
     $(document).ready(function () {

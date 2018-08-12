@@ -2,14 +2,14 @@
 
 
 
-var moveStorage_Serach=new Object();
+var QuickFactorSerach=new Object();
 
 var currentButton;
-moveStorage_Serach.sendFiles=  function()
+QuickFactorSerach.sendFiles=  function()
 {
     var data = new FormData();
  
-                                                                        $('#loadingBar').show();
+        $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -25,7 +25,7 @@ moveStorage_Serach.sendFiles=  function()
             window.fileUploaded=true;
             $('#loadingBar').hide();
             $('#fileStatus').hide();
-            moveStorage_Serach.Submit(currentButton);
+            QuickFactorSerach.Submit(currentButton);
         } else {
             if((xhr.status==500) && (xhr.readyState == 4))
             {
@@ -40,41 +40,25 @@ moveStorage_Serach.sendFiles=  function()
          
         }
     };
-    xhr.open('POST', "Home/SendFiles?PageName=moveStorage_Serach");
+    xhr.open('POST', "Home/SendFiles?PageName=QuickFactorSerach");
     // xhr.setRequestHeader("Content-type", "multipart/form-data");
     xhr.send(data);
 }
 
 
-moveStorage_Serach.Submit= function(obj)
+QuickFactorSerach.Submit= function(obj)
 {
     currentButton=obj;
     $(obj).attr('disabled',true);
-    if(moveStorage_Serach.Validate()==false)
+    if(QuickFactorSerach.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
         var Entity=new Object();
-    Entity.PageName='moveStorage_Serach';
+    Entity.PageName='QuickFactorSerach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('moveStorageId',$('#txtmoveStorage_SerachmoveStorageId').val()));
-    
-                    Entity.Parameters.push( toInput('sourceMoveId',$('#txtmoveStorage_SerachsourceMoveId').val()));
-    
-                    Entity.Parameters.push( toInput('DestMoveId',$('#txtmoveStorage_SerachDestMoveId').val()));
-    
-                    Entity.Parameters.push( toInput('startdate',$('#txtmoveStorage_Serachstartdate').val()));
-    
-                    Entity.Parameters.push( toInput('enddate',$('#txtmoveStorage_Serachenddate').val()));
-    
-                    Entity.Parameters.push( toInput('inNumber',$('#txtmoveStorage_SerachinNumber').val()));
-    
-                    Entity.Parameters.push( toInput('outNumber',$('#txtmoveStorage_SerachoutNumber').val()));
-    
-                    Entity.Parameters.push( toInput('descr',$('#txtmoveStorage_Serachdescr').val()));
-    
-        ScallerAjax('ScallerSubmit',Entity,function(data){
+    ScallerAjax('ScallerSubmit',Entity,function(data){
 
         targetElement.value=data.retrunValue;
         
@@ -104,18 +88,10 @@ moveStorage_Serach.Submit= function(obj)
 
 });
 };
-moveStorage_Serach.Validate= function()
+QuickFactorSerach.Validate= function()
 {
     Validator.ClearErrors();
-        
-            
-            
-            
-            
-            
-            
-            
-        
+    
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
@@ -134,45 +110,29 @@ moveStorage_Serach.Validate= function()
 }
 
 
-moveStorage_Serach.Serach=function(obj)
+QuickFactorSerach.Serach=function(obj)
 {
     $(obj).attr('disabled',true);
-    if(moveStorage_Serach.Validate()==false)
+    if(QuickFactorSerach.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
 
-    window.CurrentSerachMethod=moveStorage_Serach.Serach;
+    window.CurrentSerachMethod=QuickFactorSerach.Serach;
     var Entity=new Object();
-    Entity.PageName='moveStorage_Serach';
+    Entity.PageName='QuickFactorSerach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('moveStorageId',$('#txtmoveStorage_SerachmoveStorageId').val()));
-    
-                    Entity.Parameters.push( toInput('sourceMoveId',$('#txtmoveStorage_SerachsourceMoveId').val()));
-    
-                    Entity.Parameters.push( toInput('DestMoveId',$('#txtmoveStorage_SerachDestMoveId').val()));
-    
-                    Entity.Parameters.push( toInput('startdate',$('#txtmoveStorage_Serachstartdate').val()));
-    
-                    Entity.Parameters.push( toInput('enddate',$('#txtmoveStorage_Serachenddate').val()));
-    
-                    Entity.Parameters.push( toInput('inNumber',$('#txtmoveStorage_SerachinNumber').val()));
-    
-                    Entity.Parameters.push( toInput('outNumber',$('#txtmoveStorage_SerachoutNumber').val()));
-    
-                    Entity.Parameters.push( toInput('descr',$('#txtmoveStorage_Serachdescr').val()));
-    
-         
+     
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.moveStorage_Serachrecords= data.records;
+    currentScope.QuickFactorSerachrecords= data.records;
     
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
-        dlgScope.moveStorage_Serachrecords= data.records;
+        dlgScope.QuickFactorSerachrecords= data.records;
         dlgScope.$apply(function(){});
 
     }
@@ -195,6 +155,42 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 }
 window.targetElement=null;
+{
+    QuickFactorSerach.Scaler=function(namePara)
+    {
+        var d = getDailOpen();
+        targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
+        var s=document.querySelector('#pincQuickFactorSerach');
+        angular.element(s).scope(currentScope);
+        $("#mdlQuickFactorSerach").modal('show');
+        SetupDlgScope();
+
+    }
+    QuickFactorSerach.SerachMode=function(namePara,fun)
+    {
+        var d = getDailOpen();
+        targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
+        var s=document.querySelector('#pincQuickFactorSerach');
+         dlgScope= angular.element(s).scope();
+        $("#mdlQuickFactorSerach").modal('show');
+        OkDailogSelect=fun;
+        SetupDlgScope();
+    }
+    QuickFactorSerach.SerachAndPutValue=function(namePara,colName)
+    {
+        var d = getDailOpen();
+        targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
+        var s=document.querySelector('#pincQuickFactorSerach');
+        dlgScope= angular.element(s).scope();
+        $("#mdlQuickFactorSerach").modal('show');
+        OkDailogSelect=function(d){targetElement.value=SelectableRow[colName]};
+
+        SetupDlgScope();
+        
+        
+    }
+ 
+}
 
 
 

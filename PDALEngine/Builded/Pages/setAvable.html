@@ -2,16 +2,22 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="id_stD" class="col-sm-2 control-label">     کد انبار:</label>
+    <label  for="id_stD" class="col-sm-2 control-label">           کد انبار
+      :</label>
     <div   class="col-sm-4">
-    
-                  <input type="Text"  onkeypress="return blockNonIntNumber(event)"   placeholder=""  disabled='' value="{{Query('id_St')}}"   class="form-control" id="txtid_stD" placeholder="" />
-                                        </div>
-    <label  for="st_named" class="col-sm-2 control-label">     عنوان انبار:</label>
+   
+      
+                                                            <input type="Text"  onkeypress="return blockNonIntNumber(event)"   placeholder=""  disabled='' value="{{Query('id_St')}}"   class="form-control" id="txtsetAvableid_stD" placeholder="" />
+                                                                
+    </div>
+    <label  for="st_named" class="col-sm-2 control-label">           عنوان انبار
+      :</label>
     <div   class="col-sm-4">
-    
-                  <input type="Text"  onkeypress="return blockNonIntNumber(event)"   placeholder=""  disabled='' value="{{Query('st_name')}}"   class="form-control" id="txtst_named" placeholder="" />
-                                        </div>
+   
+      
+                                                            <input type="Text"  onkeypress="return blockNonIntNumber(event)"   placeholder=""  disabled='' value="{{Query('st_name')}}"   class="form-control" id="txtsetAvablest_named" placeholder="" />
+                                                                
+    </div>
      </div>
      <div class="form-group">
   </div>
@@ -20,8 +26,8 @@
                                  
     setAvable.IntForm=function()
     {
-    
-    document.title='تعیین موجودی';
+        document.title='تعیین موجودی';
+        window.pageName='setAvable';
     window.fileUploaded=false;
                                                                             
     }
@@ -46,7 +52,7 @@
  <th  class="Pointer"  ng-click="ChageTableOrder('price')"  > <span ng-show="((currentOrder=='price') && (rev) )">V</span> <span ng-show="((currentOrder=='price') && (!rev) )">^</span>ارزش</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in setAvablerecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label='کد کالا'>{{record.id_stuff}}</td> 
  <td data-label='عنوان کالا'>{{record.stuff_name}}</td> 
    <td data-label='تعداد به جز کالا'><input class="form-control" type="text" id="realCount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.rboxCount=Num(record.realCount)/Num(record.boxcount);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.realCount}}" ng-model="record.realCount"  /></td> 

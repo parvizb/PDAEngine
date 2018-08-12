@@ -2,27 +2,47 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="id_factory" class="col-sm-2 control-label">     کارخانه:</label>
+    <label  for="id_factory" class="col-sm-2 control-label">           کارخانه
+      :</label>
     <div   class="col-sm-2">
-    
-                                                <select class="form-control" id="txtid_factory" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtStorageReportid_factory" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
-    <label  for="id_product" class="col-sm-2 control-label">     نوع کالا:</label>
+    <label  for="id_product" class="col-sm-2 control-label">           نوع کالا
+      :</label>
     <div   class="col-sm-2">
-    
-                                                <select class="form-control" id="txtid_product" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtStorageReportid_product" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
-    <label  for="stuff_name" class="col-sm-2 control-label">     عنوان کالا:</label>
+    <label  for="stuff_name" class="col-sm-2 control-label">           عنوان کالا
+      :</label>
     <div   class="col-sm-2">
-      <input type="text"   class="form-control" id="txtstuff_name" placeholder=""  placeholder="" />
-          
-                                              </div>
+   
+            <input type="text"   class="form-control" id="txtStorageReportstuff_name" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
-    <label  for="id_stragoe" class="col-sm-2 control-label">     <span class="red" >*</span>  انبار :</label>
+    <label  for="id_stragoe" class="col-sm-2 control-label">     <span class="red" >*</span>        انبار 
+      :</label>
     <div   class="col-sm-2">
-    
-                                                <select class="form-control" id="txtid_stragoe" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtStorageReportid_stragoe" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
   </div>
     </from>
@@ -33,10 +53,10 @@
              
     StorageReport.IntForm=function()
     {
-    
-    document.title='گزارش موجودی کالا';
+        document.title='گزارش موجودی کالا';
+        window.pageName='StorageReport';
     window.fileUploaded=false;
-                id_factory=  Select2AjaxInit('txtid_factory',function(term, page){
+                id_factory=  Select2AjaxInit('txtStorageReportid_factory',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='StorageReport';
     DataPass.ParaName='id_factory';
@@ -44,7 +64,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                id_product=  Select2AjaxInit('txtid_product',function(term, page){
+                                id_product=  Select2AjaxInit('txtStorageReportid_product',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='StorageReport';
     DataPass.ParaName='id_product';
@@ -52,7 +72,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                        id_stragoe=  Select2AjaxInit('txtid_stragoe',function(term, page){
+                                                        id_stragoe=  Select2AjaxInit('txtStorageReportid_stragoe',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='StorageReport';
     DataPass.ParaName='id_stragoe';
@@ -84,7 +104,7 @@
  <th  class="Pointer"  ng-click="ChageTableOrder('COUNT')"  > <span ng-show="((currentOrder=='COUNT') && (rev) )">V</span> <span ng-show="((currentOrder=='COUNT') && (!rev) )">^</span>تعداد جز</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in StorageReportrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='عنوان کالا'>{{record.stuffname}}</td> 
  <td data-label='تعداد کل'>{{record.BCount}}</td> 

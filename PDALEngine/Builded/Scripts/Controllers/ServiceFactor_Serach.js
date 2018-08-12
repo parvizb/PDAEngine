@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var ServiceFactor_Serach=new Object();
+
 var currentButton;
 ServiceFactor_Serach.sendFiles=  function()
 {
@@ -54,27 +58,26 @@ ServiceFactor_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='ServiceFactor_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('ServiceFactorId',$('#txtServiceFactorId').val()));
+                Entity.Parameters.push( toInput('ServiceFactorId',$('#txtServiceFactor_SerachServiceFactorId').val()));
     
-                    Entity.Parameters.push( toInput('GetOrProdive',$('#txtGetOrProdive').val()));
+                    Entity.Parameters.push( toInput('GetOrProdive',$('#txtServiceFactor_SerachGetOrProdive').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtServiceFactor_SerachCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceId').val()));
+                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceFactor_SerachServiceId').val()));
     
-                    Entity.Parameters.push( toInput('FactorNumber',$('#txtFactorNumber').val()));
+                    Entity.Parameters.push( toInput('FactorNumber',$('#txtServiceFactor_SerachFactorNumber').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtServiceFactor_Serachstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtServiceFactor_Serachenddate').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtServiceFactor_SerachDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -84,7 +87,7 @@ ServiceFactor_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -144,28 +147,35 @@ ServiceFactor_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='ServiceFactor_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('ServiceFactorId',$('#txtServiceFactorId').val()));
+                Entity.Parameters.push( toInput('ServiceFactorId',$('#txtServiceFactor_SerachServiceFactorId').val()));
     
-                    Entity.Parameters.push( toInput('GetOrProdive',$('#txtGetOrProdive').val()));
+                    Entity.Parameters.push( toInput('GetOrProdive',$('#txtServiceFactor_SerachGetOrProdive').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtServiceFactor_SerachCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceId').val()));
+                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceFactor_SerachServiceId').val()));
     
-                    Entity.Parameters.push( toInput('FactorNumber',$('#txtFactorNumber').val()));
+                    Entity.Parameters.push( toInput('FactorNumber',$('#txtServiceFactor_SerachFactorNumber').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtServiceFactor_Serachstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtServiceFactor_Serachenddate').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtServiceFactor_SerachDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.ServiceFactor_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.ServiceFactor_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -184,7 +194,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

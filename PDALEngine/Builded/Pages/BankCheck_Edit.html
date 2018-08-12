@@ -4,81 +4,141 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="SerailCheck" class="col-sm-2 control-label">     <span class="red" >*</span>  سریال چک:</label>
+    <label  for="SerailCheck" class="col-sm-2 control-label">     <span class="red" >*</span>        سریال چک
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtSerailCheck" placeholder=""  placeholder="" />
+   
+            <input type="text"   class="form-control" id="txtBankCheck_EditSerailCheck" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="CheckType" class="col-sm-2 control-label">     <span class="red" >*</span>        نوع چک
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtBankCheck_EditCheckType" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input >
+                <option value="0">پرداختی</option>
+                <option value="1">دریافتی</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="BankPayDate" class="col-sm-2 control-label">     <span class="red" >*</span>        تاریخ موعد چک
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtBankCheck_EditBankPayDate')"  class="form-control" id="txtBankCheck_EditBankPayDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
-                                              </div>
-    <label  for="CheckType" class="col-sm-2 control-label">     <span class="red" >*</span>  نوع چک:</label>
+    </div>
+    <label  for="BankGetmentDate" class="col-sm-2 control-label">     <span class="red" >*</span>        تاریخ تحویل
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtCheckType" onchange='currentScope.$apply({});' >
-        <option value="0">پرداختی</option>
-        <option value="1">دریافتی</option>
-      </select>
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtBankCheck_EditBankGetmentDate')"  class="form-control" id="txtBankCheck_EditBankGetmentDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
     </div>
      </div>
      <div class="form-group">
-    <label  for="BankPayDate" class="col-sm-2 control-label">     <span class="red" >*</span>  تاریخ موعد چک:</label>
-    <div   class="col-sm-4">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtBankPayDate')"  class="form-control" id="txtBankPayDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
-    </div>
-    <label  for="BankGetmentDate" class="col-sm-2 control-label">     <span class="red" >*</span>  تاریخ تحویل:</label>
-    <div   class="col-sm-4">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtBankGetmentDate')"  class="form-control" id="txtBankGetmentDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
-    </div>
-     </div>
-     <div class="form-group">
-    <label  ng-show='Para("CheckType")=="0"'  for="BackAccID" class="col-sm-2 control-label">     <span class="red" >*</span>  حساب بانک:</label>
+    <label  ng-show='Para("CheckType")=="0"'  for="BackAccID" class="col-sm-2 control-label">     <span class="red" >*</span>        حساب بانک
+      :</label>
     <div   ng-show='Para("CheckType")=="0"'  class="col-sm-4">
-    
-                                                <select class="form-control" id="txtBackAccID" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtBankCheck_EditBackAccID" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
-    <label  for="amount" class="col-sm-2 control-label">     <span class="red" >*</span>  مبلغ:</label>
+    <label  for="amount" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ
+      :</label>
     <div   class="col-sm-4">
-    
-            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtamount" placeholder="" />
-                                              </div>
-     </div>
-     <div class="form-group">
-    <label  for="CusAccId" class="col-sm-2 control-label">     <span class="red" >*</span>  مشتری:</label>
-    <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtCusAccId" ></select>
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input   class="form-control" id="txtBankCheck_Editamount" placeholder="" />
+                                                                      
     </div>
-    <label  for="Descr" class="col-sm-2 control-label">     توضیحات:</label>
+     </div>
+     <div class="form-group">
+    <label  for="CusAccId" class="col-sm-2 control-label">     <span class="red" >*</span>        مشتری
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtDescr" placeholder=""  placeholder="" />
-          
-                                              </div>
+   
+      
+                                                                                                      <select class="form-control" id="txtBankCheck_EditCusAccId" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
+    </div>
+    <label  for="Descr" class="col-sm-2 control-label">           توضیحات
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtBankCheck_EditDescr" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
-    <label  ng-show='Para("CheckType")=="1"'  for="bankName" class="col-sm-2 control-label">     <span class="red" >*</span>  نام بانک:</label>
+    <label  ng-show='Para("CheckType")=="1"'  for="bankName" class="col-sm-2 control-label">     <span class="red" >*</span>        نام بانک
+      :</label>
     <div   ng-show='Para("CheckType")=="1"'  class="col-sm-4">
-      <input type="text"   class="form-control" id="txtbankName" placeholder=""  placeholder="" />
-          
-                                              </div>
-    <label  ng-show='Para("CheckType")=="1"'  for="bankBranch" class="col-sm-2 control-label">     <span class="red" >*</span>  نام شعبه:</label>
+   
+            <input type="text"   class="form-control" id="txtBankCheck_EditbankName" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  ng-show='Para("CheckType")=="1"'  for="bankBranch" class="col-sm-2 control-label">     <span class="red" >*</span>        نام شعبه
+      :</label>
     <div   ng-show='Para("CheckType")=="1"'  class="col-sm-4">
-      <input type="text"   class="form-control" id="txtbankBranch" placeholder=""  placeholder="" />
-          
-                                              </div>
+   
+            <input type="text"   class="form-control" id="txtBankCheck_EditbankBranch" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
-    <label  ng-show='Para("CheckType")=="1"  '  for="bankAccNo" class="col-sm-2 control-label">     <span class="red" >*</span>  شماره حساب:</label>
+    <label  ng-show='Para("CheckType")=="1"  '  for="bankAccNo" class="col-sm-2 control-label">     <span class="red" >*</span>        شماره حساب
+      :</label>
     <div   ng-show='Para("CheckType")=="1"  '  class="col-sm-4">
-      <input type="text"   class="form-control" id="txtbankAccNo" placeholder=""  placeholder="" />
-          
-                                              </div>
-    <label  for="oldCheck" class="col-sm-2 control-label">     <span class="red" >*</span>  چک قبل از سیستم:</label>
+   
+            <input type="text"   class="form-control" id="txtBankCheck_EditbankAccNo" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="oldCheck" class="col-sm-2 control-label">     <span class="red" >*</span>        چک قبل از سیستم
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtoldCheck" >
-        <option value="False">خیر</option>
-        <option value="True">بله</option>
-      </select>
+   
+      
+                                                                                          <select class="form-control" id="txtBankCheck_EditoldCheck" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input >
+                <option value="False">خیر</option>
+                <option value="True">بله</option>
+              </select>
+                                  
     </div>
      </div>
      <div class="form-group">
@@ -90,12 +150,12 @@
                                                      
     BankCheck_Edit.IntForm=function()
     {
-    
-    document.title='ویرایش چک بانکی';
+        document.title='ویرایش چک بانکی';
+        window.pageName='BankCheck_Edit';
     window.fileUploaded=false;
-                                                                                            kamaDatepicker('txtBankPayDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                                kamaDatepicker('txtBankGetmentDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            BackAccID=  Select2AjaxInit('txtBackAccID',function(term, page){
+                                                                                            kamaDatepicker('txtBankCheck_EditBankPayDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                kamaDatepicker('txtBankCheck_EditBankGetmentDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                            BackAccID=  Select2AjaxInit('txtBankCheck_EditBackAccID',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='BankCheck_Edit';
     DataPass.ParaName='BackAccID';
@@ -103,7 +163,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                        CusAccId=  Select2AjaxInit('txtCusAccId',function(term, page){
+                                                        CusAccId=  Select2AjaxInit('txtBankCheck_EditCusAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='BankCheck_Edit';
     DataPass.ParaName='CusAccId';

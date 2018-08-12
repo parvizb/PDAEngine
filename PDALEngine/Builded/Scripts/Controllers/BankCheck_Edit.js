@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var BankCheck_Edit=new Object();
+
 var currentButton;
 BankCheck_Edit.sendFiles=  function()
 {
@@ -55,35 +59,34 @@ BankCheck_Edit.Submit= function(obj)
     Entity.PageName='BankCheck_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('BankCheckId',routeParams.BankCheckId ));
-            Entity.Parameters.push( toInput('SerailCheck',$('#txtSerailCheck').val()));
+            Entity.Parameters.push( toInput('SerailCheck',$('#txtBankCheck_EditSerailCheck').val()));
     
-                    Entity.Parameters.push( toInput('CheckType',$('#txtCheckType').val()));
+                    Entity.Parameters.push( toInput('CheckType',$('#txtBankCheck_EditCheckType').val()));
     
-                    Entity.Parameters.push( toInput('BankPayDate',$('#txtBankPayDate').val()));
+                    Entity.Parameters.push( toInput('BankPayDate',$('#txtBankCheck_EditBankPayDate').val()));
     
-                    Entity.Parameters.push( toInput('BankGetmentDate',$('#txtBankGetmentDate').val()));
+                    Entity.Parameters.push( toInput('BankGetmentDate',$('#txtBankCheck_EditBankGetmentDate').val()));
     
-                    Entity.Parameters.push( toInput('BackAccID',$('#txtBackAccID').val()));
+                    Entity.Parameters.push( toInput('BackAccID',$('#txtBankCheck_EditBackAccID').val()));
     
-                    Entity.Parameters.push( toInput('amount',$('#txtamount').val()));
+                    Entity.Parameters.push( toInput('amount',$('#txtBankCheck_Editamount').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtBankCheck_EditCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtBankCheck_EditDescr').val()));
     
-                    Entity.Parameters.push( toInput('bankName',$('#txtbankName').val()));
+                    Entity.Parameters.push( toInput('bankName',$('#txtBankCheck_EditbankName').val()));
     
-                    Entity.Parameters.push( toInput('bankBranch',$('#txtbankBranch').val()));
+                    Entity.Parameters.push( toInput('bankBranch',$('#txtBankCheck_EditbankBranch').val()));
     
-                    Entity.Parameters.push( toInput('bankAccNo',$('#txtbankAccNo').val()));
+                    Entity.Parameters.push( toInput('bankAccNo',$('#txtBankCheck_EditbankAccNo').val()));
     
-                    Entity.Parameters.push( toInput('oldCheck',$('#txtoldCheck').val()));
+                    Entity.Parameters.push( toInput('oldCheck',$('#txtBankCheck_EditoldCheck').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -93,7 +96,7 @@ BankCheck_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -115,32 +118,32 @@ BankCheck_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                Validator.CheckEmpty('txtSerailCheck','سریال چک');
+                                Validator.CheckEmpty('txtBankCheck_EditSerailCheck','سریال چک');
                                                                                             
                                                                             
-                                                                        Validator.CheckRegDate('txtBankPayDate','تاریخ موعد چک');
+                                                                        Validator.CheckRegDate('txtBankCheck_EditBankPayDate','تاریخ موعد چک');
                                     
-                                                                        Validator.CheckRegDate('txtBankGetmentDate','تاریخ تحویل');
+                                                                        Validator.CheckRegDate('txtBankCheck_EditBankGetmentDate','تاریخ تحویل');
                                     
             if (Para('CheckType')=='0') {
-                                                        Validator.CheckRegSelect2('txtBackAccID','حساب بانک');
+                                                        Validator.CheckRegSelect2('txtBankCheck_EditBackAccID','حساب بانک');
                             }
                 
-                                                        Validator.CheckRegInteger('txtamount','مبلغ');
+                                                        Validator.CheckRegInteger('txtBankCheck_Editamount','مبلغ');
                                                             
-                                                        Validator.CheckRegSelect2('txtCusAccId','مشتری');
+                                                        Validator.CheckRegSelect2('txtBankCheck_EditCusAccId','مشتری');
                                     
             
             if (Para('CheckType')=='1') {
-                                Validator.CheckEmpty('txtbankName','نام بانک');
+                                Validator.CheckEmpty('txtBankCheck_EditbankName','نام بانک');
                                                                                     }
                 
             if (Para('CheckType')=='1') {
-                                Validator.CheckEmpty('txtbankBranch','نام شعبه');
+                                Validator.CheckEmpty('txtBankCheck_EditbankBranch','نام شعبه');
                                                                                     }
                 
             if (Para('CheckType')=='1') {
-                                Validator.CheckEmpty('txtbankAccNo','شماره حساب');
+                                Validator.CheckEmpty('txtBankCheck_EditbankAccNo','شماره حساب');
                                                                                     }
                 
                                                                         
@@ -176,36 +179,43 @@ BankCheck_Edit.Serach=function(obj)
     Entity.PageName='BankCheck_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('BankCheckId',routeParams.BankCheckId ));
-            Entity.Parameters.push( toInput('SerailCheck',$('#txtSerailCheck').val()));
+            Entity.Parameters.push( toInput('SerailCheck',$('#txtBankCheck_EditSerailCheck').val()));
     
-                    Entity.Parameters.push( toInput('CheckType',$('#txtCheckType').val()));
+                    Entity.Parameters.push( toInput('CheckType',$('#txtBankCheck_EditCheckType').val()));
     
-                    Entity.Parameters.push( toInput('BankPayDate',$('#txtBankPayDate').val()));
+                    Entity.Parameters.push( toInput('BankPayDate',$('#txtBankCheck_EditBankPayDate').val()));
     
-                    Entity.Parameters.push( toInput('BankGetmentDate',$('#txtBankGetmentDate').val()));
+                    Entity.Parameters.push( toInput('BankGetmentDate',$('#txtBankCheck_EditBankGetmentDate').val()));
     
-                    Entity.Parameters.push( toInput('BackAccID',$('#txtBackAccID').val()));
+                    Entity.Parameters.push( toInput('BackAccID',$('#txtBankCheck_EditBackAccID').val()));
     
-                    Entity.Parameters.push( toInput('amount',$('#txtamount').val()));
+                    Entity.Parameters.push( toInput('amount',$('#txtBankCheck_Editamount').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtBankCheck_EditCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtBankCheck_EditDescr').val()));
     
-                    Entity.Parameters.push( toInput('bankName',$('#txtbankName').val()));
+                    Entity.Parameters.push( toInput('bankName',$('#txtBankCheck_EditbankName').val()));
     
-                    Entity.Parameters.push( toInput('bankBranch',$('#txtbankBranch').val()));
+                    Entity.Parameters.push( toInput('bankBranch',$('#txtBankCheck_EditbankBranch').val()));
     
-                    Entity.Parameters.push( toInput('bankAccNo',$('#txtbankAccNo').val()));
+                    Entity.Parameters.push( toInput('bankAccNo',$('#txtBankCheck_EditbankAccNo').val()));
     
-                    Entity.Parameters.push( toInput('oldCheck',$('#txtoldCheck').val()));
+                    Entity.Parameters.push( toInput('oldCheck',$('#txtBankCheck_EditoldCheck').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.BankCheck_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.BankCheck_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -224,7 +234,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 BankCheck_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='BankCheck_Edit';
@@ -235,13 +245,13 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtSerailCheck').val(data.records[0].SerailCheck);
+                                $('#txtBankCheck_EditSerailCheck').val(data.records[0].SerailCheck);
 
-                $('#txtCheckType').val(data.records[0].CheckType);
+                $('#txtBankCheck_EditCheckType').val(data.records[0].CheckType);
 
-                $('#txtBankPayDate').val(data.records[0].BankPayDate);
+                $('#txtBankCheck_EditBankPayDate').val(data.records[0].BankPayDate);
 
-                $('#txtBankGetmentDate').val(data.records[0].BankGetmentDate);
+                $('#txtBankCheck_EditBankGetmentDate').val(data.records[0].BankGetmentDate);
 
                 
         var o=document.createElement('option');
@@ -251,7 +261,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         BackAccID.val(data.records[0].BackAccID  ) .trigger('change');
 
                 
-$('#txtamount').val(ShowAsMoney( data.records[0].amount));
+$('#txtBankCheck_Editamount').val(ShowAsMoney( data.records[0].amount));
 
                 
         var o=document.createElement('option');
@@ -260,15 +270,15 @@ $('#txtamount').val(ShowAsMoney( data.records[0].amount));
         CusAccId.append(o);
         CusAccId.val(data.records[0].CusAccId  ) .trigger('change');
 
-                $('#txtDescr').val(data.records[0].Descr);
+                $('#txtBankCheck_EditDescr').val(data.records[0].Descr);
 
-                $('#txtbankName').val(data.records[0].bankName);
+                $('#txtBankCheck_EditbankName').val(data.records[0].bankName);
 
-                $('#txtbankBranch').val(data.records[0].bankBranch);
+                $('#txtBankCheck_EditbankBranch').val(data.records[0].bankBranch);
 
-                $('#txtbankAccNo').val(data.records[0].bankAccNo);
+                $('#txtBankCheck_EditbankAccNo').val(data.records[0].bankAccNo);
 
-                $('#txtoldCheck').val(data.records[0].oldCheck);
+                $('#txtBankCheck_EditoldCheck').val(data.records[0].oldCheck);
 
 }
 else

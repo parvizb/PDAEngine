@@ -4,55 +4,90 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="UserId" class="col-sm-2 control-label">     <span class="red" >*</span>  شناسه کاربری:</label>
+    <label  for="UserId" class="col-sm-2 control-label">     <span class="red" >*</span>        شناسه کاربری
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtUserId" placeholder=""  placeholder="" />
-          
-                                              </div>
-    <label  for="Fname" class="col-sm-2 control-label">     <span class="red" >*</span>  نام:</label>
+   
+            <input type="text"   class="form-control" id="txtUser_InsertUserId" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="Fname" class="col-sm-2 control-label">     <span class="red" >*</span>        نام
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtFname" placeholder=""  placeholder="" />
-          
-                                              </div>
-     </div>
-     <div class="form-group">
-    <label  for="Lname" class="col-sm-2 control-label">     <span class="red" >*</span>  نام خانوادگی:</label>
-    <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtLname" placeholder=""  placeholder="" />
-          
-                                              </div>
-    <label  for="rPassword" class="col-sm-2 control-label">     <span class="red" >*</span>  گذرواژه:</label>
-    <div   class="col-sm-4">
-    
-            <input type="Password"    class="form-control" id="txtrPassword" placeholder="" />
-                                        </div>
-     </div>
-     <div class="form-group">
-    <label  for="roPassword" class="col-sm-2 control-label">     <span class="red" >*</span>  تکرار گذرواژه:</label>
-    <div   class="col-sm-4">
-    
-            <input type="Password"    class="form-control" id="txtroPassword" placeholder="" />
-                                        </div>
-    <label  for="address" class="col-sm-2 control-label">     <span class="red" >*</span>  آدرس:</label>
-    <div   class="col-sm-4">
-    
-                                                <TextArea class="form-control" id="txtaddress" ></TextArea>
+   
+            <input type="text"   class="form-control" id="txtUser_InsertFname" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
     </div>
      </div>
      <div class="form-group">
-    <label  for="phone" class="col-sm-2 control-label">     <span class="red" >*</span>  شماره تماس:</label>
+    <label  for="Lname" class="col-sm-2 control-label">     <span class="red" >*</span>        نام خانوادگی
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtphone" placeholder=""  placeholder="" />
-          
-                                              </div>
+   
+            <input type="text"   class="form-control" id="txtUser_InsertLname" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="rPassword" class="col-sm-2 control-label">     <span class="red" >*</span>        گذرواژه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                    <input type="Password"    class="form-control" id="txtUser_InsertrPassword" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+                                                                                        
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="roPassword" class="col-sm-2 control-label">     <span class="red" >*</span>        تکرار گذرواژه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                    <input type="Password"    class="form-control" id="txtUser_InsertroPassword" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+                                                                                        
+    </div>
+    <label  for="address" class="col-sm-2 control-label">     <span class="red" >*</span>        آدرس
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                            <TextArea class="form-control" id="txtUser_Insertaddress" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input></TextArea>
+                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="phone" class="col-sm-2 control-label">     <span class="red" >*</span>        شماره تماس
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtUser_Insertphone" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
   </div>
     </from>
   <script>
                                                                          
     User_Insert.IntForm=function()
     {
-    
-    document.title='کاربر جدید';
+        document.title='کاربر جدید';
+        window.pageName='User_Insert';
     window.fileUploaded=false;
                                                                                                                                                                                                     
     }

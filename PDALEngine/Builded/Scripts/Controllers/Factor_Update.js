@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var Factor_Update=new Object();
+
 var currentButton;
 Factor_Update.sendFiles=  function()
 {
@@ -55,35 +59,34 @@ Factor_Update.Submit= function(obj)
     Entity.PageName='Factor_Update';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('FactoryId',routeParams.FactoryId ));
-            Entity.Parameters.push( toInput('FactoryNumber',$('#txtFactoryNumber').val()));
+            Entity.Parameters.push( toInput('FactoryNumber',$('#txtFactor_UpdateFactoryNumber').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtFactor_UpdateCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('id_stroage',$('#txtid_stroage').val()));
+                    Entity.Parameters.push( toInput('id_stroage',$('#txtFactor_Updateid_stroage').val()));
     
-                    Entity.Parameters.push( toInput('FactoryDate',$('#txtFactoryDate').val()));
+                    Entity.Parameters.push( toInput('FactoryDate',$('#txtFactor_UpdateFactoryDate').val()));
     
-                    Entity.Parameters.push( toInput('FactoryGetDate',$('#txtFactoryGetDate').val()));
+                    Entity.Parameters.push( toInput('FactoryGetDate',$('#txtFactor_UpdateFactoryGetDate').val()));
     
-                    Entity.Parameters.push( toInput('FactoryType',$('#txtFactoryType').val()));
+                    Entity.Parameters.push( toInput('FactoryType',$('#txtFactor_UpdateFactoryType').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtFactor_UpdateDescr').val()));
     
-                    Entity.Parameters.push( toInput('totalFactory',$('#txttotalFactory').val()));
+                    Entity.Parameters.push( toInput('totalFactory',$('#txtFactor_UpdatetotalFactory').val()));
     
-                    Entity.Parameters.push( toInput('totalBill',$('#txttotalBill').val()));
+                    Entity.Parameters.push( toInput('totalBill',$('#txtFactor_UpdatetotalBill').val()));
     
-                    Entity.Parameters.push( toInput('totalMoveCost',$('#txttotalMoveCost').val()));
+                    Entity.Parameters.push( toInput('totalMoveCost',$('#txtFactor_UpdatetotalMoveCost').val()));
     
-                    Entity.Parameters.push( toInput('totalDiscount',$('#txttotalDiscount').val()));
+                    Entity.Parameters.push( toInput('totalDiscount',$('#txtFactor_UpdatetotalDiscount').val()));
     
-                    Entity.Parameters.push( toInput('totalPayable',$('#txttotalPayable').val()));
+                    Entity.Parameters.push( toInput('totalPayable',$('#txtFactor_UpdatetotalPayable').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -93,7 +96,7 @@ Factor_Update.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -159,36 +162,43 @@ Factor_Update.Serach=function(obj)
     Entity.PageName='Factor_Update';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('FactoryId',routeParams.FactoryId ));
-            Entity.Parameters.push( toInput('FactoryNumber',$('#txtFactoryNumber').val()));
+            Entity.Parameters.push( toInput('FactoryNumber',$('#txtFactor_UpdateFactoryNumber').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtFactor_UpdateCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('id_stroage',$('#txtid_stroage').val()));
+                    Entity.Parameters.push( toInput('id_stroage',$('#txtFactor_Updateid_stroage').val()));
     
-                    Entity.Parameters.push( toInput('FactoryDate',$('#txtFactoryDate').val()));
+                    Entity.Parameters.push( toInput('FactoryDate',$('#txtFactor_UpdateFactoryDate').val()));
     
-                    Entity.Parameters.push( toInput('FactoryGetDate',$('#txtFactoryGetDate').val()));
+                    Entity.Parameters.push( toInput('FactoryGetDate',$('#txtFactor_UpdateFactoryGetDate').val()));
     
-                    Entity.Parameters.push( toInput('FactoryType',$('#txtFactoryType').val()));
+                    Entity.Parameters.push( toInput('FactoryType',$('#txtFactor_UpdateFactoryType').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtFactor_UpdateDescr').val()));
     
-                    Entity.Parameters.push( toInput('totalFactory',$('#txttotalFactory').val()));
+                    Entity.Parameters.push( toInput('totalFactory',$('#txtFactor_UpdatetotalFactory').val()));
     
-                    Entity.Parameters.push( toInput('totalBill',$('#txttotalBill').val()));
+                    Entity.Parameters.push( toInput('totalBill',$('#txtFactor_UpdatetotalBill').val()));
     
-                    Entity.Parameters.push( toInput('totalMoveCost',$('#txttotalMoveCost').val()));
+                    Entity.Parameters.push( toInput('totalMoveCost',$('#txtFactor_UpdatetotalMoveCost').val()));
     
-                    Entity.Parameters.push( toInput('totalDiscount',$('#txttotalDiscount').val()));
+                    Entity.Parameters.push( toInput('totalDiscount',$('#txtFactor_UpdatetotalDiscount').val()));
     
-                    Entity.Parameters.push( toInput('totalPayable',$('#txttotalPayable').val()));
+                    Entity.Parameters.push( toInput('totalPayable',$('#txtFactor_UpdatetotalPayable').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.Factor_Updaterecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.Factor_Updaterecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -207,7 +217,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 Factor_Update.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='Factor_Update';
@@ -218,7 +228,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtFactoryNumber').val(data.records[0].FactoryNumber);
+                                $('#txtFactor_UpdateFactoryNumber').val(data.records[0].FactoryNumber);
 
                 
         var o=document.createElement('option');
@@ -234,16 +244,16 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         id_stroage.append(o);
         id_stroage.val(data.records[0].id_stroage  ) .trigger('change');
 
-                $('#txtFactoryDate').val(data.records[0].FactoryDate);
+                $('#txtFactor_UpdateFactoryDate').val(data.records[0].FactoryDate);
 
-                $('#txtFactoryGetDate').val(data.records[0].FactoryGetDate);
+                $('#txtFactor_UpdateFactoryGetDate').val(data.records[0].FactoryGetDate);
 
-                $('#txtFactoryType').val(data.records[0].FactoryType);
+                $('#txtFactor_UpdateFactoryType').val(data.records[0].FactoryType);
 
-                $('#txtDescr').val(data.records[0].Descr);
+                $('#txtFactor_UpdateDescr').val(data.records[0].Descr);
 
                                 
-$('#txttotalMoveCost').val(ShowAsMoney( data.records[0].totalMoveCost));
+$('#txtFactor_UpdatetotalMoveCost').val(ShowAsMoney( data.records[0].totalMoveCost));
 
                 }
 else
@@ -276,7 +286,7 @@ Factor_Update.InsertRecord=function()
         temp.stuffPrice='1';
         temp.Count='1';
         temp.BCount='1';
-        currentScope.records.push(temp);
+        currentScope.Factor_Updaterecords.push(temp);
     currentScope.$apply();
                
     $('#stuffId_' +temp.rndId).each (function() {$(this).val($(this).attr('valc')) });
@@ -286,22 +296,22 @@ Factor_Update.InsertRecord=function()
 Factor_Update.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                            Validator.CheckRegSelect2('txtCusAccId','شناسه مشتری');
-                                            Validator.CheckRegSelect2('txtid_stroage','کد انبار');
-                                Validator.CheckEmpty('txtFactoryNumber','شماره فاکتور');
-                                                Validator.CheckRegDate('txtFactoryDate','تاریخ  فاکتور');
-                                                Validator.CheckEmpty('txtFactoryType','نوع فاکتور');
-                                                                                                                                                                                                                                                                                        for (var l=0;l<currentScope.records.length;l++)
+                                            Validator.CheckRegSelect2('txtFactor_UpdateCusAccId','شناسه مشتری');
+                                            Validator.CheckRegSelect2('txtFactor_Updateid_stroage','کد انبار');
+                                Validator.CheckEmpty('txtFactor_UpdateFactoryNumber','شماره فاکتور');
+                                                Validator.CheckRegDate('txtFactor_UpdateFactoryDate','تاریخ  فاکتور');
+                                                Validator.CheckEmpty('txtFactor_UpdateFactoryType','نوع فاکتور');
+                                                                                                                                                                                                                                                                                        for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.Factor_Updaterecords[l];
 
                 if(r.selected == true){
       continue;
 }
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.Factor_Updaterecords[l];
 
         if(r.RowState !='Added'){
     continue;
@@ -310,9 +320,9 @@ Validator.CheckRegSelect2('stuffId_' + r.rndId,'کالا',r.viewIndex+1);
 Validator.CheckRegFloat('stuffCount_' + r.rndId,'تعداد جز',r.viewIndex+1);
 Validator.CheckRegFloat('stuffPrice_' + r.rndId,'فی',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.Factor_Updaterecords[l];
 
         if(r.RowState !='Changed'){
     continue;
@@ -321,9 +331,9 @@ Validator.CheckRegSelect2('stuffId_' + r.rndId,'کالا',r.viewIndex+1);
 Validator.CheckRegFloat('stuffCount_' + r.rndId,'تعداد جز',r.viewIndex+1);
 Validator.CheckRegFloat('stuffPrice_' + r.rndId,'فی',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.Factor_Updaterecords[l];
 
         if(r.RowState !='Deleted'){
     continue;
@@ -331,9 +341,9 @@ Validator.CheckRegFloat('stuffPrice_' + r.rndId,'فی',r.viewIndex+1);
 }
 
 
-for(var l=0;l<currentScope.records.length;l++)
+for(var l=0;l<currentScope.Factor_Updaterecords.length;l++)
 { 
-    var record=currentScope.records[l];
+    var record=currentScope.Factor_Updaterecords[l];
             if (!( Num(record.stuffCount)>0 ))
     {
         Messager.errors.push('ردیف '  + (l+1).toString() + ':تعداد نمی تواند از یک کمتر باشد');
@@ -401,9 +411,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.Factor_Updaterecords[l];
 
     if(r.RowState !='Added'){
     continue;
@@ -455,9 +465,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.Factor_Updaterecords[l];
 
     if(r.RowState !='Changed'){
     continue;
@@ -509,9 +519,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.Factor_Updaterecords[l];
 
     if(r.RowState !='Deleted'){
     continue;
@@ -545,7 +555,9 @@ Enity.PageName='Factor_Update';
 Enity.CommandName='Save';
 Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
-        Messager.ShowMessage('اطلاعات', data.Message );
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
  
      
   
@@ -559,6 +571,11 @@ ScallerAjax('BatchCommand',Enity,function(data){
     ///you are asl
     if(data.code==0)
     {
+        window.returnValue=data.retrunValue;
+
+
+
+
                                 BackPage();
                  
          

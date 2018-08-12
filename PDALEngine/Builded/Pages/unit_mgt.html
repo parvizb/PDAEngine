@@ -8,8 +8,8 @@
          
     unit_mgt.IntForm=function()
     {
-    
-    document.title='تعریف واحد ها';
+        document.title='تعریف واحد ها';
+        window.pageName='unit_mgt';
     window.fileUploaded=false;
     
     }
@@ -36,7 +36,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in unit_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='شناسه واحد'>{{record.unit_id}}</td> 
   <td data-label='عنوان واحد'><input class="form-control" type="text" id="unit_name_{{record.rndId}}" value="{{record.unit_name}}" ng-change="ChangeState(record);"  ng-model="record.unit_name"  /></td> 

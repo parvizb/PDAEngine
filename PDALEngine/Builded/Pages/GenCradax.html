@@ -2,37 +2,62 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="idstuff" class="col-sm-2 control-label">     <span class="red" >*</span>  کالا:</label>
+    <label  for="idstuff" class="col-sm-2 control-label">     <span class="red" >*</span>        کالا
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtidstuff" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtGenCradaxidstuff" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
-    <label  for="BCount" class="col-sm-2 control-label">     <span class="red" >*</span>  واحد:</label>
+    <label  for="BCount" class="col-sm-2 control-label">     <span class="red" >*</span>        واحد
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtBCount" >
-        <option value="0">واحد جز</option>
-        <option value="1">واحد کل</option>
-      </select>
-    </div>
-     </div>
-     <div class="form-group">
-    <label  for="id_stragoe" class="col-sm-2 control-label">     <span class="red" >*</span>  انبار:</label>
-    <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtid_stragoe" ></select>
-    </div>
-    <label  for="startdate" class="col-sm-2 control-label">     <span class="red" >*</span>  از تاریخ :</label>
-    <div   class="col-sm-4">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtstartdate')"  class="form-control" id="txtstartdate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+   
+      
+                                                                                          <select class="form-control" id="txtGenCradaxBCount" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input >
+                <option value="0">واحد جز</option>
+                <option value="1">واحد کل</option>
+              </select>
+                                  
     </div>
      </div>
      <div class="form-group">
-    <label  for="enddate" class="col-sm-2 control-label">     <span class="red" >*</span>  تا تاریخ:</label>
+    <label  for="id_stragoe" class="col-sm-2 control-label">     <span class="red" >*</span>        انبار
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtenddate')"  class="form-control" id="txtenddate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+   
+      
+                                                                                                      <select class="form-control" id="txtGenCradaxid_stragoe" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
+    </div>
+    <label  for="startdate" class="col-sm-2 control-label">     <span class="red" >*</span>        از تاریخ 
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtGenCradaxstartdate')"  class="form-control" id="txtGenCradaxstartdate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="enddate" class="col-sm-2 control-label">     <span class="red" >*</span>        تا تاریخ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtGenCradaxenddate')"  class="form-control" id="txtGenCradaxenddate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
     </div>
   </div>
     </from>
@@ -42,10 +67,10 @@
                              
     GenCradax.IntForm=function()
     {
-    
-    document.title='گزارش کاردکس کالا';
+        document.title='گزارش کاردکس کالا';
+        window.pageName='GenCradax';
     window.fileUploaded=false;
-                idstuff=  Select2AjaxInit('txtidstuff',function(term, page){
+                idstuff=  Select2AjaxInit('txtGenCradaxidstuff',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='GenCradax';
     DataPass.ParaName='idstuff';
@@ -53,7 +78,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                        id_stragoe=  Select2AjaxInit('txtid_stragoe',function(term, page){
+                                                        id_stragoe=  Select2AjaxInit('txtGenCradaxid_stragoe',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='GenCradax';
     DataPass.ParaName='id_stragoe';
@@ -61,8 +86,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                                kamaDatepicker('txtenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                    kamaDatepicker('txtGenCradaxstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                kamaDatepicker('txtGenCradaxenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                 
     }
     $(document).ready(function () {
@@ -89,13 +114,13 @@
  <th  class="Pointer"  ng-click="ChageTableOrder('count')"  > <span ng-show="((currentOrder=='count') && (rev) )">V</span> <span ng-show="((currentOrder=='count') && (!rev) )">^</span>موجودی</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in GenCradaxrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label='تاریخ'>{{record.optdate}}</td> 
  <td data-label='نوع اقدام'>{{record.opttype}}</td> 
  <td data-label='توضیحات'>{{record.optdescr}}</td> 
  <td data-label='فی'>{{ShowMoney(record.price)}}</td> 
  <td data-label='افزایش/کاهش'>{{ShowMoney(record.deltaCount)}}</td> 
-  <td data-label='موجودی' ng-init="record.count=Num(records[$index-1].count)+Num(record.deltaCount);">{{ShowMoney(record.count)}}</td> 
+  <td data-label='موجودی' ng-init="record.count=Num(GenCradaxrecords[$index-1].count)+Num(record.deltaCount);">{{ShowMoney(record.count)}}</td> 
                    </tr>
 
  <tbody>

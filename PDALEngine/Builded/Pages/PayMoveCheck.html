@@ -4,17 +4,27 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="OptDate" class="col-sm-3 control-label">     <span class="red" >*</span>  تاریخ وصول:</label>
+    <label  for="OptDate" class="col-sm-3 control-label">     <span class="red" >*</span>        تاریخ وصول
+      :</label>
     <div   class="col-sm-9">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtOptDate')"  class="form-control" id="txtOptDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtPayMoveCheckOptDate')"  class="form-control" id="txtPayMoveCheckOptDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
     </div>
      </div>
      <div class="form-group">
-    <label  for="OptDescr" class="col-sm-3 control-label">     توضیحات:</label>
+    <label  for="OptDescr" class="col-sm-3 control-label">           توضیحات
+      :</label>
     <div   class="col-sm-9">
-    
-                                                <TextArea class="form-control" id="txtOptDescr" ></TextArea>
+   
+      
+                                                                                                            <TextArea class="form-control" id="txtPayMoveCheckOptDescr" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input></TextArea>
+                
     </div>
      </div>
      <div class="form-group">
@@ -24,10 +34,10 @@
                                          
     PayMoveCheck.IntForm=function()
     {
-    
-    document.title='وصول چک منتقل شده';
+        document.title='وصول چک منتقل شده';
+        window.pageName='PayMoveCheck';
     window.fileUploaded=false;
-                                                                    kamaDatepicker('txtOptDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                    kamaDatepicker('txtPayMoveCheckOptDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                         
     }
     $(document).ready(function () {

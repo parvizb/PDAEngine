@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var ServiceFactor_Edit=new Object();
+
 var currentButton;
 ServiceFactor_Edit.sendFiles=  function()
 {
@@ -55,27 +59,26 @@ ServiceFactor_Edit.Submit= function(obj)
     Entity.PageName='ServiceFactor_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('ServiceFactorId',routeParams.ServiceFactorId ));
-            Entity.Parameters.push( toInput('GetOrProdive',$('#txtGetOrProdive').val()));
+            Entity.Parameters.push( toInput('GetOrProdive',$('#txtServiceFactor_EditGetOrProdive').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtServiceFactor_EditCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceId').val()));
+                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceFactor_EditServiceId').val()));
     
-                    Entity.Parameters.push( toInput('Cost',$('#txtCost').val()));
+                    Entity.Parameters.push( toInput('Cost',$('#txtServiceFactor_EditCost').val()));
     
-                    Entity.Parameters.push( toInput('Adding',$('#txtAdding').val()));
+                    Entity.Parameters.push( toInput('Adding',$('#txtServiceFactor_EditAdding').val()));
     
-                    Entity.Parameters.push( toInput('FactorNumber',$('#txtFactorNumber').val()));
+                    Entity.Parameters.push( toInput('FactorNumber',$('#txtServiceFactor_EditFactorNumber').val()));
     
-                    Entity.Parameters.push( toInput('ServiceDate',$('#txtServiceDate').val()));
+                    Entity.Parameters.push( toInput('ServiceDate',$('#txtServiceFactor_EditServiceDate').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtServiceFactor_EditDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -85,7 +88,7 @@ ServiceFactor_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -108,15 +111,15 @@ ServiceFactor_Edit.Validate= function()
         
             
                                                                             
-                                                        Validator.CheckRegSelect2('txtCusAccId','مشتری');
+                                                        Validator.CheckRegSelect2('txtServiceFactor_EditCusAccId','مشتری');
                                     
-                                                        Validator.CheckRegSelect2('txtServiceId','کد خدمت');
+                                                        Validator.CheckRegSelect2('txtServiceFactor_EditServiceId','کد خدمت');
                                     
-                                                        Validator.CheckRegInteger('txtCost','هزینه');
+                                                        Validator.CheckRegInteger('txtServiceFactor_EditCost','هزینه');
                                                             
             
             
-                                                                        Validator.CheckRegDate('txtServiceDate','تاریخ ارائه');
+                                                                        Validator.CheckRegDate('txtServiceFactor_EditServiceDate','تاریخ ارائه');
                                     
         
     if(Messager.errors.length!=0)
@@ -151,28 +154,35 @@ ServiceFactor_Edit.Serach=function(obj)
     Entity.PageName='ServiceFactor_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('ServiceFactorId',routeParams.ServiceFactorId ));
-            Entity.Parameters.push( toInput('GetOrProdive',$('#txtGetOrProdive').val()));
+            Entity.Parameters.push( toInput('GetOrProdive',$('#txtServiceFactor_EditGetOrProdive').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtServiceFactor_EditCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceId').val()));
+                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceFactor_EditServiceId').val()));
     
-                    Entity.Parameters.push( toInput('Cost',$('#txtCost').val()));
+                    Entity.Parameters.push( toInput('Cost',$('#txtServiceFactor_EditCost').val()));
     
-                    Entity.Parameters.push( toInput('Adding',$('#txtAdding').val()));
+                    Entity.Parameters.push( toInput('Adding',$('#txtServiceFactor_EditAdding').val()));
     
-                    Entity.Parameters.push( toInput('FactorNumber',$('#txtFactorNumber').val()));
+                    Entity.Parameters.push( toInput('FactorNumber',$('#txtServiceFactor_EditFactorNumber').val()));
     
-                    Entity.Parameters.push( toInput('ServiceDate',$('#txtServiceDate').val()));
+                    Entity.Parameters.push( toInput('ServiceDate',$('#txtServiceFactor_EditServiceDate').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtServiceFactor_EditDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.ServiceFactor_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.ServiceFactor_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -191,7 +201,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 ServiceFactor_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='ServiceFactor_Edit';
@@ -202,7 +212,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtGetOrProdive').val(data.records[0].GetOrProdive);
+                                $('#txtServiceFactor_EditGetOrProdive').val(data.records[0].GetOrProdive);
 
                 
         var o=document.createElement('option');
@@ -219,16 +229,16 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         ServiceId.val(data.records[0].ServiceId  ) .trigger('change');
 
                 
-$('#txtCost').val(ShowAsMoney( data.records[0].Cost));
+$('#txtServiceFactor_EditCost').val(ShowAsMoney( data.records[0].Cost));
 
                 
-$('#txtAdding').val(ShowAsMoney( data.records[0].Adding));
+$('#txtServiceFactor_EditAdding').val(ShowAsMoney( data.records[0].Adding));
 
-                $('#txtFactorNumber').val(data.records[0].FactorNumber);
+                $('#txtServiceFactor_EditFactorNumber').val(data.records[0].FactorNumber);
 
-                $('#txtServiceDate').val(data.records[0].ServiceDate);
+                $('#txtServiceFactor_EditServiceDate').val(data.records[0].ServiceDate);
 
-                $('#txtDescr').val(data.records[0].Descr);
+                $('#txtServiceFactor_EditDescr').val(data.records[0].Descr);
 
 }
 else

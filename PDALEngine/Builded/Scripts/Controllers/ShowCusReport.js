@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var ShowCusReport=new Object();
+
 var currentButton;
 ShowCusReport.sendFiles=  function()
 {
@@ -54,17 +58,16 @@ ShowCusReport.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='ShowCusReport';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('Idcus',$('#txtIdcus').val()));
+                Entity.Parameters.push( toInput('Idcus',$('#txtShowCusReportIdcus').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtShowCusReportstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtShowCusReportenddate').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -74,7 +77,7 @@ ShowCusReport.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -95,11 +98,11 @@ ShowCusReport.Validate= function()
 {
     Validator.ClearErrors();
         
-                                                        Validator.CheckRegSelect2('txtIdcus','کد مشتری');
+                                                        Validator.CheckRegSelect2('txtShowCusReportIdcus','کد مشتری');
                                     
-                                                                        Validator.CheckRegDate('txtstartdate','از تاریخ');
+                                                                        Validator.CheckRegDate('txtShowCusReportstartdate','از تاریخ');
                                     
-                                                                        Validator.CheckRegDate('txtenddate','تا تاریخ');
+                                                                        Validator.CheckRegDate('txtShowCusReportenddate','تا تاریخ');
                                 
     if(Messager.errors.length!=0)
     {
@@ -132,18 +135,25 @@ ShowCusReport.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='ShowCusReport';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('Idcus',$('#txtIdcus').val()));
+                Entity.Parameters.push( toInput('Idcus',$('#txtShowCusReportIdcus').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtShowCusReportstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtShowCusReportenddate').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.ShowCusReportrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.ShowCusReportrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -162,7 +172,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var BankCheck_Serach=new Object();
+
 var currentButton;
 BankCheck_Serach.sendFiles=  function()
 {
@@ -54,35 +58,34 @@ BankCheck_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='BankCheck_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('BankCheckId',$('#txtBankCheckId').val()));
+                Entity.Parameters.push( toInput('BankCheckId',$('#txtBankCheck_SerachBankCheckId').val()));
     
-                    Entity.Parameters.push( toInput('SerailCheck',$('#txtSerailCheck').val()));
+                    Entity.Parameters.push( toInput('SerailCheck',$('#txtBankCheck_SerachSerailCheck').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtBankCheck_Serachstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtBankCheck_Serachenddate').val()));
     
-                    Entity.Parameters.push( toInput('BackAccID',$('#txtBackAccID').val()));
+                    Entity.Parameters.push( toInput('BackAccID',$('#txtBankCheck_SerachBackAccID').val()));
     
-                    Entity.Parameters.push( toInput('Startamount',$('#txtStartamount').val()));
+                    Entity.Parameters.push( toInput('Startamount',$('#txtBankCheck_SerachStartamount').val()));
     
-                    Entity.Parameters.push( toInput('endamount',$('#txtendamount').val()));
+                    Entity.Parameters.push( toInput('endamount',$('#txtBankCheck_Serachendamount').val()));
     
-                    Entity.Parameters.push( toInput('CheckType',$('#txtCheckType').val()));
+                    Entity.Parameters.push( toInput('CheckType',$('#txtBankCheck_SerachCheckType').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtBankCheck_SerachCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('bankName',$('#txtbankName').val()));
+                    Entity.Parameters.push( toInput('bankName',$('#txtBankCheck_SerachbankName').val()));
     
-                    Entity.Parameters.push( toInput('bankBranch',$('#txtbankBranch').val()));
+                    Entity.Parameters.push( toInput('bankBranch',$('#txtBankCheck_SerachbankBranch').val()));
     
-                    Entity.Parameters.push( toInput('bankAccNo',$('#txtbankAccNo').val()));
+                    Entity.Parameters.push( toInput('bankAccNo',$('#txtBankCheck_SerachbankAccNo').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -92,7 +95,7 @@ BankCheck_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -156,36 +159,43 @@ BankCheck_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='BankCheck_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('BankCheckId',$('#txtBankCheckId').val()));
+                Entity.Parameters.push( toInput('BankCheckId',$('#txtBankCheck_SerachBankCheckId').val()));
     
-                    Entity.Parameters.push( toInput('SerailCheck',$('#txtSerailCheck').val()));
+                    Entity.Parameters.push( toInput('SerailCheck',$('#txtBankCheck_SerachSerailCheck').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtBankCheck_Serachstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtBankCheck_Serachenddate').val()));
     
-                    Entity.Parameters.push( toInput('BackAccID',$('#txtBackAccID').val()));
+                    Entity.Parameters.push( toInput('BackAccID',$('#txtBankCheck_SerachBackAccID').val()));
     
-                    Entity.Parameters.push( toInput('Startamount',$('#txtStartamount').val()));
+                    Entity.Parameters.push( toInput('Startamount',$('#txtBankCheck_SerachStartamount').val()));
     
-                    Entity.Parameters.push( toInput('endamount',$('#txtendamount').val()));
+                    Entity.Parameters.push( toInput('endamount',$('#txtBankCheck_Serachendamount').val()));
     
-                    Entity.Parameters.push( toInput('CheckType',$('#txtCheckType').val()));
+                    Entity.Parameters.push( toInput('CheckType',$('#txtBankCheck_SerachCheckType').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtBankCheck_SerachCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('bankName',$('#txtbankName').val()));
+                    Entity.Parameters.push( toInput('bankName',$('#txtBankCheck_SerachbankName').val()));
     
-                    Entity.Parameters.push( toInput('bankBranch',$('#txtbankBranch').val()));
+                    Entity.Parameters.push( toInput('bankBranch',$('#txtBankCheck_SerachbankBranch').val()));
     
-                    Entity.Parameters.push( toInput('bankAccNo',$('#txtbankAccNo').val()));
+                    Entity.Parameters.push( toInput('bankAccNo',$('#txtBankCheck_SerachbankAccNo').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.BankCheck_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.BankCheck_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -204,7 +214,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

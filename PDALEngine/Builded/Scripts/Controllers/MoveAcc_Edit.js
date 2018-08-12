@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var MoveAcc_Edit=new Object();
+
 var currentButton;
 MoveAcc_Edit.sendFiles=  function()
 {
@@ -55,23 +59,22 @@ MoveAcc_Edit.Submit= function(obj)
     Entity.PageName='MoveAcc_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('moveAccId',routeParams.moveAccId ));
-            Entity.Parameters.push( toInput('moveDate',$('#txtmoveDate').val()));
+            Entity.Parameters.push( toInput('moveDate',$('#txtMoveAcc_EditmoveDate').val()));
     
-                    Entity.Parameters.push( toInput('sourceAcc',$('#txtsourceAcc').val()));
+                    Entity.Parameters.push( toInput('sourceAcc',$('#txtMoveAcc_EditsourceAcc').val()));
     
-                    Entity.Parameters.push( toInput('DestAcc',$('#txtDestAcc').val()));
+                    Entity.Parameters.push( toInput('DestAcc',$('#txtMoveAcc_EditDestAcc').val()));
     
-                    Entity.Parameters.push( toInput('amount',$('#txtamount').val()));
+                    Entity.Parameters.push( toInput('amount',$('#txtMoveAcc_Editamount').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtMoveAcc_EditDescr').val()));
     
-                    Entity.Parameters.push( toInput('moveCost',$('#txtmoveCost').val()));
+                    Entity.Parameters.push( toInput('moveCost',$('#txtMoveAcc_EditmoveCost').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -81,7 +84,7 @@ MoveAcc_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -103,15 +106,15 @@ MoveAcc_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                                                        Validator.CheckRegDate('txtmoveDate','تاریخ انتقال');
+                                                                        Validator.CheckRegDate('txtMoveAcc_EditmoveDate','تاریخ انتقال');
                                     
-                                                        Validator.CheckRegSelect2('txtsourceAcc','حساب مبدا');
+                                                        Validator.CheckRegSelect2('txtMoveAcc_EditsourceAcc','حساب مبدا');
                                     
-                                                        Validator.CheckRegSelect2('txtDestAcc','حساب مقصد');
+                                                        Validator.CheckRegSelect2('txtMoveAcc_EditDestAcc','حساب مقصد');
                                     
             
             
-                                                        Validator.CheckRegInteger('txtmoveCost','هزینه انتقال');
+                                                        Validator.CheckRegInteger('txtMoveAcc_EditmoveCost','هزینه انتقال');
                                                         
     if(Messager.errors.length!=0)
     {
@@ -145,24 +148,31 @@ MoveAcc_Edit.Serach=function(obj)
     Entity.PageName='MoveAcc_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('moveAccId',routeParams.moveAccId ));
-            Entity.Parameters.push( toInput('moveDate',$('#txtmoveDate').val()));
+            Entity.Parameters.push( toInput('moveDate',$('#txtMoveAcc_EditmoveDate').val()));
     
-                    Entity.Parameters.push( toInput('sourceAcc',$('#txtsourceAcc').val()));
+                    Entity.Parameters.push( toInput('sourceAcc',$('#txtMoveAcc_EditsourceAcc').val()));
     
-                    Entity.Parameters.push( toInput('DestAcc',$('#txtDestAcc').val()));
+                    Entity.Parameters.push( toInput('DestAcc',$('#txtMoveAcc_EditDestAcc').val()));
     
-                    Entity.Parameters.push( toInput('amount',$('#txtamount').val()));
+                    Entity.Parameters.push( toInput('amount',$('#txtMoveAcc_Editamount').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtMoveAcc_EditDescr').val()));
     
-                    Entity.Parameters.push( toInput('moveCost',$('#txtmoveCost').val()));
+                    Entity.Parameters.push( toInput('moveCost',$('#txtMoveAcc_EditmoveCost').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.MoveAcc_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.MoveAcc_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -181,7 +191,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 MoveAcc_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='MoveAcc_Edit';
@@ -192,7 +202,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtmoveDate').val(data.records[0].moveDate);
+                                $('#txtMoveAcc_EditmoveDate').val(data.records[0].moveDate);
 
                 
         var o=document.createElement('option');
@@ -209,12 +219,12 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         DestAcc.val(data.records[0].DestAcc  ) .trigger('change');
 
                 
-$('#txtamount').val(ShowAsMoney( data.records[0].amount));
+$('#txtMoveAcc_Editamount').val(ShowAsMoney( data.records[0].amount));
 
-                $('#txtDescr').val(data.records[0].Descr);
+                $('#txtMoveAcc_EditDescr').val(data.records[0].Descr);
 
                 
-$('#txtmoveCost').val(ShowAsMoney( data.records[0].moveCost));
+$('#txtMoveAcc_EditmoveCost').val(ShowAsMoney( data.records[0].moveCost));
 
 }
 else

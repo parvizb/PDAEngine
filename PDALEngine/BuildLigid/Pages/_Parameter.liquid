@@ -3,74 +3,120 @@
   <div class="form-group">
 {% for para in  Page.PageParameters -%}
 {% if para.source == 'form' -%}
-    <label {% if para.ShowCond !='' %} ng-show='{{para.ShowCond}}' {% endif %} for="{{Para.name}}" class="col-sm-{{Page.HerSize}} control-label">     {% for chk in  para.ParameterChecks -%} {% if chk.Cond == 'Reg' -%}<span class="red" >*</span>  {% endif -%} {% endfor -%} {{para.title}}:</label>
-    <div  {% if para.ShowCond !='' %} ng-show='{{para.ShowCond}}' {% endif %} class="col-sm-{{Page.ValSize}}">
-{% if para.type == 'String' -%}
-      <input type="text"   class="form-control" id="txt{{Para.name}}" placeholder="{{Para.PlaceHolder}}"  {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} placeholder="{{para.PlaceHolder}}" />
+    <label {% if para.ShowCond !='' %} ng-show='{{para.ShowCond}}' {% endif %} for="{{Para.name}}" class="col-sm-{{Page.HerSize}} control-label">     {% for chk in  para.ParameterChecks -%} {% if chk.Cond == 'Reg' -%}<span class="red" >*</span>  {% endif -%} {% endfor -%}
+      {{para.title}}
+      {% for btn in  para.Buttons -%}
+      {% if btn.action == 'goToPage'  -%}
+      <a href='#/{{btn.actionParameter}}' >
+        <button type="button" class="btn btn-default" >{{btn.title}}</button>
+      </a>
       {% endif -%}
-    
+      {% if btn.action == 'dynLink'  -%}
+      <a href='{{btn.actionParameter}}' >
+        <button type="button" class="btn btn-default" >{{btn.title}}</button>
+      </a>
+      {% endif -%}
+      {% if btn.action == 'JavaScript'  -%}
+      <a onclick='{{btn.actionParameter}}' >
+        <button type="button" class="btn btn-default" >{{btn.title}}</button>
+      </a>
+      {% endif -%}
+      {% if btn.action == 'InsertRecordToTable'  -%}
+      <a onclick='{{Page.name}}.InsertRecord()' >
+        <button type="button" class="btn btn-default" >{{btn.title}}</button>
+      </a>
+      {% endif -%}
+      {% if btn.action == 'ShowDailogAndPutValue'  -%}
+      <a onclick='{{btn.actionParameter}}.Scaler("{{btn.actionParameter2}}");' >
+        <button type="button" class="btn btn-default" >{{btn.title}}</button>
+      </a>
+      {% endif -%}
+      {% if btn.action == 'ShowDailogAndSelectValue'  -%}
+      <a onclick='{{btn.actionParameter}}.SerachAndPutValue("{{btn.actionParameter2}}","{{btn.actionParameter3}}");' >
+        <button type="button" class="btn btn-default" >{{btn.title}}</button>
+      </a>
+      {% endif -%}
+      {% if btn.action == 'BatchCommand'  -%}
+      <a onclick='{{Page.name}}.{{btn.actionParameter}}()' >
+        <button type="button" class="btn btn-default" >{{btn.title}}</button>
+      </a>
+      {% endif -%}
+      {% if btn.action == 'ExportXls'  -%}
+      <a onclick='ExportXls();' >
+        <button type="button" class="btn btn-default" >{{btn.title}}</button>
+      </a>
+      {% endif -%}
+      {% endfor -%}
+:</label>
+    <div  {% if para.ShowCond !='' %} ng-show='{{para.ShowCond}}' {% endif %} class="col-sm-{{Page.ValSize}}">
+   
+      {% if para.type == 'String' -%}
+      <input type="text"   class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="{{Para.PlaceHolder}}"  {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} placeholder="{{para.PlaceHolder}}" />
+      {% endif -%}
+
       {% if para.type == 'Color' -%}
-      <input type="text"   class="form-control white_shadow" id="txt{{Para.name}}" placeholder="{{Para.PlaceHolder}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} placeholder="{{para.PlaceHolder}}" />
-{% endif -%}
-{% if para.type == 'Html' -%}
-      <textarea      class="form-control" id="txt{{Para.name}}" placeholder="{{Para.PlaceHolder}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} />
-{% endif -%}
-{% if para.type == 'Integer' -%}
-      <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="{{Para.PlaceHolder}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} class="form-control" id="txt{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
-{% endif -%}
-{% if para.type == 'Float' -%}
-      <input type="Number"  placeholder="{{Para.PlaceHolder}}"  class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} placeholder="{{para.PlaceHolder}}" />
-{% endif -%}
-{% if para.type == 'Password' -%}
-      <input type="Password"    class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} placeholder="{{para.PlaceHolder}}" />
-{% endif -%}
-{% if para.type == 'CheckBox' -%}
-      <input type="CheckBox"  placeholder="{{Para.PlaceHolder}}"   id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} placeholder="{{para.PlaceHolder}}" />
-{% endif -%}
-{% if para.type == 'Time' -%}
-      <input type="Text"  maxlength="8" placeholder="{{Para.PlaceHolder}}"  onkeypress="return blockNonTimeNumber(event)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%}  class="form-control" id="txt{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
-{% endif -%}
-{% if para.type == 'Money' -%}
-      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="{{Para.PlaceHolder}}" moneytype="yes"  onkeyup="NumberInput(event,this)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%}   class="form-control" id="txt{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
+      <input type="text"   class="form-control white_shadow" id="txt{{Page.name}}{{Para.name}}" placeholder="{{Para.PlaceHolder}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} placeholder="{{para.PlaceHolder}}" />
+      {% endif -%}
+      {% if para.type == 'Html' -%}
+      <textarea      class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="{{Para.PlaceHolder}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} />
+      {% endif -%}
+      {% if para.type == 'Integer' -%}
+      <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="{{Para.PlaceHolder}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
+      {% endif -%}
+      {% if para.type == 'Float' -%}
+      <input type="Number"  placeholder="{{Para.PlaceHolder}}"  class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} placeholder="{{para.PlaceHolder}}" />
+      {% endif -%}
+      {% if para.type == 'Password' -%}
+      <input type="Password"    class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} placeholder="{{para.PlaceHolder}}" />
+      {% endif -%}
+      {% if para.type == 'CheckBox' -%}
+      <input type="CheckBox"  placeholder="{{Para.PlaceHolder}}"   id="txt{{Page.name}}{{Para.name}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} placeholder="{{para.PlaceHolder}}" />
+      {% endif -%}
+      {% if para.type == 'Time' -%}
+      <input type="Text"  maxlength="8" placeholder="{{Para.PlaceHolder}}"  onkeypress="return blockNonTimeNumber(event)" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%}  class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
+      {% endif -%}
+      {% if para.type == 'Money' -%}
+      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="{{Para.PlaceHolder}}" moneytype="yes"  onkeyup="NumberInput(event,this)" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%}   class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
       {% endif -%}
       {% if para.type == 'DisplayExpr' -%}
-      <input type="Text"  onkeypress="return blockNonIntNumber(event)"   placeholder="{{Para.PlaceHolder}}"  disabled='' value="{{'{{'}}{{Para.Parameter}}{{'}}}}"   class="form-control" id="txt{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
+      <input type="Text"  onkeypress="return blockNonIntNumber(event)"   placeholder="{{Para.PlaceHolder}}"  disabled='' value="{{'{{'}}{{Para.Parameter}}{{'}}}}"   class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
       {% endif -%}
       {% if para.type == 'DisplayExprMoney' -%}
-      <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder="{{Para.PlaceHolder}}"  disabled='' value="{{'{{ShowMoney('}}{{Para.Parameter}}{{'}})}}"   class="form-control" id="txt{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
+      <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder="{{Para.PlaceHolder}}"  disabled='' value="{{'{{ShowMoney('}}{{Para.Parameter}}{{'}})}}"   class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="{{para.PlaceHolder}}" />
       {% endif -%}
       {% if para.type == 'FileInput' -%}
-      <input type="file"       class="form-control" id="txt{{Para.name}}"     placeholder="{{para.PlaceHolder}}" />
+      <input type="file"       class="form-control" id="txt{{Page.name}}{{Para.name}}"     placeholder="{{para.PlaceHolder}}" />
       {% endif -%}
       {% if para.type == 'ImageView' -%}
-      <input type="image"    linkSyntax="{{para.LinkSyntax}}"    id="txt{{Para.name}}"  {% if para.Width != '' -%}width='{{para.Width}}'   {% endif -%}   placeholder="{{para.PlaceHolder}}" />
+      <input type="image"    linkSyntax="{{para.LinkSyntax}}"    id="txt{{Page.name}}{{Para.name}}"  {% if="" para.Width != '' -%}width='{{para.Width}}'   {% endif='' -=''%}   placeholder="{{para.PlaceHolder}}" />
       {% endif -%}
       {% if para.type == 'DownloadLink' -%}
-      <a      linkSyntax="{{para.LinkSyntax}}"    id="txt{{Para.name}}"     placeholder="{{para.PlaceHolder}}" >دریافت</a>
+      <a      linkSyntax="{{para.LinkSyntax}}"    id="txt{{Page.name}}{{Para.name}}"     placeholder="{{para.PlaceHolder}}" >دریافت</a>
       {% endif -%}
       {% if para.type == 'DropDown' -%}
-      <select class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} >
-{% for var opt in para.options -%}
+      <select class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} >
+        {% for var opt in para.options -%}
         <option value="{{opt.value}}">{{opt.text}}</option>
-{% endfor -%}
+        {% endfor -%}
       </select>
-{% endif -%}
-{% if para.type == 'Select2' -%}
-      <select class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%}  >
-{% for var opt in para.options -%}
+      {% endif -%}
+      {% if para.type == 'Select2' -%}
+      <select class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%}  >
+        {% for var opt in para.options -%}
         <option value="{{opt.value}}">{{opt.text}}</option>
-{% endfor -%}
+        {% endfor -%}
       </select>
-{% endif -%}
-{% if para.type == 'Select2Ajax' -%}
-      <select class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} ></select>
-{% endif -%}
-{% if para.type == 'TextArea' -%}
-      <TextArea class="form-control" id="txt{{Para.name}}" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%}></TextArea>
-{% endif -%}
-{% if para.type == 'Date' -%}
-      <input  type="text"  onkeypress="return blockNonDateNumber(event)" {% if para.Disabled == 'Yes'  -%} disabled {% endif -%}  {% if para.ChangeBev == 'ReCalcExprs'  -%} onchange='currentScope.$apply({});' {% endif -%} onBlur="ReformatDate('txt{{Para.name}}')"  class="form-control" id="txt{{Para.name}}" placeholder="yyyy/mm/dd" max-length="10" ></input>
-{% endif -%}
+      {% endif -%}
+      {% if para.type == 'Select2Ajax' -%}
+      <select class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} ></select>
+      {% endif -%}
+      {% if para.type == 'TextArea' -%}
+      <TextArea class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%}></TextArea>
+      {% endif -%}
+      {% if para.type == 'Date' -%}
+      <input  type="text"  onkeypress="return blockNonDateNumber(event)" {% if="" para.Disabled =""= 'Yes'  -=''%} disabled='' {% endif='' -=''%}  {% if='' para.ChangeBev =''= 'ReCalcExprs'  -=''%} onchange='RecalcScopes();' {% endif='' -=''%} onBlur="ReformatDate('txt{{Page.name}}{{Para.name}}')"  class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="yyyy/mm/dd" max-length="10" ></input>
+      {% endif -%}
+    
     </div>
 {% assign i = i | plus: 1 -%}
 {% if i == Page.ColumnCount -%}
@@ -94,15 +140,17 @@
      
     {{Page.name}}.IntForm=function()
     {
-    
+    {% if Page.isDailog !='Yes' -%}
     document.title='{{Page.title}}';
+    {% endif -%}
+    window.pageName='{{Page.name}}';
     window.fileUploaded=false;
     {% for para in  Page.PageParameters -%}
     {% if para.type == 'Select2' -%}
-    $('#txt{{para.name}}').select2({});
+    $('#txt{{Page.name}}{{para.name}}').select2({});
     {% endif -%}
     {% if para.type == 'Select2Ajax' -%}
-    {{para.name}}=  Select2AjaxInit('txt{{para.name}}',function(term, page){
+    {{para.name}}=  Select2AjaxInit('txt{{Page.name}}{{para.name}}',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='{{Page.Name}}';
     DataPass.ParaName='{{para.name}}';
@@ -122,14 +170,14 @@
     });
     {% endif -%}
     {% if para.type == 'Date' and para.Disabled != 'Yes' -%}
-    kamaDatepicker('txt{{para.name}}', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+    kamaDatepicker('txt{{Page.name}}{{para.name}}', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
     {% endif -%}
     {% if para.type == 'Html' -%}
-    TinyMceEditor('txt{{para.name}}');
+    TinyMceEditor('txt{{Page.name}}{{para.name}}');
     {% endif -%}
     {% if para.type == 'Color' -%}
-    $('#txt{{para.name}}').ColorPicker({
-    color: $('#txt{{para.name}}').val(),
+    $('#txt{{Page.name}}{{para.name}}').ColorPicker({
+    color: $('#txt{{Page.name}}{{para.name}}').val(),
     onShow: function (colpkr) {
     $(colpkr).fadeIn(500);
     return false;
@@ -139,8 +187,8 @@
     return false;
     },
     onChange: function (hsb, hex, rgb) {
-    $('#txt{{para.name}}').css('backgroundColor', '#' + hex);
-    $('#txt{{para.name}}').val('#' + hex);
+    $('#txt{{Page.name}}{{para.name}}').css('backgroundColor', '#' + hex);
+    $('#txt{{Page.name}}{{para.name}}').val('#' + hex);
     }
     });
     {% endif -%}

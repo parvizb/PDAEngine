@@ -8,8 +8,8 @@
          
     stroage_mgt.IntForm=function()
     {
-    
-    document.title='تعریف انبار';
+        document.title='تعریف انبار';
+        window.pageName='stroage_mgt';
     window.fileUploaded=false;
     
     }
@@ -38,7 +38,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in stroage_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد انبار'>{{record.id_stroage}}</td> 
   <td data-label='عنوان'><input class="form-control" type="text" id="storage_name_{{record.rndId}}" value="{{record.storage_name}}" ng-change="ChangeState(record);"  ng-model="record.storage_name"  /></td> 

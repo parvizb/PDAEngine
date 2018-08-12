@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var User_Insert=new Object();
+
 var currentButton;
 User_Insert.sendFiles=  function()
 {
@@ -54,25 +58,24 @@ User_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='User_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('UserId',$('#txtUserId').val()));
+                Entity.Parameters.push( toInput('UserId',$('#txtUser_InsertUserId').val()));
     
-                    Entity.Parameters.push( toInput('Fname',$('#txtFname').val()));
+                    Entity.Parameters.push( toInput('Fname',$('#txtUser_InsertFname').val()));
     
-                    Entity.Parameters.push( toInput('Lname',$('#txtLname').val()));
+                    Entity.Parameters.push( toInput('Lname',$('#txtUser_InsertLname').val()));
     
-                    Entity.Parameters.push( toInput('rPassword',$('#txtrPassword').val()));
+                    Entity.Parameters.push( toInput('rPassword',$('#txtUser_InsertrPassword').val()));
     
-                    Entity.Parameters.push( toInput('roPassword',$('#txtroPassword').val()));
+                    Entity.Parameters.push( toInput('roPassword',$('#txtUser_InsertroPassword').val()));
     
-                    Entity.Parameters.push( toInput('address',$('#txtaddress').val()));
+                    Entity.Parameters.push( toInput('address',$('#txtUser_Insertaddress').val()));
     
-                    Entity.Parameters.push( toInput('phone',$('#txtphone').val()));
+                    Entity.Parameters.push( toInput('phone',$('#txtUser_Insertphone').val()));
     
                 ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -82,7 +85,7 @@ User_Insert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -103,18 +106,18 @@ User_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                Validator.CheckEmpty('txtUserId','شناسه کاربری');
+                                Validator.CheckEmpty('txtUser_InsertUserId','شناسه کاربری');
                                                                                             
-                                Validator.CheckEmpty('txtFname','نام');
+                                Validator.CheckEmpty('txtUser_InsertFname','نام');
                                                                                             
-                                Validator.CheckEmpty('txtLname','نام خانوادگی');
+                                Validator.CheckEmpty('txtUser_InsertLname','نام خانوادگی');
                                                                                             
                                                                             
                                                                             
                                                                             
-                                Validator.CheckEmpty('txtphone','شماره تماس');
+                                Validator.CheckEmpty('txtUser_Insertphone','شماره تماس');
                                                                                             
-                                Validator.CheckEmpty('txtPassword','گذرواژه');
+                                Validator.CheckEmpty('txtUser_InsertPassword','گذرواژه');
                                                                                         
     if(Messager.errors.length!=0)
     {
@@ -151,26 +154,33 @@ User_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='User_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('UserId',$('#txtUserId').val()));
+                Entity.Parameters.push( toInput('UserId',$('#txtUser_InsertUserId').val()));
     
-                    Entity.Parameters.push( toInput('Fname',$('#txtFname').val()));
+                    Entity.Parameters.push( toInput('Fname',$('#txtUser_InsertFname').val()));
     
-                    Entity.Parameters.push( toInput('Lname',$('#txtLname').val()));
+                    Entity.Parameters.push( toInput('Lname',$('#txtUser_InsertLname').val()));
     
-                    Entity.Parameters.push( toInput('rPassword',$('#txtrPassword').val()));
+                    Entity.Parameters.push( toInput('rPassword',$('#txtUser_InsertrPassword').val()));
     
-                    Entity.Parameters.push( toInput('roPassword',$('#txtroPassword').val()));
+                    Entity.Parameters.push( toInput('roPassword',$('#txtUser_InsertroPassword').val()));
     
-                    Entity.Parameters.push( toInput('address',$('#txtaddress').val()));
+                    Entity.Parameters.push( toInput('address',$('#txtUser_Insertaddress').val()));
     
-                    Entity.Parameters.push( toInput('phone',$('#txtphone').val()));
+                    Entity.Parameters.push( toInput('phone',$('#txtUser_Insertphone').val()));
     
                  
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.User_Insertrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.User_Insertrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -189,7 +199,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

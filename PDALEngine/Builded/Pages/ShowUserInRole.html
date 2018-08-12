@@ -8,8 +8,8 @@
                  
     ShowUserInRole.IntForm=function()
     {
-    
-    document.title='تعیین کاربران موجود در نقش';
+        document.title='تعیین کاربران موجود در نقش';
+        window.pageName='ShowUserInRole';
     window.fileUploaded=false;
                             
     }
@@ -33,7 +33,7 @@
  <th  > نام خانوادگی</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in ShowUserInRolerecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
 <td data-label='شناسه کاربری'>{{record.UserId}}</td> 
  <td data-label='نام'>{{record.Fname}}</td> 

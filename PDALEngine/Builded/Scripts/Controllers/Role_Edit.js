@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var Role_Edit=new Object();
+
 var currentButton;
 Role_Edit.sendFiles=  function()
 {
@@ -55,15 +59,14 @@ Role_Edit.Submit= function(obj)
     Entity.PageName='Role_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('RoleId',routeParams.RoleId ));
-            Entity.Parameters.push( toInput('RoleName',$('#txtRoleName').val()));
+            Entity.Parameters.push( toInput('RoleName',$('#txtRole_EditRoleName').val()));
     
-                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRoleDescr').val()));
+                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRole_EditRoleDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -73,7 +76,7 @@ Role_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -95,7 +98,7 @@ Role_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                Validator.CheckEmpty('txtRoleName','نام نقش');
+                                Validator.CheckEmpty('txtRole_EditRoleName','نام نقش');
                                                                                             
         
     if(Messager.errors.length!=0)
@@ -130,16 +133,23 @@ Role_Edit.Serach=function(obj)
     Entity.PageName='Role_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('RoleId',routeParams.RoleId ));
-            Entity.Parameters.push( toInput('RoleName',$('#txtRoleName').val()));
+            Entity.Parameters.push( toInput('RoleName',$('#txtRole_EditRoleName').val()));
     
-                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRoleDescr').val()));
+                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRole_EditRoleDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.Role_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.Role_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -158,7 +168,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 Role_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='Role_Edit';
@@ -169,9 +179,9 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtRoleName').val(data.records[0].RoleName);
+                                $('#txtRole_EditRoleName').val(data.records[0].RoleName);
 
-                $('#txtRoleDescr').val(data.records[0].RoleDescr);
+                $('#txtRole_EditRoleDescr').val(data.records[0].RoleDescr);
 
 }
 else

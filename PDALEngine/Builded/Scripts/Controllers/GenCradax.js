@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var GenCradax=new Object();
+
 var currentButton;
 GenCradax.sendFiles=  function()
 {
@@ -54,21 +58,20 @@ GenCradax.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='GenCradax';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('idstuff',$('#txtidstuff').val()));
+                Entity.Parameters.push( toInput('idstuff',$('#txtGenCradaxidstuff').val()));
     
-                    Entity.Parameters.push( toInput('BCount',$('#txtBCount').val()));
+                    Entity.Parameters.push( toInput('BCount',$('#txtGenCradaxBCount').val()));
     
-                    Entity.Parameters.push( toInput('id_stragoe',$('#txtid_stragoe').val()));
+                    Entity.Parameters.push( toInput('id_stragoe',$('#txtGenCradaxid_stragoe').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtGenCradaxstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtGenCradaxenddate').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -78,7 +81,7 @@ GenCradax.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -99,14 +102,14 @@ GenCradax.Validate= function()
 {
     Validator.ClearErrors();
         
-                                                        Validator.CheckRegSelect2('txtidstuff','کالا');
+                                                        Validator.CheckRegSelect2('txtGenCradaxidstuff','کالا');
                                     
                                                                             
-                                                        Validator.CheckRegSelect2('txtid_stragoe','انبار');
+                                                        Validator.CheckRegSelect2('txtGenCradaxid_stragoe','انبار');
                                     
-                                                                        Validator.CheckRegDate('txtstartdate','از تاریخ ');
+                                                                        Validator.CheckRegDate('txtGenCradaxstartdate','از تاریخ ');
                                     
-                                                                        Validator.CheckRegDate('txtenddate','تا تاریخ');
+                                                                        Validator.CheckRegDate('txtGenCradaxenddate','تا تاریخ');
                                 
     if(Messager.errors.length!=0)
     {
@@ -139,22 +142,29 @@ GenCradax.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='GenCradax';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('idstuff',$('#txtidstuff').val()));
+                Entity.Parameters.push( toInput('idstuff',$('#txtGenCradaxidstuff').val()));
     
-                    Entity.Parameters.push( toInput('BCount',$('#txtBCount').val()));
+                    Entity.Parameters.push( toInput('BCount',$('#txtGenCradaxBCount').val()));
     
-                    Entity.Parameters.push( toInput('id_stragoe',$('#txtid_stragoe').val()));
+                    Entity.Parameters.push( toInput('id_stragoe',$('#txtGenCradaxid_stragoe').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtGenCradaxstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtGenCradaxenddate').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.GenCradaxrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.GenCradaxrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -173,7 +183,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

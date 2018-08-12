@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var UserPassEdit=new Object();
+
 var currentButton;
 UserPassEdit.sendFiles=  function()
 {
@@ -55,15 +59,14 @@ UserPassEdit.Submit= function(obj)
     Entity.PageName='UserPassEdit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('UserId',routeParams.UserId ));
-            Entity.Parameters.push( toInput('rPassword',$('#txtrPassword').val()));
+            Entity.Parameters.push( toInput('rPassword',$('#txtUserPassEditrPassword').val()));
     
-                    Entity.Parameters.push( toInput('rrPassword',$('#txtrrPassword').val()));
+                    Entity.Parameters.push( toInput('rrPassword',$('#txtUserPassEditrrPassword').val()));
     
                 ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -73,7 +76,7 @@ UserPassEdit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -134,16 +137,23 @@ UserPassEdit.Serach=function(obj)
     Entity.PageName='UserPassEdit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('UserId',routeParams.UserId ));
-            Entity.Parameters.push( toInput('rPassword',$('#txtrPassword').val()));
+            Entity.Parameters.push( toInput('rPassword',$('#txtUserPassEditrPassword').val()));
     
-                    Entity.Parameters.push( toInput('rrPassword',$('#txtrrPassword').val()));
+                    Entity.Parameters.push( toInput('rrPassword',$('#txtUserPassEditrrPassword').val()));
     
                  
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.UserPassEditrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.UserPassEditrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -162,7 +172,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

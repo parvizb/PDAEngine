@@ -34,7 +34,7 @@ public class xml : ILiquidizable
 /// </summary>
 public class Application : ILiquidizable
 {
-
+    public XmlNode RootNode=null;
    /// <summary>
    /// عنوان برنامه مشخص می کند
    /// </summary>
@@ -113,6 +113,20 @@ public class Application : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 Actionss.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
+
+                    XmlNode zQ=X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
             if (node.ChildNodes[i].Name == "Include")
             {
                 XmlNode xn = node.ChildNodes[i];
@@ -185,6 +199,20 @@ public class BatchCommand : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 CommandCustomValidates.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
+
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
@@ -215,7 +243,20 @@ public class Command : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 Parameters.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
 
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
@@ -297,7 +338,20 @@ public class Parameter : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 Checks.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
 
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
@@ -322,7 +376,20 @@ public class Check : ILiquidizable
         this.Type = node.Attr("Type");
         for (int i = 0; i < node.ChildNodes.Count; i++)
         {
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
 
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
@@ -358,7 +425,20 @@ public class Menu : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 Items.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
 
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
@@ -420,7 +500,20 @@ public class Item : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 SubItems.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
 
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
@@ -517,6 +610,8 @@ public class Page : ILiquidizable
     public string SubmitBevParameter;
     public string ShowCond;
     public string SubmitBev;
+    public string isDailog;
+
     public List<Note> Notes = new List<Note>();
  
     public List<PageParameter> PageParameters = new List<PageParameter>();
@@ -530,6 +625,7 @@ public class Page : ILiquidizable
     public Boolean MustSendFiles = false;
     public void ParseEle(XmlNode node)
     {
+        this.isDailog = node.Attr("isDailog");
         this.ShowCond = node.Attr("ShowCond");
         this.Title = node.Attr("Title");
         this.id = node.Attr("id");
@@ -599,6 +695,20 @@ public class Page : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 BatchCommands.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
+
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
@@ -629,7 +739,7 @@ public class Page : ILiquidizable
                 v= (int)Math.Floor( ((12f / float.Parse(ColumnCount)) * .25f));
                 break;
         }
-        return Hash.FromAnonymousObject(new {ShowCond=this.ShowCond,SubmitBev=this.SubmitBev,SubmitBevParameter=this.SubmitBevParameter , Notes=this.Notes, MustSendFiles=this.MustSendFiles.ToString() ,  BatchCommands=this.BatchCommands ,NoneFormParameters=this.NoneFormParameters.ToString(),JSStart=this.JSStart,HerSize =h, ValSize =v, Title = this.Title, id = this.id, link = this.link, ColumnCount = this.ColumnCount, PerKey = this.PerKey, type = this.type, DBCommand = this.DBCommand,  name = this.name, queryString = this.queryString, ValueDbCommand = this.ValueDbCommand, PageParameters = this.PageParameters, Buttons = this.Buttons, tables = this.tables, ValueParameters = this.ValueParameters,CustomValidates=this.CustomValidates });
+        return Hash.FromAnonymousObject(new {isDailog=this.isDailog,ShowCond=this.ShowCond,SubmitBev=this.SubmitBev,SubmitBevParameter=this.SubmitBevParameter , Notes=this.Notes, MustSendFiles=this.MustSendFiles.ToString() ,  BatchCommands=this.BatchCommands ,NoneFormParameters=this.NoneFormParameters.ToString(),JSStart=this.JSStart,HerSize =h, ValSize =v, Title = this.Title, id = this.id, link = this.link, ColumnCount = this.ColumnCount, PerKey = this.PerKey, type = this.type, DBCommand = this.DBCommand,  name = this.name, queryString = this.queryString, ValueDbCommand = this.ValueDbCommand, PageParameters = this.PageParameters, Buttons = this.Buttons, tables = this.tables, ValueParameters = this.ValueParameters,CustomValidates=this.CustomValidates });
 
     }
 
@@ -710,6 +820,7 @@ public class PageParameter : ILiquidizable
     public List<FileAllow> FileAllows = new List<FileAllow>();
     public string ChangeBev;
     public string ShowCond;
+    public List<Button> Buttons = new List<Button>();
     public void ParseEle(XmlNode node)
     {
 
@@ -750,6 +861,20 @@ public class PageParameter : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 DBSelectCommandParameters.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
+
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
             if (node.ChildNodes[i].Name == "option")
             {
                 option Temp = new option();
@@ -761,13 +886,24 @@ public class PageParameter : ILiquidizable
                 FileAllow Temp = new FileAllow();
                 Temp.ParseEle(node.ChildNodes[i]);
                 FileAllows.Add(Temp);
-            }
+            }
+            if (node.ChildNodes[i].Name == "Button")
+            {
+                Button Temp = new Button();
+                Temp.ParseEle(node.ChildNodes[i]);
+                Buttons.Add(Temp);
+            }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                 
+            
+            }
         }
 
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new {ShowCond=this.ShowCond, ChangeBev=this.ChangeBev, PlaceHolder=this.PlaceHolder, Width=this.Width,Height=this.Height,LinkSyntax=this.LinkSyntax   , FileAllows=this.FileAllows ,  FilePathAtServer=this.FilePathAtServer,  MaxFileSize=this.MaxFileSize,  Disabled=this.Disabled, dontSendToDb=this.dontSendToDb, options=this.options,  TitleParameter=this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
+        return Hash.FromAnonymousObject(new {Buttons=this.Buttons,ShowCond=this.ShowCond, ChangeBev=this.ChangeBev, PlaceHolder=this.PlaceHolder, Width=this.Width,Height=this.Height,LinkSyntax=this.LinkSyntax   , FileAllows=this.FileAllows ,  FilePathAtServer=this.FilePathAtServer,  MaxFileSize=this.MaxFileSize,  Disabled=this.Disabled, dontSendToDb=this.dontSendToDb, options=this.options,  TitleParameter=this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
 
     }
 
@@ -920,21 +1056,38 @@ public class Button : ILiquidizable
     public string title;
     public string action;
     public string actionParameter;
+    public string actionParameter2;
+    public string actionParameter3;
     public void ParseEle(XmlNode node)
     {
 
         this.title = node.Attr("title");
         this.action = node.Attr("action");
         this.actionParameter = node.Attr("actionParameter");
+        this.actionParameter2 = node.Attr("actionParameter2");
+        this.actionParameter3 = node.Attr("actionParameter3");
         for (int i = 0; i < node.ChildNodes.Count; i++)
         {
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
 
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { title = this.title, action = this.action, actionParameter = this.actionParameter });
+        return Hash.FromAnonymousObject(new { title = this.title, action = this.action,actionParameter2=this.actionParameter2,actionParameter3=this.actionParameter3 ,actionParameter = this.actionParameter });
 
     }
 
@@ -1001,6 +1154,20 @@ public class column : ILiquidizable
                 CustomHtml Temp = new CustomHtml();
                 Temp.InnerHtml = node.ChildNodes[i].InnerXml;
                 CustomHtmls.Add(Temp);
+            }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
+
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
             }
         }
 
@@ -1159,7 +1326,20 @@ public class Pages : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 _Pages.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
 
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                      node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
@@ -1209,11 +1389,13 @@ public class table : ILiquidizable
     public string Selectable = "";
     public string Insertable = "";
     public string AutoSelectCond = "";
+    public string DailogSelectable = "";
     public List<column> columns = new List<column>();
     public List<DisplayExpr> DisplayExprs = new List<DisplayExpr>();
     public List<NewRecordColumnValue> NewRecordColumnValues = new List<NewRecordColumnValue>();
     public void ParseEle(XmlNode node)
     {
+     
         Sortable = node.Attr("Sortable");
         BasicFilter = node.Attr("BasicFilter");
         HideActionColumnn = node.Attr("HideActionColumnn");
@@ -1221,7 +1403,7 @@ public class table : ILiquidizable
         Selectable = node.Attr("Selectable");
         Insertable = node.Attr("Insertable");
         AutoSelectCond = node.Attr("AutoSelectCond");
-
+        DailogSelectable = node.Attr("DailogSelectable");
         for (int i = 0; i < node.ChildNodes.Count; i++)
         {
             if (node.ChildNodes[i].Name == "column")
@@ -1243,12 +1425,26 @@ public class table : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 NewRecordColumnValues.Add(Temp);
             }
+            if (node.ChildNodes[i].Name == "CopyElements")
+            {
+                XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
+                String Attr = node.ChildNodes[i].Attr("Attr");
+                for (int z = 0; z < X.ChildNodes.Count; z++)
+                {
+
+                    XmlNode zQ = X.ChildNodes[z].Clone();
+                    if ((Attr != "*") || (zQ.Name == Attr))
+                    {
+                        node.InsertAfter(zQ, node.ChildNodes[i]);
+                    }
+                }
+            }
         }
 
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new {DisplayExprs=this.DisplayExprs,AutoSelectCond=this.AutoSelectCond ,Insertable=this.Insertable,NewRecordColumnValues=this.NewRecordColumnValues ,Selectable=this.Selectable, RowNumberColumn=this.RowNumberColumn, HideActionColumnn=this.HideActionColumnn, BasicFilter = this.BasicFilter, Sortable = this.Sortable, columns = this.columns });
+        return Hash.FromAnonymousObject(new { DailogSelectable = this.DailogSelectable, DisplayExprs = this.DisplayExprs, AutoSelectCond = this.AutoSelectCond, Insertable = this.Insertable, NewRecordColumnValues = this.NewRecordColumnValues, Selectable = this.Selectable, RowNumberColumn = this.RowNumberColumn, HideActionColumnn = this.HideActionColumnn, BasicFilter = this.BasicFilter, Sortable = this.Sortable, columns = this.columns });
 
     }
 

@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var payment_Edit=new Object();
+
 var currentButton;
 payment_Edit.sendFiles=  function()
 {
@@ -55,25 +59,24 @@ payment_Edit.Submit= function(obj)
     Entity.PageName='payment_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('payment_id',routeParams.payment_id ));
-            Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_amount').val()));
+            Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_Editpayment_amount').val()));
     
-                    Entity.Parameters.push( toInput('cus_id',$('#txtcus_id').val()));
+                    Entity.Parameters.push( toInput('cus_id',$('#txtpayment_Editcus_id').val()));
     
-                    Entity.Parameters.push( toInput('dis_amount',$('#txtdis_amount').val()));
+                    Entity.Parameters.push( toInput('dis_amount',$('#txtpayment_Editdis_amount').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Date').val()));
+                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Editpayment_Date').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtpayment_Editdescr').val()));
     
-                    Entity.Parameters.push( toInput('total',$('#txttotal').val()));
+                    Entity.Parameters.push( toInput('total',$('#txtpayment_Edittotal').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtpayment_Editacc_id').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -83,7 +86,7 @@ payment_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -105,16 +108,16 @@ payment_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                                        Validator.CheckRegInteger('txtpayment_amount','مبلغ پرداختی');
+                                                        Validator.CheckRegInteger('txtpayment_Editpayment_amount','مبلغ پرداختی');
                                                             
-                                                        Validator.CheckRegSelect2('txtcus_id','کد مشتری ');
+                                                        Validator.CheckRegSelect2('txtpayment_Editcus_id','کد مشتری ');
                                     
             
-                                                                        Validator.CheckRegDate('txtpayment_Date','تاریخ پرداخت');
+                                                                        Validator.CheckRegDate('txtpayment_Editpayment_Date','تاریخ پرداخت');
                                     
             
             
-                                                        Validator.CheckRegSelect2('txtacc_id','کد حساب محل پرداخت ');
+                                                        Validator.CheckRegSelect2('txtpayment_Editacc_id','کد حساب محل پرداخت ');
                                 
     if(Messager.errors.length!=0)
     {
@@ -148,26 +151,33 @@ payment_Edit.Serach=function(obj)
     Entity.PageName='payment_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('payment_id',routeParams.payment_id ));
-            Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_amount').val()));
+            Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_Editpayment_amount').val()));
     
-                    Entity.Parameters.push( toInput('cus_id',$('#txtcus_id').val()));
+                    Entity.Parameters.push( toInput('cus_id',$('#txtpayment_Editcus_id').val()));
     
-                    Entity.Parameters.push( toInput('dis_amount',$('#txtdis_amount').val()));
+                    Entity.Parameters.push( toInput('dis_amount',$('#txtpayment_Editdis_amount').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Date').val()));
+                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Editpayment_Date').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtpayment_Editdescr').val()));
     
-                    Entity.Parameters.push( toInput('total',$('#txttotal').val()));
+                    Entity.Parameters.push( toInput('total',$('#txtpayment_Edittotal').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtpayment_Editacc_id').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.payment_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.payment_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -186,7 +196,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 payment_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='payment_Edit';
@@ -198,7 +208,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     {
      
                                 
-$('#txtpayment_amount').val(ShowAsMoney( data.records[0].payment_amount));
+$('#txtpayment_Editpayment_amount').val(ShowAsMoney( data.records[0].payment_amount));
 
                 
         var o=document.createElement('option');
@@ -208,11 +218,11 @@ $('#txtpayment_amount').val(ShowAsMoney( data.records[0].payment_amount));
         cus_id.val(data.records[0].cus_id  ) .trigger('change');
 
                 
-$('#txtdis_amount').val(ShowAsMoney( data.records[0].dis_amount));
+$('#txtpayment_Editdis_amount').val(ShowAsMoney( data.records[0].dis_amount));
 
-                $('#txtpayment_Date').val(data.records[0].payment_Date);
+                $('#txtpayment_Editpayment_Date').val(data.records[0].payment_Date);
 
-                $('#txtdescr').val(data.records[0].descr);
+                $('#txtpayment_Editdescr').val(data.records[0].descr);
 
                         
         var o=document.createElement('option');

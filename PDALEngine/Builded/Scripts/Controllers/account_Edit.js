@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var account_Edit=new Object();
+
 var currentButton;
 account_Edit.sendFiles=  function()
 {
@@ -55,23 +59,22 @@ account_Edit.Submit= function(obj)
     Entity.PageName='account_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('acc_id',routeParams.acc_id ));
-            Entity.Parameters.push( toInput('acc_name',$('#txtacc_name').val()));
+            Entity.Parameters.push( toInput('acc_name',$('#txtaccount_Editacc_name').val()));
     
-                    Entity.Parameters.push( toInput('acc_position',$('#txtacc_position').val()));
+                    Entity.Parameters.push( toInput('acc_position',$('#txtaccount_Editacc_position').val()));
     
-                    Entity.Parameters.push( toInput('acc_startValue',$('#txtacc_startValue').val()));
+                    Entity.Parameters.push( toInput('acc_startValue',$('#txtaccount_Editacc_startValue').val()));
     
-                    Entity.Parameters.push( toInput('acc_descr',$('#txtacc_descr').val()));
+                    Entity.Parameters.push( toInput('acc_descr',$('#txtaccount_Editacc_descr').val()));
     
-                    Entity.Parameters.push( toInput('acc_code',$('#txtacc_code').val()));
+                    Entity.Parameters.push( toInput('acc_code',$('#txtaccount_Editacc_code').val()));
     
-                    Entity.Parameters.push( toInput('acc_brch',$('#txtacc_brch').val()));
+                    Entity.Parameters.push( toInput('acc_brch',$('#txtaccount_Editacc_brch').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -81,7 +84,7 @@ account_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -103,16 +106,16 @@ account_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                Validator.CheckEmpty('txtacc_name','عنوان حساب');
+                                Validator.CheckEmpty('txtaccount_Editacc_name','عنوان حساب');
                                                                                             
-                                Validator.CheckEmpty('txtacc_position','محل حساب');
+                                Validator.CheckEmpty('txtaccount_Editacc_position','محل حساب');
                                                                                             
-                                                        Validator.CheckRegInteger('txtacc_startValue','مبلغ ابتدایی ');
+                                                        Validator.CheckRegInteger('txtaccount_Editacc_startValue','مبلغ ابتدایی ');
                                                             
                                                                             
-                                Validator.CheckEmpty('txtacc_code','شماره حساب');
+                                Validator.CheckEmpty('txtaccount_Editacc_code','شماره حساب');
                                                                                             
-                                Validator.CheckEmpty('txtacc_brch','شعبه حساب');
+                                Validator.CheckEmpty('txtaccount_Editacc_brch','شعبه حساب');
                                                                                         
     if(Messager.errors.length!=0)
     {
@@ -146,24 +149,31 @@ account_Edit.Serach=function(obj)
     Entity.PageName='account_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('acc_id',routeParams.acc_id ));
-            Entity.Parameters.push( toInput('acc_name',$('#txtacc_name').val()));
+            Entity.Parameters.push( toInput('acc_name',$('#txtaccount_Editacc_name').val()));
     
-                    Entity.Parameters.push( toInput('acc_position',$('#txtacc_position').val()));
+                    Entity.Parameters.push( toInput('acc_position',$('#txtaccount_Editacc_position').val()));
     
-                    Entity.Parameters.push( toInput('acc_startValue',$('#txtacc_startValue').val()));
+                    Entity.Parameters.push( toInput('acc_startValue',$('#txtaccount_Editacc_startValue').val()));
     
-                    Entity.Parameters.push( toInput('acc_descr',$('#txtacc_descr').val()));
+                    Entity.Parameters.push( toInput('acc_descr',$('#txtaccount_Editacc_descr').val()));
     
-                    Entity.Parameters.push( toInput('acc_code',$('#txtacc_code').val()));
+                    Entity.Parameters.push( toInput('acc_code',$('#txtaccount_Editacc_code').val()));
     
-                    Entity.Parameters.push( toInput('acc_brch',$('#txtacc_brch').val()));
+                    Entity.Parameters.push( toInput('acc_brch',$('#txtaccount_Editacc_brch').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.account_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.account_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -182,7 +192,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 account_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='account_Edit';
@@ -193,18 +203,18 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtacc_name').val(data.records[0].acc_name);
+                                $('#txtaccount_Editacc_name').val(data.records[0].acc_name);
 
-                $('#txtacc_position').val(data.records[0].acc_position);
+                $('#txtaccount_Editacc_position').val(data.records[0].acc_position);
 
                 
-$('#txtacc_startValue').val(ShowAsMoney( data.records[0].acc_startValue));
+$('#txtaccount_Editacc_startValue').val(ShowAsMoney( data.records[0].acc_startValue));
 
-                $('#txtacc_descr').val(data.records[0].acc_descr);
+                $('#txtaccount_Editacc_descr').val(data.records[0].acc_descr);
 
-                $('#txtacc_code').val(data.records[0].acc_code);
+                $('#txtaccount_Editacc_code').val(data.records[0].acc_code);
 
-                $('#txtacc_brch').val(data.records[0].acc_brch);
+                $('#txtaccount_Editacc_brch').val(data.records[0].acc_brch);
 
 }
 else

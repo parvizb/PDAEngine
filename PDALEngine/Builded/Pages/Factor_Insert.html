@@ -2,77 +2,129 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="FactoryNumber" class="col-sm-2 control-label">     شماره فاکتور:</label>
+    <label  for="FactoryNumber" class="col-sm-2 control-label">           شماره فاکتور
+      :</label>
     <div   class="col-sm-2">
-      <input type="text"   class="form-control" id="txtFactoryNumber" placeholder=""  placeholder="" />
+   
+            <input type="text"   class="form-control" id="txtFactor_InsertFactoryNumber" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="CusAccId" class="col-sm-2 control-label">           شناسه مشتری
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                                                                      <select class="form-control" id="txtFactor_InsertCusAccId" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
+    </div>
+    <label  for="FactoryDate" class="col-sm-2 control-label">           تاریخ فاکتور
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtFactor_InsertFactoryDate')"  class="form-control" id="txtFactor_InsertFactoryDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
-                                              </div>
-    <label  for="CusAccId" class="col-sm-2 control-label">     شناسه مشتری:</label>
-    <div   class="col-sm-2">
-    
-                                                <select class="form-control" id="txtCusAccId" ></select>
-    </div>
-    <label  for="FactoryDate" class="col-sm-2 control-label">     تاریخ فاکتور:</label>
-    <div   class="col-sm-2">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtFactoryDate')"  class="form-control" id="txtFactoryDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
     </div>
      </div>
      <div class="form-group">
-    <label  for="FactoryGetDate" class="col-sm-2 control-label">     تاریخ تحویل:</label>
+    <label  for="FactoryGetDate" class="col-sm-2 control-label">           تاریخ تحویل
+      :</label>
     <div   class="col-sm-2">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtFactoryGetDate')"  class="form-control" id="txtFactoryGetDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtFactor_InsertFactoryGetDate')"  class="form-control" id="txtFactor_InsertFactoryGetDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
     </div>
-    <label  for="id_stroage" class="col-sm-2 control-label">     کد انبار:</label>
+    <label  for="id_stroage" class="col-sm-2 control-label">           کد انبار
+      :</label>
     <div   class="col-sm-2">
-    
-                                                <select class="form-control" id="txtid_stroage" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtFactor_Insertid_stroage" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
-    <label  for="FactoryType" class="col-sm-2 control-label">     نوع فاکتور:</label>
+    <label  for="FactoryType" class="col-sm-2 control-label">           نوع فاکتور
+      :</label>
     <div   class="col-sm-2">
-    
-                                                <select class="form-control" id="txtFactoryType" >
-        <option value="0">خرید</option>
-        <option value="1">برگشت از خرید</option>
-        <option value="2">فروش</option>
-        <option value="3">برگشت از فروش</option>
-      </select>
+   
+      
+                                                                                          <select class="form-control" id="txtFactor_InsertFactoryType" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input >
+                <option value="0">خرید</option>
+                <option value="1">برگشت از خرید</option>
+                <option value="2">فروش</option>
+                <option value="3">برگشت از فروش</option>
+              </select>
+                                  
     </div>
      </div>
      <div class="form-group">
-    <label  for="Descr" class="col-sm-2 control-label">     توضیحات:</label>
+    <label  for="Descr" class="col-sm-2 control-label">           توضیحات
+      :</label>
     <div   class="col-sm-2">
-    
-                                                <TextArea class="form-control" id="txtDescr" ></TextArea>
+   
+      
+                                                                                                            <TextArea class="form-control" id="txtFactor_InsertDescr" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input></TextArea>
+                
     </div>
-    <label  for="totalFactory" class="col-sm-2 control-label">     جمع فاکتور:</label>
+    <label  for="totalFactory" class="col-sm-2 control-label">           جمع فاکتور
+      :</label>
     <div   class="col-sm-2">
-    
-                        <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Sum('total'))}}"   class="form-control" id="txttotalFactory" placeholder="" />
-                                  </div>
-    <label  for="totalDiscount" class="col-sm-2 control-label">     جمع تخفیف:</label>
+   
+      
+                                                                  <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Sum('total'))}}"   class="form-control" id="txtFactor_InserttotalFactory" placeholder="" />
+                                                          
+    </div>
+    <label  for="totalDiscount" class="col-sm-2 control-label">           جمع تخفیف
+      :</label>
     <div   class="col-sm-2">
-    
-                        <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Sum('stuffDiscount'))}}"   class="form-control" id="txttotalDiscount" placeholder="" />
-                                  </div>
+   
+      
+                                                                  <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Sum('stuffDiscount'))}}"   class="form-control" id="txtFactor_InserttotalDiscount" placeholder="" />
+                                                          
+    </div>
      </div>
      <div class="form-group">
-    <label  for="totalBill" class="col-sm-2 control-label">     جمع ارزش افزوده:</label>
+    <label  for="totalBill" class="col-sm-2 control-label">           جمع ارزش افزوده
+      :</label>
     <div   class="col-sm-2">
-    
-                        <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Sum('stuffAdding'))}}"   class="form-control" id="txttotalBill" placeholder="" />
-                                  </div>
-    <label  for="totalMoveCost" class="col-sm-2 control-label">     هزینه حمل:</label>
+   
+      
+                                                                  <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Sum('stuffAdding'))}}"   class="form-control" id="txtFactor_InserttotalBill" placeholder="" />
+                                                          
+    </div>
+    <label  for="totalMoveCost" class="col-sm-2 control-label">           هزینه حمل
+      :</label>
     <div   class="col-sm-2">
-    
-            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" onchange='currentScope.$apply({});' class="form-control" id="txttotalMoveCost" placeholder="" />
-                                              </div>
-    <label  for="totalPayable" class="col-sm-2 control-label">     جمع قابل پرداخت:</label>
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input   class="form-control" id="txtFactor_InserttotalMoveCost" placeholder="" />
+                                                                      
+    </div>
+    <label  for="totalPayable" class="col-sm-2 control-label">           جمع قابل پرداخت
+      :</label>
     <div   class="col-sm-2">
-    
-                        <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Sum('total')-Sum('stuffDiscount')+Sum('stuffAdding')+Num(Para('totalMoveCost')))}}"   class="form-control" id="txttotalPayable" placeholder="" />
-                                  </div>
+   
+      
+                                                                  <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Sum('total')-Sum('stuffDiscount')+Sum('stuffAdding')+Num(Para('totalMoveCost')))}}"   class="form-control" id="txtFactor_InserttotalPayable" placeholder="" />
+                                                          
+    </div>
      </div>
      <div class="form-group">
   </div>
@@ -83,10 +135,10 @@
                                                                      
     Factor_Insert.IntForm=function()
     {
-    
-    document.title='فاکتور جدید';
+        document.title='فاکتور جدید';
+        window.pageName='Factor_Insert';
     window.fileUploaded=false;
-                                        CusAccId=  Select2AjaxInit('txtCusAccId',function(term, page){
+                                        CusAccId=  Select2AjaxInit('txtFactor_InsertCusAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='Factor_Insert';
     DataPass.ParaName='CusAccId';
@@ -94,9 +146,9 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtFactoryDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                                kamaDatepicker('txtFactoryGetDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            id_stroage=  Select2AjaxInit('txtid_stroage',function(term, page){
+                                    kamaDatepicker('txtFactor_InsertFactoryDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                kamaDatepicker('txtFactor_InsertFactoryGetDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                            id_stroage=  Select2AjaxInit('txtFactor_Insertid_stroage',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='Factor_Insert';
     DataPass.ParaName='id_stroage';
@@ -134,7 +186,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in Factor_Insertrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
   <td data-label='کالا'><select class="form-control"   id="stuffId_{{record.rndId}}"  valc="{{record.stuffId}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='Factor_Insert';DataPass.colname='stuffId';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetProduct_asTable(MergeNow,record.stuffId,-1);;record.total=Num(record.Count)*Num(record.stuffPrice);NormalResult();"   ng-model="record.stuffId"  >
  <option value="{{record.stuffId}}" selected="selected" >

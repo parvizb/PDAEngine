@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var account_Serach=new Object();
+
 var currentButton;
 account_Serach.sendFiles=  function()
 {
@@ -54,25 +58,24 @@ account_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='account_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                Entity.Parameters.push( toInput('acc_id',$('#txtaccount_Serachacc_id').val()));
     
-                    Entity.Parameters.push( toInput('acc_name',$('#txtacc_name').val()));
+                    Entity.Parameters.push( toInput('acc_name',$('#txtaccount_Serachacc_name').val()));
     
-                    Entity.Parameters.push( toInput('acc_position',$('#txtacc_position').val()));
+                    Entity.Parameters.push( toInput('acc_position',$('#txtaccount_Serachacc_position').val()));
     
-                    Entity.Parameters.push( toInput('acc_startValue',$('#txtacc_startValue').val()));
+                    Entity.Parameters.push( toInput('acc_startValue',$('#txtaccount_Serachacc_startValue').val()));
     
-                    Entity.Parameters.push( toInput('acc_descr',$('#txtacc_descr').val()));
+                    Entity.Parameters.push( toInput('acc_descr',$('#txtaccount_Serachacc_descr').val()));
     
-                    Entity.Parameters.push( toInput('acc_code',$('#txtacc_code').val()));
+                    Entity.Parameters.push( toInput('acc_code',$('#txtaccount_Serachacc_code').val()));
     
-                    Entity.Parameters.push( toInput('acc_brch',$('#txtacc_brch').val()));
+                    Entity.Parameters.push( toInput('acc_brch',$('#txtaccount_Serachacc_brch').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -82,7 +85,7 @@ account_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -141,26 +144,33 @@ account_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='account_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                Entity.Parameters.push( toInput('acc_id',$('#txtaccount_Serachacc_id').val()));
     
-                    Entity.Parameters.push( toInput('acc_name',$('#txtacc_name').val()));
+                    Entity.Parameters.push( toInput('acc_name',$('#txtaccount_Serachacc_name').val()));
     
-                    Entity.Parameters.push( toInput('acc_position',$('#txtacc_position').val()));
+                    Entity.Parameters.push( toInput('acc_position',$('#txtaccount_Serachacc_position').val()));
     
-                    Entity.Parameters.push( toInput('acc_startValue',$('#txtacc_startValue').val()));
+                    Entity.Parameters.push( toInput('acc_startValue',$('#txtaccount_Serachacc_startValue').val()));
     
-                    Entity.Parameters.push( toInput('acc_descr',$('#txtacc_descr').val()));
+                    Entity.Parameters.push( toInput('acc_descr',$('#txtaccount_Serachacc_descr').val()));
     
-                    Entity.Parameters.push( toInput('acc_code',$('#txtacc_code').val()));
+                    Entity.Parameters.push( toInput('acc_code',$('#txtaccount_Serachacc_code').val()));
     
-                    Entity.Parameters.push( toInput('acc_brch',$('#txtacc_brch').val()));
+                    Entity.Parameters.push( toInput('acc_brch',$('#txtaccount_Serachacc_brch').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.account_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.account_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -179,7 +189,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

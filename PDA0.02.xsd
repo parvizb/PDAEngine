@@ -93,6 +93,12 @@
           <xs:documentation>بازگشت به صفحه قبلی و نمایش عبارتی بازگشتی به عنوان شناسه پیگیری</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="PutValueAtTargetElement">
+        <xs:annotation>
+          <xs:documentation>مقدار بازگشتی در عنصر مورد نظر قرار می دهد</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+ 
        <xs:enumeration value="GoToStaticPageWithoutReturnValue">
         <xs:annotation>
           <xs:documentation>یک صفحه خاص بدون ترکیب عبارت خروجی برود</xs:documentation>
@@ -620,6 +626,16 @@
           <xs:documentation>ایجاد خروجی اکسل</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="ShowDailogAndPutValue">
+        <xs:annotation>
+          <xs:documentation>نمایش یک دیالوگ و برگردان مقدار خروجی بروی پارامتر مورد نظر</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ShowDailogAndSelectValue">
+        <xs:annotation>
+          <xs:documentation>نمایش یک دیالوگ و برگردان مقدار انتخابی بروی پارامتر مورد نظر</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="DBSelectCommandParameterSourceType">
@@ -662,6 +678,7 @@
           <xs:documentation>نمایش مستقیم مقدار</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+ 
       <xs:enumeration value="Image">
         <xs:annotation>
           <xs:documentation> 
@@ -777,21 +794,7 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:complexType name="BasicElement">
-    <xs:sequence>
-      <xs:choice>
-        <xs:element minOccurs="0" maxOccurs="unbounded" name="DPaste">
-          <xs:annotation >
-            <xs:documentation>به کپی برداری از یک المان می پردازند</xs:documentation>
-          </xs:annotation>
-          <xs:complexType>
-            <xs:attribute name="CsQueryPath"  />
-          </xs:complexType>
-        </xs:element>
-      </xs:choice>
-    </xs:sequence>
-  </xs:complexType>
-
+ 
 
   <xs:element name="Application">
     <xs:complexType>
@@ -807,6 +810,24 @@
                 <xs:complexType>
                      <xs:annotation><xs:documentation> یک گزینه از منو</xs:documentation> </xs:annotation>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                    <xs:annotation>
+                      <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+                      
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="Attr" use="required" >
+                        <xs:annotation>
+                          <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="XPath" use="required" >
+                        <xs:annotation>
+                          <xs:documentation>مسیر مورد نظر </xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
+                    </xs:complexType>
+                  </xs:element>
                     <xs:element name="SubItem" minOccurs="0" maxOccurs="unbounded">
                       <xs:complexType>
                         <xs:attribute name="PerKey" type="xs:string" use="required">
@@ -861,10 +882,46 @@
           <xs:complexType>
                <xs:annotation><xs:documentation> گروه صفحات </xs:documentation> </xs:annotation>
             <xs:choice minOccurs="0" maxOccurs="unbounded">
+              <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                <xs:annotation>
+                  <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Attr" use="required" >
+                    <xs:annotation>
+                      <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="XPath" use="required" >
+                    <xs:annotation>
+                      <xs:documentation>مسیر مورد نظر </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
               <xs:element maxOccurs="unbounded" name="Page">
                 <xs:complexType>
                    <xs:annotation><xs:documentation> یک صفحه  </xs:documentation> </xs:annotation>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                      <xs:annotation>
+                        <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="Attr" use="required" >
+                          <xs:annotation>
+                            <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="XPath" use="required" >
+                          <xs:annotation>
+                            <xs:documentation>مسیر مورد نظر </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
                     <xs:element minOccurs="0" maxOccurs="unbounded" name="ValueParameter">
                       <xs:complexType>
                         <xs:attribute name="name" type="xs:string" use="required">
@@ -898,6 +955,24 @@
                       <xs:complexType>
                          <xs:annotation><xs:documentation> یک جدول جهت نمایش  </xs:documentation> </xs:annotation>
                         <xs:choice minOccurs="0" maxOccurs="unbounded">
+                          <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                              <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="Attr" use="required" >
+                                <xs:annotation>
+                                  <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="XPath" use="required" >
+                                <xs:annotation>
+                                  <xs:documentation>مسیر مورد نظر </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
                           <xs:element minOccurs="0" maxOccurs="unbounded" name="NewRecordColumnValue">
                             <xs:complexType>
                               <xs:attribute name="ColumnName" type="xs:string" use="required">
@@ -1102,7 +1177,11 @@
                             <xs:documentation>آیا ردیف ها قابل انتخاب باشد</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
-              
+                        <xs:attribute name="DailogSelectable" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>آیا ردیف ها قابل انتخاب باشد</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="Insertable" type="YesNo" use="optional">
                           <xs:annotation>
                             <xs:documentation>آیا بتوان به جدول ردیف اضافه کرد</xs:documentation>
@@ -1112,8 +1191,42 @@
                     </xs:element>
                     <xs:element maxOccurs="unbounded" minOccurs="0" name="PageParameter">
                       <xs:complexType mixed="true">
+                        
                          <xs:annotation><xs:documentation> پارامتر صفحه </xs:documentation> </xs:annotation>
                         <xs:choice minOccurs="0" maxOccurs="unbounded" >
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="Button">
+                            <xs:complexType>
+                              <xs:annotation>
+                                <xs:documentation> تعریف دکمه در صفحه</xs:documentation>
+                              </xs:annotation>
+                              <xs:attribute name="title" type="xs:string" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>عنوان دکمه</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="action" type="ButtonActionType" use="required">
+                                <xs:annotation>
+                                  <xs:documentation>نوع اقدامی دکمه انجام می دهد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+
+                              <xs:attribute name="actionParameter" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>پارامتر که دکمه به نیاز دارد نسبت به نوع اقدام</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="actionParameter2" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>پارامتر که دکمه به نیاز دارد نسبت به نوع اقدام</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="actionParameter3" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>پارامتر که دکمه به نیاز دارد نسبت به نوع اقدام</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
                           <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
                             <xs:complexType>
                               <xs:attribute name="text" type="xs:string" use="required">
@@ -1339,12 +1452,40 @@
                             <xs:documentation>پارامتر که دکمه به نیاز دارد نسبت به نوع اقدام</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
+                        <xs:attribute name="actionParameter2" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>پارامتر که دکمه به نیاز دارد نسبت به نوع اقدام</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="actionParameter3" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>پارامتر که دکمه به نیاز دارد نسبت به نوع اقدام</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                       </xs:complexType>
                     </xs:element>
                     <xs:element minOccurs="0" maxOccurs="unbounded" name="BatchCommand">
                        <xs:annotation><xs:documentation>تعریف دسته های دستور  جهت اجرا </xs:documentation> </xs:annotation>
                       <xs:complexType>
                         <xs:choice minOccurs="0" maxOccurs="unbounded">
+                          <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                              <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="Attr" use="required" >
+                                <xs:annotation>
+                                  <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="XPath" use="required" >
+                                <xs:annotation>
+                                  <xs:documentation>مسیر مورد نظر </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
                           <xs:element minOccurs="0" name="CommandCustomValidate">
                             <xs:complexType>
                               <xs:annotation>
@@ -1374,6 +1515,24 @@
                             <xs:complexType>
                                <xs:annotation><xs:documentation>تعریف یک دستور در دسته دستورات </xs:documentation> </xs:annotation>
                               <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                                  <xs:annotation>
+                                    <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+
+                                  </xs:annotation>
+                                  <xs:complexType>
+                                    <xs:attribute name="Attr" use="required" >
+                                      <xs:annotation>
+                                        <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="XPath" use="required" >
+                                      <xs:annotation>
+                                        <xs:documentation>مسیر مورد نظر </xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
+                                  </xs:complexType>
+                                </xs:element>
                                 <xs:element name="Parameter" maxOccurs="unbounded" minOccurs="0">
                                   <xs:complexType>
                                      <xs:annotation><xs:documentation>برای دستورات تعریف پارامتر </xs:documentation> </xs:annotation>
@@ -1460,6 +1619,11 @@
                       <xs:documentation>عنوان </xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
+                  <xs:attribute name="isDailog" type="YesNo" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>آیا کادر باز می باشد </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
                   <xs:attribute name="name" type="xs:string" use="required">
                     <xs:annotation>
                       <xs:documentation>نام</xs:documentation>
@@ -1522,10 +1686,46 @@
           <xs:complexType>
              <xs:annotation><xs:documentation>تعریف اکشن های ajax </xs:documentation> </xs:annotation>
             <xs:choice minOccurs="0" maxOccurs="unbounded">
+                              <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                    <xs:annotation>
+                      <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+                      
+                    </xs:annotation>
+                    <xs:complexType>
+                      <xs:attribute name="Attr" use="required" >
+                        <xs:annotation>
+                          <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="XPath" use="required" >
+                        <xs:annotation>
+                          <xs:documentation>مسیر مورد نظر </xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
+                    </xs:complexType>
+                  </xs:element>
               <xs:element maxOccurs="unbounded" minOccurs="0" name="action">
                 <xs:complexType>
                    <xs:annotation><xs:documentation> تعریف اقدام ajax </xs:documentation> </xs:annotation>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                      <xs:annotation>
+                        <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="Attr" use="required" >
+                          <xs:annotation>
+                            <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="XPath" use="required" >
+                          <xs:annotation>
+                            <xs:documentation>مسیر مورد نظر </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
                     <xs:element minOccurs="0" maxOccurs="unbounded" name="actionParameter">
                       <xs:complexType>
                          <xs:annotation><xs:documentation>تعریف پارامتر های ajax </xs:documentation> </xs:annotation>
@@ -1571,6 +1771,24 @@
                 <xs:complexType>
                    <xs:annotation><xs:documentation> تعریف اقدام ajax </xs:documentation> </xs:annotation>
                   <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                      <xs:annotation>
+                        <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="Attr" use="required" >
+                          <xs:annotation>
+                            <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="XPath" use="required" >
+                          <xs:annotation>
+                            <xs:documentation>مسیر مورد نظر </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
                     <xs:element minOccurs="0" maxOccurs="unbounded" name="actionParameter">
                       <xs:complexType>
                          <xs:annotation><xs:documentation>تعریف پارامتر های ajax </xs:documentation> </xs:annotation>

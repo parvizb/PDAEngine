@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var stuff_Serach=new Object();
+
 var currentButton;
 stuff_Serach.sendFiles=  function()
 {
@@ -54,29 +58,28 @@ stuff_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='stuff_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('id_stuff',$('#txtid_stuff').val()));
+                Entity.Parameters.push( toInput('id_stuff',$('#txtstuff_Serachid_stuff').val()));
     
-                    Entity.Parameters.push( toInput('id_factory',$('#txtid_factory').val()));
+                    Entity.Parameters.push( toInput('id_factory',$('#txtstuff_Serachid_factory').val()));
     
-                    Entity.Parameters.push( toInput('id_product',$('#txtid_product').val()));
+                    Entity.Parameters.push( toInput('id_product',$('#txtstuff_Serachid_product').val()));
     
-                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_name').val()));
+                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_Serachstuff_name').val()));
     
-                    Entity.Parameters.push( toInput('unit_id',$('#txtunit_id').val()));
+                    Entity.Parameters.push( toInput('unit_id',$('#txtstuff_Serachunit_id').val()));
     
-                    Entity.Parameters.push( toInput('unitbox_id',$('#txtunitbox_id').val()));
+                    Entity.Parameters.push( toInput('unitbox_id',$('#txtstuff_Serachunitbox_id').val()));
     
-                    Entity.Parameters.push( toInput('boxcount',$('#txtboxcount').val()));
+                    Entity.Parameters.push( toInput('boxcount',$('#txtstuff_Serachboxcount').val()));
     
-                    Entity.Parameters.push( toInput('price',$('#txtprice').val()));
+                    Entity.Parameters.push( toInput('price',$('#txtstuff_Serachprice').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtstuff_Serachdescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -86,7 +89,7 @@ stuff_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -147,30 +150,37 @@ stuff_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='stuff_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('id_stuff',$('#txtid_stuff').val()));
+                Entity.Parameters.push( toInput('id_stuff',$('#txtstuff_Serachid_stuff').val()));
     
-                    Entity.Parameters.push( toInput('id_factory',$('#txtid_factory').val()));
+                    Entity.Parameters.push( toInput('id_factory',$('#txtstuff_Serachid_factory').val()));
     
-                    Entity.Parameters.push( toInput('id_product',$('#txtid_product').val()));
+                    Entity.Parameters.push( toInput('id_product',$('#txtstuff_Serachid_product').val()));
     
-                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_name').val()));
+                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_Serachstuff_name').val()));
     
-                    Entity.Parameters.push( toInput('unit_id',$('#txtunit_id').val()));
+                    Entity.Parameters.push( toInput('unit_id',$('#txtstuff_Serachunit_id').val()));
     
-                    Entity.Parameters.push( toInput('unitbox_id',$('#txtunitbox_id').val()));
+                    Entity.Parameters.push( toInput('unitbox_id',$('#txtstuff_Serachunitbox_id').val()));
     
-                    Entity.Parameters.push( toInput('boxcount',$('#txtboxcount').val()));
+                    Entity.Parameters.push( toInput('boxcount',$('#txtstuff_Serachboxcount').val()));
     
-                    Entity.Parameters.push( toInput('price',$('#txtprice').val()));
+                    Entity.Parameters.push( toInput('price',$('#txtstuff_Serachprice').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtstuff_Serachdescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.stuff_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.stuff_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -189,7 +199,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

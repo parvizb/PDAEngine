@@ -8,8 +8,8 @@
                  
     ShowPerInRole.IntForm=function()
     {
-    
-    document.title='نمایش مجوز این گروه';
+        document.title='نمایش مجوز این گروه';
+        window.pageName='ShowPerInRole';
     window.fileUploaded=false;
                             
     }
@@ -34,7 +34,7 @@
  <th  > نوع اقدام</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in ShowPerInRolerecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
 <td data-label='شناسه مجوز'>{{record.PerId}}</td> 
  <td data-label='عبارت کلید'>{{record.PerKey}}</td> 

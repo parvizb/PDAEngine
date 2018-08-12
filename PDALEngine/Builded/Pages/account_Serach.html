@@ -2,53 +2,101 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="acc_id" class="col-sm-2 control-label">     کد حساب:</label>
-    <div   class="col-sm-2">
-    
-            <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtacc_id" placeholder="" />
-                                        </div>
-    <label  for="acc_name" class="col-sm-2 control-label">     عنوان حساب:</label>
-    <div   class="col-sm-2">
-      <input type="text"   class="form-control" id="txtacc_name" placeholder=""  placeholder="" />
-          
-                                              </div>
-    <label  for="acc_position" class="col-sm-2 control-label">     محل حساب:</label>
-    <div   class="col-sm-2">
-      <input type="text"   class="form-control" id="txtacc_position" placeholder=""  placeholder="" />
-          
-                                              </div>
+    <label  for="acc_id" class="col-sm-3 control-label">           کد حساب
+      :</label>
+    <div   class="col-sm-9">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input class="form-control" id="txtaccount_Serachacc_id" placeholder="" />
+                                                                                                    
+    </div>
      </div>
      <div class="form-group">
-    <label  for="acc_startValue" class="col-sm-2 control-label">     مبلغ ابتدایی :</label>
-    <div   class="col-sm-2">
-    
-            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtacc_startValue" placeholder="" />
-                                              </div>
-    <label  for="acc_descr" class="col-sm-2 control-label">     توضیحات:</label>
-    <div   class="col-sm-2">
-      <input type="text"   class="form-control" id="txtacc_descr" placeholder=""  placeholder="" />
-          
-                                              </div>
-    <label  for="acc_code" class="col-sm-2 control-label">     شماره حساب:</label>
-    <div   class="col-sm-2">
-      <input type="text"   class="form-control" id="txtacc_code" placeholder=""  placeholder="" />
-          
-                                              </div>
+    <label  for="acc_name" class="col-sm-3 control-label">           عنوان حساب
+      :</label>
+    <div   class="col-sm-9">
+   
+            <input type="text"   class="form-control" id="txtaccount_Serachacc_name" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
-    <label  for="acc_brch" class="col-sm-2 control-label">     شعبه حساب:</label>
-    <div   class="col-sm-2">
-      <input type="text"   class="form-control" id="txtacc_brch" placeholder=""  placeholder="" />
-          
-                                              </div>
+    <label  for="acc_position" class="col-sm-3 control-label">           محل حساب
+      :</label>
+    <div   class="col-sm-9">
+   
+            <input type="text"   class="form-control" id="txtaccount_Serachacc_position" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="acc_startValue" class="col-sm-3 control-label">           مبلغ ابتدایی 
+      :</label>
+    <div   class="col-sm-9">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input   class="form-control" id="txtaccount_Serachacc_startValue" placeholder="" />
+                                                                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="acc_descr" class="col-sm-3 control-label">           توضیحات
+      :</label>
+    <div   class="col-sm-9">
+   
+            <input type="text"   class="form-control" id="txtaccount_Serachacc_descr" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="acc_code" class="col-sm-3 control-label">           شماره حساب
+                                                <a onclick='QuickFactorSerach.SerachAndPutValue("acc_code","title");' >
+        <button type="button" class="btn btn-default" >+</button>
+      </a>
+                        :</label>
+    <div   class="col-sm-9">
+   
+            <input type="text"   class="form-control" id="txtaccount_Serachacc_code" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="acc_brch" class="col-sm-3 control-label">           شعبه حساب
+      :</label>
+    <div   class="col-sm-9">
+   
+            <input type="text"   class="form-control" id="txtaccount_Serachacc_brch" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
   </div>
     </from>
   <script>
                                                                  
     account_Serach.IntForm=function()
     {
-    
-    document.title='مدیریت حساب ها';
+        document.title='مدیریت حساب ها';
+        window.pageName='account_Serach';
     window.fileUploaded=false;
                                                                                                                                                                             
     }
@@ -80,7 +128,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in account_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='کد حساب'>{{record.acc_id}}</td> 
  <td data-label='عنوان حساب'>{{record.acc_name}}</td> 
  <td data-label='محل حساب'>{{record.acc_position}}</td> 

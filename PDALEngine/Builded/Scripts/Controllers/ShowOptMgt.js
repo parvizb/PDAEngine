@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var ShowOptMgt=new Object();
+
 var currentButton;
 ShowOptMgt.sendFiles=  function()
 {
@@ -54,23 +58,22 @@ ShowOptMgt.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='ShowOptMgt';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                Entity.Parameters.push( toInput('startdate',$('#txtShowOptMgtstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtShowOptMgtenddate').val()));
     
-                    Entity.Parameters.push( toInput('cusid',$('#txtcusid').val()));
+                    Entity.Parameters.push( toInput('cusid',$('#txtShowOptMgtcusid').val()));
     
-                    Entity.Parameters.push( toInput('accid',$('#txtaccid').val()));
+                    Entity.Parameters.push( toInput('accid',$('#txtShowOptMgtaccid').val()));
     
-                    Entity.Parameters.push( toInput('startamount',$('#txtstartamount').val()));
+                    Entity.Parameters.push( toInput('startamount',$('#txtShowOptMgtstartamount').val()));
     
-                    Entity.Parameters.push( toInput('endamount',$('#txtendamount').val()));
+                    Entity.Parameters.push( toInput('endamount',$('#txtShowOptMgtendamount').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -80,7 +83,7 @@ ShowOptMgt.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -138,24 +141,31 @@ ShowOptMgt.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='ShowOptMgt';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                Entity.Parameters.push( toInput('startdate',$('#txtShowOptMgtstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtShowOptMgtenddate').val()));
     
-                    Entity.Parameters.push( toInput('cusid',$('#txtcusid').val()));
+                    Entity.Parameters.push( toInput('cusid',$('#txtShowOptMgtcusid').val()));
     
-                    Entity.Parameters.push( toInput('accid',$('#txtaccid').val()));
+                    Entity.Parameters.push( toInput('accid',$('#txtShowOptMgtaccid').val()));
     
-                    Entity.Parameters.push( toInput('startamount',$('#txtstartamount').val()));
+                    Entity.Parameters.push( toInput('startamount',$('#txtShowOptMgtstartamount').val()));
     
-                    Entity.Parameters.push( toInput('endamount',$('#txtendamount').val()));
+                    Entity.Parameters.push( toInput('endamount',$('#txtShowOptMgtendamount').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.ShowOptMgtrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.ShowOptMgtrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -174,7 +184,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

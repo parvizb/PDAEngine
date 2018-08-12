@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var MoveAcc_Insert=new Object();
+
 var currentButton;
 MoveAcc_Insert.sendFiles=  function()
 {
@@ -54,23 +58,22 @@ MoveAcc_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='MoveAcc_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('moveDate',$('#txtmoveDate').val()));
+                Entity.Parameters.push( toInput('moveDate',$('#txtMoveAcc_InsertmoveDate').val()));
     
-                    Entity.Parameters.push( toInput('sourceAcc',$('#txtsourceAcc').val()));
+                    Entity.Parameters.push( toInput('sourceAcc',$('#txtMoveAcc_InsertsourceAcc').val()));
     
-                    Entity.Parameters.push( toInput('DestAcc',$('#txtDestAcc').val()));
+                    Entity.Parameters.push( toInput('DestAcc',$('#txtMoveAcc_InsertDestAcc').val()));
     
-                    Entity.Parameters.push( toInput('amount',$('#txtamount').val()));
+                    Entity.Parameters.push( toInput('amount',$('#txtMoveAcc_Insertamount').val()));
     
-                    Entity.Parameters.push( toInput('moveCost',$('#txtmoveCost').val()));
+                    Entity.Parameters.push( toInput('moveCost',$('#txtMoveAcc_InsertmoveCost').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtMoveAcc_InsertDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -80,7 +83,7 @@ MoveAcc_Insert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -101,15 +104,15 @@ MoveAcc_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                                                        Validator.CheckRegDate('txtmoveDate','تاریخ انتقال');
+                                                                        Validator.CheckRegDate('txtMoveAcc_InsertmoveDate','تاریخ انتقال');
                                     
-                                                        Validator.CheckRegSelect2('txtsourceAcc','حساب مبدا');
+                                                        Validator.CheckRegSelect2('txtMoveAcc_InsertsourceAcc','حساب مبدا');
                                     
-                                                        Validator.CheckRegSelect2('txtDestAcc','حساب مقصد');
+                                                        Validator.CheckRegSelect2('txtMoveAcc_InsertDestAcc','حساب مقصد');
                                     
-                                                        Validator.CheckRegInteger('txtamount','مبلغ');
+                                                        Validator.CheckRegInteger('txtMoveAcc_Insertamount','مبلغ');
                                                             
-                                                        Validator.CheckRegInteger('txtmoveCost','هزینه انتقال');
+                                                        Validator.CheckRegInteger('txtMoveAcc_InsertmoveCost','هزینه انتقال');
                                                             
         
     if(Messager.errors.length!=0)
@@ -143,24 +146,31 @@ MoveAcc_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='MoveAcc_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('moveDate',$('#txtmoveDate').val()));
+                Entity.Parameters.push( toInput('moveDate',$('#txtMoveAcc_InsertmoveDate').val()));
     
-                    Entity.Parameters.push( toInput('sourceAcc',$('#txtsourceAcc').val()));
+                    Entity.Parameters.push( toInput('sourceAcc',$('#txtMoveAcc_InsertsourceAcc').val()));
     
-                    Entity.Parameters.push( toInput('DestAcc',$('#txtDestAcc').val()));
+                    Entity.Parameters.push( toInput('DestAcc',$('#txtMoveAcc_InsertDestAcc').val()));
     
-                    Entity.Parameters.push( toInput('amount',$('#txtamount').val()));
+                    Entity.Parameters.push( toInput('amount',$('#txtMoveAcc_Insertamount').val()));
     
-                    Entity.Parameters.push( toInput('moveCost',$('#txtmoveCost').val()));
+                    Entity.Parameters.push( toInput('moveCost',$('#txtMoveAcc_InsertmoveCost').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtMoveAcc_InsertDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.MoveAcc_Insertrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.MoveAcc_Insertrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -179,7 +189,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

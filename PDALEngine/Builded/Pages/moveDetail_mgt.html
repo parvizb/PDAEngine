@@ -8,8 +8,8 @@
                  
     moveDetail_mgt.IntForm=function()
     {
-    
-    document.title='ریز انتقالی کالا';
+        document.title='ریز انتقالی کالا';
+        window.pageName='moveDetail_mgt';
     window.fileUploaded=false;
                             
     }
@@ -39,7 +39,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in moveDetail_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='شناسه ریز'>{{record.mSDid}}</td> 
    <td data-label='کالا'><select class="form-control"   id="stuffid_{{record.rndId}}"  valc="{{record.stuffid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='moveDetail_mgt';DataPass.colname='stuffid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetProduct_asTable(MergeNow,record.stuffid);;record.total=Num(record.Count)*Num(record.stuffPrice);NormalResult();"   ng-model="record.stuffid"  >

@@ -2,14 +2,14 @@
 
 
 
-var moveStorage_Serach=new Object();
+var QuickFactorInsert=new Object();
 
 var currentButton;
-moveStorage_Serach.sendFiles=  function()
+QuickFactorInsert.sendFiles=  function()
 {
     var data = new FormData();
  
-                                                                        $('#loadingBar').show();
+                $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -25,7 +25,7 @@ moveStorage_Serach.sendFiles=  function()
             window.fileUploaded=true;
             $('#loadingBar').hide();
             $('#fileStatus').hide();
-            moveStorage_Serach.Submit(currentButton);
+            QuickFactorInsert.Submit(currentButton);
         } else {
             if((xhr.status==500) && (xhr.readyState == 4))
             {
@@ -40,39 +40,25 @@ moveStorage_Serach.sendFiles=  function()
          
         }
     };
-    xhr.open('POST', "Home/SendFiles?PageName=moveStorage_Serach");
+    xhr.open('POST', "Home/SendFiles?PageName=QuickFactorInsert");
     // xhr.setRequestHeader("Content-type", "multipart/form-data");
     xhr.send(data);
 }
 
 
-moveStorage_Serach.Submit= function(obj)
+QuickFactorInsert.Submit= function(obj)
 {
     currentButton=obj;
     $(obj).attr('disabled',true);
-    if(moveStorage_Serach.Validate()==false)
+    if(QuickFactorInsert.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
         var Entity=new Object();
-    Entity.PageName='moveStorage_Serach';
+    Entity.PageName='QuickFactorInsert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('moveStorageId',$('#txtmoveStorage_SerachmoveStorageId').val()));
-    
-                    Entity.Parameters.push( toInput('sourceMoveId',$('#txtmoveStorage_SerachsourceMoveId').val()));
-    
-                    Entity.Parameters.push( toInput('DestMoveId',$('#txtmoveStorage_SerachDestMoveId').val()));
-    
-                    Entity.Parameters.push( toInput('startdate',$('#txtmoveStorage_Serachstartdate').val()));
-    
-                    Entity.Parameters.push( toInput('enddate',$('#txtmoveStorage_Serachenddate').val()));
-    
-                    Entity.Parameters.push( toInput('inNumber',$('#txtmoveStorage_SerachinNumber').val()));
-    
-                    Entity.Parameters.push( toInput('outNumber',$('#txtmoveStorage_SerachoutNumber').val()));
-    
-                    Entity.Parameters.push( toInput('descr',$('#txtmoveStorage_Serachdescr').val()));
+                Entity.Parameters.push( toInput('factory_name',$('#txtQuickFactorInsertfactory_name').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
@@ -87,8 +73,8 @@ moveStorage_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                                BackPage();
+                         
          
      
   
@@ -104,18 +90,12 @@ moveStorage_Serach.Submit= function(obj)
 
 });
 };
-moveStorage_Serach.Validate= function()
+QuickFactorInsert.Validate= function()
 {
     Validator.ClearErrors();
         
-            
-            
-            
-            
-            
-            
-            
-        
+                                Validator.CheckEmpty('txtQuickFactorInsertfactory_name','عنوان');
+                                                                                        
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
@@ -134,49 +114,35 @@ moveStorage_Serach.Validate= function()
 }
 
 
-moveStorage_Serach.Serach=function(obj)
+QuickFactorInsert.Serach=function(obj)
 {
     $(obj).attr('disabled',true);
-    if(moveStorage_Serach.Validate()==false)
+    if(QuickFactorInsert.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
 
-    window.CurrentSerachMethod=moveStorage_Serach.Serach;
+    window.CurrentSerachMethod=QuickFactorInsert.Serach;
     var Entity=new Object();
-    Entity.PageName='moveStorage_Serach';
+    Entity.PageName='QuickFactorInsert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('moveStorageId',$('#txtmoveStorage_SerachmoveStorageId').val()));
-    
-                    Entity.Parameters.push( toInput('sourceMoveId',$('#txtmoveStorage_SerachsourceMoveId').val()));
-    
-                    Entity.Parameters.push( toInput('DestMoveId',$('#txtmoveStorage_SerachDestMoveId').val()));
-    
-                    Entity.Parameters.push( toInput('startdate',$('#txtmoveStorage_Serachstartdate').val()));
-    
-                    Entity.Parameters.push( toInput('enddate',$('#txtmoveStorage_Serachenddate').val()));
-    
-                    Entity.Parameters.push( toInput('inNumber',$('#txtmoveStorage_SerachinNumber').val()));
-    
-                    Entity.Parameters.push( toInput('outNumber',$('#txtmoveStorage_SerachoutNumber').val()));
-    
-                    Entity.Parameters.push( toInput('descr',$('#txtmoveStorage_Serachdescr').val()));
+                Entity.Parameters.push( toInput('factory_name',$('#txtQuickFactorInsertfactory_name').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.moveStorage_Serachrecords= data.records;
+    currentScope.QuickFactorInsertrecords= data.records;
     
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
-        dlgScope.moveStorage_Serachrecords= data.records;
+        dlgScope.QuickFactorInsertrecords= data.records;
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
+        $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
     });
@@ -195,6 +161,42 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 }
 window.targetElement=null;
+{
+    QuickFactorInsert.Scaler=function(namePara)
+    {
+        var d = getDailOpen();
+        targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
+        var s=document.querySelector('#pincQuickFactorInsert');
+        angular.element(s).scope(currentScope);
+        $("#mdlQuickFactorInsert").modal('show');
+        SetupDlgScope();
+
+    }
+    QuickFactorInsert.SerachMode=function(namePara,fun)
+    {
+        var d = getDailOpen();
+        targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
+        var s=document.querySelector('#pincQuickFactorInsert');
+         dlgScope= angular.element(s).scope();
+        $("#mdlQuickFactorInsert").modal('show');
+        OkDailogSelect=fun;
+        SetupDlgScope();
+    }
+    QuickFactorInsert.SerachAndPutValue=function(namePara,colName)
+    {
+        var d = getDailOpen();
+        targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
+        var s=document.querySelector('#pincQuickFactorInsert');
+        dlgScope= angular.element(s).scope();
+        $("#mdlQuickFactorInsert").modal('show');
+        OkDailogSelect=function(d){targetElement.value=SelectableRow[colName]};
+
+        SetupDlgScope();
+        
+        
+    }
+ 
+}
 
 
 

@@ -8,8 +8,8 @@
          
     cus_group_mgt.IntForm=function()
     {
-    
-    document.title='تعریف انواع مشتریان ';
+        document.title='تعریف انواع مشتریان ';
+        window.pageName='cus_group_mgt';
     window.fileUploaded=false;
     
     }
@@ -36,7 +36,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in cus_group_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='گروه مشتریان'>{{record.cus_group_id}}</td> 
   <td data-label='عنوان گروه'><input class="form-control" type="text" id="cus_group_name_{{record.rndId}}" value="{{record.cus_group_name}}" ng-change="ChangeState(record);"  ng-model="record.cus_group_name"  /></td> 

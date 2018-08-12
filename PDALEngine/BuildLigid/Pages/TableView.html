@@ -33,7 +33,7 @@
      {% endif -%}{% endfor -%}
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev {% for table in Page.tables -%}  {% if table.BasicFilter == 'Yes' -%} | filter:FilterValue {% endif -%} {% endfor -%}" >
+     <tr ng-init="record.viewIndex=$index" {% for table in Page.tables -%} {% if table.DailogSelectable == 'Yes' -%} ng-click="SelectRow(record);" ng-dblclick="SelectNow(record);" style="cursor:pointer" {% endif -%} {% endfor -%} ng-repeat="record in {{Page.name}}records | orderBy:currentOrder :rev {% for table in Page.tables -%}  {% if table.BasicFilter == 'Yes' -%} | filter:FilterValue {% endif -%} {% endfor -%}" >
 {% for table in Page.tables -%}
 {% if table.Selectable == 'Yes' -%}
 <th><input type="checkbox" tableCheck="yes" id="selected_{% raw-%}{{record.rndId}}{% endraw -%}" onchange="sendCheckboxToRecord(this)"  /></th>
@@ -58,7 +58,7 @@
  <td data-label='{{col.title}}'><image ng-src='{{col.linkSyntax}}' {% if col.width != '' -%} width="{{col.width}}" {% endif -%}  {% if col.height != '' -%} width="{{col.height}}" {% endif -%}  /></td> 
 {% endif -%}
 {% if (col.type == 'RunningTotalValues') -%}
- <td data-label='{{col.title}}' ng-init="record.{{col.name}}=Num(records[$index-1].{{col.name}})+{{col.ParameterSyntax}};">{{'{{ShowMoney('}}record.{{col.name}}{{'}})}}</td> 
+ <td data-label='{{col.title}}' ng-init="record.{{col.name}}=Num({{Page.name}}records[$index-1].{{col.name}})+{{col.ParameterSyntax}};">{{'{{ShowMoney('}}record.{{col.name}}{{'}})}}</td> 
 {% endif -%}
 {% if (col.type == 'RangeValues') -%}
  <td data-label='{{col.title}}'>

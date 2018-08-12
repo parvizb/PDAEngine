@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var Factor_Serach=new Object();
+
 var currentButton;
 Factor_Serach.sendFiles=  function()
 {
@@ -54,31 +58,30 @@ Factor_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='Factor_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('FactoryId',$('#txtFactoryId').val()));
+                Entity.Parameters.push( toInput('FactoryId',$('#txtFactor_SerachFactoryId').val()));
     
-                    Entity.Parameters.push( toInput('FactoryNumber',$('#txtFactoryNumber').val()));
+                    Entity.Parameters.push( toInput('FactoryNumber',$('#txtFactor_SerachFactoryNumber').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtFactor_SerachCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtFactor_Serachstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtFactor_Serachenddate').val()));
     
-                    Entity.Parameters.push( toInput('FactoryType',$('#txtFactoryType').val()));
+                    Entity.Parameters.push( toInput('FactoryType',$('#txtFactor_SerachFactoryType').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtFactor_SerachDescr').val()));
     
-                    Entity.Parameters.push( toInput('totalFactory',$('#txttotalFactory').val()));
+                    Entity.Parameters.push( toInput('totalFactory',$('#txtFactor_SerachtotalFactory').val()));
     
-                    Entity.Parameters.push( toInput('totalDiscount',$('#txttotalDiscount').val()));
+                    Entity.Parameters.push( toInput('totalDiscount',$('#txtFactor_SerachtotalDiscount').val()));
     
-                    Entity.Parameters.push( toInput('totalPayable',$('#txttotalPayable').val()));
+                    Entity.Parameters.push( toInput('totalPayable',$('#txtFactor_SerachtotalPayable').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -88,7 +91,7 @@ Factor_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -150,32 +153,39 @@ Factor_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='Factor_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('FactoryId',$('#txtFactoryId').val()));
+                Entity.Parameters.push( toInput('FactoryId',$('#txtFactor_SerachFactoryId').val()));
     
-                    Entity.Parameters.push( toInput('FactoryNumber',$('#txtFactoryNumber').val()));
+                    Entity.Parameters.push( toInput('FactoryNumber',$('#txtFactor_SerachFactoryNumber').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtFactor_SerachCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtFactor_Serachstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtFactor_Serachenddate').val()));
     
-                    Entity.Parameters.push( toInput('FactoryType',$('#txtFactoryType').val()));
+                    Entity.Parameters.push( toInput('FactoryType',$('#txtFactor_SerachFactoryType').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtFactor_SerachDescr').val()));
     
-                    Entity.Parameters.push( toInput('totalFactory',$('#txttotalFactory').val()));
+                    Entity.Parameters.push( toInput('totalFactory',$('#txtFactor_SerachtotalFactory').val()));
     
-                    Entity.Parameters.push( toInput('totalDiscount',$('#txttotalDiscount').val()));
+                    Entity.Parameters.push( toInput('totalDiscount',$('#txtFactor_SerachtotalDiscount').val()));
     
-                    Entity.Parameters.push( toInput('totalPayable',$('#txttotalPayable').val()));
+                    Entity.Parameters.push( toInput('totalPayable',$('#txtFactor_SerachtotalPayable').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.Factor_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.Factor_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -194,7 +204,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

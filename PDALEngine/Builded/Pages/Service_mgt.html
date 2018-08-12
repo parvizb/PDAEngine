@@ -8,8 +8,8 @@
          
     Service_mgt.IntForm=function()
     {
-    
-    document.title='تعاریف خدمات';
+        document.title='تعاریف خدمات';
+        window.pageName='Service_mgt';
     window.fileUploaded=false;
     
     }
@@ -36,7 +36,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in Service_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد خدمت'>{{record.ServiceId}}</td> 
   <td data-label='عنوان خدمت'><input class="form-control" type="text" id="ServiceName_{{record.rndId}}" value="{{record.ServiceName}}" ng-change="ChangeState(record);"  ng-model="record.ServiceName"  /></td> 

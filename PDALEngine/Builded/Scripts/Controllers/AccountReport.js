@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var AccountReport=new Object();
+
 var currentButton;
 AccountReport.sendFiles=  function()
 {
@@ -54,17 +58,16 @@ AccountReport.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='AccountReport';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('AccId',$('#txtAccId').val()));
+                Entity.Parameters.push( toInput('AccId',$('#txtAccountReportAccId').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtAccountReportstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtAccountReportenddate').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -74,7 +77,7 @@ AccountReport.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -95,11 +98,11 @@ AccountReport.Validate= function()
 {
     Validator.ClearErrors();
         
-                                                        Validator.CheckRegSelect2('txtAccId','کد حساب');
+                                                        Validator.CheckRegSelect2('txtAccountReportAccId','کد حساب');
                                     
-                                                                        Validator.CheckRegDate('txtstartdate','از تاریخ ');
+                                                                        Validator.CheckRegDate('txtAccountReportstartdate','از تاریخ ');
                                     
-                                                                        Validator.CheckRegDate('txtenddate','تا تاریخ');
+                                                                        Validator.CheckRegDate('txtAccountReportenddate','تا تاریخ');
                                 
     if(Messager.errors.length!=0)
     {
@@ -132,18 +135,25 @@ AccountReport.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='AccountReport';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('AccId',$('#txtAccId').val()));
+                Entity.Parameters.push( toInput('AccId',$('#txtAccountReportAccId').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtAccountReportstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtAccountReportenddate').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.AccountReportrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.AccountReportrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -162,7 +172,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

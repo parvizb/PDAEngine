@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var customer_Insert=new Object();
+
 var currentButton;
 customer_Insert.sendFiles=  function()
 {
@@ -54,27 +58,26 @@ customer_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='customer_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cus_fname',$('#txtcus_fname').val()));
+                Entity.Parameters.push( toInput('cus_fname',$('#txtcustomer_Insertcus_fname').val()));
     
-                    Entity.Parameters.push( toInput('cus_lname',$('#txtcus_lname').val()));
+                    Entity.Parameters.push( toInput('cus_lname',$('#txtcustomer_Insertcus_lname').val()));
     
-                    Entity.Parameters.push( toInput('cus_addr',$('#txtcus_addr').val()));
+                    Entity.Parameters.push( toInput('cus_addr',$('#txtcustomer_Insertcus_addr').val()));
     
-                    Entity.Parameters.push( toInput('cus_phone',$('#txtcus_phone').val()));
+                    Entity.Parameters.push( toInput('cus_phone',$('#txtcustomer_Insertcus_phone').val()));
     
-                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcus_mobile').val()));
+                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcustomer_Insertcus_mobile').val()));
     
-                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcus_group_id').val()));
+                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcustomer_Insertcus_group_id').val()));
     
-                    Entity.Parameters.push( toInput('cus_descr',$('#txtcus_descr').val()));
+                    Entity.Parameters.push( toInput('cus_descr',$('#txtcustomer_Insertcus_descr').val()));
     
-                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcus_remainBefore').val()));
+                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcustomer_Insertcus_remainBefore').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -84,7 +87,7 @@ customer_Insert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -105,16 +108,16 @@ customer_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                Validator.CheckEmpty('txtcus_fname','نام');
+                                Validator.CheckEmpty('txtcustomer_Insertcus_fname','نام');
                                                                                             
-                                Validator.CheckEmpty('txtcus_lname','نام خانوادگی');
+                                Validator.CheckEmpty('txtcustomer_Insertcus_lname','نام خانوادگی');
                                                                                             
                                                                             
-                                Validator.CheckEmpty('txtcus_phone','شماره تلفن');
+                                Validator.CheckEmpty('txtcustomer_Insertcus_phone','شماره تلفن');
                                                                                             
-                                Validator.CheckEmpty('txtcus_mobile','شماره همراه');
+                                Validator.CheckEmpty('txtcustomer_Insertcus_mobile','شماره همراه');
                                                                                             
-                                                        Validator.CheckRegSelect2('txtcus_group_id','گروه مشتریان');
+                                                        Validator.CheckRegSelect2('txtcustomer_Insertcus_group_id','گروه مشتریان');
                                     
             
         
@@ -149,28 +152,35 @@ customer_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='customer_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cus_fname',$('#txtcus_fname').val()));
+                Entity.Parameters.push( toInput('cus_fname',$('#txtcustomer_Insertcus_fname').val()));
     
-                    Entity.Parameters.push( toInput('cus_lname',$('#txtcus_lname').val()));
+                    Entity.Parameters.push( toInput('cus_lname',$('#txtcustomer_Insertcus_lname').val()));
     
-                    Entity.Parameters.push( toInput('cus_addr',$('#txtcus_addr').val()));
+                    Entity.Parameters.push( toInput('cus_addr',$('#txtcustomer_Insertcus_addr').val()));
     
-                    Entity.Parameters.push( toInput('cus_phone',$('#txtcus_phone').val()));
+                    Entity.Parameters.push( toInput('cus_phone',$('#txtcustomer_Insertcus_phone').val()));
     
-                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcus_mobile').val()));
+                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcustomer_Insertcus_mobile').val()));
     
-                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcus_group_id').val()));
+                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcustomer_Insertcus_group_id').val()));
     
-                    Entity.Parameters.push( toInput('cus_descr',$('#txtcus_descr').val()));
+                    Entity.Parameters.push( toInput('cus_descr',$('#txtcustomer_Insertcus_descr').val()));
     
-                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcus_remainBefore').val()));
+                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcustomer_Insertcus_remainBefore').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.customer_Insertrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.customer_Insertrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -189,7 +199,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

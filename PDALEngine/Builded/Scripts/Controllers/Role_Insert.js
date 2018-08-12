@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var Role_Insert=new Object();
+
 var currentButton;
 Role_Insert.sendFiles=  function()
 {
@@ -54,15 +58,14 @@ Role_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='Role_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('RoleName',$('#txtRoleName').val()));
+                Entity.Parameters.push( toInput('RoleName',$('#txtRole_InsertRoleName').val()));
     
-                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRoleDescr').val()));
+                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRole_InsertRoleDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -72,7 +75,7 @@ Role_Insert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -93,7 +96,7 @@ Role_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                Validator.CheckEmpty('txtRoleName','نام نقش');
+                                Validator.CheckEmpty('txtRole_InsertRoleName','نام نقش');
                                                                                             
         
     if(Messager.errors.length!=0)
@@ -127,16 +130,23 @@ Role_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='Role_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('RoleName',$('#txtRoleName').val()));
+                Entity.Parameters.push( toInput('RoleName',$('#txtRole_InsertRoleName').val()));
     
-                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRoleDescr').val()));
+                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRole_InsertRoleDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.Role_Insertrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.Role_Insertrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -155,7 +165,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var SendCheckToPerson=new Object();
+
 var currentButton;
 SendCheckToPerson.sendFiles=  function()
 {
@@ -55,17 +59,16 @@ SendCheckToPerson.Submit= function(obj)
     Entity.PageName='SendCheckToPerson';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('bankCheckId',routeParams.bankCheckId ));
-                    Entity.Parameters.push( toInput('OptDate',$('#txtOptDate').val()));
+                    Entity.Parameters.push( toInput('OptDate',$('#txtSendCheckToPersonOptDate').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtSendCheckToPersonCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('OptDescr',$('#txtOptDescr').val()));
+                    Entity.Parameters.push( toInput('OptDescr',$('#txtSendCheckToPersonOptDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -75,7 +78,7 @@ SendCheckToPerson.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -98,7 +101,7 @@ SendCheckToPerson.Validate= function()
         
             
             
-                                                                        Validator.CheckRegDate('txtOptDate','تاریخ خرج');
+                                                                        Validator.CheckRegDate('txtSendCheckToPersonOptDate','تاریخ خرج');
                                     
             
         
@@ -134,18 +137,25 @@ SendCheckToPerson.Serach=function(obj)
     Entity.PageName='SendCheckToPerson';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('bankCheckId',routeParams.bankCheckId ));
-                    Entity.Parameters.push( toInput('OptDate',$('#txtOptDate').val()));
+                    Entity.Parameters.push( toInput('OptDate',$('#txtSendCheckToPersonOptDate').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtSendCheckToPersonCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('OptDescr',$('#txtOptDescr').val()));
+                    Entity.Parameters.push( toInput('OptDescr',$('#txtSendCheckToPersonOptDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.SendCheckToPersonrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.SendCheckToPersonrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -164,7 +174,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

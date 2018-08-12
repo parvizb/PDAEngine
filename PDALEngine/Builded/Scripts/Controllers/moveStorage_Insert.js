@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var moveStorage_Insert=new Object();
+
 var currentButton;
 moveStorage_Insert.sendFiles=  function()
 {
@@ -54,23 +58,22 @@ moveStorage_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='moveStorage_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('sourceMoveId',$('#txtsourceMoveId').val()));
+                Entity.Parameters.push( toInput('sourceMoveId',$('#txtmoveStorage_InsertsourceMoveId').val()));
     
-                    Entity.Parameters.push( toInput('DestMoveId',$('#txtDestMoveId').val()));
+                    Entity.Parameters.push( toInput('DestMoveId',$('#txtmoveStorage_InsertDestMoveId').val()));
     
-                    Entity.Parameters.push( toInput('moveDate',$('#txtmoveDate').val()));
+                    Entity.Parameters.push( toInput('moveDate',$('#txtmoveStorage_InsertmoveDate').val()));
     
-                    Entity.Parameters.push( toInput('inNumber',$('#txtinNumber').val()));
+                    Entity.Parameters.push( toInput('inNumber',$('#txtmoveStorage_InsertinNumber').val()));
     
-                    Entity.Parameters.push( toInput('outNumber',$('#txtoutNumber').val()));
+                    Entity.Parameters.push( toInput('outNumber',$('#txtmoveStorage_InsertoutNumber').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtmoveStorage_Insertdescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -80,7 +83,7 @@ moveStorage_Insert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                 
+                                         
                 goToLink('#/moveDetail_mgt/'  + data.retrunValue );
          
      
@@ -101,11 +104,11 @@ moveStorage_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                                        Validator.CheckRegSelect2('txtsourceMoveId','انبار مبدا');
+                                                        Validator.CheckRegSelect2('txtmoveStorage_InsertsourceMoveId','انبار مبدا');
                                     
-                                                        Validator.CheckRegSelect2('txtDestMoveId','انبار مقصد');
+                                                        Validator.CheckRegSelect2('txtmoveStorage_InsertDestMoveId','انبار مقصد');
                                     
-                                                                        Validator.CheckRegDate('txtmoveDate','تاریخ انتقال');
+                                                                        Validator.CheckRegDate('txtmoveStorage_InsertmoveDate','تاریخ انتقال');
                                     
             
             
@@ -145,24 +148,31 @@ moveStorage_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='moveStorage_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('sourceMoveId',$('#txtsourceMoveId').val()));
+                Entity.Parameters.push( toInput('sourceMoveId',$('#txtmoveStorage_InsertsourceMoveId').val()));
     
-                    Entity.Parameters.push( toInput('DestMoveId',$('#txtDestMoveId').val()));
+                    Entity.Parameters.push( toInput('DestMoveId',$('#txtmoveStorage_InsertDestMoveId').val()));
     
-                    Entity.Parameters.push( toInput('moveDate',$('#txtmoveDate').val()));
+                    Entity.Parameters.push( toInput('moveDate',$('#txtmoveStorage_InsertmoveDate').val()));
     
-                    Entity.Parameters.push( toInput('inNumber',$('#txtinNumber').val()));
+                    Entity.Parameters.push( toInput('inNumber',$('#txtmoveStorage_InsertinNumber').val()));
     
-                    Entity.Parameters.push( toInput('outNumber',$('#txtoutNumber').val()));
+                    Entity.Parameters.push( toInput('outNumber',$('#txtmoveStorage_InsertoutNumber').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtmoveStorage_Insertdescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.moveStorage_Insertrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.moveStorage_Insertrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -181,7 +191,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

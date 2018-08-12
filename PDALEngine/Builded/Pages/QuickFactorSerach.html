@@ -1,0 +1,50 @@
+﻿  کارخانه بگرد
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+         
+    QuickFactorSerach.IntForm=function()
+    {
+        window.pageName='QuickFactorSerach';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    QuickFactorSerach.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+ <th  > عنوان کارخانه</th> 
+ <th  > شناسه کارخانه</th> 
+ </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index" ng-click="SelectRow(record);" ng-dblclick="SelectNow(record);" style="cursor:pointer" ng-repeat="record in QuickFactorSerachrecords | orderBy:currentOrder :rev | filter:FilterValue " >
+  <td data-label='عنوان کارخانه'><input class="form-control" type="text" id="factory_name_{{record.rndId}}" value="{{record.factory_name}}" ng-change="ChangeState(record);"  ng-model="record.factory_name"  /></td> 
+ <td data-label='شناسه کارخانه'>{{record.factory_id}}</td> 
+                   </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             QuickFactorSerach.Serach();
+                      });
+    
+     </script>

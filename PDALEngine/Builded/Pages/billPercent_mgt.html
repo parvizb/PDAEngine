@@ -8,8 +8,8 @@
          
     billPercent_mgt.IntForm=function()
     {
-    
-    document.title='درصد مالیات بر ارزش افزوده';
+        document.title='درصد مالیات بر ارزش افزوده';
+        window.pageName='billPercent_mgt';
     window.fileUploaded=false;
     
     }
@@ -38,7 +38,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in billPercent_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='شناسه'>{{record.BillId}}</td> 
    <td data-label='از تاریخ'>

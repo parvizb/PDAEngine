@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var ShowCusReportAll=new Object();
+
 var currentButton;
 ShowCusReportAll.sendFiles=  function()
 {
@@ -54,13 +58,12 @@ ShowCusReportAll.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='ShowCusReportAll';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cus_group_id',$('#txtcus_group_id').val()));
+                Entity.Parameters.push( toInput('cus_group_id',$('#txtShowCusReportAllcus_group_id').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -70,7 +73,7 @@ ShowCusReportAll.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -123,14 +126,21 @@ ShowCusReportAll.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='ShowCusReportAll';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cus_group_id',$('#txtcus_group_id').val()));
+                Entity.Parameters.push( toInput('cus_group_id',$('#txtShowCusReportAllcus_group_id').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.ShowCusReportAllrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.ShowCusReportAllrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -149,7 +159,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

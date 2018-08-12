@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var customer_Edit=new Object();
+
 var currentButton;
 customer_Edit.sendFiles=  function()
 {
@@ -55,27 +59,26 @@ customer_Edit.Submit= function(obj)
     Entity.PageName='customer_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('cus_acc_id',routeParams.cus_acc_id ));
-            Entity.Parameters.push( toInput('cus_fname',$('#txtcus_fname').val()));
+            Entity.Parameters.push( toInput('cus_fname',$('#txtcustomer_Editcus_fname').val()));
     
-                    Entity.Parameters.push( toInput('cus_lname',$('#txtcus_lname').val()));
+                    Entity.Parameters.push( toInput('cus_lname',$('#txtcustomer_Editcus_lname').val()));
     
-                    Entity.Parameters.push( toInput('cus_addr',$('#txtcus_addr').val()));
+                    Entity.Parameters.push( toInput('cus_addr',$('#txtcustomer_Editcus_addr').val()));
     
-                    Entity.Parameters.push( toInput('cus_phone',$('#txtcus_phone').val()));
+                    Entity.Parameters.push( toInput('cus_phone',$('#txtcustomer_Editcus_phone').val()));
     
-                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcus_mobile').val()));
+                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcustomer_Editcus_mobile').val()));
     
-                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcus_group_id').val()));
+                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcustomer_Editcus_group_id').val()));
     
-                    Entity.Parameters.push( toInput('cus_descr',$('#txtcus_descr').val()));
+                    Entity.Parameters.push( toInput('cus_descr',$('#txtcustomer_Editcus_descr').val()));
     
-                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcus_remainBefore').val()));
+                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcustomer_Editcus_remainBefore').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -85,7 +88,7 @@ customer_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -107,17 +110,17 @@ customer_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                Validator.CheckEmpty('txtcus_fname','نام');
+                                Validator.CheckEmpty('txtcustomer_Editcus_fname','نام');
                                                                                             
-                                Validator.CheckEmpty('txtcus_lname','نام خانوادگی');
+                                Validator.CheckEmpty('txtcustomer_Editcus_lname','نام خانوادگی');
                                                                                             
-                                Validator.CheckEmpty('txtcus_addr','آدرس');
+                                Validator.CheckEmpty('txtcustomer_Editcus_addr','آدرس');
                                                                                             
-                                Validator.CheckEmpty('txtcus_phone','شماره تلفن');
+                                Validator.CheckEmpty('txtcustomer_Editcus_phone','شماره تلفن');
                                                                                             
-                                Validator.CheckEmpty('txtcus_mobile','شماره همراه');
+                                Validator.CheckEmpty('txtcustomer_Editcus_mobile','شماره همراه');
                                                                                             
-                                                        Validator.CheckRegSelect2('txtcus_group_id','گروه مشتریان');
+                                                        Validator.CheckRegSelect2('txtcustomer_Editcus_group_id','گروه مشتریان');
                                     
             
         
@@ -153,28 +156,35 @@ customer_Edit.Serach=function(obj)
     Entity.PageName='customer_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('cus_acc_id',routeParams.cus_acc_id ));
-            Entity.Parameters.push( toInput('cus_fname',$('#txtcus_fname').val()));
+            Entity.Parameters.push( toInput('cus_fname',$('#txtcustomer_Editcus_fname').val()));
     
-                    Entity.Parameters.push( toInput('cus_lname',$('#txtcus_lname').val()));
+                    Entity.Parameters.push( toInput('cus_lname',$('#txtcustomer_Editcus_lname').val()));
     
-                    Entity.Parameters.push( toInput('cus_addr',$('#txtcus_addr').val()));
+                    Entity.Parameters.push( toInput('cus_addr',$('#txtcustomer_Editcus_addr').val()));
     
-                    Entity.Parameters.push( toInput('cus_phone',$('#txtcus_phone').val()));
+                    Entity.Parameters.push( toInput('cus_phone',$('#txtcustomer_Editcus_phone').val()));
     
-                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcus_mobile').val()));
+                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcustomer_Editcus_mobile').val()));
     
-                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcus_group_id').val()));
+                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcustomer_Editcus_group_id').val()));
     
-                    Entity.Parameters.push( toInput('cus_descr',$('#txtcus_descr').val()));
+                    Entity.Parameters.push( toInput('cus_descr',$('#txtcustomer_Editcus_descr').val()));
     
-                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcus_remainBefore').val()));
+                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcustomer_Editcus_remainBefore').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.customer_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.customer_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -193,7 +203,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 customer_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='customer_Edit';
@@ -204,15 +214,15 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtcus_fname').val(data.records[0].cus_fname);
+                                $('#txtcustomer_Editcus_fname').val(data.records[0].cus_fname);
 
-                $('#txtcus_lname').val(data.records[0].cus_lname);
+                $('#txtcustomer_Editcus_lname').val(data.records[0].cus_lname);
 
-                $('#txtcus_addr').val(data.records[0].cus_addr);
+                $('#txtcustomer_Editcus_addr').val(data.records[0].cus_addr);
 
-                $('#txtcus_phone').val(data.records[0].cus_phone);
+                $('#txtcustomer_Editcus_phone').val(data.records[0].cus_phone);
 
-                $('#txtcus_mobile').val(data.records[0].cus_mobile);
+                $('#txtcustomer_Editcus_mobile').val(data.records[0].cus_mobile);
 
                 
         var o=document.createElement('option');
@@ -221,10 +231,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         cus_group_id.append(o);
         cus_group_id.val(data.records[0].cus_group_id  ) .trigger('change');
 
-                $('#txtcus_descr').val(data.records[0].cus_descr);
+                $('#txtcustomer_Editcus_descr').val(data.records[0].cus_descr);
 
                 
-$('#txtcus_remainBefore').val(ShowAsMoney( data.records[0].cus_remainBefore));
+$('#txtcustomer_Editcus_remainBefore').val(ShowAsMoney( data.records[0].cus_remainBefore));
 
 }
 else

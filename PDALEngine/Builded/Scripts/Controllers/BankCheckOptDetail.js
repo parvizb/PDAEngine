@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var BankCheckOptDetail=new Object();
+
 var currentButton;
 BankCheckOptDetail.sendFiles=  function()
 {
@@ -57,9 +61,8 @@ BankCheckOptDetail.Submit= function(obj)
                 Entity.Parameters.push( toInput('BankCheckId',routeParams.BankCheckId ));
 ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -69,7 +72,7 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -126,9 +129,16 @@ BankCheckOptDetail.Serach=function(obj)
  
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.BankCheckOptDetailrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.BankCheckOptDetailrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -147,16 +157,16 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 
 BankCheckOptDetail.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                    for (var l=0;l<currentScope.records.length;l++)
+                                                    for (var l=0;l<currentScope.BankCheckOptDetailrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.BankCheckOptDetailrecords[l];
 
         if(r.RowState !='Changed'){
     continue;
@@ -164,9 +174,9 @@ BankCheckOptDetail.Save_Validate=function()
 Validator.CheckRegDate('OptDate_' + r.rndId,'',r.viewIndex+1);
 }
 
-for(var l=0;l<currentScope.records.length;l++)
+for(var l=0;l<currentScope.BankCheckOptDetailrecords.length;l++)
 { 
-    var record=currentScope.records[l];
+    var record=currentScope.BankCheckOptDetailrecords[l];
     
 }
 
@@ -194,9 +204,9 @@ BankCheckOptDetail.Save=function()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.BankCheckOptDetailrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.BankCheckOptDetailrecords[l];
 
     if(r.RowState !='Changed'){
     continue;
@@ -236,7 +246,9 @@ Enity.PageName='BankCheckOptDetail';
 Enity.CommandName='Save';
 Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
-        Messager.ShowMessage('اطلاعات', data.Message );
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
  
      
   
@@ -250,6 +262,11 @@ ScallerAjax('BatchCommand',Enity,function(data){
     ///you are asl
     if(data.code==0)
     {
+        window.returnValue=data.retrunValue;
+
+
+
+
                                 BackPage();
                  
          

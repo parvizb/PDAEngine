@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var PayMoveCheck=new Object();
+
 var currentButton;
 PayMoveCheck.sendFiles=  function()
 {
@@ -55,15 +59,14 @@ PayMoveCheck.Submit= function(obj)
     Entity.PageName='PayMoveCheck';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('bankCheckId',routeParams.bankCheckId ));
-                    Entity.Parameters.push( toInput('OptDate',$('#txtOptDate').val()));
+                    Entity.Parameters.push( toInput('OptDate',$('#txtPayMoveCheckOptDate').val()));
     
-                    Entity.Parameters.push( toInput('OptDescr',$('#txtOptDescr').val()));
+                    Entity.Parameters.push( toInput('OptDescr',$('#txtPayMoveCheckOptDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -73,7 +76,7 @@ PayMoveCheck.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -96,7 +99,7 @@ PayMoveCheck.Validate= function()
         
             
             
-                                                                        Validator.CheckRegDate('txtOptDate','تاریخ وصول');
+                                                                        Validator.CheckRegDate('txtPayMoveCheckOptDate','تاریخ وصول');
                                     
         
     if(Messager.errors.length!=0)
@@ -131,16 +134,23 @@ PayMoveCheck.Serach=function(obj)
     Entity.PageName='PayMoveCheck';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('bankCheckId',routeParams.bankCheckId ));
-                    Entity.Parameters.push( toInput('OptDate',$('#txtOptDate').val()));
+                    Entity.Parameters.push( toInput('OptDate',$('#txtPayMoveCheckOptDate').val()));
     
-                    Entity.Parameters.push( toInput('OptDescr',$('#txtOptDescr').val()));
+                    Entity.Parameters.push( toInput('OptDescr',$('#txtPayMoveCheckOptDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.PayMoveCheckrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.PayMoveCheckrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -159,7 +169,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

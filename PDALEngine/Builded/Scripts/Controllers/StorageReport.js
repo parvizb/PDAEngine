@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var StorageReport=new Object();
+
 var currentButton;
 StorageReport.sendFiles=  function()
 {
@@ -54,19 +58,18 @@ StorageReport.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='StorageReport';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('id_factory',$('#txtid_factory').val()));
+                Entity.Parameters.push( toInput('id_factory',$('#txtStorageReportid_factory').val()));
     
-                    Entity.Parameters.push( toInput('id_product',$('#txtid_product').val()));
+                    Entity.Parameters.push( toInput('id_product',$('#txtStorageReportid_product').val()));
     
-                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_name').val()));
+                    Entity.Parameters.push( toInput('stuff_name',$('#txtStorageReportstuff_name').val()));
     
-                    Entity.Parameters.push( toInput('id_stragoe',$('#txtid_stragoe').val()));
+                    Entity.Parameters.push( toInput('id_stragoe',$('#txtStorageReportid_stragoe').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -76,7 +79,7 @@ StorageReport.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -100,7 +103,7 @@ StorageReport.Validate= function()
             
             
             
-                                                        Validator.CheckRegSelect2('txtid_stragoe','انبار ');
+                                                        Validator.CheckRegSelect2('txtStorageReportid_stragoe','انبار ');
                                 
     if(Messager.errors.length!=0)
     {
@@ -133,20 +136,27 @@ StorageReport.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='StorageReport';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('id_factory',$('#txtid_factory').val()));
+                Entity.Parameters.push( toInput('id_factory',$('#txtStorageReportid_factory').val()));
     
-                    Entity.Parameters.push( toInput('id_product',$('#txtid_product').val()));
+                    Entity.Parameters.push( toInput('id_product',$('#txtStorageReportid_product').val()));
     
-                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_name').val()));
+                    Entity.Parameters.push( toInput('stuff_name',$('#txtStorageReportstuff_name').val()));
     
-                    Entity.Parameters.push( toInput('id_stragoe',$('#txtid_stragoe').val()));
+                    Entity.Parameters.push( toInput('id_stragoe',$('#txtStorageReportid_stragoe').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.StorageReportrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.StorageReportrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -165,7 +175,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

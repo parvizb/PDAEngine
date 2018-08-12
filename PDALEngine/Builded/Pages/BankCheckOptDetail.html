@@ -8,8 +8,8 @@
                  
     BankCheckOptDetail.IntForm=function()
     {
-    
-    document.title='عملیات انجام شده بروی چک';
+        document.title='عملیات انجام شده بروی چک';
+        window.pageName='BankCheckOptDetail';
     window.fileUploaded=false;
                             
     }
@@ -38,7 +38,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in BankCheckOptDetailrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label='شناسه عملیات'>{{record.BankCheckOptId}}</td> 
   <td data-label='عملیات'>
     <span ng-show="record.OptType=='1'">وصول</span>

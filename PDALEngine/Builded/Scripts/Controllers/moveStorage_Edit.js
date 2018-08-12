@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var moveStorage_Edit=new Object();
+
 var currentButton;
 moveStorage_Edit.sendFiles=  function()
 {
@@ -55,23 +59,22 @@ moveStorage_Edit.Submit= function(obj)
     Entity.PageName='moveStorage_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('moveStorageId',routeParams.moveStorageId ));
-            Entity.Parameters.push( toInput('sourceMoveId',$('#txtsourceMoveId').val()));
+            Entity.Parameters.push( toInput('sourceMoveId',$('#txtmoveStorage_EditsourceMoveId').val()));
     
-                    Entity.Parameters.push( toInput('DestMoveId',$('#txtDestMoveId').val()));
+                    Entity.Parameters.push( toInput('DestMoveId',$('#txtmoveStorage_EditDestMoveId').val()));
     
-                    Entity.Parameters.push( toInput('moveDate',$('#txtmoveDate').val()));
+                    Entity.Parameters.push( toInput('moveDate',$('#txtmoveStorage_EditmoveDate').val()));
     
-                    Entity.Parameters.push( toInput('inNumber',$('#txtinNumber').val()));
+                    Entity.Parameters.push( toInput('inNumber',$('#txtmoveStorage_EditinNumber').val()));
     
-                    Entity.Parameters.push( toInput('outNumber',$('#txtoutNumber').val()));
+                    Entity.Parameters.push( toInput('outNumber',$('#txtmoveStorage_EditoutNumber').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtmoveStorage_Editdescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -81,7 +84,7 @@ moveStorage_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -103,11 +106,11 @@ moveStorage_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                                        Validator.CheckRegSelect2('txtsourceMoveId','انبار مبدا');
+                                                        Validator.CheckRegSelect2('txtmoveStorage_EditsourceMoveId','انبار مبدا');
                                     
-                                                        Validator.CheckRegSelect2('txtDestMoveId','انبار مقصد');
+                                                        Validator.CheckRegSelect2('txtmoveStorage_EditDestMoveId','انبار مقصد');
                                     
-                                                                        Validator.CheckRegDate('txtmoveDate','تاریخ انتقال');
+                                                                        Validator.CheckRegDate('txtmoveStorage_EditmoveDate','تاریخ انتقال');
                                     
             
             
@@ -148,24 +151,31 @@ moveStorage_Edit.Serach=function(obj)
     Entity.PageName='moveStorage_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('moveStorageId',routeParams.moveStorageId ));
-            Entity.Parameters.push( toInput('sourceMoveId',$('#txtsourceMoveId').val()));
+            Entity.Parameters.push( toInput('sourceMoveId',$('#txtmoveStorage_EditsourceMoveId').val()));
     
-                    Entity.Parameters.push( toInput('DestMoveId',$('#txtDestMoveId').val()));
+                    Entity.Parameters.push( toInput('DestMoveId',$('#txtmoveStorage_EditDestMoveId').val()));
     
-                    Entity.Parameters.push( toInput('moveDate',$('#txtmoveDate').val()));
+                    Entity.Parameters.push( toInput('moveDate',$('#txtmoveStorage_EditmoveDate').val()));
     
-                    Entity.Parameters.push( toInput('inNumber',$('#txtinNumber').val()));
+                    Entity.Parameters.push( toInput('inNumber',$('#txtmoveStorage_EditinNumber').val()));
     
-                    Entity.Parameters.push( toInput('outNumber',$('#txtoutNumber').val()));
+                    Entity.Parameters.push( toInput('outNumber',$('#txtmoveStorage_EditoutNumber').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtmoveStorage_Editdescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.moveStorage_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.moveStorage_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -184,7 +194,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 moveStorage_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='moveStorage_Edit';
@@ -209,13 +219,13 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         DestMoveId.append(o);
         DestMoveId.val(data.records[0].DestMoveId  ) .trigger('change');
 
-                $('#txtmoveDate').val(data.records[0].moveDate);
+                $('#txtmoveStorage_EditmoveDate').val(data.records[0].moveDate);
 
-                $('#txtinNumber').val(data.records[0].inNumber);
+                $('#txtmoveStorage_EditinNumber').val(data.records[0].inNumber);
 
-                $('#txtoutNumber').val(data.records[0].outNumber);
+                $('#txtmoveStorage_EditoutNumber').val(data.records[0].outNumber);
 
-                $('#txtdescr').val(data.records[0].descr);
+                $('#txtmoveStorage_Editdescr').val(data.records[0].descr);
 
 }
 else

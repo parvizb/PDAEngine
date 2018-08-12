@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var factory_mgt=new Object();
+
 var currentButton;
 factory_mgt.sendFiles=  function()
 {
@@ -56,9 +60,8 @@ factory_mgt.Submit= function(obj)
     Entity.Parameters=new Array();
     ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -68,7 +71,7 @@ factory_mgt.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -123,9 +126,16 @@ factory_mgt.Serach=function(obj)
      
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.factory_mgtrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.factory_mgtrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -144,7 +154,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 factory_mgt.InsertRecord=function()
@@ -153,7 +163,7 @@ factory_mgt.InsertRecord=function()
     temp.RowState='Added';
     temp.selected = false;
     temp.rndId = Math.round(Math.random() * 99999999999999);
-        currentScope.records.push(temp);
+        currentScope.factory_mgtrecords.push(temp);
     currentScope.$apply();
                                     
 }
@@ -161,9 +171,9 @@ factory_mgt.InsertRecord=function()
 factory_mgt.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                                                                    for (var l=0;l<currentScope.records.length;l++)
+                                                                                                    for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.factory_mgtrecords[l];
 
         if(r.RowState !='Added'){
     continue;
@@ -171,9 +181,9 @@ factory_mgt.Save_Validate=function()
    
 Validator.CheckEmpty('factory_name_' + r.rndId,'عنوان کارخانه',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.factory_mgtrecords[l];
 
         if(r.RowState !='Changed'){
     continue;
@@ -183,9 +193,9 @@ Validator.CheckEmpty('factory_id_' + r.rndId,'شناسه کارخانه',r.viewI
    
 Validator.CheckEmpty('factory_name_' + r.rndId,'عنوان کارخانه',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.factory_mgtrecords[l];
 
         if(r.RowState !='Deleted'){
     continue;
@@ -194,9 +204,9 @@ Validator.CheckEmpty('factory_name_' + r.rndId,'عنوان کارخانه',r.vie
 Validator.CheckEmpty('factory_id_' + r.rndId,'شناسه کارخانه',r.viewIndex+1);
 }
 
-for(var l=0;l<currentScope.records.length;l++)
+for(var l=0;l<currentScope.factory_mgtrecords.length;l++)
 { 
-    var record=currentScope.records[l];
+    var record=currentScope.factory_mgtrecords[l];
     
 }
 
@@ -224,9 +234,9 @@ factory_mgt.Save=function()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.factory_mgtrecords[l];
 
     if(r.RowState !='Added'){
     continue;
@@ -260,9 +270,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.factory_mgtrecords[l];
 
     if(r.RowState !='Changed'){
     continue;
@@ -299,9 +309,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.factory_mgtrecords[l];
 
     if(r.RowState !='Deleted'){
     continue;
@@ -335,7 +345,9 @@ Enity.PageName='factory_mgt';
 Enity.CommandName='Save';
 Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
-        Messager.ShowMessage('اطلاعات', data.Message );
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
  
      
   
@@ -349,6 +361,11 @@ ScallerAjax('BatchCommand',Enity,function(data){
     ///you are asl
     if(data.code==0)
     {
+        window.returnValue=data.retrunValue;
+
+
+
+
                                 BackPage();
                  
          

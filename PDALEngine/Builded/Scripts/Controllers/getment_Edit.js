@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var getment_Edit=new Object();
+
 var currentButton;
 getment_Edit.sendFiles=  function()
 {
@@ -55,25 +59,24 @@ getment_Edit.Submit= function(obj)
     Entity.PageName='getment_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('getment_id',routeParams.getment_id ));
-            Entity.Parameters.push( toInput('get_amount',$('#txtget_amount').val()));
+            Entity.Parameters.push( toInput('get_amount',$('#txtgetment_Editget_amount').val()));
     
-                    Entity.Parameters.push( toInput('get_discount',$('#txtget_discount').val()));
+                    Entity.Parameters.push( toInput('get_discount',$('#txtgetment_Editget_discount').val()));
     
-                    Entity.Parameters.push( toInput('cus_acc_id',$('#txtcus_acc_id').val()));
+                    Entity.Parameters.push( toInput('cus_acc_id',$('#txtgetment_Editcus_acc_id').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtgetment_Editacc_id').val()));
     
-                    Entity.Parameters.push( toInput('get_date',$('#txtget_date').val()));
+                    Entity.Parameters.push( toInput('get_date',$('#txtgetment_Editget_date').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtgetment_Editdescr').val()));
     
-                    Entity.Parameters.push( toInput('total',$('#txttotal').val()));
+                    Entity.Parameters.push( toInput('total',$('#txtgetment_Edittotal').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -83,7 +86,7 @@ getment_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -105,15 +108,15 @@ getment_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                                        Validator.CheckRegInteger('txtget_amount','مبلغ دریافتی');
+                                                        Validator.CheckRegInteger('txtgetment_Editget_amount','مبلغ دریافتی');
                                                             
-                                                        Validator.CheckRegInteger('txtget_discount','تخفیف دریافتی');
+                                                        Validator.CheckRegInteger('txtgetment_Editget_discount','تخفیف دریافتی');
                                                             
-                                                        Validator.CheckRegSelect2('txtcus_acc_id','شناسه مشتری');
+                                                        Validator.CheckRegSelect2('txtgetment_Editcus_acc_id','شناسه مشتری');
                                     
-                                                        Validator.CheckRegSelect2('txtacc_id','کد حساب');
+                                                        Validator.CheckRegSelect2('txtgetment_Editacc_id','کد حساب');
                                     
-                                                                        Validator.CheckRegDate('txtget_date','تاریخ');
+                                                                        Validator.CheckRegDate('txtgetment_Editget_date','تاریخ');
                                     
             
         
@@ -149,26 +152,33 @@ getment_Edit.Serach=function(obj)
     Entity.PageName='getment_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('getment_id',routeParams.getment_id ));
-            Entity.Parameters.push( toInput('get_amount',$('#txtget_amount').val()));
+            Entity.Parameters.push( toInput('get_amount',$('#txtgetment_Editget_amount').val()));
     
-                    Entity.Parameters.push( toInput('get_discount',$('#txtget_discount').val()));
+                    Entity.Parameters.push( toInput('get_discount',$('#txtgetment_Editget_discount').val()));
     
-                    Entity.Parameters.push( toInput('cus_acc_id',$('#txtcus_acc_id').val()));
+                    Entity.Parameters.push( toInput('cus_acc_id',$('#txtgetment_Editcus_acc_id').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtgetment_Editacc_id').val()));
     
-                    Entity.Parameters.push( toInput('get_date',$('#txtget_date').val()));
+                    Entity.Parameters.push( toInput('get_date',$('#txtgetment_Editget_date').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtgetment_Editdescr').val()));
     
-                    Entity.Parameters.push( toInput('total',$('#txttotal').val()));
+                    Entity.Parameters.push( toInput('total',$('#txtgetment_Edittotal').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.getment_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.getment_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -187,7 +197,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 getment_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='getment_Edit';
@@ -199,10 +209,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     {
      
                                 
-$('#txtget_amount').val(ShowAsMoney( data.records[0].get_amount));
+$('#txtgetment_Editget_amount').val(ShowAsMoney( data.records[0].get_amount));
 
                 
-$('#txtget_discount').val(ShowAsMoney( data.records[0].get_discount));
+$('#txtgetment_Editget_discount').val(ShowAsMoney( data.records[0].get_discount));
 
                 
         var o=document.createElement('option');
@@ -218,9 +228,9 @@ $('#txtget_discount').val(ShowAsMoney( data.records[0].get_discount));
         acc_id.append(o);
         acc_id.val(data.records[0].acc_id  ) .trigger('change');
 
-                $('#txtget_date').val(data.records[0].get_date);
+                $('#txtgetment_Editget_date').val(data.records[0].get_date);
 
-                $('#txtdescr').val(data.records[0].descr);
+                $('#txtgetment_Editdescr').val(data.records[0].descr);
 
         }
 else

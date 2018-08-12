@@ -423,6 +423,7 @@ namespace PDALEngine
 
     public class PDAL
     {
+        public static XmlNode RootElement;
         private static DataTable ReadDataTableNotCommand(string cmd)
         {
             SqlCommand Com = new SqlCommand(cmd, GetConnection());
@@ -2226,7 +2227,9 @@ namespace PDALEngine
             XmlDoc.LoadXml(System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath("~\\PDA.Config")));
      
             XmlNode el = GetElement(XmlDoc, "Application");
+            RootElement = el;
             Application Ap = new Application();
+            Ap.RootNode = el;
             Ap.ParseEle(el);
             for (int k = 0; k < Ap.DontBuilds.Count; k++)
             {

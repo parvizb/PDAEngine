@@ -1,12 +1,49 @@
 ﻿var currentScope=null;
-var mainApp = angular.module("PShop", ['ngRoute']);
+var SelectableRow=null;
+var OkDailogSelect=null;
+var dlgScope=null;
+function DoDailog()
+{
+    OkDailogSelect(SelectableRow);
+    BackPage();
 
+}
+
+
+
+var mainApp = angular.module("PShop", ['ngRoute']);
+mainApp.controller("dlgController",function ($scope, $routeParams) {
+    $scope.ShowBoolean=function(v)
+    {
+        return ShowBoolean(v);
+
+    }
+
+});
 mainApp.controller("mainController",function ($scope, $routeParams) {
+    if(currentScope!=null)
+    {
+        console.log(currentScope.$id); 
+    }
+ 
     currentScope=$scope;
+    console.log(currentScope.$id);
     routeParams=$routeParams;
     $scope.ShowBoolean=function(v)
     {
         return ShowBoolean(v);
+
+    }
+    $scope.SelectRow=function(a)
+    {
+        SelectableRow=a;
+     
+
+    }
+    $scope.SelectNow=function(a)
+    {
+        $scope.SelectRow(a);
+        window.DoDailog();
 
     }
     $scope.mergeArray=function(a1,b1)
@@ -618,6 +655,18 @@ function ($routeProvider/*, $locationProvider*/) {
         templateUrl: 'ServiceFactor_Edit.htm',
         controller: 'mainController'
         }).
+                
+    when('/QuickFactorInsert', {
+        templateUrl: 'QuickFactorInsert.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/QuickFactorSerach', {
+        templateUrl: 'QuickFactorSerach.htm',
+        controller: 'mainController' }
+            ).
+    
                 when('/welcome', {
         templateUrl: 'welcome.html',
         controller: 'mainController'}

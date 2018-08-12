@@ -8,8 +8,8 @@
          
     factory_mgt.IntForm=function()
     {
-    
-    document.title='تعریف کارخانه ';
+        document.title='تعریف کارخانه ';
+        window.pageName='factory_mgt';
     window.fileUploaded=false;
     
     }
@@ -36,7 +36,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in factory_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='شناسه کارخانه'>{{record.factory_id}}</td> 
   <td data-label='عنوان کارخانه'><input class="form-control" type="text" id="factory_name_{{record.rndId}}" value="{{record.factory_name}}" ng-change="ChangeState(record);"  ng-model="record.factory_name"  /></td> 

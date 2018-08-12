@@ -8,8 +8,8 @@
          
     set_stroge_frist.IntForm=function()
     {
-    
-    document.title='تعیین موجودی ابتدای دوره انبار';
+        document.title='تعیین موجودی ابتدای دوره انبار';
+        window.pageName='set_stroge_frist';
     window.fileUploaded=false;
     
     }
@@ -36,7 +36,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in set_stroge_fristrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد انبار'>{{record.id_stroage}}</td> 
  <td data-label='عنوان'>{{record.storage_name}}</td> 

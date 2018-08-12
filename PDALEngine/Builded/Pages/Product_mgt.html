@@ -8,8 +8,8 @@
          
     product_mgt.IntForm=function()
     {
-    
-    document.title='تعریف انواع کالا';
+        document.title='تعریف انواع کالا';
+        window.pageName='product_mgt';
     window.fileUploaded=false;
     
     }
@@ -36,7 +36,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in product_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='شناسه کالا'>{{record.product_id}}</td> 
   <td data-label='عنوان کالا'><input class="form-control" type="text" id="product_name_{{record.rndId}}" value="{{record.product_name}}" ng-change="ChangeState(record);"  ng-model="record.product_name"  /></td> 

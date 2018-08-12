@@ -2,31 +2,46 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="RoleId" class="col-sm-2 control-label">     شناسه نقش:</label>
+    <label  for="RoleId" class="col-sm-2 control-label">           شناسه نقش
+      :</label>
     <div   class="col-sm-4">
-    
-            <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtRoleId" placeholder="" />
-                                        </div>
-    <label  for="RoleName" class="col-sm-2 control-label">     نام نقش:</label>
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input class="form-control" id="txtRole_SerachRoleId" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="RoleName" class="col-sm-2 control-label">           نام نقش
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtRoleName" placeholder=""  placeholder="" />
-          
-                                              </div>
+   
+            <input type="text"   class="form-control" id="txtRole_SerachRoleName" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
-    <label  for="RoleDescr" class="col-sm-2 control-label">     توضیحات:</label>
+    <label  for="RoleDescr" class="col-sm-2 control-label">           توضیحات
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtRoleDescr" placeholder=""  placeholder="" />
-          
-                                              </div>
+   
+            <input type="text"   class="form-control" id="txtRole_SerachRoleDescr" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
   </div>
     </from>
   <script>
                                  
     Role_Serach.IntForm=function()
     {
-    
-    document.title='مدیریت نقش ها';
+        document.title='مدیریت نقش ها';
+        window.pageName='Role_Serach';
     window.fileUploaded=false;
                                                                             
     }
@@ -54,7 +69,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in Role_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه نقش'>{{record.RoleId}}</td> 
  <td data-label='نام نقش'>{{record.RoleName}}</td> 
  <td data-label='توضیحات'>{{record.RoleDescr}}</td> 

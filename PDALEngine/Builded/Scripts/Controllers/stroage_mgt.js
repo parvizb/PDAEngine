@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var stroage_mgt=new Object();
+
 var currentButton;
 stroage_mgt.sendFiles=  function()
 {
@@ -56,9 +60,8 @@ stroage_mgt.Submit= function(obj)
     Entity.Parameters=new Array();
     ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -68,7 +71,7 @@ stroage_mgt.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -123,9 +126,16 @@ stroage_mgt.Serach=function(obj)
      
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.stroage_mgtrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.stroage_mgtrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -144,7 +154,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 stroage_mgt.InsertRecord=function()
@@ -153,7 +163,7 @@ stroage_mgt.InsertRecord=function()
     temp.RowState='Added';
     temp.selected = false;
     temp.rndId = Math.round(Math.random() * 99999999999999);
-        currentScope.records.push(temp);
+        currentScope.stroage_mgtrecords.push(temp);
     currentScope.$apply();
                                                     
 }
@@ -161,9 +171,9 @@ stroage_mgt.InsertRecord=function()
 stroage_mgt.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                                                                                                                                    for (var l=0;l<currentScope.records.length;l++)
+                                                                                                                                                                    for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.stroage_mgtrecords[l];
 
         if(r.RowState !='Added'){
     continue;
@@ -175,9 +185,9 @@ Validator.CheckEmpty('addr_' + r.rndId,'آدرس',r.viewIndex+1);
    
 Validator.CheckEmpty('graud_name_' + r.rndId,'مسئول انبار',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.stroage_mgtrecords[l];
 
         if(r.RowState !='Changed'){
     continue;
@@ -191,9 +201,9 @@ Validator.CheckEmpty('addr_' + r.rndId,'آدرس',r.viewIndex+1);
    
 Validator.CheckEmpty('graud_name_' + r.rndId,'مسئول انبار',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.stroage_mgtrecords[l];
 
         if(r.RowState !='Deleted'){
     continue;
@@ -202,9 +212,9 @@ Validator.CheckEmpty('graud_name_' + r.rndId,'مسئول انبار',r.viewIndex
 Validator.CheckEmpty('id_stroage_' + r.rndId,'کد انبار',r.viewIndex+1);
 }
 
-for(var l=0;l<currentScope.records.length;l++)
+for(var l=0;l<currentScope.stroage_mgtrecords.length;l++)
 { 
-    var record=currentScope.records[l];
+    var record=currentScope.stroage_mgtrecords[l];
     
 }
 
@@ -232,9 +242,9 @@ stroage_mgt.Save=function()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.stroage_mgtrecords[l];
 
     if(r.RowState !='Added'){
     continue;
@@ -274,9 +284,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.stroage_mgtrecords[l];
 
     if(r.RowState !='Changed'){
     continue;
@@ -319,9 +329,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.stroage_mgtrecords[l];
 
     if(r.RowState !='Deleted'){
     continue;
@@ -355,7 +365,9 @@ Enity.PageName='stroage_mgt';
 Enity.CommandName='Save';
 Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
-        Messager.ShowMessage('اطلاعات', data.Message );
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
  
      
   
@@ -369,6 +381,11 @@ ScallerAjax('BatchCommand',Enity,function(data){
     ///you are asl
     if(data.code==0)
     {
+        window.returnValue=data.retrunValue;
+
+
+
+
                                 BackPage();
                  
          

@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var setAvable=new Object();
+
 var currentButton;
 setAvable.sendFiles=  function()
 {
@@ -55,15 +59,14 @@ setAvable.Submit= function(obj)
     Entity.PageName='setAvable';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('id_St',routeParams.id_St ));
-            Entity.Parameters.push( toInput('id_stD',$('#txtid_stD').val()));
+            Entity.Parameters.push( toInput('id_stD',$('#txtsetAvableid_stD').val()));
     
-                    Entity.Parameters.push( toInput('st_named',$('#txtst_named').val()));
+                    Entity.Parameters.push( toInput('st_named',$('#txtsetAvablest_named').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -73,7 +76,7 @@ setAvable.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -129,16 +132,23 @@ setAvable.Serach=function(obj)
     Entity.PageName='setAvable';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('id_St',routeParams.id_St ));
-            Entity.Parameters.push( toInput('id_stD',$('#txtid_stD').val()));
+            Entity.Parameters.push( toInput('id_stD',$('#txtsetAvableid_stD').val()));
     
-                    Entity.Parameters.push( toInput('st_named',$('#txtst_named').val()));
+                    Entity.Parameters.push( toInput('st_named',$('#txtsetAvablest_named').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.setAvablerecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.setAvablerecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -157,16 +167,16 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 
 setAvable.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                                    for (var l=0;l<currentScope.records.length;l++)
+                                                                    for (var l=0;l<currentScope.setAvablerecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.setAvablerecords[l];
 
         if(r.RowState !='Changed'){
     continue;
@@ -175,9 +185,9 @@ Validator.CheckRegFloat('realCount_' + r.rndId,'تعداد',r.viewIndex+1);
 Validator.CheckRegFloat('price_' + r.rndId,'ارزش فی',r.viewIndex+1);
 }
 
-for(var l=0;l<currentScope.records.length;l++)
+for(var l=0;l<currentScope.setAvablerecords.length;l++)
 { 
-    var record=currentScope.records[l];
+    var record=currentScope.setAvablerecords[l];
     
 }
 
@@ -205,9 +215,9 @@ setAvable.Save=function()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.setAvablerecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.setAvablerecords[l];
 
     if(r.RowState !='Changed'){
     continue;
@@ -250,7 +260,9 @@ Enity.PageName='setAvable';
 Enity.CommandName='Save';
 Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
-        Messager.ShowMessage('اطلاعات', data.Message );
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
  
      
   
@@ -264,6 +276,11 @@ ScallerAjax('BatchCommand',Enity,function(data){
     ///you are asl
     if(data.code==0)
     {
+        window.returnValue=data.retrunValue;
+
+
+
+
                                 BackPage();
                  
          

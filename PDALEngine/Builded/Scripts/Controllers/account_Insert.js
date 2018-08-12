@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var account_Insert=new Object();
+
 var currentButton;
 account_Insert.sendFiles=  function()
 {
@@ -54,23 +58,22 @@ account_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='account_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('acc_name',$('#txtacc_name').val()));
+                Entity.Parameters.push( toInput('acc_name',$('#txtaccount_Insertacc_name').val()));
     
-                    Entity.Parameters.push( toInput('acc_position',$('#txtacc_position').val()));
+                    Entity.Parameters.push( toInput('acc_position',$('#txtaccount_Insertacc_position').val()));
     
-                    Entity.Parameters.push( toInput('acc_startValue',$('#txtacc_startValue').val()));
+                    Entity.Parameters.push( toInput('acc_startValue',$('#txtaccount_Insertacc_startValue').val()));
     
-                    Entity.Parameters.push( toInput('acc_descr',$('#txtacc_descr').val()));
+                    Entity.Parameters.push( toInput('acc_descr',$('#txtaccount_Insertacc_descr').val()));
     
-                    Entity.Parameters.push( toInput('acc_code',$('#txtacc_code').val()));
+                    Entity.Parameters.push( toInput('acc_code',$('#txtaccount_Insertacc_code').val()));
     
-                    Entity.Parameters.push( toInput('acc_brch',$('#txtacc_brch').val()));
+                    Entity.Parameters.push( toInput('acc_brch',$('#txtaccount_Insertacc_brch').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -80,7 +83,7 @@ account_Insert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -101,15 +104,15 @@ account_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                Validator.CheckEmpty('txtacc_name','عنوان حساب');
+                                Validator.CheckEmpty('txtaccount_Insertacc_name','عنوان حساب');
                                                                                             
-                                Validator.CheckEmpty('txtacc_position','محل حساب');
+                                Validator.CheckEmpty('txtaccount_Insertacc_position','محل حساب');
                                                                                             
             
                                                                             
-                                Validator.CheckEmpty('txtacc_code','شماره حساب');
+                                Validator.CheckEmpty('txtaccount_Insertacc_code','شماره حساب');
                                                                                             
-                                Validator.CheckEmpty('txtacc_brch','شعبه حساب');
+                                Validator.CheckEmpty('txtaccount_Insertacc_brch','شعبه حساب');
                                                                                         
     if(Messager.errors.length!=0)
     {
@@ -142,24 +145,31 @@ account_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='account_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('acc_name',$('#txtacc_name').val()));
+                Entity.Parameters.push( toInput('acc_name',$('#txtaccount_Insertacc_name').val()));
     
-                    Entity.Parameters.push( toInput('acc_position',$('#txtacc_position').val()));
+                    Entity.Parameters.push( toInput('acc_position',$('#txtaccount_Insertacc_position').val()));
     
-                    Entity.Parameters.push( toInput('acc_startValue',$('#txtacc_startValue').val()));
+                    Entity.Parameters.push( toInput('acc_startValue',$('#txtaccount_Insertacc_startValue').val()));
     
-                    Entity.Parameters.push( toInput('acc_descr',$('#txtacc_descr').val()));
+                    Entity.Parameters.push( toInput('acc_descr',$('#txtaccount_Insertacc_descr').val()));
     
-                    Entity.Parameters.push( toInput('acc_code',$('#txtacc_code').val()));
+                    Entity.Parameters.push( toInput('acc_code',$('#txtaccount_Insertacc_code').val()));
     
-                    Entity.Parameters.push( toInput('acc_brch',$('#txtacc_brch').val()));
+                    Entity.Parameters.push( toInput('acc_brch',$('#txtaccount_Insertacc_brch').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.account_Insertrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.account_Insertrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -178,7 +188,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

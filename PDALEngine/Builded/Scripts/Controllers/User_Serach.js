@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var User_Serach=new Object();
+
 var currentButton;
 User_Serach.sendFiles=  function()
 {
@@ -54,21 +58,20 @@ User_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='User_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('UserId',$('#txtUserId').val()));
+                Entity.Parameters.push( toInput('UserId',$('#txtUser_SerachUserId').val()));
     
-                    Entity.Parameters.push( toInput('Fname',$('#txtFname').val()));
+                    Entity.Parameters.push( toInput('Fname',$('#txtUser_SerachFname').val()));
     
-                    Entity.Parameters.push( toInput('Lname',$('#txtLname').val()));
+                    Entity.Parameters.push( toInput('Lname',$('#txtUser_SerachLname').val()));
     
-                    Entity.Parameters.push( toInput('address',$('#txtaddress').val()));
+                    Entity.Parameters.push( toInput('address',$('#txtUser_Serachaddress').val()));
     
-                    Entity.Parameters.push( toInput('phone',$('#txtphone').val()));
+                    Entity.Parameters.push( toInput('phone',$('#txtUser_Serachphone').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -78,7 +81,7 @@ User_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -135,22 +138,29 @@ User_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='User_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('UserId',$('#txtUserId').val()));
+                Entity.Parameters.push( toInput('UserId',$('#txtUser_SerachUserId').val()));
     
-                    Entity.Parameters.push( toInput('Fname',$('#txtFname').val()));
+                    Entity.Parameters.push( toInput('Fname',$('#txtUser_SerachFname').val()));
     
-                    Entity.Parameters.push( toInput('Lname',$('#txtLname').val()));
+                    Entity.Parameters.push( toInput('Lname',$('#txtUser_SerachLname').val()));
     
-                    Entity.Parameters.push( toInput('address',$('#txtaddress').val()));
+                    Entity.Parameters.push( toInput('address',$('#txtUser_Serachaddress').val()));
     
-                    Entity.Parameters.push( toInput('phone',$('#txtphone').val()));
+                    Entity.Parameters.push( toInput('phone',$('#txtUser_Serachphone').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.User_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.User_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -169,7 +179,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var customer_Serach=new Object();
+
 var currentButton;
 customer_Serach.sendFiles=  function()
 {
@@ -54,29 +58,28 @@ customer_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='customer_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cus_acc_id',$('#txtcus_acc_id').val()));
+                Entity.Parameters.push( toInput('cus_acc_id',$('#txtcustomer_Serachcus_acc_id').val()));
     
-                    Entity.Parameters.push( toInput('cus_fname',$('#txtcus_fname').val()));
+                    Entity.Parameters.push( toInput('cus_fname',$('#txtcustomer_Serachcus_fname').val()));
     
-                    Entity.Parameters.push( toInput('cus_lname',$('#txtcus_lname').val()));
+                    Entity.Parameters.push( toInput('cus_lname',$('#txtcustomer_Serachcus_lname').val()));
     
-                    Entity.Parameters.push( toInput('cus_addr',$('#txtcus_addr').val()));
+                    Entity.Parameters.push( toInput('cus_addr',$('#txtcustomer_Serachcus_addr').val()));
     
-                    Entity.Parameters.push( toInput('cus_phone',$('#txtcus_phone').val()));
+                    Entity.Parameters.push( toInput('cus_phone',$('#txtcustomer_Serachcus_phone').val()));
     
-                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcus_mobile').val()));
+                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcustomer_Serachcus_mobile').val()));
     
-                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcus_group_id').val()));
+                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcustomer_Serachcus_group_id').val()));
     
-                    Entity.Parameters.push( toInput('cus_descr',$('#txtcus_descr').val()));
+                    Entity.Parameters.push( toInput('cus_descr',$('#txtcustomer_Serachcus_descr').val()));
     
-                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcus_remainBefore').val()));
+                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcustomer_Serachcus_remainBefore').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -86,7 +89,7 @@ customer_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -147,30 +150,37 @@ customer_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='customer_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cus_acc_id',$('#txtcus_acc_id').val()));
+                Entity.Parameters.push( toInput('cus_acc_id',$('#txtcustomer_Serachcus_acc_id').val()));
     
-                    Entity.Parameters.push( toInput('cus_fname',$('#txtcus_fname').val()));
+                    Entity.Parameters.push( toInput('cus_fname',$('#txtcustomer_Serachcus_fname').val()));
     
-                    Entity.Parameters.push( toInput('cus_lname',$('#txtcus_lname').val()));
+                    Entity.Parameters.push( toInput('cus_lname',$('#txtcustomer_Serachcus_lname').val()));
     
-                    Entity.Parameters.push( toInput('cus_addr',$('#txtcus_addr').val()));
+                    Entity.Parameters.push( toInput('cus_addr',$('#txtcustomer_Serachcus_addr').val()));
     
-                    Entity.Parameters.push( toInput('cus_phone',$('#txtcus_phone').val()));
+                    Entity.Parameters.push( toInput('cus_phone',$('#txtcustomer_Serachcus_phone').val()));
     
-                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcus_mobile').val()));
+                    Entity.Parameters.push( toInput('cus_mobile',$('#txtcustomer_Serachcus_mobile').val()));
     
-                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcus_group_id').val()));
+                    Entity.Parameters.push( toInput('cus_group_id',$('#txtcustomer_Serachcus_group_id').val()));
     
-                    Entity.Parameters.push( toInput('cus_descr',$('#txtcus_descr').val()));
+                    Entity.Parameters.push( toInput('cus_descr',$('#txtcustomer_Serachcus_descr').val()));
     
-                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcus_remainBefore').val()));
+                    Entity.Parameters.push( toInput('cus_remainBefore',$('#txtcustomer_Serachcus_remainBefore').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.customer_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.customer_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -189,7 +199,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var payment_Serach=new Object();
+
 var currentButton;
 payment_Serach.sendFiles=  function()
 {
@@ -54,27 +58,26 @@ payment_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='payment_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('payment_id',$('#txtpayment_id').val()));
+                Entity.Parameters.push( toInput('payment_id',$('#txtpayment_Serachpayment_id').val()));
     
-                    Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_amount').val()));
+                    Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_Serachpayment_amount').val()));
     
-                    Entity.Parameters.push( toInput('cus_id',$('#txtcus_id').val()));
+                    Entity.Parameters.push( toInput('cus_id',$('#txtpayment_Serachcus_id').val()));
     
-                    Entity.Parameters.push( toInput('dis_amount',$('#txtdis_amount').val()));
+                    Entity.Parameters.push( toInput('dis_amount',$('#txtpayment_Serachdis_amount').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date_start',$('#txtpayment_Date_start').val()));
+                    Entity.Parameters.push( toInput('payment_Date_start',$('#txtpayment_Serachpayment_Date_start').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date_end',$('#txtpayment_Date_end').val()));
+                    Entity.Parameters.push( toInput('payment_Date_end',$('#txtpayment_Serachpayment_Date_end').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtpayment_Serachdescr').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtpayment_Serachacc_id').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -84,7 +87,7 @@ payment_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -144,28 +147,35 @@ payment_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='payment_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('payment_id',$('#txtpayment_id').val()));
+                Entity.Parameters.push( toInput('payment_id',$('#txtpayment_Serachpayment_id').val()));
     
-                    Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_amount').val()));
+                    Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_Serachpayment_amount').val()));
     
-                    Entity.Parameters.push( toInput('cus_id',$('#txtcus_id').val()));
+                    Entity.Parameters.push( toInput('cus_id',$('#txtpayment_Serachcus_id').val()));
     
-                    Entity.Parameters.push( toInput('dis_amount',$('#txtdis_amount').val()));
+                    Entity.Parameters.push( toInput('dis_amount',$('#txtpayment_Serachdis_amount').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date_start',$('#txtpayment_Date_start').val()));
+                    Entity.Parameters.push( toInput('payment_Date_start',$('#txtpayment_Serachpayment_Date_start').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date_end',$('#txtpayment_Date_end').val()));
+                    Entity.Parameters.push( toInput('payment_Date_end',$('#txtpayment_Serachpayment_Date_end').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtpayment_Serachdescr').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtpayment_Serachacc_id').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.payment_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.payment_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -184,7 +194,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

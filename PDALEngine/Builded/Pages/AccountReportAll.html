@@ -8,8 +8,8 @@
          
     AccountReportAll.IntForm=function()
     {
-    
-    document.title='مانده حساب های بانکی';
+        document.title='مانده حساب های بانکی';
+        window.pageName='AccountReportAll';
     window.fileUploaded=false;
     
     }
@@ -34,7 +34,7 @@
  <th  > مجموع</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in AccountReportAllrecords | orderBy:currentOrder :rev " >
 <td data-label='کد حساب'>{{record.acc_id}}</td> 
  <td data-label='عنوان حساب'>{{record.acc_name}}</td> 
  <td data-label='محل حساب'>{{record.acc_position}}</td> 

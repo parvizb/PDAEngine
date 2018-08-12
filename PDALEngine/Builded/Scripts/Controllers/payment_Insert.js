@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var payment_Insert=new Object();
+
 var currentButton;
 payment_Insert.sendFiles=  function()
 {
@@ -54,25 +58,24 @@ payment_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='payment_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_amount').val()));
+                Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_Insertpayment_amount').val()));
     
-                    Entity.Parameters.push( toInput('cus_id',$('#txtcus_id').val()));
+                    Entity.Parameters.push( toInput('cus_id',$('#txtpayment_Insertcus_id').val()));
     
-                    Entity.Parameters.push( toInput('dis_amount',$('#txtdis_amount').val()));
+                    Entity.Parameters.push( toInput('dis_amount',$('#txtpayment_Insertdis_amount').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Date').val()));
+                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Insertpayment_Date').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtpayment_Insertdescr').val()));
     
-                    Entity.Parameters.push( toInput('total',$('#txttotal').val()));
+                    Entity.Parameters.push( toInput('total',$('#txtpayment_Inserttotal').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtpayment_Insertacc_id').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -82,7 +85,7 @@ payment_Insert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -103,16 +106,16 @@ payment_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                                        Validator.CheckRegInteger('txtpayment_amount','مبلغ پرداختی');
+                                                        Validator.CheckRegInteger('txtpayment_Insertpayment_amount','مبلغ پرداختی');
                                                             
-                                                        Validator.CheckRegSelect2('txtcus_id','کد مشتری ');
+                                                        Validator.CheckRegSelect2('txtpayment_Insertcus_id','کد مشتری ');
                                     
             
-                                                                        Validator.CheckRegDate('txtpayment_Date','تاریخ پرداخت');
+                                                                        Validator.CheckRegDate('txtpayment_Insertpayment_Date','تاریخ پرداخت');
                                     
             
             
-                                                        Validator.CheckRegSelect2('txtacc_id','کد حساب محل پرداخت ');
+                                                        Validator.CheckRegSelect2('txtpayment_Insertacc_id','کد حساب محل پرداخت ');
                                 
     if(Messager.errors.length!=0)
     {
@@ -145,26 +148,33 @@ payment_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='payment_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_amount').val()));
+                Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_Insertpayment_amount').val()));
     
-                    Entity.Parameters.push( toInput('cus_id',$('#txtcus_id').val()));
+                    Entity.Parameters.push( toInput('cus_id',$('#txtpayment_Insertcus_id').val()));
     
-                    Entity.Parameters.push( toInput('dis_amount',$('#txtdis_amount').val()));
+                    Entity.Parameters.push( toInput('dis_amount',$('#txtpayment_Insertdis_amount').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Date').val()));
+                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Insertpayment_Date').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtpayment_Insertdescr').val()));
     
-                    Entity.Parameters.push( toInput('total',$('#txttotal').val()));
+                    Entity.Parameters.push( toInput('total',$('#txtpayment_Inserttotal').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtpayment_Insertacc_id').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.payment_Insertrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.payment_Insertrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -183,7 +193,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

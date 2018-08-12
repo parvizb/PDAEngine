@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var ShowUserInRole=new Object();
+
 var currentButton;
 ShowUserInRole.sendFiles=  function()
 {
@@ -57,9 +61,8 @@ ShowUserInRole.Submit= function(obj)
                 Entity.Parameters.push( toInput('RoleId',routeParams.RoleId ));
 ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -69,7 +72,7 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -126,16 +129,23 @@ ShowUserInRole.Serach=function(obj)
  
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.ShowUserInRolerecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
-            for(var l=0;l<currentScope.records.length;l++)
+    if(dlgScope!=null)
+    {
+        dlgScope.ShowUserInRolerecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
+            for(var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
     { 
-        var record=currentScope.records[l];
+        var record=currentScope.ShowUserInRolerecords[l];
         if((record.p=='1'))
         {
-            currentScope.records[l].selected=true;
-            $('#selected_' + currentScope.records[l].rndId).attr('checked',true);
+            currentScope.ShowUserInRolerecords[l].selected=true;
+            $('#selected_' + currentScope.ShowUserInRolerecords[l].rndId).attr('checked',true);
         }
     }
             $('[type="Select2Ajax"]').each(function(){
@@ -156,33 +166,33 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 
 ShowUserInRole.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                    for (var l=0;l<currentScope.records.length;l++)
+                                                    for (var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.ShowUserInRolerecords[l];
 
                 if(r.selected == true){
       continue;
 }
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.ShowUserInRolerecords[l];
 
                 if(r.selected == false){
       continue;
 }
 }
 
-for(var l=0;l<currentScope.records.length;l++)
+for(var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
 { 
-    var record=currentScope.records[l];
+    var record=currentScope.ShowUserInRolerecords[l];
     
 }
 
@@ -221,9 +231,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.ShowUserInRolerecords[l];
 
         if(r.selected == false){
       continue;
@@ -257,7 +267,9 @@ Enity.PageName='ShowUserInRole';
 Enity.CommandName='Save';
 Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
-        Messager.ShowMessage('اطلاعات', data.Message );
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
  
      
   
@@ -271,6 +283,11 @@ ScallerAjax('BatchCommand',Enity,function(data){
     ///you are asl
     if(data.code==0)
     {
+        window.returnValue=data.retrunValue;
+
+
+
+
                                 BackPage();
                  
          

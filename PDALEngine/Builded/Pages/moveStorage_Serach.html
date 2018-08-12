@@ -2,52 +2,92 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="moveStorageId" class="col-sm-2 control-label">     شناسه:</label>
+    <label  for="moveStorageId" class="col-sm-2 control-label">           شناسه
+      :</label>
     <div   class="col-sm-4">
-    
-            <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtmoveStorageId" placeholder="" />
-                                        </div>
-    <label  for="sourceMoveId" class="col-sm-2 control-label">     انبار مبدا:</label>
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input class="form-control" id="txtmoveStorage_SerachmoveStorageId" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="sourceMoveId" class="col-sm-2 control-label">           انبار مبدا
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtsourceMoveId" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtmoveStorage_SerachsourceMoveId" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
      </div>
      <div class="form-group">
-    <label  for="DestMoveId" class="col-sm-2 control-label">     انبار مقصد:</label>
+    <label  for="DestMoveId" class="col-sm-2 control-label">           انبار مقصد
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtDestMoveId" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtmoveStorage_SerachDestMoveId" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
-    <label  for="startdate" class="col-sm-2 control-label">     از تاریخ:</label>
+    <label  for="startdate" class="col-sm-2 control-label">           از تاریخ
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtstartdate')"  class="form-control" id="txtstartdate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtmoveStorage_Serachstartdate')"  class="form-control" id="txtmoveStorage_Serachstartdate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
     </div>
      </div>
      <div class="form-group">
-    <label  for="enddate" class="col-sm-2 control-label">     تا تاریخ:</label>
+    <label  for="enddate" class="col-sm-2 control-label">           تا تاریخ
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtenddate')"  class="form-control" id="txtenddate" placeholder="yyyy/mm/dd" max-length="10" ></input>
-    </div>
-    <label  for="inNumber" class="col-sm-2 control-label">     شماره رسید:</label>
-    <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtinNumber" placeholder=""  placeholder="" />
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtmoveStorage_Serachenddate')"  class="form-control" id="txtmoveStorage_Serachenddate" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
-                                              </div>
+    </div>
+    <label  for="inNumber" class="col-sm-2 control-label">           شماره رسید
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtmoveStorage_SerachinNumber" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
-    <label  for="outNumber" class="col-sm-2 control-label">     شماره حواله:</label>
+    <label  for="outNumber" class="col-sm-2 control-label">           شماره حواله
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtoutNumber" placeholder=""  placeholder="" />
-          
-                                              </div>
-    <label  for="descr" class="col-sm-2 control-label">     توضیحات:</label>
+   
+            <input type="text"   class="form-control" id="txtmoveStorage_SerachoutNumber" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="descr" class="col-sm-2 control-label">           توضیحات
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtdescr" placeholder=""  placeholder="" />
-          
-                                              </div>
+   
+            <input type="text"   class="form-control" id="txtmoveStorage_Serachdescr" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
   </div>
@@ -58,10 +98,10 @@
                                                      
     moveStorage_Serach.IntForm=function()
     {
-    
-    document.title='مدیریت انتقالی بین انبار';
+        document.title='مدیریت انتقالی بین انبار';
+        window.pageName='moveStorage_Serach';
     window.fileUploaded=false;
-                                        sourceMoveId=  Select2AjaxInit('txtsourceMoveId',function(term, page){
+                                        sourceMoveId=  Select2AjaxInit('txtmoveStorage_SerachsourceMoveId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='moveStorage_Serach';
     DataPass.ParaName='sourceMoveId';
@@ -69,7 +109,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                DestMoveId=  Select2AjaxInit('txtDestMoveId',function(term, page){
+                                DestMoveId=  Select2AjaxInit('txtmoveStorage_SerachDestMoveId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='moveStorage_Serach';
     DataPass.ParaName='DestMoveId';
@@ -77,8 +117,8 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                                kamaDatepicker('txtenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                    kamaDatepicker('txtmoveStorage_Serachstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                kamaDatepicker('txtmoveStorage_Serachenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                                                                         
     }
     $(document).ready(function () {
@@ -109,7 +149,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in moveStorage_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه'>{{record.moveStorageId}}</td> 
  <td data-label='انبار مبدا'>{{record.sourceMoveId}}</td> 
  <td data-label='انبار مقصد'>{{record.DestMoveId}}</td> 

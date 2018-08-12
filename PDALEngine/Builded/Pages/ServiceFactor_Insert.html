@@ -4,55 +4,95 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="GetOrProdive" class="col-sm-2 control-label">     <span class="red" >*</span>  دریافت یا ارائه:</label>
+    <label  for="GetOrProdive" class="col-sm-2 control-label">     <span class="red" >*</span>        دریافت یا ارائه
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtGetOrProdive" >
-        <option value="0">ارائه خدمات</option>
-        <option value="1">دریافت خدمات</option>
-      </select>
+   
+      
+                                                                                          <select class="form-control" id="txtServiceFactor_InsertGetOrProdive" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input >
+                <option value="0">ارائه خدمات</option>
+                <option value="1">دریافت خدمات</option>
+              </select>
+                                  
     </div>
-    <label  for="CusAccId" class="col-sm-2 control-label">     <span class="red" >*</span>  مشتری:</label>
+    <label  for="CusAccId" class="col-sm-2 control-label">     <span class="red" >*</span>        مشتری
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtCusAccId" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtServiceFactor_InsertCusAccId" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
      </div>
      <div class="form-group">
-    <label  for="ServiceId" class="col-sm-2 control-label">     <span class="red" >*</span>  کد خدمت:</label>
+    <label  for="ServiceId" class="col-sm-2 control-label">     <span class="red" >*</span>        کد خدمت
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtServiceId" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtServiceFactor_InsertServiceId" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
-    <label  for="Cost" class="col-sm-2 control-label">     <span class="red" >*</span>  هزینه:</label>
+    <label  for="Cost" class="col-sm-2 control-label">     <span class="red" >*</span>        هزینه
+      :</label>
     <div   class="col-sm-4">
-    
-            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtCost" placeholder="" />
-                                              </div>
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input   class="form-control" id="txtServiceFactor_InsertCost" placeholder="" />
+                                                                      
+    </div>
      </div>
      <div class="form-group">
-    <label  for="Adding" class="col-sm-2 control-label">     مالیات ارزش افزوده:</label>
+    <label  for="Adding" class="col-sm-2 control-label">           مالیات ارزش افزوده
+      :</label>
     <div   class="col-sm-4">
-    
-            <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtAdding" placeholder="" />
-                                              </div>
-    <label  for="FactorNumber" class="col-sm-2 control-label">     شماره فاکتور:</label>
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input   class="form-control" id="txtServiceFactor_InsertAdding" placeholder="" />
+                                                                      
+    </div>
+    <label  for="FactorNumber" class="col-sm-2 control-label">           شماره فاکتور
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtFactorNumber" placeholder=""  placeholder="" />
+   
+            <input type="text"   class="form-control" id="txtServiceFactor_InsertFactorNumber" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="ServiceDate" class="col-sm-2 control-label">     <span class="red" >*</span>        تاریخ ارائه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input onBlur="ReformatDate('txtServiceFactor_InsertServiceDate')"  class="form-control" id="txtServiceFactor_InsertServiceDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
-                                              </div>
-     </div>
-     <div class="form-group">
-    <label  for="ServiceDate" class="col-sm-2 control-label">     <span class="red" >*</span>  تاریخ ارائه:</label>
-    <div   class="col-sm-4">
-    
-                                                <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtServiceDate')"  class="form-control" id="txtServiceDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
     </div>
-    <label  for="Descr" class="col-sm-2 control-label">     توضیحات:</label>
+    <label  for="Descr" class="col-sm-2 control-label">           توضیحات
+      :</label>
     <div   class="col-sm-4">
-      <input type="text"   class="form-control" id="txtDescr" placeholder=""  placeholder="" />
-          
-                                              </div>
+   
+            <input type="text"   class="form-control" id="txtServiceFactor_InsertDescr" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
   </div>
@@ -63,10 +103,10 @@
                                                      
     ServiceFactor_Insert.IntForm=function()
     {
-    
-    document.title='فاکتور خدمات جدید';
+        document.title='فاکتور خدمات جدید';
+        window.pageName='ServiceFactor_Insert';
     window.fileUploaded=false;
-                                        CusAccId=  Select2AjaxInit('txtCusAccId',function(term, page){
+                                        CusAccId=  Select2AjaxInit('txtServiceFactor_InsertCusAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ServiceFactor_Insert';
     DataPass.ParaName='CusAccId';
@@ -74,7 +114,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                ServiceId=  Select2AjaxInit('txtServiceId',function(term, page){
+                                ServiceId=  Select2AjaxInit('txtServiceFactor_InsertServiceId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ServiceFactor_Insert';
     DataPass.ParaName='ServiceId';
@@ -82,7 +122,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                                                            kamaDatepicker('txtServiceDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                                                            kamaDatepicker('txtServiceFactor_InsertServiceDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                         
     }
     $(document).ready(function () {

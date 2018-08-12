@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var getment_Serach=new Object();
+
 var currentButton;
 getment_Serach.sendFiles=  function()
 {
@@ -54,27 +58,26 @@ getment_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='getment_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('getment_id',$('#txtgetment_id').val()));
+                Entity.Parameters.push( toInput('getment_id',$('#txtgetment_Serachgetment_id').val()));
     
-                    Entity.Parameters.push( toInput('get_amount',$('#txtget_amount').val()));
+                    Entity.Parameters.push( toInput('get_amount',$('#txtgetment_Serachget_amount').val()));
     
-                    Entity.Parameters.push( toInput('get_discount',$('#txtget_discount').val()));
+                    Entity.Parameters.push( toInput('get_discount',$('#txtgetment_Serachget_discount').val()));
     
-                    Entity.Parameters.push( toInput('cus_acc_id',$('#txtcus_acc_id').val()));
+                    Entity.Parameters.push( toInput('cus_acc_id',$('#txtgetment_Serachcus_acc_id').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtgetment_Serachacc_id').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtgetment_Serachstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtgetment_Serachenddate').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtgetment_Serachdescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -84,7 +87,7 @@ getment_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -144,28 +147,35 @@ getment_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='getment_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('getment_id',$('#txtgetment_id').val()));
+                Entity.Parameters.push( toInput('getment_id',$('#txtgetment_Serachgetment_id').val()));
     
-                    Entity.Parameters.push( toInput('get_amount',$('#txtget_amount').val()));
+                    Entity.Parameters.push( toInput('get_amount',$('#txtgetment_Serachget_amount').val()));
     
-                    Entity.Parameters.push( toInput('get_discount',$('#txtget_discount').val()));
+                    Entity.Parameters.push( toInput('get_discount',$('#txtgetment_Serachget_discount').val()));
     
-                    Entity.Parameters.push( toInput('cus_acc_id',$('#txtcus_acc_id').val()));
+                    Entity.Parameters.push( toInput('cus_acc_id',$('#txtgetment_Serachcus_acc_id').val()));
     
-                    Entity.Parameters.push( toInput('acc_id',$('#txtacc_id').val()));
+                    Entity.Parameters.push( toInput('acc_id',$('#txtgetment_Serachacc_id').val()));
     
-                    Entity.Parameters.push( toInput('startdate',$('#txtstartdate').val()));
+                    Entity.Parameters.push( toInput('startdate',$('#txtgetment_Serachstartdate').val()));
     
-                    Entity.Parameters.push( toInput('enddate',$('#txtenddate').val()));
+                    Entity.Parameters.push( toInput('enddate',$('#txtgetment_Serachenddate').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtgetment_Serachdescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.getment_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.getment_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -184,7 +194,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

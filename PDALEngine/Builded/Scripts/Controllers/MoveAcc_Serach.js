@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var MoveAcc_Serach=new Object();
+
 var currentButton;
 MoveAcc_Serach.sendFiles=  function()
 {
@@ -54,27 +58,26 @@ MoveAcc_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='MoveAcc_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('moveAccId',$('#txtmoveAccId').val()));
+                Entity.Parameters.push( toInput('moveAccId',$('#txtMoveAcc_SerachmoveAccId').val()));
     
-                    Entity.Parameters.push( toInput('startDate',$('#txtstartDate').val()));
+                    Entity.Parameters.push( toInput('startDate',$('#txtMoveAcc_SerachstartDate').val()));
     
-                    Entity.Parameters.push( toInput('endDate',$('#txtendDate').val()));
+                    Entity.Parameters.push( toInput('endDate',$('#txtMoveAcc_SerachendDate').val()));
     
-                    Entity.Parameters.push( toInput('sourceAcc',$('#txtsourceAcc').val()));
+                    Entity.Parameters.push( toInput('sourceAcc',$('#txtMoveAcc_SerachsourceAcc').val()));
     
-                    Entity.Parameters.push( toInput('DestAcc',$('#txtDestAcc').val()));
+                    Entity.Parameters.push( toInput('DestAcc',$('#txtMoveAcc_SerachDestAcc').val()));
     
-                    Entity.Parameters.push( toInput('Startamount',$('#txtStartamount').val()));
+                    Entity.Parameters.push( toInput('Startamount',$('#txtMoveAcc_SerachStartamount').val()));
     
-                    Entity.Parameters.push( toInput('Endamount',$('#txtEndamount').val()));
+                    Entity.Parameters.push( toInput('Endamount',$('#txtMoveAcc_SerachEndamount').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtMoveAcc_SerachDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -84,7 +87,7 @@ MoveAcc_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -144,28 +147,35 @@ MoveAcc_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='MoveAcc_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('moveAccId',$('#txtmoveAccId').val()));
+                Entity.Parameters.push( toInput('moveAccId',$('#txtMoveAcc_SerachmoveAccId').val()));
     
-                    Entity.Parameters.push( toInput('startDate',$('#txtstartDate').val()));
+                    Entity.Parameters.push( toInput('startDate',$('#txtMoveAcc_SerachstartDate').val()));
     
-                    Entity.Parameters.push( toInput('endDate',$('#txtendDate').val()));
+                    Entity.Parameters.push( toInput('endDate',$('#txtMoveAcc_SerachendDate').val()));
     
-                    Entity.Parameters.push( toInput('sourceAcc',$('#txtsourceAcc').val()));
+                    Entity.Parameters.push( toInput('sourceAcc',$('#txtMoveAcc_SerachsourceAcc').val()));
     
-                    Entity.Parameters.push( toInput('DestAcc',$('#txtDestAcc').val()));
+                    Entity.Parameters.push( toInput('DestAcc',$('#txtMoveAcc_SerachDestAcc').val()));
     
-                    Entity.Parameters.push( toInput('Startamount',$('#txtStartamount').val()));
+                    Entity.Parameters.push( toInput('Startamount',$('#txtMoveAcc_SerachStartamount').val()));
     
-                    Entity.Parameters.push( toInput('Endamount',$('#txtEndamount').val()));
+                    Entity.Parameters.push( toInput('Endamount',$('#txtMoveAcc_SerachEndamount').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtMoveAcc_SerachDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.MoveAcc_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.MoveAcc_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -184,7 +194,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var set_stroge_frist=new Object();
+
 var currentButton;
 set_stroge_frist.sendFiles=  function()
 {
@@ -56,9 +60,8 @@ set_stroge_frist.Submit= function(obj)
     Entity.Parameters=new Array();
     ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -68,7 +71,7 @@ set_stroge_frist.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -123,9 +126,16 @@ set_stroge_frist.Serach=function(obj)
      
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.set_stroge_fristrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.set_stroge_fristrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -144,7 +154,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 set_stroge_frist.InsertRecord=function()
@@ -153,7 +163,7 @@ set_stroge_frist.InsertRecord=function()
     temp.RowState='Added';
     temp.selected = false;
     temp.rndId = Math.round(Math.random() * 99999999999999);
-        currentScope.records.push(temp);
+        currentScope.set_stroge_fristrecords.push(temp);
     currentScope.$apply();
                                                     
 }

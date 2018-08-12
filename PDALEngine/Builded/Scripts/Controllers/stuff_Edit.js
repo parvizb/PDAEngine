@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var stuff_Edit=new Object();
+
 var currentButton;
 stuff_Edit.sendFiles=  function()
 {
@@ -55,29 +59,28 @@ stuff_Edit.Submit= function(obj)
     Entity.PageName='stuff_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('id_stuff',routeParams.id_stuff ));
-            Entity.Parameters.push( toInput('id_factory',$('#txtid_factory').val()));
+            Entity.Parameters.push( toInput('id_factory',$('#txtstuff_Editid_factory').val()));
     
-                    Entity.Parameters.push( toInput('id_product',$('#txtid_product').val()));
+                    Entity.Parameters.push( toInput('id_product',$('#txtstuff_Editid_product').val()));
     
-                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_name').val()));
+                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_Editstuff_name').val()));
     
-                    Entity.Parameters.push( toInput('unit_id',$('#txtunit_id').val()));
+                    Entity.Parameters.push( toInput('unit_id',$('#txtstuff_Editunit_id').val()));
     
-                    Entity.Parameters.push( toInput('unitbox_id',$('#txtunitbox_id').val()));
+                    Entity.Parameters.push( toInput('unitbox_id',$('#txtstuff_Editunitbox_id').val()));
     
-                    Entity.Parameters.push( toInput('boxcount',$('#txtboxcount').val()));
+                    Entity.Parameters.push( toInput('boxcount',$('#txtstuff_Editboxcount').val()));
     
-                    Entity.Parameters.push( toInput('price',$('#txtprice').val()));
+                    Entity.Parameters.push( toInput('price',$('#txtstuff_Editprice').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtstuff_Editdescr').val()));
     
-                    Entity.Parameters.push( toInput('includeaddingBill',$('#txtincludeaddingBill').val()));
+                    Entity.Parameters.push( toInput('includeaddingBill',$('#txtstuff_EditincludeaddingBill').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -87,7 +90,7 @@ stuff_Edit.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -109,19 +112,19 @@ stuff_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                                        Validator.CheckRegSelect2('txtid_factory','کارخانه');
+                                                        Validator.CheckRegSelect2('txtstuff_Editid_factory','کارخانه');
                                     
-                                                        Validator.CheckRegSelect2('txtid_product','نوع کالا');
+                                                        Validator.CheckRegSelect2('txtstuff_Editid_product','نوع کالا');
                                     
-                                Validator.CheckEmpty('txtstuff_name','عنوان');
+                                Validator.CheckEmpty('txtstuff_Editstuff_name','عنوان');
                                                                                             
-                                                        Validator.CheckRegSelect2('txtunit_id','شناسه واحد');
+                                                        Validator.CheckRegSelect2('txtstuff_Editunit_id','شناسه واحد');
                                     
-                                                        Validator.CheckRegSelect2('txtunitbox_id','واحد کلی');
+                                                        Validator.CheckRegSelect2('txtstuff_Editunitbox_id','واحد کلی');
                                     
-                                                        Validator.CheckRegInteger('txtboxcount','تعداد کل به جز');
+                                                        Validator.CheckRegInteger('txtstuff_Editboxcount','تعداد کل به جز');
                                                             
-                                                        Validator.CheckRegInteger('txtprice','قیمت');
+                                                        Validator.CheckRegInteger('txtstuff_Editprice','قیمت');
                                                             
             
         
@@ -157,30 +160,37 @@ stuff_Edit.Serach=function(obj)
     Entity.PageName='stuff_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('id_stuff',routeParams.id_stuff ));
-            Entity.Parameters.push( toInput('id_factory',$('#txtid_factory').val()));
+            Entity.Parameters.push( toInput('id_factory',$('#txtstuff_Editid_factory').val()));
     
-                    Entity.Parameters.push( toInput('id_product',$('#txtid_product').val()));
+                    Entity.Parameters.push( toInput('id_product',$('#txtstuff_Editid_product').val()));
     
-                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_name').val()));
+                    Entity.Parameters.push( toInput('stuff_name',$('#txtstuff_Editstuff_name').val()));
     
-                    Entity.Parameters.push( toInput('unit_id',$('#txtunit_id').val()));
+                    Entity.Parameters.push( toInput('unit_id',$('#txtstuff_Editunit_id').val()));
     
-                    Entity.Parameters.push( toInput('unitbox_id',$('#txtunitbox_id').val()));
+                    Entity.Parameters.push( toInput('unitbox_id',$('#txtstuff_Editunitbox_id').val()));
     
-                    Entity.Parameters.push( toInput('boxcount',$('#txtboxcount').val()));
+                    Entity.Parameters.push( toInput('boxcount',$('#txtstuff_Editboxcount').val()));
     
-                    Entity.Parameters.push( toInput('price',$('#txtprice').val()));
+                    Entity.Parameters.push( toInput('price',$('#txtstuff_Editprice').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtdescr').val()));
+                    Entity.Parameters.push( toInput('descr',$('#txtstuff_Editdescr').val()));
     
-                    Entity.Parameters.push( toInput('includeaddingBill',$('#txtincludeaddingBill').val()));
+                    Entity.Parameters.push( toInput('includeaddingBill',$('#txtstuff_EditincludeaddingBill').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.stuff_Editrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.stuff_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -199,7 +209,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 stuff_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='stuff_Edit';
@@ -224,7 +234,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         id_product.append(o);
         id_product.val(data.records[0].id_product  ) .trigger('change');
 
-                $('#txtstuff_name').val(data.records[0].stuff_name);
+                $('#txtstuff_Editstuff_name').val(data.records[0].stuff_name);
 
                 
         var o=document.createElement('option');
@@ -240,14 +250,14 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         unitbox_id.append(o);
         unitbox_id.val(data.records[0].unitbox_id  ) .trigger('change');
 
-                $('#txtboxcount').val(data.records[0].boxcount);
+                $('#txtstuff_Editboxcount').val(data.records[0].boxcount);
 
                 
-$('#txtprice').val(ShowAsMoney( data.records[0].price));
+$('#txtstuff_Editprice').val(ShowAsMoney( data.records[0].price));
 
-                $('#txtdescr').val(data.records[0].descr);
+                $('#txtstuff_Editdescr').val(data.records[0].descr);
 
-                $('#txtincludeaddingBill').val(data.records[0].includeaddingBill);
+                $('#txtstuff_EditincludeaddingBill').val(data.records[0].includeaddingBill);
 
 }
 else

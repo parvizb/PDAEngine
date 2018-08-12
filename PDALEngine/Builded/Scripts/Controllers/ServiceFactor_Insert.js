@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var ServiceFactor_Insert=new Object();
+
 var currentButton;
 ServiceFactor_Insert.sendFiles=  function()
 {
@@ -54,27 +58,26 @@ ServiceFactor_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='ServiceFactor_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('GetOrProdive',$('#txtGetOrProdive').val()));
+                Entity.Parameters.push( toInput('GetOrProdive',$('#txtServiceFactor_InsertGetOrProdive').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtServiceFactor_InsertCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceId').val()));
+                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceFactor_InsertServiceId').val()));
     
-                    Entity.Parameters.push( toInput('Cost',$('#txtCost').val()));
+                    Entity.Parameters.push( toInput('Cost',$('#txtServiceFactor_InsertCost').val()));
     
-                    Entity.Parameters.push( toInput('Adding',$('#txtAdding').val()));
+                    Entity.Parameters.push( toInput('Adding',$('#txtServiceFactor_InsertAdding').val()));
     
-                    Entity.Parameters.push( toInput('FactorNumber',$('#txtFactorNumber').val()));
+                    Entity.Parameters.push( toInput('FactorNumber',$('#txtServiceFactor_InsertFactorNumber').val()));
     
-                    Entity.Parameters.push( toInput('ServiceDate',$('#txtServiceDate').val()));
+                    Entity.Parameters.push( toInput('ServiceDate',$('#txtServiceFactor_InsertServiceDate').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtServiceFactor_InsertDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -84,7 +87,7 @@ ServiceFactor_Insert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -106,15 +109,15 @@ ServiceFactor_Insert.Validate= function()
     Validator.ClearErrors();
         
                                                                             
-                                                        Validator.CheckRegSelect2('txtCusAccId','مشتری');
+                                                        Validator.CheckRegSelect2('txtServiceFactor_InsertCusAccId','مشتری');
                                     
-                                                        Validator.CheckRegSelect2('txtServiceId','کد خدمت');
+                                                        Validator.CheckRegSelect2('txtServiceFactor_InsertServiceId','کد خدمت');
                                     
-                                                        Validator.CheckRegInteger('txtCost','هزینه');
+                                                        Validator.CheckRegInteger('txtServiceFactor_InsertCost','هزینه');
                                                             
             
             
-                                                                        Validator.CheckRegDate('txtServiceDate','تاریخ ارائه');
+                                                                        Validator.CheckRegDate('txtServiceFactor_InsertServiceDate','تاریخ ارائه');
                                     
         
     if(Messager.errors.length!=0)
@@ -148,28 +151,35 @@ ServiceFactor_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='ServiceFactor_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('GetOrProdive',$('#txtGetOrProdive').val()));
+                Entity.Parameters.push( toInput('GetOrProdive',$('#txtServiceFactor_InsertGetOrProdive').val()));
     
-                    Entity.Parameters.push( toInput('CusAccId',$('#txtCusAccId').val()));
+                    Entity.Parameters.push( toInput('CusAccId',$('#txtServiceFactor_InsertCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceId').val()));
+                    Entity.Parameters.push( toInput('ServiceId',$('#txtServiceFactor_InsertServiceId').val()));
     
-                    Entity.Parameters.push( toInput('Cost',$('#txtCost').val()));
+                    Entity.Parameters.push( toInput('Cost',$('#txtServiceFactor_InsertCost').val()));
     
-                    Entity.Parameters.push( toInput('Adding',$('#txtAdding').val()));
+                    Entity.Parameters.push( toInput('Adding',$('#txtServiceFactor_InsertAdding').val()));
     
-                    Entity.Parameters.push( toInput('FactorNumber',$('#txtFactorNumber').val()));
+                    Entity.Parameters.push( toInput('FactorNumber',$('#txtServiceFactor_InsertFactorNumber').val()));
     
-                    Entity.Parameters.push( toInput('ServiceDate',$('#txtServiceDate').val()));
+                    Entity.Parameters.push( toInput('ServiceDate',$('#txtServiceFactor_InsertServiceDate').val()));
     
-                    Entity.Parameters.push( toInput('Descr',$('#txtDescr').val()));
+                    Entity.Parameters.push( toInput('Descr',$('#txtServiceFactor_InsertDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.ServiceFactor_Insertrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.ServiceFactor_Insertrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -188,7 +198,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

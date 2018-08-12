@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var Role_Serach=new Object();
+
 var currentButton;
 Role_Serach.sendFiles=  function()
 {
@@ -54,17 +58,16 @@ Role_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='Role_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('RoleId',$('#txtRoleId').val()));
+                Entity.Parameters.push( toInput('RoleId',$('#txtRole_SerachRoleId').val()));
     
-                    Entity.Parameters.push( toInput('RoleName',$('#txtRoleName').val()));
+                    Entity.Parameters.push( toInput('RoleName',$('#txtRole_SerachRoleName').val()));
     
-                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRoleDescr').val()));
+                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRole_SerachRoleDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -74,7 +77,7 @@ Role_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -129,18 +132,25 @@ Role_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='Role_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('RoleId',$('#txtRoleId').val()));
+                Entity.Parameters.push( toInput('RoleId',$('#txtRole_SerachRoleId').val()));
     
-                    Entity.Parameters.push( toInput('RoleName',$('#txtRoleName').val()));
+                    Entity.Parameters.push( toInput('RoleName',$('#txtRole_SerachRoleName').val()));
     
-                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRoleDescr').val()));
+                    Entity.Parameters.push( toInput('RoleDescr',$('#txtRole_SerachRoleDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.Role_Serachrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.Role_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -159,7 +169,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 

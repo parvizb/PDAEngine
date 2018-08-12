@@ -2,10 +2,15 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="cus_group_id" class="col-sm-2 control-label">     گروه مشتریان:</label>
+    <label  for="cus_group_id" class="col-sm-2 control-label">           گروه مشتریان
+      :</label>
     <div   class="col-sm-4">
-    
-                                                <select class="form-control" id="txtcus_group_id" ></select>
+   
+      
+                                                                                                      <select class="form-control" id="txtShowCusReportAllcus_group_id" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input ></select>
+                      
     </div>
   </div>
     </from>
@@ -14,10 +19,10 @@
              
     ShowCusReportAll.IntForm=function()
     {
-    
-    document.title='عملکرد مشتریان';
+        document.title='عملکرد مشتریان';
+        window.pageName='ShowCusReportAll';
     window.fileUploaded=false;
-                cus_group_id=  Select2AjaxInit('txtcus_group_id',function(term, page){
+                cus_group_id=  Select2AjaxInit('txtShowCusReportAllcus_group_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ShowCusReportAll';
     DataPass.ParaName='cus_group_id';
@@ -53,7 +58,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in ShowCusReportAllrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه مشتری'>{{record.cus_acc_id}}</td> 
  <td data-label='نام'>{{record.cus_fname}}</td> 
  <td data-label='نام خانوادگی'>{{record.cus_lname}}</td> 

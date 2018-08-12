@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var moveDetail_mgt=new Object();
+
 var currentButton;
 moveDetail_mgt.sendFiles=  function()
 {
@@ -57,9 +61,8 @@ moveDetail_mgt.Submit= function(obj)
                 Entity.Parameters.push( toInput('moveStorageId',routeParams.moveStorageId ));
 ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -69,7 +72,7 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -126,9 +129,16 @@ moveDetail_mgt.Serach=function(obj)
  
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.moveDetail_mgtrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.moveDetail_mgtrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -147,7 +157,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 moveDetail_mgt.InsertRecord=function()
@@ -156,7 +166,7 @@ moveDetail_mgt.InsertRecord=function()
     temp.RowState='Added';
     temp.selected = false;
     temp.rndId = Math.round(Math.random() * 99999999999999);
-        currentScope.records.push(temp);
+        currentScope.moveDetail_mgtrecords.push(temp);
     currentScope.$apply();
                        
     $('#stuffid_' +temp.rndId).each (function() {$(this).val($(this).attr('valc')) });
@@ -166,9 +176,9 @@ moveDetail_mgt.InsertRecord=function()
 moveDetail_mgt.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                                                                                                                            for (var l=0;l<currentScope.records.length;l++)
+                                                                                                                                                            for (var l=0;l<currentScope.moveDetail_mgtrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.moveDetail_mgtrecords[l];
 
         if(r.RowState !='Added'){
     continue;
@@ -178,9 +188,9 @@ Validator.CheckEmpty('stuffid_' + r.rndId,'کالا',r.viewIndex+1);
    
 Validator.CheckEmpty('count_' + r.rndId,'تعداد',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.moveDetail_mgtrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.moveDetail_mgtrecords[l];
 
         if(r.RowState !='Changed'){
     continue;
@@ -191,18 +201,18 @@ Validator.CheckEmpty('mSDid_' + r.rndId,'شناسه ریز',r.viewIndex+1);
 Validator.CheckEmpty('stuffid_' + r.rndId,'کالا',r.viewIndex+1);
 Validator.CheckRegFloat('count_' + r.rndId,'تعداد',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.moveDetail_mgtrecords.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.moveDetail_mgtrecords[l];
 
         if(r.RowState !='Deleted'){
     continue;
 }
 }
 
-for(var l=0;l<currentScope.records.length;l++)
+for(var l=0;l<currentScope.moveDetail_mgtrecords.length;l++)
 { 
-    var record=currentScope.records[l];
+    var record=currentScope.moveDetail_mgtrecords[l];
     
 }
 
@@ -230,9 +240,9 @@ moveDetail_mgt.Save=function()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.moveDetail_mgtrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.moveDetail_mgtrecords[l];
 
     if(r.RowState !='Added'){
     continue;
@@ -275,9 +285,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.moveDetail_mgtrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.moveDetail_mgtrecords[l];
 
     if(r.RowState !='Changed'){
     continue;
@@ -323,9 +333,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.moveDetail_mgtrecords.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.moveDetail_mgtrecords[l];
 
     if(r.RowState !='Deleted'){
     continue;
@@ -359,7 +369,9 @@ Enity.PageName='moveDetail_mgt';
 Enity.CommandName='Save';
 Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
-        Messager.ShowMessage('اطلاعات', data.Message );
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
  
      
   
@@ -373,6 +385,11 @@ ScallerAjax('BatchCommand',Enity,function(data){
     ///you are asl
     if(data.code==0)
     {
+        window.returnValue=data.retrunValue;
+
+
+
+
                                 BackPage();
                  
          

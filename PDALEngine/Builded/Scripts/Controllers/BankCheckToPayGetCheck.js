@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var BankCheckToPayGetCheck=new Object();
+
 var currentButton;
 BankCheckToPayGetCheck.sendFiles=  function()
 {
@@ -55,17 +59,16 @@ BankCheckToPayGetCheck.Submit= function(obj)
     Entity.PageName='BankCheckToPayGetCheck';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('bankCheckId',routeParams.bankCheckId ));
-                    Entity.Parameters.push( toInput('OptDate',$('#txtOptDate').val()));
+                    Entity.Parameters.push( toInput('OptDate',$('#txtBankCheckToPayGetCheckOptDate').val()));
     
-                    Entity.Parameters.push( toInput('AccId',$('#txtAccId').val()));
+                    Entity.Parameters.push( toInput('AccId',$('#txtBankCheckToPayGetCheckAccId').val()));
     
-                    Entity.Parameters.push( toInput('OptDescr',$('#txtOptDescr').val()));
+                    Entity.Parameters.push( toInput('OptDescr',$('#txtBankCheckToPayGetCheckOptDescr').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
-        Messager.ShowMessage('اطلاعات', data.Message );
- 
-     
+        targetElement.value=data.retrunValue;
+        
   
  
 
@@ -75,7 +78,7 @@ BankCheckToPayGetCheck.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
+                                        BackPage();
                  
          
      
@@ -98,9 +101,9 @@ BankCheckToPayGetCheck.Validate= function()
         
             
             
-                                                                        Validator.CheckRegDate('txtOptDate','تاریخ وصول');
+                                                                        Validator.CheckRegDate('txtBankCheckToPayGetCheckOptDate','تاریخ وصول');
                                     
-                                                        Validator.CheckRegSelect2('txtAccId','حساب جهت وصول');
+                                                        Validator.CheckRegSelect2('txtBankCheckToPayGetCheckAccId','حساب جهت وصول');
                                     
         
     if(Messager.errors.length!=0)
@@ -135,18 +138,25 @@ BankCheckToPayGetCheck.Serach=function(obj)
     Entity.PageName='BankCheckToPayGetCheck';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('bankCheckId',routeParams.bankCheckId ));
-                    Entity.Parameters.push( toInput('OptDate',$('#txtOptDate').val()));
+                    Entity.Parameters.push( toInput('OptDate',$('#txtBankCheckToPayGetCheckOptDate').val()));
     
-                    Entity.Parameters.push( toInput('AccId',$('#txtAccId').val()));
+                    Entity.Parameters.push( toInput('AccId',$('#txtBankCheckToPayGetCheckAccId').val()));
     
-                    Entity.Parameters.push( toInput('OptDescr',$('#txtOptDescr').val()));
+                    Entity.Parameters.push( toInput('OptDescr',$('#txtBankCheckToPayGetCheckOptDescr').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
+    currentScope.BankCheckToPayGetCheckrecords= data.records;
+    
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.BankCheckToPayGetCheckrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -165,7 +175,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 
