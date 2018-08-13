@@ -2331,6 +2331,27 @@ namespace PDALEngine
             }
             
         }
+        public static void NodeMerge(XmlNode BaseNode, XmlNode Current)
+        {
+            for (int k = 0; k < BaseNode.Attributes.Count; k++)
+            {
+                XmlElement El=(XmlElement)Current;
+                string  atr = BaseNode.Attributes[k].Value;
+                string cattr = Current.Attr(BaseNode.Attributes[k].Name);
+                if ((atr != "") && (cattr == ""))
+                {
+
+                    El.SetAttribute(BaseNode.Attributes[k].Name, atr);
+
+                }
+
+            }
+
+
+
+        }
+
+
         public static Template GetTemplate(string FileName)
         {
             Template Tm = Template.Parse(System.IO.File.ReadAllText((FileName)));

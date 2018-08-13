@@ -816,6 +816,11 @@
                       
                     </xs:annotation>
                     <xs:complexType>
+                      <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                        <xs:annotation>
+                          <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                        </xs:annotation>
+                      </xs:attribute>
                       <xs:attribute name="Attr" use="required" >
                         <xs:annotation>
                           <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
@@ -830,6 +835,11 @@
                   </xs:element>
                     <xs:element name="SubItem" minOccurs="0" maxOccurs="unbounded">
                       <xs:complexType>
+                        <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="PerKey" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>عنوان مجوز مورد نیاز</xs:documentation>
@@ -856,6 +866,11 @@
                   <xs:attribute name="text" type="xs:string" use="required">
                     <xs:annotation>
                       <xs:documentation>متن نمایشی </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
                   <xs:attribute name="link" type="xs:string" use="optional">
@@ -924,6 +939,11 @@
                     </xs:element>
                     <xs:element minOccurs="0" maxOccurs="unbounded" name="ValueParameter">
                       <xs:complexType>
+                        <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="name" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>عنوان پارامتر در روال بانک اطلاعاتی </xs:documentation>
@@ -943,6 +963,11 @@
                     </xs:element>
                     <xs:element minOccurs="0" maxOccurs="unbounded" name="Note">
                       <xs:complexType>
+                        <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="Text" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>توضیحات نمایشی در درباره صفحه </xs:documentation>
@@ -975,6 +1000,11 @@
                           </xs:element>
                           <xs:element minOccurs="0" maxOccurs="unbounded" name="NewRecordColumnValue">
                             <xs:complexType>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                               <xs:attribute name="ColumnName" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>نام ستون در جدول</xs:documentation>
@@ -989,6 +1019,11 @@
                           </xs:element>
                           <xs:element minOccurs="0" maxOccurs="unbounded" name="DisplayExpr">
                             <xs:complexType>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                               <xs:attribute name="title" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>عنوان نمایشی</xs:documentation>
@@ -1008,12 +1043,19 @@
                               <xs:choice minOccurs="0" maxOccurs="unbounded">
                                  <xs:element name="DBSelectCommandParameter" minOccurs="0" maxOccurs="unbounded">
                             <xs:complexType>
+                              
                                <xs:annotation><xs:documentation> تعریف پارامتر های مربوط به جست وجو کادر جستو جو Select2 </xs:documentation> </xs:annotation>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                               <xs:attribute name="source" type="DBSelectCommandParameterSourceType" use="required">
                                 <xs:annotation>
                                   <xs:documentation>منبع پارامتر کجا باشد</xs:documentation>
                                 </xs:annotation>
                               </xs:attribute>
+                              
                               <xs:attribute name="Parameter" type="xs:string" use="optional">
                                 <xs:annotation>
                                   <xs:documentation>پارامتر مربوط به پارامتر</xs:documentation>
@@ -1041,6 +1083,11 @@
                                 
                                 <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
                                   <xs:complexType>
+                                    <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                      <xs:annotation>
+                                        <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
                                     <xs:attribute name="text" type="xs:string" use="required">
                                       <xs:annotation>
                                         <xs:documentation>متن نمایشی </xs:documentation>
@@ -1057,6 +1104,11 @@
                               <xs:attribute name="title" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>عنوان</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
                                 </xs:annotation>
                               </xs:attribute>
                               <xs:attribute name="name" type="xs:string" use="optional">
@@ -1147,6 +1199,11 @@
                             </xs:complexType>
                           </xs:element>
                         </xs:choice>
+                        <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="Sortable" type="YesNo" use="optional">
                           <xs:annotation>
                             <xs:documentation>آیا جدول قابل مرتب کردن باشد</xs:documentation>
@@ -1199,6 +1256,11 @@
                               <xs:annotation>
                                 <xs:documentation> تعریف دکمه در صفحه</xs:documentation>
                               </xs:annotation>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                               <xs:attribute name="title" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>عنوان دکمه</xs:documentation>
@@ -1229,6 +1291,11 @@
                           </xs:element>
                           <xs:element minOccurs="0" maxOccurs="unbounded" name="option">
                             <xs:complexType>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                               <xs:attribute name="text" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>متن نمایشی </xs:documentation>
@@ -1247,6 +1314,11 @@
                               <xs:attribute name="Cond" type="CondType" use="required">
                                 <xs:annotation>
                                   <xs:documentation>نوع بررسی </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
                                 </xs:annotation>
                               </xs:attribute>
                               <xs:attribute name="When" type="xs:string" use="optional">
@@ -1271,6 +1343,11 @@
                               <xs:annotation>
                                 <xs:documentation>فایل های مجاز جهت</xs:documentation>
                               </xs:annotation>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                               <xs:attribute name="ext" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>پسوند مورد نظر بدون نقطه</xs:documentation>
@@ -1285,6 +1362,11 @@
                               <xs:attribute name="source" type="DBSelectCommandParameterSourceType" use="required">
                                 <xs:annotation>
                                   <xs:documentation>منبع پارامتر کجا باشد</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
                                 </xs:annotation>
                               </xs:attribute>
                               <xs:attribute name="Parameter" type="xs:string" use="optional">
@@ -1303,6 +1385,11 @@
                         <xs:attribute name="title" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>عنوان نمایشی</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
                         <xs:attribute name="name" type="xs:string" use="required">
@@ -1411,6 +1498,7 @@
                             <xs:documentation>نحوه پر شدن در آغار صفحه تعیین می کند </xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
+                        
                         <xs:attribute name="TitleParameter" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>عنوان پارامتر را مشخص می کند</xs:documentation>
@@ -1426,6 +1514,11 @@
                             <xs:documentation>شرایطی که بایستی برقرار باشد</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
+                        <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="Message" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>متن خطایی که در برقرار نبودن شرایط نمایش می دهد</xs:documentation>
@@ -1439,6 +1532,11 @@
                         <xs:attribute name="title" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>عنوان دکمه</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
                         <xs:attribute name="action" type="ButtonActionType" use="required">
@@ -1479,6 +1577,11 @@
                                   <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
                                 </xs:annotation>
                               </xs:attribute>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                               <xs:attribute name="XPath" use="required" >
                                 <xs:annotation>
                                   <xs:documentation>مسیر مورد نظر </xs:documentation>
@@ -1491,6 +1594,11 @@
                               <xs:annotation>
                                 <xs:documentation> اعتبار سنجی های سفارشی </xs:documentation>
                               </xs:annotation>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                               <xs:attribute name="Cond" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>شرایطی که بایستی برقرار باشد</xs:documentation>
@@ -1526,6 +1634,11 @@
                                         <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
                                       </xs:annotation>
                                     </xs:attribute>
+                                    <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                      <xs:annotation>
+                                        <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
                                     <xs:attribute name="XPath" use="required" >
                                       <xs:annotation>
                                         <xs:documentation>مسیر مورد نظر </xs:documentation>
@@ -1544,10 +1657,19 @@
                                               <xs:documentation>نوع بررسی </xs:documentation>
                                             </xs:annotation>
                                           </xs:attribute>
+                                          <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                            <xs:annotation>
+                                              <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:attribute>
                                         </xs:complexType>
                                       </xs:element>
                                     </xs:choice>
-                                    
+                                    <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                      <xs:annotation>
+                                        <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                      </xs:annotation>
+                                    </xs:attribute>
                                     <xs:attribute name="name" type="xs:string">
                                       <xs:annotation>
                                         <xs:documentation>نام پارامتر در روال بانک اطلاعاتی </xs:documentation>
@@ -1583,6 +1705,11 @@
                                   </xs:complexType>
                                 </xs:element>
                               </xs:choice>
+                              <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
                               <xs:attribute name="DBCommand" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>نام روال بانک اطلاعاتی جهت اجرا </xs:documentation>
@@ -1664,6 +1791,11 @@
                       <xs:documentation>دستور مورد نیاز برای نمایش یا اجرا</xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
+                  <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>چه عنصر کپی برداری کند</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
                   <xs:attribute name="queryString" type="xs:string" use="optional">
                     <xs:annotation>
                       <xs:documentation>تعیین عبارت بایستی به 
@@ -1739,6 +1871,11 @@
                             <xs:documentation>نوع پارامتر</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
+                        <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="Parameter" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>عنوان پارامتر در جاوا اسکپریت</xs:documentation>
@@ -1755,6 +1892,11 @@
                   <xs:attribute name="DBCommand" type="xs:string" use="required">
                     <xs:annotation>
                       <xs:documentation>نام روال بانک اطلاعاتی مورد نیاز</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
                   <xs:attribute name="PerKey" type="xs:string" use="required">
@@ -1800,6 +1942,11 @@
                         <xs:attribute name="type" type="actionParameterType" use="required">
                           <xs:annotation>
                             <xs:documentation>نوع پارامتر</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
                         <xs:attribute name="Parameter" type="xs:string" use="required">
@@ -1862,6 +2009,11 @@
             <xs:attribute name="returnSyntax" type="xs:string" use="required">
               <xs:annotation>
                 <xs:documentation>روال برگردان مقدار </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">
+              <xs:annotation>
+                <xs:documentation>از یک عنصر ویژگی ها را ارث ببرد اجزا زیر مجموعه را کپی نمی کند</xs:documentation>
               </xs:annotation>
             </xs:attribute>
           </xs:complexType>

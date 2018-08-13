@@ -73,6 +73,15 @@ public class Application : ILiquidizable
 
     public void ParseEle(XmlNode node)
     {
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
+
+
+
 
         this.Title = node.Attr("Title");
         this.Version = node.Attr("Version");
@@ -182,7 +191,12 @@ public class BatchCommand : ILiquidizable
     public List<CommandCustomValidate> CommandCustomValidates = new List<CommandCustomValidate>();
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.name = node.Attr("name");
         this.PerKey = node.Attr("PerKey");
         for (int i = 0; i < node.ChildNodes.Count; i++)
@@ -231,7 +245,12 @@ public class Command : ILiquidizable
     public List<Parameter> Parameters = new List<Parameter>();
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.DBCommand = node.Attr("DBCommand");
         this.Selection = node.Attr("Selection");
         this.StateMode = node.Attr("StateMode");
@@ -279,7 +298,12 @@ public class Notifaction : ILiquidizable
     public List<Check> Checks = new List<Check>();
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.name = node.Attr("name");
         this.TimeFire = node.Attr("TimeFire");
         this.AjaxActionName = node.Attr("AjaxActionName");
@@ -322,7 +346,12 @@ public class Parameter : ILiquidizable
     public List<Check> Checks = new List<Check>();
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.name = node.Attr("name");
         this.caption = node.Attr("caption");
         this.sourceType = node.Attr("sourceType");
@@ -372,7 +401,12 @@ public class Check : ILiquidizable
     public string Type;
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.Type = node.Attr("Type");
         for (int i = 0; i < node.ChildNodes.Count; i++)
         {
@@ -415,7 +449,12 @@ public class Menu : ILiquidizable
     public List<Item> Items = new List<Item>();
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.Title = node.Attr("Title");
         for (int i = 0; i < node.ChildNodes.Count; i++)
         {
@@ -485,7 +524,12 @@ public class Item : ILiquidizable
     public List<SubItem> SubItems = new List<SubItem>();
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.Type = node.Attr("Type");
         this.link = node.Attr("link");
         this.text = node.Attr("text");
@@ -547,7 +591,12 @@ public class SubItem : ILiquidizable
     public string text;
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.Type = node.Attr("Type");
         this.link = node.Attr("link");
         this.PerKey = node.Attr("PerKey");
@@ -625,6 +674,12 @@ public class Page : ILiquidizable
     public Boolean MustSendFiles = false;
     public void ParseEle(XmlNode node)
     {
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.isDailog = node.Attr("isDailog");
         this.ShowCond = node.Attr("ShowCond");
         this.Title = node.Attr("Title");
@@ -770,7 +825,12 @@ public void ParseEle(XmlNode node) {
       public string For;
       public void ParseEle(XmlNode node)
       {
-
+          string ExtendedFrom = node.Attr("ExtendedFrom");
+          if (ExtendedFrom != "")
+          {
+              XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+              PDAL.NodeMerge(X, node);
+          }
           this.Cond = node.Attr("Cond");
           this.Message = node.Attr("Message");
           this.For = node.Attr("For");
@@ -823,7 +883,12 @@ public class PageParameter : ILiquidizable
     public List<Button> Buttons = new List<Button>();
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.title = node.Attr("title");
         this.name = node.Attr("name");
         this.ShowCond = node.Attr("ShowCond");
@@ -916,7 +981,12 @@ public class FileAllow : ILiquidizable
  
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.ext = node.Attr("ext");
     
 
@@ -936,7 +1006,12 @@ public class option : ILiquidizable
     public string text;
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.value = node.Attr("value");
         this.text = node.Attr("text");
         for (int i = 0; i < node.ChildNodes.Count; i++)
@@ -971,7 +1046,12 @@ public class DontBuild : ILiquidizable
  
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.FileName = node.Attr("FileName");
    
         for (int i = 0; i < node.ChildNodes.Count; i++)
@@ -1017,7 +1097,12 @@ public class NewRecordColumnValue : ILiquidizable
     public string value;
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.ColumnName = node.Attr("ColumnName");
         this.value = node.Attr("value");
         for (int i = 0; i < node.ChildNodes.Count; i++)
@@ -1039,7 +1124,12 @@ public class Note : ILiquidizable
 
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.Text = node.Attr("Text");
   
 
@@ -1060,7 +1150,12 @@ public class Button : ILiquidizable
     public string actionParameter3;
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.title = node.Attr("title");
         this.action = node.Attr("action");
         this.actionParameter = node.Attr("actionParameter");
@@ -1117,7 +1212,12 @@ public class column : ILiquidizable
     public List<option> options = new List<option>();
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.title = node.Attr("title");
         this.name = node.Attr("name");
         this.type = node.Attr("type");
@@ -1187,7 +1287,12 @@ public class ParameterCheck : ILiquidizable
     public string When;
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.Cond = node.Attr("Cond");
         this.Value = node.Attr("Value");
         this.Value2 = node.Attr("Value2");
@@ -1212,7 +1317,12 @@ public class ValueParameter : ILiquidizable
     public string source;
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         this.name = node.Attr("name");
         this.value = node.Attr("value");
         this.source = node.Attr("source");
@@ -1317,7 +1427,12 @@ public class Pages : ILiquidizable
     public List<Page> _Pages = new List<Page>();
     public void ParseEle(XmlNode node)
     {
-
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         for (int i = 0; i < node.ChildNodes.Count; i++)
         {
             if (node.ChildNodes[i].Name == "Page")
@@ -1395,7 +1510,12 @@ public class table : ILiquidizable
     public List<NewRecordColumnValue> NewRecordColumnValues = new List<NewRecordColumnValue>();
     public void ParseEle(XmlNode node)
     {
-     
+        string ExtendedFrom = node.Attr("ExtendedFrom");
+        if (ExtendedFrom != "")
+        {
+            XmlNode X = PDAL.RootElement.SelectSingleNode(ExtendedFrom);
+            PDAL.NodeMerge(X, node);
+        }
         Sortable = node.Attr("Sortable");
         BasicFilter = node.Attr("BasicFilter");
         HideActionColumnn = node.Attr("HideActionColumnn");
