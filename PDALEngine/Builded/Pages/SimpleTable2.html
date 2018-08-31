@@ -8,8 +8,8 @@
          
     SimpleTable2.IntForm=function()
     {
-    
-    document.title='جدول ساده بدون پارامتر  با امکانات ساده نمایشی ';
+        document.title='جدول ساده بدون پارامتر  با امکانات ساده نمایشی ';
+        window.pageName='SimpleTable2';
     window.fileUploaded=false;
     
     }
@@ -31,7 +31,7 @@
  <th  class="Pointer"  ng-click="ChageTableOrder('cityTitle')"  > <span ng-show="((currentOrder=='cityTitle') && (rev) )">V</span> <span ng-show="((currentOrder=='cityTitle') && (!rev) )">^</span>عنوان شهر</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable2records | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد شهر'>{{record.cityId}}</td> 
  <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 

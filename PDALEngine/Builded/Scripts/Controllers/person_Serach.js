@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var person_Serach=new Object();
+
 var currentButton;
 person_Serach.sendFiles=  function()
 {
@@ -54,17 +58,33 @@ person_Serach.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='person_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('id',$('#txtid').val()));
+                Entity.Parameters.push( toInput('id',$('#txtperson_Serachid').val()));
     
-                    Entity.Parameters.push( toInput('name',$('#txtname').val()));
+                    Entity.Parameters.push( toInput('name',$('#txtperson_Serachname').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
+
+        if(targetElement!=null)
+    {
+        targetElement.value=data.retrunValue;
+    }
+        
+  
+ 
+
     Messager.ShowMessage('اطلاعات', data.Message);
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
-    BackPage();
+ 
+                                        BackPage();
+                 
+         
+     
+  
+
+
     $(obj).attr('disabled',false);
     return;
        
@@ -112,16 +132,23 @@ person_Serach.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='person_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('id',$('#txtid').val()));
+                Entity.Parameters.push( toInput('id',$('#txtperson_Serachid').val()));
     
-                    Entity.Parameters.push( toInput('name',$('#txtname').val()));
+                    Entity.Parameters.push( toInput('name',$('#txtperson_Serachname').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
-        
+    currentScope.person_Serachrecords= data.records;
+    
+    setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.person_Serachrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -140,6 +167,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
+window.targetElement=null;
 
 
 

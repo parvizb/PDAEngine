@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var SimpleTable1=new Object();
+
 var currentButton;
 SimpleTable1.sendFiles=  function()
 {
@@ -55,12 +59,28 @@ SimpleTable1.Submit= function(obj)
     Entity.PageName='SimpleTable1';
     Entity.Parameters=new Array();
     ScallerAjax('ScallerSubmit',Entity,function(data){
+
+        if(targetElement!=null)
+    {
+        targetElement.value=data.retrunValue;
+    }
+        
+  
+ 
+
     Messager.ShowMessage('اطلاعات', data.Message);
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
-    BackPage();
+ 
+                                        BackPage();
+                 
+         
+     
+  
+
+
     $(obj).attr('disabled',false);
     return;
        
@@ -109,9 +129,16 @@ SimpleTable1.Serach=function(obj)
      
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
-        
+    currentScope.SimpleTable1records= data.records;
+    
+    setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.SimpleTable1records= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -130,6 +157,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
+window.targetElement=null;
 
 
 

@@ -8,8 +8,8 @@
          
     SimpleTable4.IntForm=function()
     {
-    
-    document.title='جدول ساده با دستور مستقیم   ';
+        document.title='جدول ساده با دستور مستقیم   ';
+        window.pageName='SimpleTable4';
     window.fileUploaded=false;
     
     }
@@ -30,7 +30,7 @@
  <th  > عنوان شهر</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable4records | orderBy:currentOrder :rev " >
 <td data-label='کد شهر'>{{record.cityId}}</td> 
  <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
                    </tr>

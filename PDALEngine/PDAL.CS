@@ -905,7 +905,7 @@ namespace PDALEngine
                 string para = Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1);
                 if (column.IndexOf("[" + para + "]") == -1)
                 {
-                    Sb.AppendLine(String.Format("<PageParameter title=\"{0}\" name=\"{1}\" type=\"{2}\" source=\"form\"  startValueType=\"DbValueCommand\" Parameter=\"{1}\" ><ParameterCheck Cond=\"Reg\"></ParameterCheck></PageParameter>", GetDesc(Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1)), Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1), DataType[SQLDATAType.IndexOf(Dt.Rows[k]["DATA_TYPE"].ToString())]));
+                    Sb.AppendLine(String.Format("<PageParameter ExtendedFrom=\"//Page[@name='" + tableName + "_Insert']/PageParameter[@name='{1}']\"  startValueType=\"DbValueCommand\" Parameter=\"{1}\" ><CopyElements  XPath=\"//Page[@name='" + tableName + "_Insert']/PageParameter[@name='{1}']\" Attr=\"*\"/></PageParameter>", GetDesc(Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1)), Dt.Rows[k]["PARAMETER_NAME"].ToString().Substring(1), DataType[SQLDATAType.IndexOf(Dt.Rows[k]["DATA_TYPE"].ToString())]));
                 }
                 else
                 {
@@ -2330,7 +2330,7 @@ namespace PDALEngine
                 }
             }
             
-        }
+        } 
         public static void NodeMerge(XmlNode BaseNode, XmlNode Current)
         {
             for (int k = 0; k < BaseNode.Attributes.Count; k++)

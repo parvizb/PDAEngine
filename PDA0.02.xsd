@@ -1251,6 +1251,24 @@
                         
                          <xs:annotation><xs:documentation> پارامتر صفحه </xs:documentation> </xs:annotation>
                         <xs:choice minOccurs="0" maxOccurs="unbounded" >
+                          <xs:element name="CopyElements" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                              <xs:documentation>به کپی برداری اجزای زیر مجموعه عنصر مورد می پردازد</xs:documentation>
+
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="Attr" use="required" >
+                                <xs:annotation>
+                                  <xs:documentation>* همه برای عناصر یا نام عناصر مورد نظر </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="XPath" use="required" >
+                                <xs:annotation>
+                                  <xs:documentation>مسیر مورد نظر </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
                           <xs:element minOccurs="0" maxOccurs="unbounded" name="Button">
                             <xs:complexType>
                               <xs:annotation>

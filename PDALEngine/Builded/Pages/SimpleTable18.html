@@ -8,8 +8,8 @@
          
     SimpleTable18.IntForm=function()
     {
-    
-    document.title=' گزینش خودکار در جدول  ';
+        document.title=' گزینش خودکار در جدول  ';
+        window.pageName='SimpleTable18';
     window.fileUploaded=false;
     
     }
@@ -36,7 +36,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable18records | orderBy:currentOrder :rev | filter:FilterValue " >
 <th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد شهر'>{{record.cityId}}</td> 

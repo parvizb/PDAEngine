@@ -8,8 +8,8 @@
          
     SimpleTable8.IntForm=function()
     {
-    
-    document.title='نمایش عبارت های تجمیعی ';
+        document.title='نمایش عبارت های تجمیعی ';
+        window.pageName='SimpleTable8';
     window.fileUploaded=false;
     
     }
@@ -32,7 +32,7 @@
  <th  class="Pointer"  ng-click="ChageTableOrder('CITYPop')"  > <span ng-show="((currentOrder=='CITYPop') && (rev) )">V</span> <span ng-show="((currentOrder=='CITYPop') && (!rev) )">^</span>جمعیت </th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable8records | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد شهر'>{{record.cityId}}</td> 
  <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 

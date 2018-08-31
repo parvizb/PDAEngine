@@ -1,0 +1,142 @@
+﻿مدیریت کارگاه
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="workshopId" class="col-sm-2 control-label">           شناسه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input class="form-control" id="txtworkshop_SerachworkshopId" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="wrkShpId" class="col-sm-2 control-label">           کد کارگاه
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtworkshop_SerachwrkShpId" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="wrkShapeName" class="col-sm-2 control-label">           عنوان کارگاه
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtworkshop_SerachwrkShapeName" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="wrkShpConId" class="col-sm-2 control-label">           ردیف پیمان
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtworkshop_SerachwrkShpConId" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="address" class="col-sm-2 control-label">           آدرس پیمان
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtworkshop_Serachaddress" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="bldName" class="col-sm-2 control-label">           نام کارفرما
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtworkshop_SerachbldName" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                                                         
+    workshop_Serach.IntForm=function()
+    {
+        document.title='مدیریت کارگاه';
+        window.pageName='workshop_Serach';
+    window.fileUploaded=false;
+                                                                                                                                                    
+    }
+    $(document).ready(function () {
+    workshop_Serach.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="workshop_Serach.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a href='#/workshop_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > شناسه</th> 
+ <th  > کد کارگاه</th> 
+ <th  > عنوان کارگاه</th> 
+ <th  > ردیف پیمان</th> 
+ <th  > آدرس کارگاه</th> 
+ <th  > نام کارفرما</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in workshop_Serachrecords | orderBy:currentOrder :rev " >
+<td data-label='شناسه'>{{record.workshopId}}</td> 
+ <td data-label='کد کارگاه'>{{record.wrkShpId}}</td> 
+ <td data-label='عنوان کارگاه'>{{record.wrkShapeName}}</td> 
+ <td data-label='ردیف پیمان'>{{record.wrkShpConId}}</td> 
+ <td data-label='آدرس کارگاه'>{{record.address}}</td> 
+ <td data-label='نام کارفرما'>{{record.bldName}}</td> 
+                <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a href="#/workshop_Edit/{{record.workshopId}}" >ویرایش</a></li> 
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.workshop_Delete('{{record.workshopId}}')});" >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

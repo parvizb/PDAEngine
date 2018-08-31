@@ -2,18 +2,24 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label for="P" class="col-sm-2 control-label">     درصد:</label>
-    <div class="col-sm-4">
-      <input type="Number"  placeholder=""  class="form-control" id="txtP" placeholder="" />
-                                        </div>
+    <label  for="P" class="col-sm-2 control-label">           درصد
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                              <input type="Number"  placeholder=""  class="form-control" id="txtSimpleTable10P" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+                                                                                              
+    </div>
   </div>
     </from>
   <script>
                  
     SimpleTable10.IntForm=function()
     {
-    
-    document.title=' انجام عملیات گزینشی   ';
+        document.title=' انجام عملیات گزینشی   ';
+        window.pageName='SimpleTable10';
     window.fileUploaded=false;
                             
     }
@@ -38,7 +44,7 @@
  <th  class="Pointer"  ng-click="ChageTableOrder('CITYPop')"  > <span ng-show="((currentOrder=='CITYPop') && (rev) )">V</span> <span ng-show="((currentOrder=='CITYPop') && (!rev) )">^</span>جمعیت </th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable10records | orderBy:currentOrder :rev | filter:FilterValue " >
 <th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد شهر'>{{record.cityId}}</td> 

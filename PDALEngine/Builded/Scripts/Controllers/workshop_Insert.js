@@ -2,14 +2,14 @@
 
 
 
-var Scaller2=new Object();
+var workshop_Insert=new Object();
 
 var currentButton;
-Scaller2.sendFiles=  function()
+workshop_Insert.sendFiles=  function()
 {
     var data = new FormData();
  
-                        $('#loadingBar').show();
+                                                $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -25,7 +25,7 @@ Scaller2.sendFiles=  function()
             window.fileUploaded=true;
             $('#loadingBar').hide();
             $('#fileStatus').hide();
-            Scaller2.Submit(currentButton);
+            workshop_Insert.Submit(currentButton);
         } else {
             if((xhr.status==500) && (xhr.readyState == 4))
             {
@@ -40,27 +40,33 @@ Scaller2.sendFiles=  function()
          
         }
     };
-    xhr.open('POST', "Home/SendFiles?PageName=Scaller2");
+    xhr.open('POST', "Home/SendFiles?PageName=workshop_Insert");
     // xhr.setRequestHeader("Content-type", "multipart/form-data");
     xhr.send(data);
 }
 
 
-Scaller2.Submit= function(obj)
+workshop_Insert.Submit= function(obj)
 {
     currentButton=obj;
     $(obj).attr('disabled',true);
-    if(Scaller2.Validate()==false)
+    if(workshop_Insert.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
         var Entity=new Object();
-    Entity.PageName='Scaller2';
+    Entity.PageName='workshop_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cityTitle',$('#txtScaller2cityTitle').val()));
+                Entity.Parameters.push( toInput('wrkShpId',$('#txtworkshop_InsertwrkShpId').val()));
     
-                    Entity.Parameters.push( toInput('CITYPop',$('#txtScaller2CITYPop').val()));
+                    Entity.Parameters.push( toInput('wrkShapeName',$('#txtworkshop_InsertwrkShapeName').val()));
+    
+                    Entity.Parameters.push( toInput('wrkShpConId',$('#txtworkshop_InsertwrkShpConId').val()));
+    
+                    Entity.Parameters.push( toInput('address',$('#txtworkshop_Insertaddress').val()));
+    
+                    Entity.Parameters.push( toInput('bldName',$('#txtworkshop_InsertbldName').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
@@ -95,13 +101,22 @@ Scaller2.Submit= function(obj)
 
 });
 };
-Scaller2.Validate= function()
+workshop_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                Validator.CheckEmpty('txtScaller2cityTitle','عنوان');
+                                Validator.CheckEmpty('txtworkshop_InsertwrkShpId','کد کارگاه');
+                                                                                                                                Validator.CheckStringLength('txtworkshop_InsertwrkShpId','کد کارگاه',10);
+                                                                            
+                                Validator.CheckEmpty('txtworkshop_InsertwrkShapeName','عنوان کارگاه');
                                                                                             
-        
+                                Validator.CheckEmpty('txtworkshop_InsertwrkShpConId','ردیف پیمان');
+                                                                                                                                Validator.CheckStringLength('txtworkshop_InsertwrkShpConId','ردیف پیمان',3);
+                                                                            
+                                Validator.CheckEmpty('txtworkshop_Insertaddress','آدرس کارگاه');
+                                                                                            
+                                Validator.CheckEmpty('txtworkshop_InsertbldName','نام کارفرما');
+                                                                                        
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
@@ -120,33 +135,39 @@ Scaller2.Validate= function()
 }
 
 
-Scaller2.Serach=function(obj)
+workshop_Insert.Serach=function(obj)
 {
     $(obj).attr('disabled',true);
-    if(Scaller2.Validate()==false)
+    if(workshop_Insert.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
 
-    window.CurrentSerachMethod=Scaller2.Serach;
+    window.CurrentSerachMethod=workshop_Insert.Serach;
     var Entity=new Object();
-    Entity.PageName='Scaller2';
+    Entity.PageName='workshop_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cityTitle',$('#txtScaller2cityTitle').val()));
+                Entity.Parameters.push( toInput('wrkShpId',$('#txtworkshop_InsertwrkShpId').val()));
     
-                    Entity.Parameters.push( toInput('CITYPop',$('#txtScaller2CITYPop').val()));
+                    Entity.Parameters.push( toInput('wrkShapeName',$('#txtworkshop_InsertwrkShapeName').val()));
+    
+                    Entity.Parameters.push( toInput('wrkShpConId',$('#txtworkshop_InsertwrkShpConId').val()));
+    
+                    Entity.Parameters.push( toInput('address',$('#txtworkshop_Insertaddress').val()));
+    
+                    Entity.Parameters.push( toInput('bldName',$('#txtworkshop_InsertbldName').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.Scaller2records= data.records;
+    currentScope.workshop_Insertrecords= data.records;
     
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
-        dlgScope.Scaller2records= data.records;
+        dlgScope.workshop_Insertrecords= data.records;
         dlgScope.$apply(function(){});
 
     }

@@ -10,8 +10,8 @@
          
     Scaller5.IntForm=function()
     {
-    
-    document.title='جدول ساده بدون پارامتر';
+        document.title='جدول ساده بدون پارامتر';
+        window.pageName='Scaller5';
     window.fileUploaded=false;
     
     }
@@ -32,7 +32,7 @@
  <th  > عنوان شهر</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in Scaller5records | orderBy:currentOrder :rev " >
 <td data-label='کد شهر'>{{record.cityId}}</td> 
  <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
                    </tr>

@@ -1,11 +1,15 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var person_Insert=new Object();
+
 var currentButton;
 person_Insert.sendFiles=  function()
 {
     var data = new FormData();
  
-                                                                                                    var tmp=$('#txtpicImage')[0];
+                                                                                                    var tmp=$('#txtperson_InsertpicImage')[0];
     if(tmp.files.length>0){
         data.append('picImage', tmp.files[0]);
     }
@@ -68,39 +72,56 @@ person_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='person_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('name',$('#txtname').val()));
+                Entity.Parameters.push( toInput('name',$('#txtperson_Insertname').val()));
     
-                    Entity.Parameters.push( toInput('grade',$('#txtgrade').val()));
+                    Entity.Parameters.push( toInput('grade',$('#txtperson_Insertgrade').val()));
     
-                    Entity.Parameters.push( toInput('cityid',$('#txtcityid').val()));
+                    Entity.Parameters.push( toInput('cityid',$('#txtperson_Insertcityid').val()));
     
-                    Entity.Parameters.push( toInput('sextype',$('#txtsextype').val()));
+                    Entity.Parameters.push( toInput('sextype',$('#txtperson_Insertsextype').val()));
     
-                    Entity.Parameters.push( toInput('salaryBase',$('#txtsalaryBase').val()));
+                    Entity.Parameters.push( toInput('salaryBase',$('#txtperson_InsertsalaryBase').val()));
     
-                    Entity.Parameters.push( toInput('examResult',$('#txtexamResult').val()));
+                    Entity.Parameters.push( toInput('examResult',$('#txtperson_InsertexamResult').val()));
     
-                    Entity.Parameters.push( toInput('dateBrith',$('#txtdateBrith').val()));
+                    Entity.Parameters.push( toInput('dateBrith',$('#txtperson_InsertdateBrith').val()));
     
-                    Entity.Parameters.push( toInput('startTime',$('#txtstartTime').val()));
+                    Entity.Parameters.push( toInput('startTime',$('#txtperson_InsertstartTime').val()));
     
-                    Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
+                    Entity.Parameters.push( toInput('smailBio',$('#txtperson_InsertsmailBio').val()));
     
-                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
+                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtperson_InsertsmailHtml'].contentDocument.body.innerHTML));
     
-                    Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
+                    Entity.Parameters.push( toInput('favColor',$('#txtperson_InsertfavColor').val()));
     
-                    Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
+                    Entity.Parameters.push( toInput('picImage',$('#txtperson_InsertpicImage').val()));
     
-                    Entity.Parameters.push( toInput('isBroken',$('#txtisBroken').val()));
+                    Entity.Parameters.push( toInput('isBroken', $('#txtperson_InsertisBroken').val()) );
+  
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
+
+        if(targetElement!=null)
+    {
+        targetElement.value=data.retrunValue;
+    }
+        
+  
+ 
+
     Messager.ShowMessage('اطلاعات', data.Message);
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
-    BackPage();
+ 
+                                        BackPage();
+                 
+         
+     
+  
+
+
     $(obj).attr('disabled',false);
     return;
        
@@ -115,22 +136,22 @@ person_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                Validator.CheckEmpty('txtname','نام');
+                                Validator.CheckEmpty('txtperson_Insertname','نام');
                                                                                             
                                                                             
-                                                        Validator.CheckRegSelect2('txtcityid','شهر');
+                                                        Validator.CheckRegSelect2('txtperson_Insertcityid','شهر');
                                     
                                                                             
-                                                        Validator.CheckRegInteger('txtsalaryBase','حقوق پایه');
+                                                        Validator.CheckRegInteger('txtperson_InsertsalaryBase','حقوق پایه');
                                                             
-                                                Validator.CheckRegFloat('txtexamResult','نمره آزمون');
+                                                Validator.CheckRegFloat('txtperson_InsertexamResult','نمره آزمون');
                                                             
-                                                                        Validator.CheckRegDate('txtdateBrith','تاریخ تولد');
+                                                                        Validator.CheckRegDate('txtperson_InsertdateBrith','تاریخ تولد');
                                     
                                                                             
                                                                             
                                                                             
-                                                                                var tmp=$('#txtpicImage')[0];
+                                                                                var tmp=$('#txtperson_InsertpicImage')[0];
         if(tmp.files.length>0)
     {
         if(tmp.files[0].size/1024 > 2048)
@@ -156,7 +177,7 @@ person_Insert.Validate= function()
         }
     }
         
-                                        Validator.CheckEmpty('txtpicImage','تصویر پرسنلی');
+                                        Validator.CheckEmpty('txtperson_InsertpicImage','تصویر پرسنلی');
                                                                     
                                                                         
     if(Messager.errors.length!=0)
@@ -190,38 +211,45 @@ person_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='person_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('name',$('#txtname').val()));
+                Entity.Parameters.push( toInput('name',$('#txtperson_Insertname').val()));
     
-                    Entity.Parameters.push( toInput('grade',$('#txtgrade').val()));
+                    Entity.Parameters.push( toInput('grade',$('#txtperson_Insertgrade').val()));
     
-                    Entity.Parameters.push( toInput('cityid',$('#txtcityid').val()));
+                    Entity.Parameters.push( toInput('cityid',$('#txtperson_Insertcityid').val()));
     
-                    Entity.Parameters.push( toInput('sextype',$('#txtsextype').val()));
+                    Entity.Parameters.push( toInput('sextype',$('#txtperson_Insertsextype').val()));
     
-                    Entity.Parameters.push( toInput('salaryBase',$('#txtsalaryBase').val()));
+                    Entity.Parameters.push( toInput('salaryBase',$('#txtperson_InsertsalaryBase').val()));
     
-                    Entity.Parameters.push( toInput('examResult',$('#txtexamResult').val()));
+                    Entity.Parameters.push( toInput('examResult',$('#txtperson_InsertexamResult').val()));
     
-                    Entity.Parameters.push( toInput('dateBrith',$('#txtdateBrith').val()));
+                    Entity.Parameters.push( toInput('dateBrith',$('#txtperson_InsertdateBrith').val()));
     
-                    Entity.Parameters.push( toInput('startTime',$('#txtstartTime').val()));
+                    Entity.Parameters.push( toInput('startTime',$('#txtperson_InsertstartTime').val()));
     
-                    Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
+                    Entity.Parameters.push( toInput('smailBio',$('#txtperson_InsertsmailBio').val()));
     
-                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
+                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtperson_InsertsmailHtml'].contentDocument.body.innerHTML));
     
-                    Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
+                    Entity.Parameters.push( toInput('favColor',$('#txtperson_InsertfavColor').val()));
     
-                    Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
+                    Entity.Parameters.push( toInput('picImage',$('#txtperson_InsertpicImage').val()));
     
-                    Entity.Parameters.push( toInput('isBroken',$('#txtisBroken').val()));
+                    Entity.Parameters.push( toInput('isBroken',$('#txtperson_InsertisBroken').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
-        
+    currentScope.person_Insertrecords= data.records;
+    
+    setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.person_Insertrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -240,6 +268,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
+window.targetElement=null;
 
 
 

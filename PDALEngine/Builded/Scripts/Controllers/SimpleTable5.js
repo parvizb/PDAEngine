@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var SimpleTable5=new Object();
+
 var currentButton;
 SimpleTable5.sendFiles=  function()
 {
@@ -54,15 +58,31 @@ SimpleTable5.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='SimpleTable5';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('n',$('#txtn').val()));
+                Entity.Parameters.push( toInput('n',$('#txtSimpleTable5n').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
+
+        if(targetElement!=null)
+    {
+        targetElement.value=data.retrunValue;
+    }
+        
+  
+ 
+
     Messager.ShowMessage('اطلاعات', data.Message);
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
-    BackPage();
+ 
+                                        BackPage();
+                 
+         
+     
+  
+
+
     $(obj).attr('disabled',false);
     return;
        
@@ -109,14 +129,21 @@ SimpleTable5.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='SimpleTable5';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('n',$('#txtn').val()));
+                Entity.Parameters.push( toInput('n',$('#txtSimpleTable5n').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
-        
+    currentScope.SimpleTable5records= data.records;
+    
+    setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.SimpleTable5records= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -135,6 +162,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
+window.targetElement=null;
 
 
 

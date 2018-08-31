@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var SimpleTable17=new Object();
+
 var currentButton;
 SimpleTable17.sendFiles=  function()
 {
@@ -54,17 +58,33 @@ SimpleTable17.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='SimpleTable17';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('PerId',$('#txtPerId').val()));
+                Entity.Parameters.push( toInput('PerId',$('#txtSimpleTable17PerId').val()));
     
-                    Entity.Parameters.push( toInput('DateSave',$('#txtDateSave').val()));
+                    Entity.Parameters.push( toInput('DateSave',$('#txtSimpleTable17DateSave').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
+
+        if(targetElement!=null)
+    {
+        targetElement.value=data.retrunValue;
+    }
+        
+  
+ 
+
     Messager.ShowMessage('اطلاعات', data.Message);
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
-    BackPage();
+ 
+                                        BackPage();
+                 
+         
+     
+  
+
+
     $(obj).attr('disabled',false);
     return;
        
@@ -112,16 +132,23 @@ SimpleTable17.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='SimpleTable17';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('PerId',$('#txtPerId').val()));
+                Entity.Parameters.push( toInput('PerId',$('#txtSimpleTable17PerId').val()));
     
-                    Entity.Parameters.push( toInput('DateSave',$('#txtDateSave').val()));
+                    Entity.Parameters.push( toInput('DateSave',$('#txtSimpleTable17DateSave').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
-        
+    currentScope.SimpleTable17records= data.records;
+    
+    setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.SimpleTable17records= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -140,7 +167,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 SimpleTable17.InsertRecord=function()
@@ -149,7 +176,7 @@ SimpleTable17.InsertRecord=function()
     temp.RowState='Added';
     temp.selected = false;
     temp.rndId = Math.round(Math.random() * 99999999999999);
-        currentScope.records.push(temp);
+        currentScope.SimpleTable17records.push(temp);
     currentScope.$apply();
                
     $('#cityid_' +temp.rndId).each (function() {$(this).val($(this).attr('valc')) });
@@ -159,25 +186,37 @@ SimpleTable17.InsertRecord=function()
 SimpleTable17.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                    Validator.CheckRegSelect2('txtPerId','شخص');
-                                    Validator.CheckRegDate('txtDateSave','تاریخ ثبت');
-                                                                    for (var l=0;l<currentScope.records.length;l++)
+                                    Validator.CheckRegSelect2('txtSimpleTable17PerId','شخص');
+                                    Validator.CheckRegDate('txtSimpleTable17DateSave','تاریخ ثبت');
+                                                                    for (var l=0;l<currentScope.SimpleTable17records.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.SimpleTable17records[l];
 
                 if(r.selected == true){
       continue;
 }
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.SimpleTable17records.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.SimpleTable17records[l];
 
         if(r.RowState !='Added'){
     continue;
 }
 Validator.CheckRegSelect2('cityid_' + r.rndId,'کد شهر',r.viewIndex+1);
 }
+
+for(var l=0;l<currentScope.SimpleTable17records.length;l++)
+{ 
+    var record=currentScope.SimpleTable17records[l];
+    
+}
+
+
+
+
+
+
 if (Messager.errors.length!=0)
 {
     Validator.ShowErrors();
@@ -210,9 +249,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.SimpleTable17records.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.SimpleTable17records[l];
 
     if(r.RowState !='Added'){
     continue;
@@ -247,7 +286,9 @@ Enity.PageName='SimpleTable17';
 Enity.CommandName='Save';
 Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
-        Messager.ShowMessage('اطلاعات', data.Message );
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
  
      
   
@@ -258,8 +299,14 @@ ScallerAjax('BatchCommand',Enity,function(data){
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
+    ///you are asl
     if(data.code==0)
     {
+        window.returnValue=data.retrunValue;
+
+
+
+
                                 BackPage();
                  
          
@@ -277,3 +324,4 @@ ScallerAjax('BatchCommand',Enity,function(data){
 });
 console.log(JSON.stringify(Enity));
 }
+

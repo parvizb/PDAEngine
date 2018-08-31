@@ -269,6 +269,9 @@
     <Content Include="AllSamplePDA.Config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="AccSysx.Config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="PDA.Config">
       <SubType>Designer</SubType>
     </None>

@@ -8,8 +8,8 @@
          
     SimpleTable16.IntForm=function()
     {
-    
-    document.title=' گزینش خودکار در جدول  ';
+        document.title=' گزینش خودکار در جدول  ';
+        window.pageName='SimpleTable16';
     window.fileUploaded=false;
     
     }
@@ -33,7 +33,7 @@
  <th  class="Pointer"  ng-click="ChageTableOrder('CITYPop')"  > <span ng-show="((currentOrder=='CITYPop') && (rev) )">V</span> <span ng-show="((currentOrder=='CITYPop') && (!rev) )">^</span>جمعیت </th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable16records | orderBy:currentOrder :rev | filter:FilterValue " >
 <th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد شهر'>{{record.cityId}}</td> 

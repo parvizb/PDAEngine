@@ -130,7 +130,7 @@ public class Application : ILiquidizable
                 {
 
                     XmlNode zQ=X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -221,7 +221,7 @@ public class BatchCommand : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -270,7 +270,7 @@ public class Command : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -375,7 +375,7 @@ public class Parameter : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -418,7 +418,7 @@ public class Check : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -472,7 +472,7 @@ public class Menu : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -552,7 +552,7 @@ public class Item : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -758,7 +758,7 @@ public class Page : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -934,7 +934,7 @@ public class PageParameter : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -1171,7 +1171,7 @@ public class Button : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -1263,7 +1263,7 @@ public class column : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -1449,7 +1449,7 @@ public class Pages : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -1553,7 +1553,7 @@ public class table : ILiquidizable
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr != "*") || (zQ.Name == Attr))
+                    if ((Attr == "*") || (zQ.Name == Attr))
                     {
                         node.InsertAfter(zQ, node.ChildNodes[i]);
                     }

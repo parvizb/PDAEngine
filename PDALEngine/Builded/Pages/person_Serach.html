@@ -2,14 +2,26 @@
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label for="id" class="col-sm-2 control-label">     شناسه:</label>
-    <div class="col-sm-4">
-      <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtid" placeholder="" />
-                                        </div>
-    <label for="name" class="col-sm-2 control-label">     نام:</label>
-    <div class="col-sm-4">
-      <input type="text"   class="form-control" id="txtname" placeholder=""  placeholder="" />
-                                        </div>
+    <label  for="id" class="col-sm-2 control-label">           شناسه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input class="form-control" id="txtperson_Serachid" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="name" class="col-sm-2 control-label">           نام
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtperson_Serachname" placeholder=""  Liquid error: Value cannot be null.
+Parameter name: input  Liquid error: Value cannot be null.
+Parameter name: input placeholder="" />
+      
+                                                                                                                
+    </div>
      </div>
      <div class="form-group">
   </div>
@@ -18,8 +30,8 @@
                          
     person_Serach.IntForm=function()
     {
-    
-    document.title='مدیریت اشخاص';
+        document.title='مدیریت اشخاص';
+        window.pageName='person_Serach';
     window.fileUploaded=false;
                                                     
     }
@@ -52,7 +64,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in person_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه'>{{record.id}}</td> 
  <td data-label='نام'>{{record.name}}</td> 
  <td data-label='رتبه شغلی'>{{record.grade}}</td> 

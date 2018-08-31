@@ -8,8 +8,8 @@
          
     SimpleTable3.IntForm=function()
     {
-    
-    document.title='جدول ساده بدون پارامتر با پورسیجر ';
+        document.title='جدول ساده بدون پارامتر با پورسیجر ';
+        window.pageName='SimpleTable3';
     window.fileUploaded=false;
     
     }
@@ -30,7 +30,7 @@
  <th  > عنوان شهر</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable3records | orderBy:currentOrder :rev " >
 <td data-label='کد شهر'>{{record.cityId}}</td> 
  <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
                    </tr>

@@ -11,7 +11,7 @@ function DoDailog()
 
 
 
-var mainApp = angular.module("PShop", ['ngRoute']);
+var mainApp = angular.module("Web_App_Base", ['ngRoute']);
 mainApp.controller("dlgController",function ($scope, $routeParams) {
     $scope.ShowBoolean=function(v)
     {
@@ -302,368 +302,169 @@ function ($routeProvider/*, $locationProvider*/) {
     //$locationProvider.hashPrefix('!');
     $routeProvider.
                 
-    when('/account_Serach', {
-        templateUrl: 'account_Serach.htm',
+    when('/SimpleTable1', {
+        templateUrl: 'SimpleTable1.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/account_Insert', {
-        templateUrl: 'account_Insert.htm',
+    when('/SimpleTable2', {
+        templateUrl: 'SimpleTable2.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/account_Edit/:acc_id', {
-        templateUrl: 'account_Edit.htm',
+    when('/SimpleTable3', {
+        templateUrl: 'SimpleTable3.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable4', {
+        templateUrl: 'SimpleTable4.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable5', {
+        templateUrl: 'SimpleTable5.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable6', {
+        templateUrl: 'SimpleTable6.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable7', {
+        templateUrl: 'SimpleTable7.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable8', {
+        templateUrl: 'SimpleTable8.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable9', {
+        templateUrl: 'SimpleTable9.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable10', {
+        templateUrl: 'SimpleTable10.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable11', {
+        templateUrl: 'SimpleTable11.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable12', {
+        templateUrl: 'SimpleTable12.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable13', {
+        templateUrl: 'SimpleTable13.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable14', {
+        templateUrl: 'SimpleTable14.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable16', {
+        templateUrl: 'SimpleTable16.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable17', {
+        templateUrl: 'SimpleTable17.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/SimpleTable18', {
+        templateUrl: 'SimpleTable18.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/person_Serach', {
+        templateUrl: 'person_Serach.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/person_Insert', {
+        templateUrl: 'person_Insert.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/person_Edit/:id', {
+        templateUrl: 'person_Edit.htm',
         controller: 'mainController'
         }).
                 
-    when('/product_mgt', {
-        templateUrl: 'product_mgt.htm',
+    when('/Scaller1', {
+        templateUrl: 'Scaller1.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/unit_mgt', {
-        templateUrl: 'unit_mgt.htm',
+    when('/Scaller2', {
+        templateUrl: 'Scaller2.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/factory_mgt', {
-        templateUrl: 'factory_mgt.htm',
+    when('/Scaller3', {
+        templateUrl: 'Scaller3.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/stuff_Serach', {
-        templateUrl: 'stuff_Serach.htm',
+    when('/Scaller4', {
+        templateUrl: 'Scaller4.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/stuff_Insert', {
-        templateUrl: 'stuff_Insert.htm',
+    when('/Scaller5', {
+        templateUrl: 'Scaller5.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/stuff_Edit/:id_stuff', {
-        templateUrl: 'stuff_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/cus_group_mgt', {
-        templateUrl: 'cus_group_mgt.htm',
+    when('/Scaller6', {
+        templateUrl: 'Scaller6.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/customer_Serach', {
-        templateUrl: 'customer_Serach.htm',
+    when('/Scaller7', {
+        templateUrl: 'Scaller7.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/customer_Insert', {
-        templateUrl: 'customer_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/customer_Edit/:cus_acc_id', {
-        templateUrl: 'customer_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/stroage_mgt', {
-        templateUrl: 'stroage_mgt.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/set_stroge_frist', {
-        templateUrl: 'set_stroge_frist.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/payment_Serach', {
-        templateUrl: 'payment_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/payment_Insert', {
-        templateUrl: 'payment_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/payment_Edit/:payment_id', {
-        templateUrl: 'payment_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/getment_Serach', {
-        templateUrl: 'getment_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/getment_Insert', {
-        templateUrl: 'getment_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/getment_Edit/:getment_id', {
-        templateUrl: 'getment_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/setAvable/:id_St/:st_name', {
-        templateUrl: 'setAvable.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/Factor_Insert', {
-        templateUrl: 'Factor_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/Factor_Update/:FactoryId', {
-        templateUrl: 'Factor_Update.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/Factor_Serach', {
-        templateUrl: 'Factor_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/MoveAcc_Serach', {
-        templateUrl: 'MoveAcc_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/MoveAcc_Insert', {
-        templateUrl: 'MoveAcc_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/MoveAcc_Edit/:moveAccId', {
-        templateUrl: 'MoveAcc_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/moveStorage_Serach', {
-        templateUrl: 'moveStorage_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/moveStorage_Insert', {
-        templateUrl: 'moveStorage_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/moveStorage_Edit/:moveStorageId', {
-        templateUrl: 'moveStorage_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/moveDetail_mgt/:moveStorageId', {
-        templateUrl: 'moveDetail_mgt.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/BankCheck_Serach', {
-        templateUrl: 'BankCheck_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/BankCheck_Insert', {
-        templateUrl: 'BankCheck_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/BankCheck_Edit/:BankCheckId', {
-        templateUrl: 'BankCheck_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/BankCheckToPayGetCheck/:bankCheckId', {
-        templateUrl: 'BankCheckToPayGetCheck.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/BankCheckToPayPaymentCheck/:bankCheckId', {
-        templateUrl: 'BankCheckToPayPaymentCheck.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/BankCheckToBack/:bankCheckId', {
-        templateUrl: 'BankCheckToBack.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/MoveToAccBank/:bankCheckId', {
-        templateUrl: 'MoveToAccBank.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/PayMoveCheck/:bankCheckId', {
-        templateUrl: 'PayMoveCheck.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/SendCheckToPerson/:bankCheckId', {
-        templateUrl: 'SendCheckToPerson.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/BankCheckOptDetail/:BankCheckId', {
-        templateUrl: 'BankCheckOptDetail.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/GenCradax', {
-        templateUrl: 'GenCradax.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/StorageReport', {
-        templateUrl: 'StorageReport.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/AccountReport', {
-        templateUrl: 'AccountReport.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/AccountReportAll', {
-        templateUrl: 'AccountReportAll.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/ShowOptMgt', {
-        templateUrl: 'ShowOptMgt.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/billPercent_mgt', {
-        templateUrl: 'billPercent_mgt.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/ShowCusReport', {
-        templateUrl: 'ShowCusReport.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/ShowCusReportAll', {
-        templateUrl: 'ShowCusReportAll.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/User_Serach', {
-        templateUrl: 'User_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/User_Insert', {
-        templateUrl: 'User_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/User_Edit/:UserId', {
-        templateUrl: 'User_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/UserPassEdit/:UserId', {
-        templateUrl: 'UserPassEdit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/Role_Serach', {
-        templateUrl: 'Role_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/Role_Insert', {
-        templateUrl: 'Role_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/Role_Edit/:RoleId', {
-        templateUrl: 'Role_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/ShowUserInRole/:RoleId', {
-        templateUrl: 'ShowUserInRole.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/ShowPerInRole/:RoleId', {
-        templateUrl: 'ShowPerInRole.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/Service_mgt', {
-        templateUrl: 'Service_mgt.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/ServiceFactor_Serach', {
-        templateUrl: 'ServiceFactor_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/ServiceFactor_Insert', {
-        templateUrl: 'ServiceFactor_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/ServiceFactor_Edit/:ServiceFactorId', {
-        templateUrl: 'ServiceFactor_Edit.htm',
-        controller: 'mainController'
-        }).
-                
-    when('/QuickFactorInsert', {
-        templateUrl: 'QuickFactorInsert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/QuickFactorSerach', {
-        templateUrl: 'QuickFactorSerach.htm',
+    when('/OtherInformation', {
+        templateUrl: 'OtherInformation.htm',
         controller: 'mainController' }
             ).
     

@@ -8,8 +8,8 @@
          
     SimpleTable7.IntForm=function()
     {
-    
-    document.title='شیوه مختلف نمایش اطلاعات در جدول ';
+        document.title='شیوه مختلف نمایش اطلاعات در جدول ';
+        window.pageName='SimpleTable7';
     window.fileUploaded=false;
     
     }
@@ -35,7 +35,7 @@
  <th  > تصویر پرسنلی</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable7records | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label='شناسه'>{{record.id}}</td> 
  <td data-label='نام'>{{record.name}}</td> 
  <td data-label='حقوق پایه'>{{ShowMoney(record.salaryBase)}}</td> 

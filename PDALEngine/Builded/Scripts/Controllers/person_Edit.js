@@ -1,11 +1,15 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var person_Edit=new Object();
+
 var currentButton;
 person_Edit.sendFiles=  function()
 {
     var data = new FormData();
  
-                                                                                                                    var tmp=$('#txtpicImage')[0];
+                                                                                                                    var tmp=$('#txtperson_EditpicImage')[0];
     if(tmp.files.length>0){
         data.append('picImage', tmp.files[0]);
     }
@@ -69,41 +73,58 @@ person_Edit.Submit= function(obj)
     Entity.PageName='person_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('id',routeParams.id ));
-            Entity.Parameters.push( toInput('name',$('#txtname').val()));
+            Entity.Parameters.push( toInput('name',$('#txtperson_Editname').val()));
     
-                    Entity.Parameters.push( toInput('grade',$('#txtgrade').val()));
+                    Entity.Parameters.push( toInput('grade',$('#txtperson_Editgrade').val()));
     
-                    Entity.Parameters.push( toInput('cityid',$('#txtcityid').val()));
+                    Entity.Parameters.push( toInput('cityid',$('#txtperson_Editcityid').val()));
     
-                    Entity.Parameters.push( toInput('sextype',$('#txtsextype').val()));
+                    Entity.Parameters.push( toInput('sextype',$('#txtperson_Editsextype').val()));
     
-                    Entity.Parameters.push( toInput('salaryBase',$('#txtsalaryBase').val()));
+                    Entity.Parameters.push( toInput('salaryBase',$('#txtperson_EditsalaryBase').val()));
     
-                    Entity.Parameters.push( toInput('examResult',$('#txtexamResult').val()));
+                    Entity.Parameters.push( toInput('examResult',$('#txtperson_EditexamResult').val()));
     
-                    Entity.Parameters.push( toInput('dateBrith',$('#txtdateBrith').val()));
+                    Entity.Parameters.push( toInput('dateBrith',$('#txtperson_EditdateBrith').val()));
     
-                    Entity.Parameters.push( toInput('startTime',$('#txtstartTime').val()));
+                    Entity.Parameters.push( toInput('startTime',$('#txtperson_EditstartTime').val()));
     
-                    Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
+                    Entity.Parameters.push( toInput('smailBio',$('#txtperson_EditsmailBio').val()));
     
-                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
+                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtperson_EditsmailHtml'].contentDocument.body.innerHTML));
     
-                    Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
+                    Entity.Parameters.push( toInput('favColor',$('#txtperson_EditfavColor').val()));
     
-                    Entity.Parameters.push( toInput('oldImage',$('#txtoldImage').val()));
+                    Entity.Parameters.push( toInput('oldImage',$('#txtperson_EditoldImage').val()));
     
-                    Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
+                    Entity.Parameters.push( toInput('picImage',$('#txtperson_EditpicImage').val()));
     
-                    Entity.Parameters.push( toInput('isBroken',$('#txtisBroken').val()));
+                    Entity.Parameters.push( toInput('isBroken', $('#txtperson_EditisBroken').val()) );
+  
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
+
+        if(targetElement!=null)
+    {
+        targetElement.value=data.retrunValue;
+    }
+        
+  
+ 
+
     Messager.ShowMessage('اطلاعات', data.Message);
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
-    BackPage();
+ 
+                                        BackPage();
+                 
+         
+     
+  
+
+
     $(obj).attr('disabled',false);
     return;
        
@@ -119,25 +140,25 @@ person_Edit.Validate= function()
     Validator.ClearErrors();
         
             
-                                Validator.CheckEmpty('txtname','نام');
+                                Validator.CheckEmpty('txtperson_Editname','نام');
                                                                                             
                                                                             
-                                                        Validator.CheckRegSelect2('txtcityid','شهر');
+                                                        Validator.CheckRegSelect2('txtperson_Editcityid','شهر');
                                     
                                                                             
-                                                        Validator.CheckRegInteger('txtsalaryBase','حقوق پایه');
+                                                        Validator.CheckRegInteger('txtperson_EditsalaryBase','حقوق پایه');
                                                             
-                                                Validator.CheckRegFloat('txtexamResult','نمره آزمون');
+                                                Validator.CheckRegFloat('txtperson_EditexamResult','نمره آزمون');
                                                             
-                                                                        Validator.CheckRegDate('txtdateBrith','تاریخ تولد');
+                                                                        Validator.CheckRegDate('txtperson_EditdateBrith','تاریخ تولد');
                                     
-                                Validator.CheckEmpty('txtstartTime','ساعت شروع کار');
+                                Validator.CheckEmpty('txtperson_EditstartTime','ساعت شروع کار');
                                                                                             
-                                Validator.CheckEmpty('txtsmailBio','خلاصه زندگی ');
+                                Validator.CheckEmpty('txtperson_EditsmailBio','خلاصه زندگی ');
                                                                                             
                                                                             
                                                                             
-                var tmp=$('#txtpicImage')[0];
+                var tmp=$('#txtperson_EditpicImage')[0];
             if(tmp.files.length>0)
     {
         var ex=tmp.files[0].name;
@@ -188,40 +209,47 @@ person_Edit.Serach=function(obj)
     Entity.PageName='person_Edit';
     Entity.Parameters=new Array();
                 Entity.Parameters.push( toInput('id',routeParams.id ));
-            Entity.Parameters.push( toInput('name',$('#txtname').val()));
+            Entity.Parameters.push( toInput('name',$('#txtperson_Editname').val()));
     
-                    Entity.Parameters.push( toInput('grade',$('#txtgrade').val()));
+                    Entity.Parameters.push( toInput('grade',$('#txtperson_Editgrade').val()));
     
-                    Entity.Parameters.push( toInput('cityid',$('#txtcityid').val()));
+                    Entity.Parameters.push( toInput('cityid',$('#txtperson_Editcityid').val()));
     
-                    Entity.Parameters.push( toInput('sextype',$('#txtsextype').val()));
+                    Entity.Parameters.push( toInput('sextype',$('#txtperson_Editsextype').val()));
     
-                    Entity.Parameters.push( toInput('salaryBase',$('#txtsalaryBase').val()));
+                    Entity.Parameters.push( toInput('salaryBase',$('#txtperson_EditsalaryBase').val()));
     
-                    Entity.Parameters.push( toInput('examResult',$('#txtexamResult').val()));
+                    Entity.Parameters.push( toInput('examResult',$('#txtperson_EditexamResult').val()));
     
-                    Entity.Parameters.push( toInput('dateBrith',$('#txtdateBrith').val()));
+                    Entity.Parameters.push( toInput('dateBrith',$('#txtperson_EditdateBrith').val()));
     
-                    Entity.Parameters.push( toInput('startTime',$('#txtstartTime').val()));
+                    Entity.Parameters.push( toInput('startTime',$('#txtperson_EditstartTime').val()));
     
-                    Entity.Parameters.push( toInput('smailBio',$('#txtsmailBio').val()));
+                    Entity.Parameters.push( toInput('smailBio',$('#txtperson_EditsmailBio').val()));
     
-                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtsmailHtml'].contentDocument.body.innerHTML));
+                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtperson_EditsmailHtml'].contentDocument.body.innerHTML));
     
-                    Entity.Parameters.push( toInput('favColor',$('#txtfavColor').val()));
+                    Entity.Parameters.push( toInput('favColor',$('#txtperson_EditfavColor').val()));
     
-                    Entity.Parameters.push( toInput('oldImage',$('#txtoldImage').val()));
+                    Entity.Parameters.push( toInput('oldImage',$('#txtperson_EditoldImage').val()));
     
-                    Entity.Parameters.push( toInput('picImage',$('#txtpicImage').val()));
+                    Entity.Parameters.push( toInput('picImage',$('#txtperson_EditpicImage').val()));
     
-                    Entity.Parameters.push( toInput('isBroken',$('#txtisBroken').val()));
+                    Entity.Parameters.push( toInput('isBroken',$('#txtperson_EditisBroken').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
-        
+    currentScope.person_Editrecords= data.records;
+    
+    setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.person_Editrecords= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -240,7 +268,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 person_Edit.InitStartValues=function(){
     var Entity=new Object();
     Entity.PageName='person_Edit';
@@ -251,10 +279,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtname').val(data.records[0].name);
+                                $('#txtperson_Editname').val(data.records[0].name);
 
                 
-$('#txtgrade').select2().val(data.records[0].grade  ) .trigger('change');
+$('#txtperson_Editgrade').select2().val(data.records[0].grade  ) .trigger('change');
 
                 
         var o=document.createElement('option');
@@ -263,28 +291,28 @@ $('#txtgrade').select2().val(data.records[0].grade  ) .trigger('change');
         cityid.append(o);
         cityid.val(data.records[0].cityid  ) .trigger('change');
 
-                $('#txtsextype').val(data.records[0].sextype);
+                $('#txtperson_Editsextype').val(data.records[0].sextype);
 
                 
-$('#txtsalaryBase').val(ShowAsMoney( data.records[0].salaryBase));
+$('#txtperson_EditsalaryBase').val(ShowAsMoney( data.records[0].salaryBase));
 
-                $('#txtexamResult').val(data.records[0].examResult);
+                $('#txtperson_EditexamResult').val(data.records[0].examResult);
 
-                $('#txtdateBrith').val(data.records[0].dateBrith);
+                $('#txtperson_EditdateBrith').val(data.records[0].dateBrith);
 
-                $('#txtstartTime').val(data.records[0].startTime);
+                $('#txtperson_EditstartTime').val(data.records[0].startTime);
 
-                $('#txtsmailBio').val(data.records[0].smailBio);
+                $('#txtperson_EditsmailBio').val(data.records[0].smailBio);
 
                  
-setTimeout(function(){ tinymce.editors['txtsmailHtml'].setContent(data.records[0].smailHtml);},500);
+setTimeout(function(){ tinymce.editors['txtperson_EditsmailHtml'].setContent(data.records[0].smailHtml);},500);
 
                 
-$('#txtfavColor').val(data.records[0].favColor);
-$('#txtfavColor').css('background',$('#txtfavColor').val());
+$('#txtperson_EditfavColor').val(data.records[0].favColor);
+$('#txtperson_EditfavColor').css('background',$('#txtperson_EditfavColor').val());
 
                 
-$('#txtoldImage').attr( 'src' ,$('#txtoldImage').attr('linkSyntax')  +data.records[0].picImage);
+$('#txtperson_EditoldImage').attr( 'src' ,$('#txtperson_EditoldImage').attr('linkSyntax')  +data.records[0].picImage);
 
                 
 //Uncan do now for file
@@ -295,7 +323,7 @@ $('#txtoldImage').attr( 'src' ,$('#txtoldImage').attr('linkSyntax')  +data.recor
 console.log( data.records[0].isBroken);
 if( data.records[0].isBroken=='True')
 {
-    $('#txtisBroken').attr('checked',true);
+    $('#txtperson_EditisBroken').attr('checked',true);
 
 }
 
@@ -308,7 +336,7 @@ else
     BackPage();
 }
                 
-           
+currentScope.$apply();
 return;
           
 },function(data)
@@ -318,6 +346,7 @@ return;
 });
 
 }
+
 
 
 

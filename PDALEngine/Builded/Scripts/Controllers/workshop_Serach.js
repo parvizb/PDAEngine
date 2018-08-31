@@ -2,14 +2,14 @@
 
 
 
-var Scaller5=new Object();
+var workshop_Serach=new Object();
 
 var currentButton;
-Scaller5.sendFiles=  function()
+workshop_Serach.sendFiles=  function()
 {
     var data = new FormData();
  
-        $('#loadingBar').show();
+                                                        $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -25,7 +25,7 @@ Scaller5.sendFiles=  function()
             window.fileUploaded=true;
             $('#loadingBar').hide();
             $('#fileStatus').hide();
-            Scaller5.Submit(currentButton);
+            workshop_Serach.Submit(currentButton);
         } else {
             if((xhr.status==500) && (xhr.readyState == 4))
             {
@@ -40,25 +40,37 @@ Scaller5.sendFiles=  function()
          
         }
     };
-    xhr.open('POST', "Home/SendFiles?PageName=Scaller5");
+    xhr.open('POST', "Home/SendFiles?PageName=workshop_Serach");
     // xhr.setRequestHeader("Content-type", "multipart/form-data");
     xhr.send(data);
 }
 
 
-Scaller5.Submit= function(obj)
+workshop_Serach.Submit= function(obj)
 {
     currentButton=obj;
     $(obj).attr('disabled',true);
-    if(Scaller5.Validate()==false)
+    if(workshop_Serach.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
         var Entity=new Object();
-    Entity.PageName='Scaller5';
+    Entity.PageName='workshop_Serach';
     Entity.Parameters=new Array();
-    ScallerAjax('ScallerSubmit',Entity,function(data){
+                Entity.Parameters.push( toInput('workshopId',$('#txtworkshop_SerachworkshopId').val()));
+    
+                    Entity.Parameters.push( toInput('wrkShpId',$('#txtworkshop_SerachwrkShpId').val()));
+    
+                    Entity.Parameters.push( toInput('wrkShapeName',$('#txtworkshop_SerachwrkShapeName').val()));
+    
+                    Entity.Parameters.push( toInput('wrkShpConId',$('#txtworkshop_SerachwrkShpConId').val()));
+    
+                    Entity.Parameters.push( toInput('address',$('#txtworkshop_Serachaddress').val()));
+    
+                    Entity.Parameters.push( toInput('bldName',$('#txtworkshop_SerachbldName').val()));
+    
+        ScallerAjax('ScallerSubmit',Entity,function(data){
 
         if(targetElement!=null)
     {
@@ -91,10 +103,16 @@ Scaller5.Submit= function(obj)
 
 });
 };
-Scaller5.Validate= function()
+workshop_Serach.Validate= function()
 {
     Validator.ClearErrors();
-    
+        
+            
+            
+            
+            
+            
+        
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
@@ -113,29 +131,41 @@ Scaller5.Validate= function()
 }
 
 
-Scaller5.Serach=function(obj)
+workshop_Serach.Serach=function(obj)
 {
     $(obj).attr('disabled',true);
-    if(Scaller5.Validate()==false)
+    if(workshop_Serach.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
 
-    window.CurrentSerachMethod=Scaller5.Serach;
+    window.CurrentSerachMethod=workshop_Serach.Serach;
     var Entity=new Object();
-    Entity.PageName='Scaller5';
+    Entity.PageName='workshop_Serach';
     Entity.Parameters=new Array();
-     
+                Entity.Parameters.push( toInput('workshopId',$('#txtworkshop_SerachworkshopId').val()));
+    
+                    Entity.Parameters.push( toInput('wrkShpId',$('#txtworkshop_SerachwrkShpId').val()));
+    
+                    Entity.Parameters.push( toInput('wrkShapeName',$('#txtworkshop_SerachwrkShapeName').val()));
+    
+                    Entity.Parameters.push( toInput('wrkShpConId',$('#txtworkshop_SerachwrkShpConId').val()));
+    
+                    Entity.Parameters.push( toInput('address',$('#txtworkshop_Serachaddress').val()));
+    
+                    Entity.Parameters.push( toInput('bldName',$('#txtworkshop_SerachbldName').val()));
+    
+         
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.Scaller5records= data.records;
+    currentScope.workshop_Serachrecords= data.records;
     
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
-        dlgScope.Scaller5records= data.records;
+        dlgScope.workshop_Serachrecords= data.records;
         dlgScope.$apply(function(){});
 
     }

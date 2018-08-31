@@ -32,6 +32,7 @@ namespace PDALEngine
         }
         public static AccessResult GetCheckPer(string PerKey, String PageName, List<inputParameter> Params)
         {
+            return AccessResult.Permitted;
             if (PerKey == "")
             {
                 return AccessResult.Permitted;

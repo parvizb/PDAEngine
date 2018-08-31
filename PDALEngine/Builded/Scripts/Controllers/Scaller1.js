@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var Scaller1=new Object();
+
 var currentButton;
 Scaller1.sendFiles=  function()
 {
@@ -54,17 +58,33 @@ Scaller1.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='Scaller1';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
+                Entity.Parameters.push( toInput('cityTitle',$('#txtScaller1cityTitle').val()));
     
-                    Entity.Parameters.push( toInput('CITYPop',$('#txtCITYPop').val()));
+                    Entity.Parameters.push( toInput('CITYPop',$('#txtScaller1CITYPop').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
+
+        if(targetElement!=null)
+    {
+        targetElement.value=data.retrunValue;
+    }
+        
+  
+ 
+
     Messager.ShowMessage('اطلاعات', data.Message);
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
-    BackPage();
+ 
+                                        BackPage();
+                 
+         
+     
+  
+
+
     $(obj).attr('disabled',false);
     return;
        
@@ -79,9 +99,9 @@ Scaller1.Validate= function()
 {
     Validator.ClearErrors();
         
-                                Validator.CheckEmpty('txtcityTitle','عنوان');
+                                Validator.CheckEmpty('txtScaller1cityTitle','عنوان');
                                                                                             
-                                                        Validator.CheckRegInteger('txtCITYPop','جمعیت');
+                                                        Validator.CheckRegInteger('txtScaller1CITYPop','جمعیت');
                                                         
     if(Messager.errors.length!=0)
     {
@@ -118,16 +138,23 @@ Scaller1.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='Scaller1';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('cityTitle',$('#txtcityTitle').val()));
+                Entity.Parameters.push( toInput('cityTitle',$('#txtScaller1cityTitle').val()));
     
-                    Entity.Parameters.push( toInput('CITYPop',$('#txtCITYPop').val()));
+                    Entity.Parameters.push( toInput('CITYPop',$('#txtScaller1CITYPop').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
-        
+    currentScope.Scaller1records= data.records;
+    
+    setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.Scaller1records= data.records;
+        dlgScope.$apply(function(){});
+
+    }
         $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -146,6 +173,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
+window.targetElement=null;
 
 
 

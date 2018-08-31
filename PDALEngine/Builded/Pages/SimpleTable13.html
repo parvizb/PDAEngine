@@ -8,8 +8,8 @@
          
     SimpleTable13.IntForm=function()
     {
-    
-    document.title='تغییر در مقادیر به صورت آفلاین';
+        document.title='تغییر در مقادیر به صورت آفلاین';
+        window.pageName='SimpleTable13';
     window.fileUploaded=false;
     
     }
@@ -31,9 +31,9 @@
  <th  > جمع</th> 
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev " >
-  <td data-label='فی'><input class="form-control" type="text" id="price_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.total=Num(record.price)*Num(record.count)"   onkeyup="NumberInput(event,this)"   value="{{record.price}}" ng-model="record.price"  /></td> 
-  <td data-label='تعداد'><input class="form-control" type="text" id="count_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.total=Num(record.price)*Num(record.count)"   onkeyup="NumberInput(event,this)"   value="{{record.count}}" ng-model="record.count"  /></td> 
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable13records | orderBy:currentOrder :rev " >
+  <td data-label='فی'><input class="form-control" type="text" id="price_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.total=Num(record.price)*Num(record.count);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.price}}" ng-model="record.price"  /></td> 
+  <td data-label='تعداد'><input class="form-control" type="text" id="count_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.total=Num(record.price)*Num(record.count);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.count}}" ng-model="record.count"  /></td> 
 <td data-label='جمع'>{{ShowMoney(record.total)}}</td> 
                    </tr>
 

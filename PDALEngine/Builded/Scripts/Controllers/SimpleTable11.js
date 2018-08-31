@@ -1,5 +1,9 @@
 ﻿/// <reference path="../../Res/toolkit.js" />
+
+
+
 var SimpleTable11=new Object();
+
 var currentButton;
 SimpleTable11.sendFiles=  function()
 {
@@ -55,12 +59,28 @@ SimpleTable11.Submit= function(obj)
     Entity.PageName='SimpleTable11';
     Entity.Parameters=new Array();
     ScallerAjax('ScallerSubmit',Entity,function(data){
+
+        if(targetElement!=null)
+    {
+        targetElement.value=data.retrunValue;
+    }
+        
+  
+ 
+
     Messager.ShowMessage('اطلاعات', data.Message);
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
-    BackPage();
+ 
+                                        BackPage();
+                 
+         
+     
+  
+
+
     $(obj).attr('disabled',false);
     return;
        
@@ -109,9 +129,16 @@ SimpleTable11.Serach=function(obj)
      
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.records= data.records;
-        
+    currentScope.SimpleTable11records= data.records;
+    
+    setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
+    if(dlgScope!=null)
+    {
+        dlgScope.SimpleTable11records= data.records;
+        dlgScope.$apply(function(){});
+
+    }
                 $('[type="Select2Ajax"]').each(function(){
         $(this).val($(this).attr('valc'));
 
@@ -130,7 +157,7 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
 
 }
-
+window.targetElement=null;
 
 
 SimpleTable11.InsertRecord=function()
@@ -139,7 +166,7 @@ SimpleTable11.InsertRecord=function()
     temp.RowState='Added';
     temp.selected = false;
     temp.rndId = Math.round(Math.random() * 99999999999999);
-        currentScope.records.push(temp);
+        currentScope.SimpleTable11records.push(temp);
     currentScope.$apply();
                                             
 }
@@ -147,9 +174,9 @@ SimpleTable11.InsertRecord=function()
 SimpleTable11.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                                                                                                    for (var l=0;l<currentScope.records.length;l++)
+                                                                                                                                    for (var l=0;l<currentScope.SimpleTable11records.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.SimpleTable11records[l];
 
         if(r.RowState !='Added'){
     continue;
@@ -159,9 +186,9 @@ Validator.CheckEmpty('cityTitle_' + r.rndId,'',r.viewIndex+1);
    
 Validator.CheckEmpty('CITYPop_' + r.rndId,'',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.SimpleTable11records.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.SimpleTable11records[l];
 
         if(r.RowState !='Changed'){
     continue;
@@ -173,9 +200,9 @@ Validator.CheckEmpty('cityTitle_' + r.rndId,'',r.viewIndex+1);
    
 Validator.CheckEmpty('CITYPop_' + r.rndId,'',r.viewIndex+1);
 }
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.SimpleTable11records.length;l++)
     {
-        var r=currentScope.records[l];
+        var r=currentScope.SimpleTable11records[l];
 
         if(r.RowState !='Deleted'){
     continue;
@@ -183,6 +210,18 @@ Validator.CheckEmpty('CITYPop_' + r.rndId,'',r.viewIndex+1);
    
 Validator.CheckEmpty('cityId_' + r.rndId,'شهر',r.viewIndex+1);
 }
+
+for(var l=0;l<currentScope.SimpleTable11records.length;l++)
+{ 
+    var record=currentScope.SimpleTable11records[l];
+    
+}
+
+
+
+
+
+
 if (Messager.errors.length!=0)
 {
     Validator.ShowErrors();
@@ -202,9 +241,9 @@ SimpleTable11.Save=function()
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.SimpleTable11records.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.SimpleTable11records[l];
 
     if(r.RowState !='Added'){
     continue;
@@ -241,9 +280,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.SimpleTable11records.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.SimpleTable11records[l];
 
     if(r.RowState !='Changed'){
     continue;
@@ -283,9 +322,9 @@ DataPass.push(t);
     var NullFix=new Array();
     NullFix.push(toInput('fake',Para('fake')));
     informationRecords.push(NullFix);
-    for (var l=0;l<currentScope.records.length;l++)
+    for (var l=0;l<currentScope.SimpleTable11records.length;l++)
 {
-    var r=currentScope.records[l];
+    var r=currentScope.SimpleTable11records[l];
 
     if(r.RowState !='Deleted'){
     continue;
@@ -319,7 +358,9 @@ Enity.PageName='SimpleTable11';
 Enity.CommandName='Save';
 Enity.records=DataPass;
 ScallerAjax('BatchCommand',Enity,function(data){
-        Messager.ShowMessage('اطلاعات', data.Message );
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
  
      
   
@@ -330,8 +371,14 @@ ScallerAjax('BatchCommand',Enity,function(data){
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
+    ///you are asl
     if(data.code==0)
     {
+        window.returnValue=data.retrunValue;
+
+
+
+
                                 BackPage();
                  
          
@@ -349,3 +396,4 @@ ScallerAjax('BatchCommand',Enity,function(data){
 });
 console.log(JSON.stringify(Enity));
 }
+

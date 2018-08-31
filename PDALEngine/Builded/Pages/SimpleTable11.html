@@ -8,8 +8,8 @@
          
     SimpleTable11.IntForm=function()
     {
-    
-    document.title='ثبت و ویرایش و حذف رکورد ها در یک جدول ';
+        document.title='ثبت و ویرایش و حذف رکورد ها در یک جدول ';
+        window.pageName='SimpleTable11';
     window.fileUploaded=false;
     
     }
@@ -37,7 +37,7 @@
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index"  ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable11records | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='شناسه'>{{record.cityId}}</td> 
   <td data-label='عنوان'><input class="form-control" type="text" id="cityTitle_{{record.rndId}}" value="{{record.cityTitle}}" ng-change="ChangeState(record);"  ng-model="record.cityTitle"  /></td> 
