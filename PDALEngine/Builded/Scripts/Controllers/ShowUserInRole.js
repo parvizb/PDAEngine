@@ -61,7 +61,10 @@ ShowUserInRole.Submit= function(obj)
                 Entity.Parameters.push( toInput('RoleId',routeParams.RoleId ));
 ScallerAjax('ScallerSubmit',Entity,function(data){
 
+        if(targetElement!=null)
+    {
         targetElement.value=data.retrunValue;
+    }
         
   
  

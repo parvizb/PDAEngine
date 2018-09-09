@@ -61,7 +61,10 @@ BankCheckOptDetail.Submit= function(obj)
                 Entity.Parameters.push( toInput('BankCheckId',routeParams.BankCheckId ));
 ScallerAjax('ScallerSubmit',Entity,function(data){
 
+        if(targetElement!=null)
+    {
         targetElement.value=data.retrunValue;
+    }
         
   
  

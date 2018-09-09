@@ -60,7 +60,10 @@ product_mgt.Submit= function(obj)
     Entity.Parameters=new Array();
     ScallerAjax('ScallerSubmit',Entity,function(data){
 
+        if(targetElement!=null)
+    {
         targetElement.value=data.retrunValue;
+    }
         
   
  

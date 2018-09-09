@@ -62,7 +62,10 @@ ShowCusReportAll.Submit= function(obj)
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
+        if(targetElement!=null)
+    {
         targetElement.value=data.retrunValue;
+    }
         
   
  

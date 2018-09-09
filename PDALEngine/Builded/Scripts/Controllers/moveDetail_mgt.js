@@ -61,7 +61,10 @@ moveDetail_mgt.Submit= function(obj)
                 Entity.Parameters.push( toInput('moveStorageId',routeParams.moveStorageId ));
 ScallerAjax('ScallerSubmit',Entity,function(data){
 
+        if(targetElement!=null)
+    {
         targetElement.value=data.retrunValue;
+    }
         
   
  
