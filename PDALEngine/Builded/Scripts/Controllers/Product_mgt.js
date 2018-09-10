@@ -235,7 +235,7 @@ product_mgt.Save=function()
         var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
-    NullFix.push(toInput('fake',Para('fake')));
+    NullFix.push(toInput('fake','NULL'));
     informationRecords.push(NullFix);
     for (var l=0;l<currentScope.product_mgtrecords.length;l++)
 {
@@ -271,7 +271,7 @@ DataPass.push(t);
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
-    NullFix.push(toInput('fake',Para('fake')));
+    NullFix.push(toInput('fake','NULL'));
     informationRecords.push(NullFix);
     for (var l=0;l<currentScope.product_mgtrecords.length;l++)
 {
@@ -310,7 +310,7 @@ DataPass.push(t);
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
-    NullFix.push(toInput('fake',Para('fake')));
+    NullFix.push(toInput('fake','NULL'));
     informationRecords.push(NullFix);
     for (var l=0;l<currentScope.product_mgtrecords.length;l++)
 {

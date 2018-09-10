@@ -503,6 +503,12 @@ function ($routeProvider/*, $locationProvider*/) {
             ).
     
                 
+    when('/GetProfitsBetweenToDate', {
+        templateUrl: 'GetProfitsBetweenToDate.htm',
+        controller: 'mainController' }
+            ).
+    
+                
     when('/BankCheck_Edit/:BankCheckId', {
         templateUrl: 'BankCheck_Edit.htm',
         controller: 'mainController'
@@ -665,12 +671,6 @@ function ($routeProvider/*, $locationProvider*/) {
                 
     when('/QuickFactorInsert', {
         templateUrl: 'QuickFactorInsert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/QuickFactorSerach', {
-        templateUrl: 'QuickFactorSerach.htm',
         controller: 'mainController' }
             ).
     

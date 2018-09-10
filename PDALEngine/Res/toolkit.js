@@ -587,21 +587,21 @@ function Para(id) {
     r = document.getElementById('txt' + (d!=""? d : window.pageName) + id);
     if (r != null) {
         if (r.getAttribute('Type') == 'Number') {
-            return parseFloat($('#txt' + id).val());
+            return parseFloat($('#' + r.id).val());
         }
         else {
             if ($('#txt' + id).attr('moneymode') != 'yes') {
-                return $('#txt' + id).val()
+                return $('#' + r.id).val();
             }
             else {
 
-                return Num(   $('#txt' + id).val());
+                return Num(   $('#' + r.id).val());
             }
          
         }
     }
     else {
-        return $('#txt' + id).val();
+        return $('#' + r.id).val();
 
     }
 

@@ -575,7 +575,7 @@ return true;
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
-    NullFix.push(toInput('fake',Para('fake')));
+    NullFix.push(toInput('fake','NULL'));
     informationRecords.push(NullFix);
     {% if Com.Selection == 'OneTime' -%}
     var rec=new Array();//hi

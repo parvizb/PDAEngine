@@ -162,7 +162,7 @@ namespace PDALEngine.Controllers
            }
            if (PDALSect.isLogined() == false)
            {
-             //  return RedirectToAction("Login");
+              return RedirectToAction("Login");
 
            }
 

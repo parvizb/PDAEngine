@@ -1731,6 +1731,16 @@ namespace PDALEngine
                                  Paras[row][index].value = Convertor.CheckBoxToBit(Paras[row][index].value);
                              }
                          }
+                         if (PP.type == "DisplayExprMoney")
+                         {
+
+
+                             for (int row = 1; row < Paras.Length; row++)
+                             {
+
+                                 Paras[row][index].value = Convertor.MoneyToInteger(Paras[row][index].value);
+                             }
+                         }
                          if (PP.type == "Money")
                          {
                        
