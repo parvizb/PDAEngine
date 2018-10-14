@@ -491,6 +491,18 @@ function ($routeProvider/*, $locationProvider*/) {
         controller: 'mainController'
         }).
                 
+    when('/ShowCusReportAllSummery', {
+        templateUrl: 'ShowCusReportAllSummery.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/ShowStuffSummery', {
+        templateUrl: 'ShowStuffSummery.htm',
+        controller: 'mainController' }
+            ).
+    
+                
     when('/BankCheck_Serach', {
         templateUrl: 'BankCheck_Serach.htm',
         controller: 'mainController' }

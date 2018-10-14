@@ -1,0 +1,143 @@
+﻿گزارش خلاصه کارکرد کالا
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="id_factory" class="col-sm-2 control-label">           کارخانه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                      <select class="form-control" id="txtShowStuffSummeryid_factory" ></select>
+                      
+    </div>
+    <label  for="id_product" class="col-sm-2 control-label">           نوع کالا
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                      <select class="form-control" id="txtShowStuffSummeryid_product" ></select>
+                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="stuff_name" class="col-sm-2 control-label">           عنوان کالا
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtShowStuffSummerystuff_name" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="startdate" class="col-sm-2 control-label">     <span class="red" >*</span>        از تاریخ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtShowStuffSummerystartdate')"  class="form-control" id="txtShowStuffSummerystartdate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="enddate" class="col-sm-2 control-label">     <span class="red" >*</span>        تا تاریخ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtShowStuffSummeryenddate')"  class="form-control" id="txtShowStuffSummeryenddate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
+    </div>
+  </div>
+    </from>
+  <script>
+            var id_factory =null;
+                var id_product =null;
+                                     
+    ShowStuffSummery.IntForm=function()
+    {
+        document.title='گزارش خلاصه کارکرد کالا';
+        window.pageName='ShowStuffSummery';
+    window.fileUploaded=false;
+                id_factory=  Select2AjaxInit('txtShowStuffSummeryid_factory',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='ShowStuffSummery';
+    DataPass.ParaName='id_factory';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                id_product=  Select2AjaxInit('txtShowStuffSummeryid_product',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='ShowStuffSummery';
+    DataPass.ParaName='id_product';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                                                            kamaDatepicker('txtShowStuffSummerystartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                kamaDatepicker('txtShowStuffSummeryenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                
+    }
+    $(document).ready(function () {
+    ShowStuffSummery.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="ShowStuffSummery.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > کالا</th> 
+ <th  > خرید -جز</th> 
+ <th  > خرید -کل</th> 
+ <th  > برگشت از خرید - جز</th> 
+ <th  > برگشت از خرید - کل</th> 
+ <th  > فروش -جز</th> 
+ <th  > فروش -کل</th> 
+ <th  > برگشت از فروش -جز</th> 
+ <th  > برگشت از فروش -کل</th> 
+<th>
+    عملیات
+</th>
+      </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in ShowStuffSummeryrecords | orderBy:currentOrder :rev " >
+<td data-label='کالا'>{{record.stuffname}}</td> 
+ <td data-label='خرید -جز'>{{ShowMoney(record.0)}}</td> 
+ <td data-label='خرید -کل'>{{ShowMoney(record.0box)}}</td> 
+ <td data-label='برگشت از خرید - جز'>{{ShowMoney(record.1)}}</td> 
+ <td data-label='برگشت از خرید - کل'>{{ShowMoney(record.1box)}}</td> 
+ <td data-label='فروش -جز'>{{ShowMoney(record.2)}}</td> 
+ <td data-label='فروش -کل'>{{ShowMoney(record.2box)}}</td> 
+ <td data-label='برگشت از فروش -جز'>{{ShowMoney(record.3)}}</td> 
+ <td data-label='برگشت از فروش -کل'>{{ShowMoney(record.3box)}}</td> 
+              <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+
+ </ul>
+</div>
+</td>
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

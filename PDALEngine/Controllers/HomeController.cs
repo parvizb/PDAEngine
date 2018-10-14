@@ -774,7 +774,7 @@ namespace PDALEngine.Controllers
                 return Json(Res);
 
             }
-            if (DoAccess ==  PDALSect.AccessResult.AccessDenied)
+            if (DoAccess ==  PDALSect.AccessResult.ReLogin)
             {
                 Res.code = 401;
                 Res.Message = "نیاز به ورود مجدد می باشد";

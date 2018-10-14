@@ -50,12 +50,12 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
     {
         console.log(a1);
         console.log(b1);
-      var keys=   Object.keys(b1);
-      for(var i=0;i<keys.length;i++)
-      {
-          a1[keys[i]]=b1[keys[i]];
+        var keys=   Object.keys(b1);
+        for(var i=0;i<keys.length;i++)
+        {
+            a1[keys[i]]=b1[keys[i]];
 
-      }
+        }
 
     }
     $scope.records=function()
@@ -178,7 +178,7 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
         var sum=0;
         $('[ng-repeat="record in records() | orderBy:currentOrder :rev | filter:FilterValue "]').each(function(){
             var l=angular.element($(this)[0]).scope();
-           sum+=  $scope.Num(l.record[name]);
+            sum+=  $scope.Num(l.record[name]);
             
 
         });
@@ -322,7 +322,7 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/{{Page.name}}{{Page.queryString}}', {
         templateUrl: '{{Page.name}}.htm',
         controller: 'mainController'
-        }).
+    }).
     {% endif -%}
     {% endfor -%}
     {% endfor -%}
@@ -347,6 +347,6 @@ function Not_{{Not.name}}()
         }
     }{% if Not.ParameterSyntax != '' -%},{{Not.ParameterSyntax}}{% endif -%});
 
-    setTimeout("Not_{{Not.name}}",60000*{{Not.TimeFire}});
-}
-{% endfor -%}
+        setTimeout("Not_{{Not.name}}",60000*{{Not.TimeFire}});
+    }
+    {% endfor -%}

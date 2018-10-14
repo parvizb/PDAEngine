@@ -116,26 +116,26 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-        {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
-        BackPage();
+    {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
+    BackPage();
  
-        {% endif  -%}
-        {% if Page.SubmitBev == 'Back' -%}
-        BackPage();
-        {% endif  -%}
-        {% if Page.SubmitBev == 'PutValueAtTargetElement' -%}
-        BackPage();
-        {% endif  -%}
-        {% if Page.SubmitBev == '' -%}
-        BackPage();
-        {% endif  -%}
-        {% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
-        goToLink('#/{{Page.SubmitBevParameter}}');
-        {% endif  -%}
+    {% endif  -%}
+    {% if Page.SubmitBev == 'Back' -%}
+    BackPage();
+    {% endif  -%}
+    {% if Page.SubmitBev == 'PutValueAtTargetElement' -%}
+    BackPage();
+    {% endif  -%}
+    {% if Page.SubmitBev == '' -%}
+    BackPage();
+    {% endif  -%}
+    {% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
+    goToLink('#/{{Page.SubmitBevParameter}}');
+    {% endif  -%}
  
-        {% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
-        goToLink('#/{{Page.SubmitBevParameter}}/'  + data.retrunValue );
-        {% endif  -%}
+    {% if Page.SubmitBev == 'GoToStaticPageWithReturnValue' -%}
+    goToLink('#/{{Page.SubmitBevParameter}}/'  + data.retrunValue );
+    {% endif  -%}
  
      
   
@@ -196,7 +196,7 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
         {% if check.cond == 'Reg' -%}
         Validator.CheckEmpty('txt{{Page.name}}{{para.name}}','{{para.title}}');
         {% endif -%}
-        {% if check.cond == 'RegEmail' -%}
+        {% if check.cond == 'ReqEmail' -%}
         Validator.RegEmail('txt{{Page.name}}{{para.name}}','{{para.title}}');
         {% endif -%}
         {% if check.cond == 'StringLength' -%}
@@ -300,24 +300,24 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
     {% for tab in  Page.tables -%}
     {% if tab.AutoSelectCond != '' -%}
     for(var l=0;l<currentScope.{{Page.name}}records.length;l++)
-    { 
-        var record=currentScope.{{Page.name}}records[l];
-        if({{tab.AutoSelectCond}})
-        {
-            currentScope.{{Page.name}}records[l].selected=true;
-            $('#selected_' + currentScope.{{Page.name}}records[l].rndId).attr('checked',true);
-        }
-    }
-    {% endif -%}
-    {% endfor -%}
-    $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+{ 
+    var record=currentScope.{{Page.name}}records[l];
+    if({{tab.AutoSelectCond}})
+    {
+        currentScope.{{Page.name}}records[l].selected=true;
+        $('#selected_' + currentScope.{{Page.name}}records[l].rndId).attr('checked',true);
+}
+}
+{% endif -%}
+{% endfor -%}
+$('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -346,7 +346,7 @@ window.targetElement=null;
         var d = getDailOpen();
         targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
         var s=document.querySelector('#pinc{{Page.name}}');
-         dlgScope= angular.element(s).scope();
+        dlgScope= angular.element(s).scope();
         $("#mdl{{Page.name}}").modal('show');
         OkDailogSelect=fun;
         SetupDlgScope();
@@ -493,11 +493,11 @@ return;
     {% endfor -%}
     {% for Com in BC.Commands -%}
     for (var l=0;l<currentScope.{{Page.name}}records.length;l++)
-    {
-        var r=currentScope.{{Page.name}}records[l];
+{
+    var r=currentScope.{{Page.name}}records[l];
 
-        {% if Com.Selection !='All' -%}
-        if(r.selected == {% if (Com.Selection == 'Selected') -%}false{% else -%}true{% endif -%}){
+    {% if Com.Selection !='All' -%}
+    if(r.selected == {% if (Com.Selection == 'Selected') -%}false{% else -%}true{% endif -%}){
       continue;
 }
 {% endif -%}

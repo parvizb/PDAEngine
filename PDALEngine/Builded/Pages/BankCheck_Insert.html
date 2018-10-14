@@ -8,9 +8,7 @@
       :</label>
     <div   class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtBankCheck_InsertSerailCheck" placeholder=""  Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input placeholder="" />
+            <input type="text"   class="form-control" id="txtBankCheck_InsertSerailCheck" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
@@ -19,9 +17,7 @@ Parameter name: input placeholder="" />
     <div   class="col-sm-4">
    
       
-                                                                                          <select class="form-control" id="txtBankCheck_InsertCheckType" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input >
+                                                                                          <select class="form-control" id="txtBankCheck_InsertCheckType" onchange='RecalcScopes();' >
                 <option value="0">پرداختی</option>
                 <option value="1">دریافتی</option>
               </select>
@@ -34,9 +30,7 @@ Parameter name: input >
     <div   class="col-sm-4">
    
       
-                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input onBlur="ReformatDate('txtBankCheck_InsertBankPayDate')"  class="form-control" id="txtBankCheck_InsertBankPayDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtBankCheck_InsertBankPayDate')"  class="form-control" id="txtBankCheck_InsertBankPayDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
     </div>
     <label  for="BankGetmentDate" class="col-sm-2 control-label">     <span class="red" >*</span>        تاریخ تحویل
@@ -44,9 +38,7 @@ Parameter name: input onBlur="ReformatDate('txtBankCheck_InsertBankPayDate')"  c
     <div   class="col-sm-4">
    
       
-                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input onBlur="ReformatDate('txtBankCheck_InsertBankGetmentDate')"  class="form-control" id="txtBankCheck_InsertBankGetmentDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtBankCheck_InsertBankGetmentDate')"  class="form-control" id="txtBankCheck_InsertBankGetmentDate" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
     </div>
      </div>
@@ -56,9 +48,7 @@ Parameter name: input onBlur="ReformatDate('txtBankCheck_InsertBankGetmentDate')
     <div   ng-show='Para("CheckType")=="0"'  class="col-sm-4">
    
       
-                                                                                                      <select class="form-control" id="txtBankCheck_InsertBackAccID" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input ></select>
+                                                                                                      <select class="form-control" id="txtBankCheck_InsertBackAccID" ></select>
                       
     </div>
     <label  for="amount" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ
@@ -66,9 +56,7 @@ Parameter name: input ></select>
     <div   class="col-sm-4">
    
       
-                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input   class="form-control" id="txtBankCheck_Insertamount" placeholder="" />
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtBankCheck_Insertamount" placeholder="" />
                                                                       
     </div>
      </div>
@@ -78,18 +66,14 @@ Parameter name: input   class="form-control" id="txtBankCheck_Insertamount" plac
     <div   class="col-sm-4">
    
       
-                                                                                                      <select class="form-control" id="txtBankCheck_InsertCusAccId" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input ></select>
+                                                                                                      <select class="form-control" id="txtBankCheck_InsertCusAccId" ></select>
                       
     </div>
     <label  for="Descr" class="col-sm-2 control-label">           توضیحات
       :</label>
     <div   class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtBankCheck_InsertDescr" placeholder=""  Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input placeholder="" />
+            <input type="text"   class="form-control" id="txtBankCheck_InsertDescr" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
@@ -99,9 +83,7 @@ Parameter name: input placeholder="" />
       :</label>
     <div   ng-show='Para("CheckType")=="1"'  class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtBankCheck_InsertbankName" placeholder=""  Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input placeholder="" />
+            <input type="text"   class="form-control" id="txtBankCheck_InsertbankName" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
@@ -109,9 +91,7 @@ Parameter name: input placeholder="" />
       :</label>
     <div   ng-show='Para("CheckType")=="1"'  class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtBankCheck_InsertbankBranch" placeholder=""  Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input placeholder="" />
+            <input type="text"   class="form-control" id="txtBankCheck_InsertbankBranch" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
@@ -121,9 +101,7 @@ Parameter name: input placeholder="" />
       :</label>
     <div   ng-show='((Para("CheckType")=="1"))'  class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtBankCheck_InsertbankAccNo" placeholder=""  Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input placeholder="" />
+            <input type="text"   class="form-control" id="txtBankCheck_InsertbankAccNo" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
@@ -132,9 +110,7 @@ Parameter name: input placeholder="" />
     <div   class="col-sm-4">
    
       
-                                                                                          <select class="form-control" id="txtBankCheck_InsertoldCheck" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input >
+                                                                                          <select class="form-control" id="txtBankCheck_InsertoldCheck" >
                 <option value="False">خیر</option>
                 <option value="True">بله</option>
               </select>

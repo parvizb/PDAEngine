@@ -9,9 +9,7 @@
     <div   class="col-sm-4">
    
       
-                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input   class="form-control" id="txtpayment_Insertpayment_amount" placeholder="" />
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" onchange='RecalcScopes();' class="form-control" id="txtpayment_Insertpayment_amount" placeholder="" />
                                                                       
     </div>
     <label  for="cus_id" class="col-sm-2 control-label">     <span class="red" >*</span>        کد مشتری 
@@ -19,9 +17,7 @@ Parameter name: input   class="form-control" id="txtpayment_Insertpayment_amount
     <div   class="col-sm-4">
    
       
-                                                                                                      <select class="form-control" id="txtpayment_Insertcus_id" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input ></select>
+                                                                                                      <select class="form-control" id="txtpayment_Insertcus_id" ></select>
                       
     </div>
      </div>
@@ -31,9 +27,7 @@ Parameter name: input ></select>
     <div   class="col-sm-4">
    
       
-                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input   class="form-control" id="txtpayment_Insertdis_amount" placeholder="" />
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" onchange='RecalcScopes();' class="form-control" id="txtpayment_Insertdis_amount" placeholder="" />
                                                                       
     </div>
     <label  for="payment_Date" class="col-sm-2 control-label">     <span class="red" >*</span>        تاریخ پرداخت
@@ -41,9 +35,7 @@ Parameter name: input   class="form-control" id="txtpayment_Insertdis_amount" pl
     <div   class="col-sm-4">
    
       
-                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input onBlur="ReformatDate('txtpayment_Insertpayment_Date')"  class="form-control" id="txtpayment_Insertpayment_Date" placeholder="yyyy/mm/dd" max-length="10" ></input>
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtpayment_Insertpayment_Date')"  class="form-control" id="txtpayment_Insertpayment_Date" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
     </div>
      </div>
@@ -52,9 +44,7 @@ Parameter name: input onBlur="ReformatDate('txtpayment_Insertpayment_Date')"  cl
       :</label>
     <div   class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtpayment_Insertdescr" placeholder=""  Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input placeholder="" />
+            <input type="text"   class="form-control" id="txtpayment_Insertdescr" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
@@ -73,9 +63,7 @@ Parameter name: input placeholder="" />
     <div   class="col-sm-4">
    
       
-                                                                                                      <select class="form-control" id="txtpayment_Insertacc_id" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input ></select>
+                                                                                                      <select class="form-control" id="txtpayment_Insertacc_id" ></select>
                       
     </div>
   </div>

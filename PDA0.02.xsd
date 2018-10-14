@@ -268,6 +268,11 @@
           <xs:documentation>هیج کاری انجام ندهد</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="JavaScript">
+        <xs:annotation>
+          <xs:documentation>دستورات جاوا اسکرپیت را اجرا می کند</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <xs:enumeration value="ReCalcExprs">
         <xs:annotation>
           <xs:documentation>همه محاسبات آنلاگر مجددا محاسبه کند</xs:documentation>
@@ -1403,6 +1408,11 @@
                         <xs:attribute name="title" type="xs:string" use="required">
                           <xs:annotation>
                             <xs:documentation>عنوان نمایشی</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="ChangeBevParameter" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>پارامتر تغییر رفتار</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
                         <xs:attribute name="ExtendedFrom" type="xs:string" use="optional">

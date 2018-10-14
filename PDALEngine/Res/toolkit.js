@@ -606,6 +606,13 @@ function Para(id) {
     }
 
 }
+function GetElement(id) {
+
+    var d = getDailOpen();
+    r = document.getElementById('txt' + (d != "" ? d : window.pageName) + id);
+    
+    return r;
+}
 function Query(id) {
 
     return routeParams[id];
