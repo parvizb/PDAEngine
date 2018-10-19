@@ -75,9 +75,9 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -142,14 +142,14 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -167,22 +167,24 @@ window.targetElement=null;
 BankCheckOptDetail.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                    for (var l=0;l<currentScope.BankCheckOptDetailrecords.length;l++)
-    {
-        var r=currentScope.BankCheckOptDetailrecords[l];
+                                                    if(typeof ( currentScope.BankCheckOptDetailrecords)!="undefined") {
+    for (var l=0;l<currentScope.BankCheckOptDetailrecords.length;l++)
+{
+    var r=currentScope.BankCheckOptDetailrecords[l];
 
-        if(r.RowState !='Changed'){
+    if(r.RowState !='Changed'){
     continue;
 }
 Validator.CheckRegDate('OptDate_' + r.rndId,'',r.viewIndex+1);
 }
-
+}
+if(typeof ( currentScope.BankCheckOptDetailrecords)!="undefined") {
 for(var l=0;l<currentScope.BankCheckOptDetailrecords.length;l++)
 { 
     var record=currentScope.BankCheckOptDetailrecords[l];
     
 }
-
+}
 
 
 
@@ -202,7 +204,8 @@ BankCheckOptDetail.Save=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake','NULL'));

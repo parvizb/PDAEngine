@@ -94,9 +94,9 @@ Factor_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -189,14 +189,14 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {

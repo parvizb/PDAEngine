@@ -74,9 +74,9 @@ stroage_mgt.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -139,14 +139,14 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -174,11 +174,12 @@ stroage_mgt.InsertRecord=function()
 stroage_mgt.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                                                                                                                                    for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
-    {
-        var r=currentScope.stroage_mgtrecords[l];
+                                                                                                                                                                    if(typeof ( currentScope.stroage_mgtrecords)!="undefined") {
+    for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
+{
+    var r=currentScope.stroage_mgtrecords[l];
 
-        if(r.RowState !='Added'){
+    if(r.RowState !='Added'){
     continue;
 }
    
@@ -188,11 +189,13 @@ Validator.CheckEmpty('addr_' + r.rndId,'آدرس',r.viewIndex+1);
    
 Validator.CheckEmpty('graud_name_' + r.rndId,'مسئول انبار',r.viewIndex+1);
 }
+}
+    if(typeof ( currentScope.stroage_mgtrecords)!="undefined") {
     for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
-    {
-        var r=currentScope.stroage_mgtrecords[l];
+{
+    var r=currentScope.stroage_mgtrecords[l];
 
-        if(r.RowState !='Changed'){
+    if(r.RowState !='Changed'){
     continue;
 }
    
@@ -204,23 +207,26 @@ Validator.CheckEmpty('addr_' + r.rndId,'آدرس',r.viewIndex+1);
    
 Validator.CheckEmpty('graud_name_' + r.rndId,'مسئول انبار',r.viewIndex+1);
 }
+}
+    if(typeof ( currentScope.stroage_mgtrecords)!="undefined") {
     for (var l=0;l<currentScope.stroage_mgtrecords.length;l++)
-    {
-        var r=currentScope.stroage_mgtrecords[l];
+{
+    var r=currentScope.stroage_mgtrecords[l];
 
-        if(r.RowState !='Deleted'){
+    if(r.RowState !='Deleted'){
     continue;
 }
    
 Validator.CheckEmpty('id_stroage_' + r.rndId,'کد انبار',r.viewIndex+1);
 }
-
+}
+if(typeof ( currentScope.stroage_mgtrecords)!="undefined") {
 for(var l=0;l<currentScope.stroage_mgtrecords.length;l++)
 { 
     var record=currentScope.stroage_mgtrecords[l];
     
 }
-
+}
 
 
 
@@ -240,7 +246,8 @@ stroage_mgt.Save=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake','NULL'));
@@ -282,6 +289,7 @@ if(currentScope.DeletedRows!==undefined)
 }
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
@@ -327,6 +335,7 @@ if(currentScope.DeletedRows!==undefined)
 }
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();

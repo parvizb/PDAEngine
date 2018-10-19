@@ -76,9 +76,9 @@ QuickFactorInsert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                BackPage();
-                         
-         
+                BackPage();
+             
+     
      
   
 
@@ -145,14 +145,14 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
         dlgScope.$apply(function(){});
 
     }
-        $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+    $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -180,7 +180,7 @@ window.targetElement=null;
         var d = getDailOpen();
         targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
         var s=document.querySelector('#pincQuickFactorInsert');
-         dlgScope= angular.element(s).scope();
+        dlgScope= angular.element(s).scope();
         $("#mdlQuickFactorInsert").modal('show');
         OkDailogSelect=fun;
         SetupDlgScope();

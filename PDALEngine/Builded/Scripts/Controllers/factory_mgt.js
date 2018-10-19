@@ -74,9 +74,9 @@ factory_mgt.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -139,14 +139,14 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -174,21 +174,24 @@ factory_mgt.InsertRecord=function()
 factory_mgt.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                                                                    for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
-    {
-        var r=currentScope.factory_mgtrecords[l];
+                                                                                                    if(typeof ( currentScope.factory_mgtrecords)!="undefined") {
+    for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
+{
+    var r=currentScope.factory_mgtrecords[l];
 
-        if(r.RowState !='Added'){
+    if(r.RowState !='Added'){
     continue;
 }
    
 Validator.CheckEmpty('factory_name_' + r.rndId,'عنوان کارخانه',r.viewIndex+1);
 }
+}
+    if(typeof ( currentScope.factory_mgtrecords)!="undefined") {
     for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
-    {
-        var r=currentScope.factory_mgtrecords[l];
+{
+    var r=currentScope.factory_mgtrecords[l];
 
-        if(r.RowState !='Changed'){
+    if(r.RowState !='Changed'){
     continue;
 }
    
@@ -196,23 +199,26 @@ Validator.CheckEmpty('factory_id_' + r.rndId,'شناسه کارخانه',r.viewI
    
 Validator.CheckEmpty('factory_name_' + r.rndId,'عنوان کارخانه',r.viewIndex+1);
 }
+}
+    if(typeof ( currentScope.factory_mgtrecords)!="undefined") {
     for (var l=0;l<currentScope.factory_mgtrecords.length;l++)
-    {
-        var r=currentScope.factory_mgtrecords[l];
+{
+    var r=currentScope.factory_mgtrecords[l];
 
-        if(r.RowState !='Deleted'){
+    if(r.RowState !='Deleted'){
     continue;
 }
    
 Validator.CheckEmpty('factory_id_' + r.rndId,'شناسه کارخانه',r.viewIndex+1);
 }
-
+}
+if(typeof ( currentScope.factory_mgtrecords)!="undefined") {
 for(var l=0;l<currentScope.factory_mgtrecords.length;l++)
 { 
     var record=currentScope.factory_mgtrecords[l];
     
 }
-
+}
 
 
 
@@ -232,7 +238,8 @@ factory_mgt.Save=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake','NULL'));
@@ -268,6 +275,7 @@ if(currentScope.DeletedRows!==undefined)
 }
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
@@ -307,6 +315,7 @@ if(currentScope.DeletedRows!==undefined)
 }
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();

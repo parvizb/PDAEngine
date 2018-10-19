@@ -74,9 +74,9 @@ unit_mgt.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -139,14 +139,14 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -174,21 +174,24 @@ unit_mgt.InsertRecord=function()
 unit_mgt.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                                                                    for (var l=0;l<currentScope.unit_mgtrecords.length;l++)
-    {
-        var r=currentScope.unit_mgtrecords[l];
+                                                                                                    if(typeof ( currentScope.unit_mgtrecords)!="undefined") {
+    for (var l=0;l<currentScope.unit_mgtrecords.length;l++)
+{
+    var r=currentScope.unit_mgtrecords[l];
 
-        if(r.RowState !='Added'){
+    if(r.RowState !='Added'){
     continue;
 }
    
 Validator.CheckEmpty('unit_name_' + r.rndId,'عنوان واحد',r.viewIndex+1);
 }
+}
+    if(typeof ( currentScope.unit_mgtrecords)!="undefined") {
     for (var l=0;l<currentScope.unit_mgtrecords.length;l++)
-    {
-        var r=currentScope.unit_mgtrecords[l];
+{
+    var r=currentScope.unit_mgtrecords[l];
 
-        if(r.RowState !='Changed'){
+    if(r.RowState !='Changed'){
     continue;
 }
    
@@ -196,23 +199,26 @@ Validator.CheckEmpty('unit_id_' + r.rndId,'شناسه واحد',r.viewIndex+1);
    
 Validator.CheckEmpty('unit_name_' + r.rndId,'عنوان واحد',r.viewIndex+1);
 }
+}
+    if(typeof ( currentScope.unit_mgtrecords)!="undefined") {
     for (var l=0;l<currentScope.unit_mgtrecords.length;l++)
-    {
-        var r=currentScope.unit_mgtrecords[l];
+{
+    var r=currentScope.unit_mgtrecords[l];
 
-        if(r.RowState !='Deleted'){
+    if(r.RowState !='Deleted'){
     continue;
 }
    
 Validator.CheckEmpty('unit_id_' + r.rndId,'شناسه واحد',r.viewIndex+1);
 }
-
+}
+if(typeof ( currentScope.unit_mgtrecords)!="undefined") {
 for(var l=0;l<currentScope.unit_mgtrecords.length;l++)
 { 
     var record=currentScope.unit_mgtrecords[l];
     
 }
-
+}
 
 
 
@@ -232,7 +238,8 @@ unit_mgt.Save=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake','NULL'));
@@ -268,6 +275,7 @@ if(currentScope.DeletedRows!==undefined)
 }
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
@@ -307,6 +315,7 @@ if(currentScope.DeletedRows!==undefined)
 }
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();

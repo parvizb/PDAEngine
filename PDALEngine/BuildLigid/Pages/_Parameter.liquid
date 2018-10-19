@@ -100,15 +100,15 @@
         {% endfor -%}
       </select>
       {% endif -%}
-      {% if Para.type == 'Select2' -%}
-      <select class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%} onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%}  >
+      {% if Para.type == 'Select2' or Para.type == 'Select2Multi' -%}
+      <select class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if Para.type == 'Select2Multi' -%} multiple="multiple" {% endif -%} {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%} onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%}  >
         {% for var opt in Para.options -%}
         <option value="{{opt.value}}">{{opt.text}}</option>
         {% endfor -%}
       </select>
       {% endif -%}
-      {% if Para.type == 'Select2Ajax' -%}
-      <select class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%} onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%} ></select>
+      {% if Para.type == 'Select2Ajax'  or Para.type == 'Select2AjaxMulti' -%}
+      <select class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if Para.type == 'Select2AjaxMulti' -%} multiple="multiple" {% endif -%} {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%}  onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%} ></select>
       {% endif -%}
       {% if Para.type == 'TextArea' -%}
       <TextArea class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%} onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%}></TextArea>
@@ -137,7 +137,7 @@
     var {{Para.name}} =null;
     {% endif -%}
     {% endfor  -%}
-     
+
     {{Page.name}}.IntForm=function()
     {
     {% if Page.isDailog !='Yes' -%}
@@ -146,10 +146,10 @@
     window.pageName='{{Page.name}}';
     window.fileUploaded=false;
     {% for para in  Page.PageParameters -%}
-    {% if Para.type == 'Select2' -%}
+    {% if Para.type == 'Select2' or Para.type == 'Select2Multi' -%}
     $('#txt{{Page.name}}{{Para.name}}').select2({});
     {% endif -%}
-    {% if Para.type == 'Select2Ajax' -%}
+    {% if Para.type == 'Select2Ajax' or Para.type == 'Select2AjaxMulti'  -%}
     {{Para.name}}=  Select2AjaxInit('txt{{Page.name}}{{Para.name}}',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='{{Page.Name}}';

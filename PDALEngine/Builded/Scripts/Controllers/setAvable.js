@@ -79,9 +79,9 @@ setAvable.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -152,14 +152,14 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -177,23 +177,25 @@ window.targetElement=null;
 setAvable.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                                    for (var l=0;l<currentScope.setAvablerecords.length;l++)
-    {
-        var r=currentScope.setAvablerecords[l];
+                                                                    if(typeof ( currentScope.setAvablerecords)!="undefined") {
+    for (var l=0;l<currentScope.setAvablerecords.length;l++)
+{
+    var r=currentScope.setAvablerecords[l];
 
-        if(r.RowState !='Changed'){
+    if(r.RowState !='Changed'){
     continue;
 }
 Validator.CheckRegFloat('realCount_' + r.rndId,'تعداد',r.viewIndex+1);
 Validator.CheckRegFloat('price_' + r.rndId,'ارزش فی',r.viewIndex+1);
 }
-
+}
+if(typeof ( currentScope.setAvablerecords)!="undefined") {
 for(var l=0;l<currentScope.setAvablerecords.length;l++)
 { 
     var record=currentScope.setAvablerecords[l];
     
 }
-
+}
 
 
 
@@ -213,7 +215,8 @@ setAvable.Save=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake','NULL'));

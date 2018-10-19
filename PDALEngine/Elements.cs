@@ -242,6 +242,7 @@ public class Command : ILiquidizable
     public string DBCommand;
     public string Selection;
     public string StateMode;
+    public string SelectionParameter;
     public List<Parameter> Parameters = new List<Parameter>();
     public void ParseEle(XmlNode node)
     {
@@ -254,6 +255,7 @@ public class Command : ILiquidizable
         this.DBCommand = node.Attr("DBCommand");
         this.Selection = node.Attr("Selection");
         this.StateMode = node.Attr("StateMode");
+        this.SelectionParameter = node.Attr("SelectionParameter");
         for (int i = 0; i < node.ChildNodes.Count; i++)
         {
             if (node.ChildNodes[i].Name == "Parameter")
@@ -281,7 +283,7 @@ public class Command : ILiquidizable
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { DBCommand = this.DBCommand, Selection = this.Selection, StateMode = this.StateMode, Parameters = this.Parameters });
+        return Hash.FromAnonymousObject(new { SelectionParameter=this.SelectionParameter, DBCommand = this.DBCommand, Selection = this.Selection, StateMode = this.StateMode, Parameters = this.Parameters });
 
     }
 

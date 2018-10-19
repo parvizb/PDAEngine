@@ -492,6 +492,7 @@ return;
     {% endfor -%}
     {% endfor -%}
     {% for Com in BC.Commands -%}
+    if(typeof ( currentScope.{{Page.name}}records)!="undefined") {
     for (var l=0;l<currentScope.{{Page.name}}records.length;l++)
 {
     var r=currentScope.{{Page.name}}records[l];
@@ -526,6 +527,7 @@ Validator.CheckRegSelect2('{{pa.sourceTypeParameter}}_' + r.rndId,'{{pa.caption}
 {% endfor -%}
 {% endfor -%}
 }
+}
 {% endfor -%}
 {% for c in BC.CommandCustomValidates -%}
 {% if c.For == 'OneTime' -%}
@@ -536,7 +538,7 @@ if (!( {{c.Cond}} ))
 {% endif -%}
 
 {% endfor -%}
-
+if(typeof ( currentScope.{{Page.name}}records)!="undefined") {
 for(var l=0;l<currentScope.{{Page.name}}records.length;l++)
 { 
     var record=currentScope.{{Page.name}}records[l];
@@ -551,7 +553,7 @@ for(var l=0;l<currentScope.{{Page.name}}records.length;l++)
     {% endfor -%}
 
 }
-
+}
 
 
 
@@ -572,6 +574,7 @@ return true;
     }
     var DataPass=new Array();
     {% for Com in BC.Commands -%}
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
@@ -592,6 +595,36 @@ rec.push(toInput('{{pa.name}}',  {{para.sourceTypeParameter}}  ) );
 {% endif -%}
 {% endfor -%}
 informationRecords.push(rec);
+t.push(informationRecords);
+DataPass.push(t);
+{% elsif Com.Selection == 'EveryValueInSelect' -%}
+var arr=$('#txt{{Page.name}}{{Com.SelectionParameter}}').val();
+for (var l=0;l<arr.length;l++)
+{
+    var rec=new Array();//hi
+    var r=arr[l];
+
+var rec=new Array();//hi com
+
+{% for pa in Com.Parameters -%}
+
+{% if  pa.sourceType == 'PageParameter' -%}
+rec.push(toInput('{{pa.name}}',Para('{{pa.sourceTypeParameter}}')));
+{% endif -%}
+{% if  pa.sourceType == 'CurrentValue' -%}
+rec.push(toInput('{{pa.name}}', ( r)));
+{% endif -%}
+{% if  pa.sourceType == 'QueryString' -%}
+rec.push(toInput('{{pa.name}}', routeParams.{{pa.sourceTypeParameter}}  ) );
+{% endif -%}
+{% if  pa.sourceType == 'Expr' -%}
+rec.push(toInput('{{pa.name}}',  {{para.sourceTypeParameter}}  ) );
+{% endif -%}
+{% endfor -%}
+informationRecords.push(rec);
+
+
+}
 t.push(informationRecords);
 DataPass.push(t);
 {% else -%}

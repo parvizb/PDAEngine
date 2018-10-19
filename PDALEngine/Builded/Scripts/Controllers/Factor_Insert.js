@@ -98,9 +98,9 @@ Factor_Insert.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -199,14 +199,14 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -245,27 +245,31 @@ Factor_Insert.Save_Validate=function()
                                             Validator.CheckRegSelect2('txtFactor_Insertid_stroage','کد انبار');
                                             Validator.CheckRegDate('txtFactor_InsertFactoryDate','تاریخ  فاکتور');
                                                 Validator.CheckEmpty('txtFactor_InsertFactoryType','نوع فاکتور');
-                                                                                                                                                                                for (var l=0;l<currentScope.Factor_Insertrecords.length;l++)
-    {
-        var r=currentScope.Factor_Insertrecords[l];
+                                                                                                                                                                                if(typeof ( currentScope.Factor_Insertrecords)!="undefined") {
+    for (var l=0;l<currentScope.Factor_Insertrecords.length;l++)
+{
+    var r=currentScope.Factor_Insertrecords[l];
 
-                if(r.selected == true){
+        if(r.selected == true){
       continue;
 }
 }
+}
+    if(typeof ( currentScope.Factor_Insertrecords)!="undefined") {
     for (var l=0;l<currentScope.Factor_Insertrecords.length;l++)
-    {
-        var r=currentScope.Factor_Insertrecords[l];
+{
+    var r=currentScope.Factor_Insertrecords[l];
 
-        if(r.RowState !='Added'){
+    if(r.RowState !='Added'){
     continue;
 }
 Validator.CheckRegSelect2('stuffId_' + r.rndId,'کالا',r.viewIndex+1);
 Validator.CheckRegFloat('stuffCount_' + r.rndId,'تعداد جز',r.viewIndex+1);
 Validator.CheckRegFloat('stuffPrice_' + r.rndId,'فی',r.viewIndex+1);
 }
+}
 
-
+if(typeof ( currentScope.Factor_Insertrecords)!="undefined") {
 for(var l=0;l<currentScope.Factor_Insertrecords.length;l++)
 { 
     var record=currentScope.Factor_Insertrecords[l];
@@ -276,7 +280,7 @@ for(var l=0;l<currentScope.Factor_Insertrecords.length;l++)
     
     
 }
-
+}
 
 
 
@@ -296,7 +300,8 @@ Factor_Insert.Save=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake','NULL'));
@@ -329,6 +334,7 @@ Factor_Insert.Save=function()
         informationRecords.push(rec);
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();

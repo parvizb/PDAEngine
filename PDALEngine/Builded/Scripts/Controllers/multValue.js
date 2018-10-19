@@ -2,14 +2,14 @@
 
 
 
-var account_Insert=new Object();
+var multValue=new Object();
 
 var currentButton;
-account_Insert.sendFiles=  function()
+multValue.sendFiles=  function()
 {
     var data = new FormData();
  
-                                                        $('#loadingBar').show();
+                        $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -25,7 +25,7 @@ account_Insert.sendFiles=  function()
             window.fileUploaded=true;
             $('#loadingBar').hide();
             $('#fileStatus').hide();
-            account_Insert.Submit(currentButton);
+            multValue.Submit(currentButton);
         } else {
             if((xhr.status==500) && (xhr.readyState == 4))
             {
@@ -40,35 +40,27 @@ account_Insert.sendFiles=  function()
          
         }
     };
-    xhr.open('POST', "Home/SendFiles?PageName=account_Insert");
+    xhr.open('POST', "Home/SendFiles?PageName=multValue");
     // xhr.setRequestHeader("Content-type", "multipart/form-data");
     xhr.send(data);
 }
 
 
-account_Insert.Submit= function(obj)
+multValue.Submit= function(obj)
 {
     currentButton=obj;
     $(obj).attr('disabled',true);
-    if(account_Insert.Validate()==false)
+    if(multValue.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
         var Entity=new Object();
-    Entity.PageName='account_Insert';
+    Entity.PageName='multValue';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('acc_name',$('#txtaccount_Insertacc_name').val()));
+                Entity.Parameters.push( toInput('CusAccId',$('#txtmultValueCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('acc_position',$('#txtaccount_Insertacc_position').val()));
-    
-                    Entity.Parameters.push( toInput('acc_startValue',$('#txtaccount_Insertacc_startValue').val()));
-    
-                    Entity.Parameters.push( toInput('acc_descr',$('#txtaccount_Insertacc_descr').val()));
-    
-                    Entity.Parameters.push( toInput('acc_code',$('#txtaccount_Insertacc_code').val()));
-    
-                    Entity.Parameters.push( toInput('acc_brch',$('#txtaccount_Insertacc_brch').val()));
+                    Entity.Parameters.push( toInput('factory_name',$('#txtmultValuefactory_name').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
@@ -103,19 +95,12 @@ account_Insert.Submit= function(obj)
 
 });
 };
-account_Insert.Validate= function()
+multValue.Validate= function()
 {
     Validator.ClearErrors();
         
-                                Validator.CheckEmpty('txtaccount_Insertacc_name','عنوان حساب');
-                                                                                            
-                                Validator.CheckEmpty('txtaccount_Insertacc_position','محل حساب');
-                                                                                            
-            
                                                                             
-                                Validator.CheckEmpty('txtaccount_Insertacc_code','شماره حساب');
-                                                                                            
-                                Validator.CheckEmpty('txtaccount_Insertacc_brch','شعبه حساب');
+                                Validator.CheckEmpty('txtmultValuefactory_name','عنوان');
                                                                                         
     if(Messager.errors.length!=0)
     {
@@ -135,41 +120,33 @@ account_Insert.Validate= function()
 }
 
 
-account_Insert.Serach=function(obj)
+multValue.Serach=function(obj)
 {
     $(obj).attr('disabled',true);
-    if(account_Insert.Validate()==false)
+    if(multValue.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
 
-    window.CurrentSerachMethod=account_Insert.Serach;
+    window.CurrentSerachMethod=multValue.Serach;
     var Entity=new Object();
-    Entity.PageName='account_Insert';
+    Entity.PageName='multValue';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('acc_name',$('#txtaccount_Insertacc_name').val()));
+                Entity.Parameters.push( toInput('CusAccId',$('#txtmultValueCusAccId').val()));
     
-                    Entity.Parameters.push( toInput('acc_position',$('#txtaccount_Insertacc_position').val()));
-    
-                    Entity.Parameters.push( toInput('acc_startValue',$('#txtaccount_Insertacc_startValue').val()));
-    
-                    Entity.Parameters.push( toInput('acc_descr',$('#txtaccount_Insertacc_descr').val()));
-    
-                    Entity.Parameters.push( toInput('acc_code',$('#txtaccount_Insertacc_code').val()));
-    
-                    Entity.Parameters.push( toInput('acc_brch',$('#txtaccount_Insertacc_brch').val()));
+                    Entity.Parameters.push( toInput('factory_name',$('#txtmultValuefactory_name').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.account_Insertrecords= data.records;
+    currentScope.multValuerecords= data.records;
     
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
-        dlgScope.account_Insertrecords= data.records;
+        dlgScope.multValuerecords= data.records;
         dlgScope.$apply(function(){});
 
     }
@@ -195,4 +172,110 @@ window.targetElement=null;
 
 
 
+multValue.ss_Validate=function()
+{
+    Validator.ClearErrors();
+                                    if(typeof ( currentScope.multValuerecords)!="undefined") {
+    for (var l=0;l<currentScope.multValuerecords.length;l++)
+{
+    var r=currentScope.multValuerecords[l];
+
+        if(r.selected == true){
+      continue;
+}
+}
+}
+if(typeof ( currentScope.multValuerecords)!="undefined") {
+for(var l=0;l<currentScope.multValuerecords.length;l++)
+{ 
+    var record=currentScope.multValuerecords[l];
+    
+}
+}
+
+
+
+
+
+if (Messager.errors.length!=0)
+{
+    Validator.ShowErrors();
+    return false;
+}
+return true;
+}
+multValue.ss=function()
+{ 
+    if(  multValue.ss_Validate()==false)
+    {
+        return ;
+    }
+    var DataPass=new Array();
+      
+    var t=new Array();
+    var  informationRecords=new Array()
+    var NullFix=new Array();
+    NullFix.push(toInput('fake','NULL'));
+    informationRecords.push(NullFix);
+    var arr=$('#txtmultValueCusAccId').val();
+for (var l=0;l<arr.length;l++)
+{
+    var rec=new Array();//hi
+    var r=arr[l];
+
+var rec=new Array();//hi com
+
+
+rec.push(toInput('CusAccId', ( r)));
+
+rec.push(toInput('factory_name',Para('factory_name')));
+informationRecords.push(rec);
+
+
+}
+t.push(informationRecords);
+DataPass.push(t);
+var Enity=new Object();
+Enity.PageName='multValue';
+Enity.CommandName='ss';
+Enity.records=DataPass;
+ScallerAjax('BatchCommand',Enity,function(data){
+
+    
+    Messager.ShowMessage('اطلاعات', data.Message );
+ 
+     
+  
+ 
+
+    Messager.ShowMessage('اطلاعات', data.Message);
+    if(JsEventInterface.AfterOkReqSubmit!=null)
+    {
+        JsEventInterface.AfterOkReqSubmit(Entity,data);
+    }
+    ///you are asl
+    if(data.code==0)
+    {
+        window.returnValue=data.retrunValue;
+
+
+
+
+                                BackPage();
+                 
+         
+     
+                        BackPage();
+                 
+         
+    }
+    $(obj).attr('disabled',false);
+    return;
+},function(data)
+{
+    $(obj).attr('disabled',false);
+    return;
+});
+console.log(JSON.stringify(Enity));
+}
 

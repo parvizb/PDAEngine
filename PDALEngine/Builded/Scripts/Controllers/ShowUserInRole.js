@@ -75,9 +75,9 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -143,22 +143,22 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
 
     }
             for(var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
-    { 
-        var record=currentScope.ShowUserInRolerecords[l];
-        if((record.p=='1'))
-        {
-            currentScope.ShowUserInRolerecords[l].selected=true;
-            $('#selected_' + currentScope.ShowUserInRolerecords[l].rndId).attr('checked',true);
-        }
-    }
-            $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+{ 
+    var record=currentScope.ShowUserInRolerecords[l];
+    if((record.p=='1'))
+    {
+        currentScope.ShowUserInRolerecords[l].selected=true;
+        $('#selected_' + currentScope.ShowUserInRolerecords[l].rndId).attr('checked',true);
+}
+}
+$('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -176,29 +176,33 @@ window.targetElement=null;
 ShowUserInRole.Save_Validate=function()
 {
     Validator.ClearErrors();
-                                                    for (var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
-    {
-        var r=currentScope.ShowUserInRolerecords[l];
-
-                if(r.selected == true){
-      continue;
-}
-}
+                                                    if(typeof ( currentScope.ShowUserInRolerecords)!="undefined") {
     for (var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
-    {
-        var r=currentScope.ShowUserInRolerecords[l];
+{
+    var r=currentScope.ShowUserInRolerecords[l];
 
-                if(r.selected == false){
+        if(r.selected == true){
       continue;
 }
 }
+}
+    if(typeof ( currentScope.ShowUserInRolerecords)!="undefined") {
+    for (var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
+{
+    var r=currentScope.ShowUserInRolerecords[l];
 
+        if(r.selected == false){
+      continue;
+}
+}
+}
+if(typeof ( currentScope.ShowUserInRolerecords)!="undefined") {
 for(var l=0;l<currentScope.ShowUserInRolerecords.length;l++)
 { 
     var record=currentScope.ShowUserInRolerecords[l];
     
 }
-
+}
 
 
 
@@ -218,7 +222,8 @@ ShowUserInRole.Save=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake','NULL'));
@@ -229,6 +234,7 @@ ShowUserInRole.Save=function()
 informationRecords.push(rec);
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();

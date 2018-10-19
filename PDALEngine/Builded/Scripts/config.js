@@ -50,12 +50,12 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
     {
         console.log(a1);
         console.log(b1);
-      var keys=   Object.keys(b1);
-      for(var i=0;i<keys.length;i++)
-      {
-          a1[keys[i]]=b1[keys[i]];
+        var keys=   Object.keys(b1);
+        for(var i=0;i<keys.length;i++)
+        {
+            a1[keys[i]]=b1[keys[i]];
 
-      }
+        }
 
     }
     $scope.records=function()
@@ -178,7 +178,7 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
         var sum=0;
         $('[ng-repeat="record in records() | orderBy:currentOrder :rev | filter:FilterValue "]').each(function(){
             var l=angular.element($(this)[0]).scope();
-           sum+=  $scope.Num(l.record[name]);
+            sum+=  $scope.Num(l.record[name]);
             
 
         });
@@ -324,7 +324,7 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/account_Edit/:acc_id', {
         templateUrl: 'account_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/product_mgt', {
         templateUrl: 'product_mgt.htm',
@@ -359,7 +359,7 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/stuff_Edit/:id_stuff', {
         templateUrl: 'stuff_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/cus_group_mgt', {
         templateUrl: 'cus_group_mgt.htm',
@@ -382,7 +382,7 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/customer_Edit/:cus_acc_id', {
         templateUrl: 'customer_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/stroage_mgt', {
         templateUrl: 'stroage_mgt.htm',
@@ -411,7 +411,7 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/payment_Edit/:payment_id', {
         templateUrl: 'payment_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/getment_Serach', {
         templateUrl: 'getment_Serach.htm',
@@ -428,12 +428,12 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/getment_Edit/:getment_id', {
         templateUrl: 'getment_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/setAvable/:id_St/:st_name', {
         templateUrl: 'setAvable.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/Factor_Insert', {
         templateUrl: 'Factor_Insert.htm',
@@ -444,7 +444,7 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/Factor_Update/:FactoryId', {
         templateUrl: 'Factor_Update.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/Factor_Serach', {
         templateUrl: 'Factor_Serach.htm',
@@ -467,7 +467,7 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/MoveAcc_Edit/:moveAccId', {
         templateUrl: 'MoveAcc_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/moveStorage_Serach', {
         templateUrl: 'moveStorage_Serach.htm',
@@ -484,12 +484,12 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/moveStorage_Edit/:moveStorageId', {
         templateUrl: 'moveStorage_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/moveDetail_mgt/:moveStorageId', {
         templateUrl: 'moveDetail_mgt.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/ShowCusReportAllSummery', {
         templateUrl: 'ShowCusReportAllSummery.htm',
@@ -524,42 +524,42 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/BankCheck_Edit/:BankCheckId', {
         templateUrl: 'BankCheck_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/BankCheckToPayGetCheck/:bankCheckId', {
         templateUrl: 'BankCheckToPayGetCheck.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/BankCheckToPayPaymentCheck/:bankCheckId', {
         templateUrl: 'BankCheckToPayPaymentCheck.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/BankCheckToBack/:bankCheckId', {
         templateUrl: 'BankCheckToBack.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/MoveToAccBank/:bankCheckId', {
         templateUrl: 'MoveToAccBank.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/PayMoveCheck/:bankCheckId', {
         templateUrl: 'PayMoveCheck.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/SendCheckToPerson/:bankCheckId', {
         templateUrl: 'SendCheckToPerson.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/BankCheckOptDetail/:BankCheckId', {
         templateUrl: 'BankCheckOptDetail.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/GenCradax', {
         templateUrl: 'GenCradax.htm',
@@ -624,12 +624,12 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/User_Edit/:UserId', {
         templateUrl: 'User_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/UserPassEdit/:UserId', {
         templateUrl: 'UserPassEdit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/Role_Serach', {
         templateUrl: 'Role_Serach.htm',
@@ -646,17 +646,17 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/Role_Edit/:RoleId', {
         templateUrl: 'Role_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/ShowUserInRole/:RoleId', {
         templateUrl: 'ShowUserInRole.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/ShowPerInRole/:RoleId', {
         templateUrl: 'ShowPerInRole.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/Service_mgt', {
         templateUrl: 'Service_mgt.htm',
@@ -679,10 +679,16 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/ServiceFactor_Edit/:ServiceFactorId', {
         templateUrl: 'ServiceFactor_Edit.htm',
         controller: 'mainController'
-        }).
+    }).
                 
     when('/QuickFactorInsert', {
         templateUrl: 'QuickFactorInsert.htm',
+        controller: 'mainController' }
+            ).
+    
+                
+    when('/multValue', {
+        templateUrl: 'multValue.htm',
         controller: 'mainController' }
             ).
     

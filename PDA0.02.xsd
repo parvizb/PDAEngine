@@ -54,6 +54,11 @@
           <xs:documentation>هردیف</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="EveryValue">
+        <xs:annotation>
+          <xs:documentation>برای هر مقدار پارامتر چند مقداری</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="CheckType">
@@ -161,9 +166,20 @@
           <xs:documentation>کادر انتخاب با قابلیت جست و جو </xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="Select2Mulit">
+        <xs:annotation>
+          <xs:documentation>کادر انتخاب چند مقداری با قابلیت جست و جو  </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <xs:enumeration value="Select2Ajax">
         <xs:annotation>
           <xs:documentation>کادر انتخاب با قابلیت جست و جو (منبع داده از سرور)</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      
+      <xs:enumeration value="Select2AjaxMulti">
+        <xs:annotation>
+          <xs:documentation>چند مقداری کادر انتخاب با قابلیت جست و جو (منبع داده از سرور)</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="DropDown">
@@ -223,6 +239,11 @@
       <xs:enumeration value="QueryString">
         <xs:annotation>
           <xs:documentation>عبارت های آدرس</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="CurrentValue">
+        <xs:annotation>
+          <xs:documentation>مقدار فعلی آرایه</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="Row">
@@ -285,6 +306,11 @@
       <xs:enumeration value="OneTime">
         <xs:annotation>
           <xs:documentation>یکبار</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="EveryValueInSelect">
+        <xs:annotation>
+          <xs:documentation>برای هر مقدار در عبارت</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
       <xs:enumeration value="Selected">
@@ -1741,6 +1767,11 @@
                               <xs:attribute name="DBCommand" type="xs:string" use="required">
                                 <xs:annotation>
                                   <xs:documentation>نام روال بانک اطلاعاتی جهت اجرا </xs:documentation>
+                                </xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="SelectionParameter" type="xs:string" use="optional">
+                                <xs:annotation>
+                                  <xs:documentation>پارامتر گزینش  </xs:documentation>
                                 </xs:annotation>
                               </xs:attribute>
                               <xs:attribute name="Selection" type="SelectionModeType" use="required">

@@ -99,9 +99,9 @@ Factor_Update.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -202,14 +202,14 @@ TableViewAjax('getTableViewRecords',Entity,function(data){
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -304,46 +304,54 @@ Factor_Update.Save_Validate=function()
                                 Validator.CheckEmpty('txtFactor_UpdateFactoryNumber','شماره فاکتور');
                                                 Validator.CheckRegDate('txtFactor_UpdateFactoryDate','تاریخ  فاکتور');
                                                 Validator.CheckEmpty('txtFactor_UpdateFactoryType','نوع فاکتور');
-                                                                                                                                                                                                                                                                                        for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
-    {
-        var r=currentScope.Factor_Updaterecords[l];
+                                                                                                                                                                                                                                                                                        if(typeof ( currentScope.Factor_Updaterecords)!="undefined") {
+    for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
+{
+    var r=currentScope.Factor_Updaterecords[l];
 
-                if(r.selected == true){
+        if(r.selected == true){
       continue;
 }
 }
+}
+    if(typeof ( currentScope.Factor_Updaterecords)!="undefined") {
     for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
-    {
-        var r=currentScope.Factor_Updaterecords[l];
+{
+    var r=currentScope.Factor_Updaterecords[l];
 
-        if(r.RowState !='Added'){
+    if(r.RowState !='Added'){
     continue;
 }
 Validator.CheckRegSelect2('stuffId_' + r.rndId,'کالا',r.viewIndex+1);
 Validator.CheckRegFloat('stuffCount_' + r.rndId,'تعداد جز',r.viewIndex+1);
 Validator.CheckRegFloat('stuffPrice_' + r.rndId,'فی',r.viewIndex+1);
 }
+}
+    if(typeof ( currentScope.Factor_Updaterecords)!="undefined") {
     for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
-    {
-        var r=currentScope.Factor_Updaterecords[l];
+{
+    var r=currentScope.Factor_Updaterecords[l];
 
-        if(r.RowState !='Changed'){
+    if(r.RowState !='Changed'){
     continue;
 }
 Validator.CheckRegSelect2('stuffId_' + r.rndId,'کالا',r.viewIndex+1);
 Validator.CheckRegFloat('stuffCount_' + r.rndId,'تعداد جز',r.viewIndex+1);
 Validator.CheckRegFloat('stuffPrice_' + r.rndId,'فی',r.viewIndex+1);
 }
+}
+    if(typeof ( currentScope.Factor_Updaterecords)!="undefined") {
     for (var l=0;l<currentScope.Factor_Updaterecords.length;l++)
-    {
-        var r=currentScope.Factor_Updaterecords[l];
+{
+    var r=currentScope.Factor_Updaterecords[l];
 
-        if(r.RowState !='Deleted'){
+    if(r.RowState !='Deleted'){
     continue;
 }
 }
+}
 
-
+if(typeof ( currentScope.Factor_Updaterecords)!="undefined") {
 for(var l=0;l<currentScope.Factor_Updaterecords.length;l++)
 { 
     var record=currentScope.Factor_Updaterecords[l];
@@ -354,7 +362,7 @@ for(var l=0;l<currentScope.Factor_Updaterecords.length;l++)
     
     
 }
-
+}
 
 
 
@@ -374,7 +382,8 @@ Factor_Update.Save=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
     NullFix.push(toInput('fake','NULL'));
@@ -409,6 +418,7 @@ Factor_Update.Save=function()
         informationRecords.push(rec);
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
@@ -463,6 +473,7 @@ if(currentScope.DeletedRows!==undefined)
 }
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
@@ -517,6 +528,7 @@ if(currentScope.DeletedRows!==undefined)
 }
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
