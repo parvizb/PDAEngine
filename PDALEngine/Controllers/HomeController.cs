@@ -160,12 +160,7 @@ namespace PDALEngine.Controllers
             return     RedirectToAction("GetErrorAsText",  new {  errMsg="عدم امکان با بانک یا عدم پیکربندی صحیح در فایل PDA.Config : " + ex.Message });
              
            }
-           if (PDALSect.isLogined() == false)
-           {
-              return RedirectToAction("Login");
-
-           }
-
+     
             ViewBag.App = PDAL.App;
             return View();
         }
@@ -337,6 +332,41 @@ namespace PDALEngine.Controllers
 
 
         }
+        [HttpPost()]
+        public JsonResult getDBSelect2DirectValue(string PageName, string PageParameterName, string value)
+        {
+            Page P = PDAL.FindPage(PageName);
+            PageParameter PP = P.DicPageParameters[PageParameterName];
+            inputParameter ip = new inputParameter();
+            ip.key = PP.DBSelect2CommandDriectValueParameterName;
+            ip.value = value;
+            List<inputParameter> px = new List<inputParameter>();
+            inputParameter res = new inputParameter();
+            res.key = "result";
+
+            px.Add(ip);
+            try
+            {
+                res.value = PDAL.ExecScaller(ref PP.DBSelect2CommandDriectValue, px);
+
+
+            }
+            catch (Exception ex)
+            {
+                res.value = "!" + ex.Message;
+
+
+            }
+
+
+            return Json(res);
+        }
+
+
+
+
+
+
         [HttpPost()]
         public JsonResult getTableViewRecords(string PageName, List<inputParameter> Parameters)
         {

@@ -2,14 +2,14 @@
 
 
 
-var person_Serach=new Object();
+var Person_Serach=new Object();
 
 var currentButton;
-person_Serach.sendFiles=  function()
+Person_Serach.sendFiles=  function()
 {
     var data = new FormData();
  
-                        $('#loadingBar').show();
+                                        $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -25,7 +25,7 @@ person_Serach.sendFiles=  function()
             window.fileUploaded=true;
             $('#loadingBar').hide();
             $('#fileStatus').hide();
-            person_Serach.Submit(currentButton);
+            Person_Serach.Submit(currentButton);
         } else {
             if((xhr.status==500) && (xhr.readyState == 4))
             {
@@ -40,27 +40,31 @@ person_Serach.sendFiles=  function()
          
         }
     };
-    xhr.open('POST', "Home/SendFiles?PageName=person_Serach");
+    xhr.open('POST', "Home/SendFiles?PageName=Person_Serach");
     // xhr.setRequestHeader("Content-type", "multipart/form-data");
     xhr.send(data);
 }
 
 
-person_Serach.Submit= function(obj)
+Person_Serach.Submit= function(obj)
 {
     currentButton=obj;
     $(obj).attr('disabled',true);
-    if(person_Serach.Validate()==false)
+    if(Person_Serach.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
         var Entity=new Object();
-    Entity.PageName='person_Serach';
+    Entity.PageName='Person_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('id',$('#txtperson_Serachid').val()));
+                Entity.Parameters.push( toInput('PerId',$('#txtPerson_SerachPerId').val()));
     
-                    Entity.Parameters.push( toInput('name',$('#txtperson_Serachname').val()));
+                    Entity.Parameters.push( toInput('FristName',$('#txtPerson_SerachFristName').val()));
+    
+                    Entity.Parameters.push( toInput('LastName',$('#txtPerson_SerachLastName').val()));
+    
+                    Entity.Parameters.push( toInput('UnitId',$('#txtPerson_SerachUnitId').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
@@ -78,9 +82,9 @@ person_Serach.Submit= function(obj)
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -95,10 +99,12 @@ person_Serach.Submit= function(obj)
 
 });
 };
-person_Serach.Validate= function()
+Person_Serach.Validate= function()
 {
     Validator.ClearErrors();
         
+            
+            
             
         
     if(Messager.errors.length!=0)
@@ -119,44 +125,48 @@ person_Serach.Validate= function()
 }
 
 
-person_Serach.Serach=function(obj)
+Person_Serach.Serach=function(obj)
 {
     $(obj).attr('disabled',true);
-    if(person_Serach.Validate()==false)
+    if(Person_Serach.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
 
-    window.CurrentSerachMethod=person_Serach.Serach;
+    window.CurrentSerachMethod=Person_Serach.Serach;
     var Entity=new Object();
-    Entity.PageName='person_Serach';
+    Entity.PageName='Person_Serach';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('id',$('#txtperson_Serachid').val()));
+                Entity.Parameters.push( toInput('PerId',$('#txtPerson_SerachPerId').val()));
     
-                    Entity.Parameters.push( toInput('name',$('#txtperson_Serachname').val()));
+                    Entity.Parameters.push( toInput('FristName',$('#txtPerson_SerachFristName').val()));
+    
+                    Entity.Parameters.push( toInput('LastName',$('#txtPerson_SerachLastName').val()));
+    
+                    Entity.Parameters.push( toInput('UnitId',$('#txtPerson_SerachUnitId').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.person_Serachrecords= data.records;
+    currentScope.Person_Serachrecords= data.records;
     
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
-        dlgScope.person_Serachrecords= data.records;
+        dlgScope.Person_Serachrecords= data.records;
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {

@@ -1,49 +1,73 @@
-﻿مدیریت اشخاص
+﻿مدیریت پرسنل
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="id" class="col-sm-2 control-label">           شناسه
+    <label  for="PerId" class="col-sm-2 control-label">           شماره پرسنلی
       :</label>
     <div   class="col-sm-4">
    
       
-                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input class="form-control" id="txtperson_Serachid" placeholder="" />
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtPerson_SerachPerId" placeholder="" />
                                                                                                     
     </div>
-    <label  for="name" class="col-sm-2 control-label">           نام
+    <label  for="FristName" class="col-sm-2 control-label">           نام 
       :</label>
     <div   class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtperson_Serachname" placeholder=""  Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input placeholder="" />
+            <input type="text"   class="form-control" id="txtPerson_SerachFristName" placeholder=""  placeholder="" />
       
                                                                                                                 
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="LastName" class="col-sm-2 control-label">           نام خانوادگی
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtPerson_SerachLastName" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="UnitId" class="col-sm-2 control-label">           کد واحد
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                      <select class="form-control" id="txtPerson_SerachUnitId" ></select>
+                      
     </div>
      </div>
      <div class="form-group">
   </div>
     </from>
   <script>
-                         
-    person_Serach.IntForm=function()
+                                    var UnitId =null;
+        
+    Person_Serach.IntForm=function()
     {
-        document.title='مدیریت اشخاص';
-        window.pageName='person_Serach';
+        document.title='مدیریت پرسنل';
+        window.pageName='Person_Serach';
     window.fileUploaded=false;
-                                                    
+                                                                                    
+    UnitId=  Select2AjaxInit('txtPerson_SerachUnitId',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='Person_Serach';
+    DataPass.ParaName='UnitId';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+                        
     }
     $(document).ready(function () {
-    person_Serach.IntForm();
+    Person_Serach.IntForm();
         
     });
   </script>
 
-<button type="button" class="btn btn-primary" onclick="person_Serach.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-primary" onclick="Person_Serach.Serach(this)">نمایش</button>
 <button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
-<a href='#/person_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
+<a href='#/Person_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
 
 
 <div class="table-responsive">
@@ -51,28 +75,20 @@ Parameter name: input placeholder="" />
 <caption></caption>
  <thead>
  <tr>
- <th  > شناسه</th> 
- <th  > نام</th> 
- <th  > رتبه شغلی</th> 
- <th  > شهر</th> 
- <th  > حقوق پایه</th> 
- <th  > نمره آزمون</th> 
- <th  > تاریخ تولد</th> 
- <th  > تصویر پرسنلی</th> 
+ <th  > شماره پرسنلی</th> 
+ <th  > نام </th> 
+ <th  > نام خانوادگی</th> 
+ <th  > کد واحد</th> 
 <th>
     عملیات
 </th>
       </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index" ng-repeat="record in person_Serachrecords | orderBy:currentOrder :rev " >
-<td data-label='شناسه'>{{record.id}}</td> 
- <td data-label='نام'>{{record.name}}</td> 
- <td data-label='رتبه شغلی'>{{record.grade}}</td> 
- <td data-label='شهر'>{{record.cityid}}</td> 
- <td data-label='حقوق پایه'>{{record.salaryBase}}</td> 
- <td data-label='نمره آزمون'>{{record.examResult}}</td> 
- <td data-label='تاریخ تولد'>{{record.dateBrith}}</td> 
- <td data-label='تصویر پرسنلی'>{{record.picImage}}</td> 
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in Person_Serachrecords | orderBy:currentOrder :rev " >
+<td data-label='شماره پرسنلی'>{{record.PerId}}</td> 
+ <td data-label='نام '>{{record.FristName}}</td> 
+ <td data-label='نام خانوادگی'>{{record.LastName}}</td> 
+ <td data-label='کد واحد'>{{record.UnitId}}</td> 
                 <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
@@ -80,8 +96,8 @@ Parameter name: input placeholder="" />
  عملیات <span class="caret"></span>
  </button>
  <ul class="dropdown-menu" role="menu">
- <li ><a href="#/person_Edit/{{record.id}}" >ویرایش</a></li> 
- <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.person_Delete('{{record.id}}')});" >حذف</a></li> 
+ <li ><a href="#/Person_Edit/{{record.PerId}}" >ویرایش</a></li> 
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.Person_Delete('{{record.PerId}}')});" >حذف</a></li> 
 
  </ul>
 </div>

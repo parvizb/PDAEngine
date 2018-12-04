@@ -16,7 +16,7 @@
             // it's a quirk, but the JSON data comes back in a property called "d"; {"d":"Hello Aidy F"}
         },
         error: function (xhr, status) {
-
+            alert(xhr.response);
             $('#loadingBar').hide();
             fnFail(xhr);
 
@@ -606,6 +606,37 @@ function Para(id) {
     }
 
 }
+function Select2AjaxDirect(pageName,pageParameter,stringValue,controllId) {
+    var o=new Object();
+    o.PageName=pageName;
+    o.PageParameterName=pageParameter;
+    o.value=stringValue;
+
+    Ajax("Home", "getDBSelect2DirectValue", JSON.stringify(o), function (data) {
+        var o = document.createElement('option');
+        o.value = stringValue;
+        o.innerHTML = data.value;
+     
+      
+        document.getElementById(controllId).innerHTML = "";
+        document.getElementById(controllId).appendChild(o);
+
+        $('#' + controllId).trigger('change');
+
+    },
+    function (d) {
+        if (d.status == 200) {
+
+
+        }
+        else {
+            alert('خطا دریافت اطلاعات');
+
+        }
+    });
+}
+
+
 function GetElement(id) {
 
     var d = getDailOpen();

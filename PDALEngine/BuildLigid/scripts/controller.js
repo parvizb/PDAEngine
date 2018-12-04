@@ -364,7 +364,19 @@ window.targetElement=null;
         
         
     }
- 
+    {{Page.name}}.SerachAndPutValueSelect2Ajax=function(namePara,colName)
+    {
+        var d = getDailOpen();
+        targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
+        var s=document.querySelector('#pinc{{Page.name}}');
+        dlgScope= angular.element(s).scope();
+        $("#mdl{{Page.name}}").modal('show');
+        OkDailogSelect=function(d){setTimeout(namePara +'.Set_Direct(\'' + SelectableRow[colName] +'\');' ,100 )};
+
+        SetupDlgScope();
+        
+        
+    }
 }
 {% endif -%}
 {% if Page.ValueDbCommand != '' -%}
@@ -385,11 +397,16 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         {% for para in  Page.PageParameters -%}
         {% if (para.startValueType == 'DbValueCommand') -%}
         {% if para.type == 'Select2Ajax' %}
+        {% if para.DBSelect2CommandDriectValue == '' %}
+
         var o=document.createElement('option');
         o.value=data.records[0].{{para.Parameter}};
         o.innerHTML= data.records[0].{{para.TitleParameter}} ;
         {{para.Name}}.append(o);
         {{para.Name}}.val(data.records[0].{{para.Parameter}}  ) .trigger('change');
+{% else %}
+Select2AjaxDirect('{{Page.Name}}','{{para.Name}}',data.records[0].{{para.Parameter}},'txt{{Page.name}}{{para.Name}}');
+{% endif %}
 {%elseif para.type == 'Color' %}
 $('#txt{{Page.name}}{{para.Name}}').val(data.records[0].{{para.Parameter}});
 $('#txt{{Page.name}}{{para.Name}}').css('background',$('#txt{{Page.name}}{{para.Name}}').val());

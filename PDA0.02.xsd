@@ -667,6 +667,11 @@
           <xs:documentation>نمایش یک دیالوگ و برگردان مقدار انتخابی بروی پارامتر مورد نظر</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+      <xs:enumeration value="ShowDailogAndSelectValueSelect2">
+        <xs:annotation>
+          <xs:documentation> نمایش یک دیالوگ و برگردان مقدار انتخابی بروی پارامتر مورد نظر</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="DBSelectCommandParameterSourceType">
@@ -1525,6 +1530,16 @@
                         <xs:attribute name="DBSelect2Command" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>نام روالی برای کادر های جست و جو ajax بکار گرفته می شود</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="DBSelect2CommandDriectValue" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>زمانی که یک مقدار مستقیم مقدار دهی میشود</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="DBSelect2CommandDriectValueParameterName" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نام پارامتر ارسالی</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
                         <xs:attribute name="codeColumn" type="xs:string" use="optional">

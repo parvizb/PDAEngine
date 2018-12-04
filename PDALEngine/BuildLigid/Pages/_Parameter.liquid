@@ -41,6 +41,11 @@
         <button type="button" class="btn btn-default" >{{btn.title}}</button>
       </a>
       {% endif -%}
+      {% if btn.action == 'ShowDailogAndSelectValueSelect2'  -%}
+      <a onclick='{{btn.actionParameter}}.SerachAndPutValueSelect2Ajax("{{btn.actionParameter2}}","{{btn.actionParameter3}}");' >
+        <button type="button" class="btn btn-default" >{{btn.title}}</button>
+      </a>
+      {% endif -%}
       {% if btn.action == 'ExportXls'  -%}
       <a onclick='ExportXls();' >
         <button type="button" class="btn btn-default" >{{btn.title}}</button>
@@ -150,6 +155,7 @@
     $('#txt{{Page.name}}{{Para.name}}').select2({});
     {% endif -%}
     {% if Para.type == 'Select2Ajax' or Para.type == 'Select2AjaxMulti'  -%}
+
     {{Para.name}}=  Select2AjaxInit('txt{{Page.name}}{{Para.name}}',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='{{Page.Name}}';
@@ -168,6 +174,12 @@
     {% endfor -%}
     return JSON.stringify(DataPass);
     });
+    {% if Para.DBSelect2CommandDriectValue != '' -%}
+    {{Para.name}}.Set_Direct=function(val){
+    Select2AjaxDirect('{{Page.Name}}','{{para.Name}}',val,'txt{{Page.name}}{{para.Name}}');
+
+    };
+    {% endif -%}
     {% endif -%}
     {% if Para.type == 'Date' and Para.Disabled != 'Yes' -%}
     kamaDatepicker('txt{{Page.name}}{{Para.name}}', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});

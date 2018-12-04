@@ -876,6 +876,8 @@ public class PageParameter : ILiquidizable
     public string LinkSyntax;
     public string Width;
     public string Height;
+    public string DBSelect2CommandDriectValue;
+    public string DBSelect2CommandDriectValueParameterName;
     public string PlaceHolder;
     public List<DBSelectCommandParameter> DBSelectCommandParameters = new List<DBSelectCommandParameter>();
     public List<option> options = new List<option>();
@@ -898,6 +900,9 @@ public class PageParameter : ILiquidizable
         this.type = node.Attr("type");
         this.source = node.Attr("source");
         this.Disabled = node.Attr("Disabled");
+        this.DBSelect2CommandDriectValue = node.Attr("DBSelect2CommandDriectValue");
+     
+        this.DBSelect2CommandDriectValueParameterName = node.Attr("DBSelect2CommandDriectValueParameterName");
         this.ChangeBev = node.Attr("ChangeBev");
         this.ChangeBevParameter = node.Attr("ChangeBevParameter");
         this.dontSendToDb = node.Attr("dontSendToDb");
@@ -972,7 +977,7 @@ public class PageParameter : ILiquidizable
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { ChangeBevParameter=this.ChangeBevParameter, Buttons = this.Buttons, ShowCond = this.ShowCond, ChangeBev = this.ChangeBev, PlaceHolder = this.PlaceHolder, Width = this.Width, Height = this.Height, LinkSyntax = this.LinkSyntax, FileAllows = this.FileAllows, FilePathAtServer = this.FilePathAtServer, MaxFileSize = this.MaxFileSize, Disabled = this.Disabled, dontSendToDb = this.dontSendToDb, options = this.options, TitleParameter = this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
+        return Hash.FromAnonymousObject(new { DBSelect2CommandDriectValueParameterName=this.DBSelect2CommandDriectValueParameterName,DBSelect2CommandDriectValue=this.DBSelect2CommandDriectValue ,ChangeBevParameter=this.ChangeBevParameter, Buttons = this.Buttons, ShowCond = this.ShowCond, ChangeBev = this.ChangeBev, PlaceHolder = this.PlaceHolder, Width = this.Width, Height = this.Height, LinkSyntax = this.LinkSyntax, FileAllows = this.FileAllows, FilePathAtServer = this.FilePathAtServer, MaxFileSize = this.MaxFileSize, Disabled = this.Disabled, dontSendToDb = this.dontSendToDb, options = this.options, TitleParameter = this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
 
     }
 
