@@ -85,7 +85,8 @@
         document.title='مدیریت انتقالی بین انبار';
         window.pageName='moveStorage_Serach';
     window.fileUploaded=false;
-                                        sourceMoveId=  Select2AjaxInit('txtmoveStorage_SerachsourceMoveId',function(term, page){
+                                    
+    sourceMoveId=  Select2AjaxInit('txtmoveStorage_SerachsourceMoveId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='moveStorage_Serach';
     DataPass.ParaName='sourceMoveId';
@@ -93,7 +94,8 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                DestMoveId=  Select2AjaxInit('txtmoveStorage_SerachDestMoveId',function(term, page){
+                                
+    DestMoveId=  Select2AjaxInit('txtmoveStorage_SerachDestMoveId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='moveStorage_Serach';
     DataPass.ParaName='DestMoveId';
@@ -101,7 +103,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtmoveStorage_Serachstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                        kamaDatepicker('txtmoveStorage_Serachstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtmoveStorage_Serachenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                                                                         
     }
@@ -135,13 +137,23 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in moveStorage_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه'>{{record.moveStorageId}}</td> 
- <td data-label='انبار مبدا'>{{record.sourceMoveId}}</td> 
- <td data-label='انبار مقصد'>{{record.DestMoveId}}</td> 
- <td data-label='تاریخ انتقال'>{{record.moveDate}}</td> 
- <td data-label='شماره رسید'>{{record.inNumber}}</td> 
- <td data-label='شماره حواله'>{{record.outNumber}}</td> 
- <td data-label='توضیحات'>{{record.descr}}</td> 
-                 <td data-label=''>
+ 
+<td data-label='انبار مبدا'>{{record.sourceMoveId}}</td> 
+ 
+<td data-label='انبار مقصد'>{{record.DestMoveId}}</td> 
+ 
+<td data-label='تاریخ انتقال'>{{record.moveDate}}</td> 
+ 
+<td data-label='شماره رسید'>{{record.inNumber}}</td> 
+ 
+<td data-label='شماره حواله'>{{record.outNumber}}</td> 
+ 
+<td data-label='توضیحات'>{{record.descr}}</td> 
+ 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

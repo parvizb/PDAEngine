@@ -87,7 +87,8 @@
     window.fileUploaded=false;
                                             kamaDatepicker('txtMoveAcc_SerachstartDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtMoveAcc_SerachendDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            sourceAcc=  Select2AjaxInit('txtMoveAcc_SerachsourceAcc',function(term, page){
+                        
+    sourceAcc=  Select2AjaxInit('txtMoveAcc_SerachsourceAcc',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='MoveAcc_Serach';
     DataPass.ParaName='sourceAcc';
@@ -95,7 +96,8 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                DestAcc=  Select2AjaxInit('txtMoveAcc_SerachDestAcc',function(term, page){
+                                
+    DestAcc=  Select2AjaxInit('txtMoveAcc_SerachDestAcc',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='MoveAcc_Serach';
     DataPass.ParaName='DestAcc';
@@ -103,7 +105,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                                            
+                                                                                                
     }
     $(document).ready(function () {
     MoveAcc_Serach.IntForm();
@@ -134,12 +136,20 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in MoveAcc_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه انتقال'>{{record.moveAccId}}</td> 
- <td data-label='تاریخ انتقال'>{{record.moveDate}}</td> 
- <td data-label='حساب مبدا'>{{record.sourceAcc}}</td> 
- <td data-label='حساب مقصد'>{{record.DestAcc}}</td> 
- <td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
- <td data-label='توضیحات'>{{record.Descr}}</td> 
-                <td data-label=''>
+ 
+<td data-label='تاریخ انتقال'>{{record.moveDate}}</td> 
+ 
+<td data-label='حساب مبدا'>{{record.sourceAcc}}</td> 
+ 
+<td data-label='حساب مقصد'>{{record.DestAcc}}</td> 
+ 
+<td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
+ 
+<td data-label='توضیحات'>{{record.Descr}}</td> 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

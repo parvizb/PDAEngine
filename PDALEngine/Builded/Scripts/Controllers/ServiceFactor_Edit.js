@@ -218,18 +218,24 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
                                 $('#txtServiceFactor_EditGetOrProdive').val(data.records[0].GetOrProdive);
 
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].CusAccId;
         o.innerHTML= data.records[0].CusAccIdTitle ;
         CusAccId.append(o);
         CusAccId.val(data.records[0].CusAccId  ) .trigger('change');
 
+
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].ServiceId;
         o.innerHTML= data.records[0].ServiceTitle ;
         ServiceId.append(o);
         ServiceId.val(data.records[0].ServiceId  ) .trigger('change');
+
 
                 
 $('#txtServiceFactor_EditCost').val(ShowAsMoney( data.records[0].Cost));

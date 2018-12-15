@@ -214,11 +214,14 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
 $('#txtpayment_Editpayment_amount').val(ShowAsMoney( data.records[0].payment_amount));
 
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].cus_id;
         o.innerHTML= data.records[0].cus_id_title ;
         cus_id.append(o);
         cus_id.val(data.records[0].cus_id  ) .trigger('change');
+
 
                 
 $('#txtpayment_Editdis_amount').val(ShowAsMoney( data.records[0].dis_amount));
@@ -228,11 +231,14 @@ $('#txtpayment_Editdis_amount').val(ShowAsMoney( data.records[0].dis_amount));
                 $('#txtpayment_Editdescr').val(data.records[0].descr);
 
                         
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].acc_id;
         o.innerHTML= data.records[0].acc_name ;
         acc_id.append(o);
         acc_id.val(data.records[0].acc_id  ) .trigger('change');
+
 
 }
 else

@@ -85,7 +85,8 @@
         document.title='مدیریت دریافتی ها';
         window.pageName='getment_Serach';
     window.fileUploaded=false;
-                                                                                        cus_acc_id=  Select2AjaxInit('txtgetment_Serachcus_acc_id',function(term, page){
+                                                                                    
+    cus_acc_id=  Select2AjaxInit('txtgetment_Serachcus_acc_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='getment_Serach';
     DataPass.ParaName='cus_acc_id';
@@ -93,7 +94,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                acc_id=  Select2AjaxInit('txtgetment_Serachacc_id',function(term, page){
+                                
+    acc_id=  Select2AjaxInit('txtgetment_Serachacc_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='getment_Serach';
     DataPass.ParaName='acc_id';
@@ -101,7 +103,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtgetment_Serachstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                        kamaDatepicker('txtgetment_Serachstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtgetment_Serachenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                         
     }
@@ -136,14 +138,24 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in getment_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه دریافتی'>{{record.getment_id}}</td> 
- <td data-label='مبلغ دریافتی'>{{ShowMoney(record.get_amount)}}</td> 
- <td data-label='تخفیف دریافتی'>{{ShowMoney(record.get_discount)}}</td> 
- <td data-label='جمع'>{{ShowMoney(Num(record.get_amount)+Num(record.get_discount))}}</td> 
- <td data-label='شناسه مشتری'>{{record.cus_acc_id_title}}</td> 
- <td data-label='کد حساب'>{{record.acc_name}}</td> 
- <td data-label='تاریخ'>{{record.get_date}}</td> 
- <td data-label='توضیحات'>{{record.descr}}</td> 
-                <td data-label=''>
+ 
+<td data-label='مبلغ دریافتی'>{{ShowMoney(record.get_amount)}}</td> 
+ 
+<td data-label='تخفیف دریافتی'>{{ShowMoney(record.get_discount)}}</td> 
+ 
+<td data-label='جمع'>{{ShowMoney(Num(record.get_amount)+Num(record.get_discount))}}</td> 
+ 
+<td data-label='شناسه مشتری'>{{record.cus_acc_id_title}}</td> 
+ 
+<td data-label='کد حساب'>{{record.acc_name}}</td> 
+ 
+<td data-label='تاریخ'>{{record.get_date}}</td> 
+ 
+<td data-label='توضیحات'>{{record.descr}}</td> 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

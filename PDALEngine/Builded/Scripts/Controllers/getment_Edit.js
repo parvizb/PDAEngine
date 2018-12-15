@@ -218,18 +218,24 @@ $('#txtgetment_Editget_amount').val(ShowAsMoney( data.records[0].get_amount));
 $('#txtgetment_Editget_discount').val(ShowAsMoney( data.records[0].get_discount));
 
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].cus_acc_id;
         o.innerHTML= data.records[0].cus_acc_id_title ;
         cus_acc_id.append(o);
         cus_acc_id.val(data.records[0].cus_acc_id  ) .trigger('change');
 
+
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].acc_id;
         o.innerHTML= data.records[0].acc_name ;
         acc_id.append(o);
         acc_id.val(data.records[0].acc_id  ) .trigger('change');
+
 
                 $('#txtgetment_Editget_date').val(data.records[0].get_date);
 

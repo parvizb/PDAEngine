@@ -23,7 +23,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
 <th>ردیف</th>
@@ -39,10 +39,15 @@
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in set_stroge_fristrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد انبار'>{{record.id_stroage}}</td> 
- <td data-label='عنوان'>{{record.storage_name}}</td> 
- <td data-label='آدرس'>{{record.addr}}</td> 
- <td data-label='مسئول انبار'>{{record.graud_name}}</td> 
-               <td data-label=''>
+ 
+<td data-label='عنوان'>{{record.storage_name}}</td> 
+ 
+<td data-label='آدرس'>{{record.addr}}</td> 
+ 
+<td data-label='مسئول انبار'>{{record.graud_name}}</td> 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

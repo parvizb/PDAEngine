@@ -38,7 +38,8 @@
         document.title='عملکرد حساب مالی';
         window.pageName='AccountReport';
     window.fileUploaded=false;
-                AccId=  Select2AjaxInit('txtAccountReportAccId',function(term, page){
+            
+    AccId=  Select2AjaxInit('txtAccountReportAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='AccountReport';
     DataPass.ParaName='AccId';
@@ -46,7 +47,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtAccountReportstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                        kamaDatepicker('txtAccountReportstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtAccountReportenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                 
     }
@@ -76,12 +77,18 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in AccountReportrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه اقدام'>{{record.opt}}</td> 
- <td data-label='تاریخ اقدام'>{{record.optdate}}</td> 
- <td data-label='نوع اقدامات '>{{record.opt_type}}</td> 
- <td data-label='توضیحات'>{{record.opt_descr}}</td> 
- <td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
-  <td data-label='مانده' ng-init="record.remain=Num(AccountReportrecords[$index-1].remain)+Num(record.amount);">{{ShowMoney(record.remain)}}</td> 
-                   </tr>
+ 
+<td data-label='تاریخ اقدام'>{{record.optdate}}</td> 
+ 
+<td data-label='نوع اقدامات '>{{record.opt_type}}</td> 
+ 
+<td data-label='توضیحات'>{{record.opt_descr}}</td> 
+ 
+<td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
+ 
+ <td data-label='مانده' ng-init="record.remain=Num(AccountReportrecords[$index-1].remain)+Num(record.amount);">{{ShowMoney(record.remain)}}</td> 
+ 
+                  </tr>
 
  <tbody>
 </table>

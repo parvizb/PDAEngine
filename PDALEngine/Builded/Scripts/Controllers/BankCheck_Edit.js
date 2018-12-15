@@ -257,21 +257,27 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
                 $('#txtBankCheck_EditBankGetmentDate').val(data.records[0].BankGetmentDate);
 
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].BackAccID;
         o.innerHTML= data.records[0].BankAccName ;
         BackAccID.append(o);
         BackAccID.val(data.records[0].BackAccID  ) .trigger('change');
 
+
                 
 $('#txtBankCheck_Editamount').val(ShowAsMoney( data.records[0].amount));
 
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].CusAccId;
         o.innerHTML= data.records[0].CusAccId_title ;
         CusAccId.append(o);
         CusAccId.val(data.records[0].CusAccId  ) .trigger('change');
+
 
                 $('#txtBankCheck_EditDescr').val(data.records[0].Descr);
 

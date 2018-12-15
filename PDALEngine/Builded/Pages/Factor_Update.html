@@ -122,7 +122,8 @@
         document.title='ویرایش فاکتور';
         window.pageName='Factor_Update';
     window.fileUploaded=false;
-                                                                CusAccId=  Select2AjaxInit('txtFactor_UpdateCusAccId',function(term, page){
+                                                            
+    CusAccId=  Select2AjaxInit('txtFactor_UpdateCusAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='Factor_Update';
     DataPass.ParaName='CusAccId';
@@ -130,7 +131,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                id_stroage=  Select2AjaxInit('txtFactor_Updateid_stroage',function(term, page){
+                                
+    id_stroage=  Select2AjaxInit('txtFactor_Updateid_stroage',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='Factor_Update';
     DataPass.ParaName='id_stroage';
@@ -138,7 +140,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtFactor_UpdateFactoryDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                        kamaDatepicker('txtFactor_UpdateFactoryDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtFactor_UpdateFactoryGetDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                                                                                                                                                                         
     }
@@ -155,7 +157,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
 <th>ردیف</th>
@@ -173,17 +175,25 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in Factor_Updaterecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
-  <td data-label='کالا'><select class="form-control"   id="stuffId_{{record.rndId}}"  valc="{{record.stuffId}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='Factor_Update';DataPass.colname='stuffId';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetProduct_asTable(MergeNow,record.stuffId);;record.total=Num(record.Count)*Num(record.stuffPrice);NormalResult();"   ng-model="record.stuffId"  >
+ 
+ <td data-label='کالا'><select class="form-control"   id="stuffId_{{record.rndId}}"  valc="{{record.stuffId}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='Factor_Update';DataPass.colname='stuffId';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetProduct_asTable(MergeNow,record.stuffId);;record.total=Num(record.Count)*Num(record.stuffPrice);NormalResult();"   ng-model="record.stuffId"  >
  <option value="{{record.stuffId}}" selected="selected" >
      {{record.stuff_name}} </option>
 </select></td> 
   <td data-label='فی'><input class="form-control" type="text" id="stuffPrice_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.total=Num(record.stuffCount)*Num(record.stuffPrice);record.stuffAdding=Round((Num(record.total)-Num(record.stuffDiscount))*Num(record.per));NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.stuffPrice}}" ng-model="record.stuffPrice"  /></td> 
+
   <td data-label='تعداد جز'><input class="form-control" type="text" id="stuffCount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.BCount=Num(record.stuffCount)/Num(record.BoxCount);record.total=Num(record.stuffCount)*Num(record.stuffPrice);record.stuffAdding=Round((Num(record.total)-Num(record.stuffDiscount))*Num(record.per));NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.stuffCount}}" ng-model="record.stuffCount"  /></td> 
+
   <td data-label='تعداد کل'><input class="form-control" type="text" id="BCount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.stuffCount=Num(record.BCount)*Num(record.BoxCount);record.total=Num(record.stuffCount)*Num(record.stuffPrice);record.stuffAdding=Round((Num(record.total)-Num(record.stuffDiscount))*Num(record.per));NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.BCount}}" ng-model="record.BCount"  /></td> 
+
 <td data-label='جمع'>{{ShowMoney(Num(record.stuffPrice)*Num(record.stuffCount))}}</td> 
-   <td data-label='تخفیف'><input class="form-control" type="text" id="stuffDiscount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.stuffAdding=(Num(record.total)-Num(record.stuffDiscount))*Num(record.per);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.stuffDiscount}}" ng-model="record.stuffDiscount"  /></td> 
+ 
+  <td data-label='تخفیف'><input class="form-control" type="text" id="stuffDiscount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.stuffAdding=(Num(record.total)-Num(record.stuffDiscount))*Num(record.per);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.stuffDiscount}}" ng-model="record.stuffDiscount"  /></td> 
+
   <td data-label='ارزش افزوده'><input class="form-control" type="text" id="stuffAdding_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"   value="{{record.stuffAdding}}" ng-model="record.stuffAdding"  /></td> 
-              <td data-label=''>
+
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

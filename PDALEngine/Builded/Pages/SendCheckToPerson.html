@@ -45,7 +45,8 @@
         window.pageName='SendCheckToPerson';
     window.fileUploaded=false;
                                                                     kamaDatepicker('txtSendCheckToPersonOptDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            CusAccId=  Select2AjaxInit('txtSendCheckToPersonCusAccId',function(term, page){
+                        
+    CusAccId=  Select2AjaxInit('txtSendCheckToPersonCusAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='SendCheckToPerson';
     DataPass.ParaName='CusAccId';
@@ -53,7 +54,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                            
+                                                
     }
     $(document).ready(function () {
     SendCheckToPerson.IntForm();

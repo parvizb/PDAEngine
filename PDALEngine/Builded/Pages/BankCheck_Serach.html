@@ -127,14 +127,16 @@
     window.fileUploaded=false;
                                                                     kamaDatepicker('txtBankCheck_Serachstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtBankCheck_Serachenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            BackAccID=  Select2AjaxInit('txtBankCheck_SerachBackAccID',function(term, page){
+                        
+    BackAccID=  Select2AjaxInit('txtBankCheck_SerachBackAccID',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='BankCheck_Serach';
     DataPass.ParaName='BackAccID';
     DataPass.Parameters=new Array();
         return JSON.stringify(DataPass);
     });
-                                                                                                        CusAccId=  Select2AjaxInit('txtBankCheck_SerachCusAccId',function(term, page){
+                                                                                                        
+    CusAccId=  Select2AjaxInit('txtBankCheck_SerachCusAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='BankCheck_Serach';
     DataPass.ParaName='CusAccId';
@@ -142,7 +144,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                                            
+                                                                                                
     }
     $(document).ready(function () {
     BankCheck_Serach.IntForm();
@@ -178,18 +180,27 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in BankCheck_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه چک'>{{record.BankCheckId}}</td> 
- <td data-label='سریال چک'>{{record.SerailCheck}}</td> 
- <td data-label='تاریخ موعد چک'>{{record.BankPayDate}}</td> 
- <td data-label='تاریخ تحویل'>{{record.BankGetmentDate}}</td> 
- <td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
-  <td data-label='نوع چک'>
+ 
+<td data-label='سریال چک'>{{record.SerailCheck}}</td> 
+ 
+<td data-label='تاریخ موعد چک'>{{record.BankPayDate}}</td> 
+ 
+<td data-label='تاریخ تحویل'>{{record.BankGetmentDate}}</td> 
+ 
+<td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
+ 
+ <td data-label='نوع چک'>
     <span ng-show="record.CheckType=='0'">پرداختی</span>
   <span ng-show="record.CheckType=='1'">دریافتی</span>
  </td> 
- <td data-label='مشتری'>{{record.CusAccId_title}}</td> 
- <td data-label='توضیحات'>{{record.Descr}}</td> 
- <td data-label=' بانک'>{{record.bankName}} {{record.bankBranch}} {{record.bankAccNo}}</td> 
-  <td data-label='آخرین وضعیت'>
+ 
+<td data-label='مشتری'>{{record.CusAccId_title}}</td> 
+ 
+<td data-label='توضیحات'>{{record.Descr}}</td> 
+ 
+<td data-label=' بانک'>{{record.bankName}} {{record.bankBranch}} {{record.bankAccNo}}</td> 
+ 
+ <td data-label='آخرین وضعیت'>
     <span ng-show="record.lastOpt=='-1'">در جریان</span>
   <span ng-show="record.lastOpt=='1'">وصول شده</span>
   <span ng-show="record.lastOpt=='2'">برگشت خورده</span>
@@ -198,8 +209,19 @@
   <span ng-show="record.lastOpt=='5'">خرج شده</span>
   <span ng-show="record.lastOpt=='6'">مرجوع شده </span>
  </td> 
-  <td data-label='چک قبل از سیستم'>{{ShowBoolean(record.oldCheck)}}</td> 
-                       <td data-label=''>
+ 
+ <td data-label='چک قبل از سیستم'>{{ShowBoolean(record.oldCheck)}}</td> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

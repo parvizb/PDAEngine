@@ -48,7 +48,8 @@
         document.title='گزارش موجودی کالا';
         window.pageName='StorageReport';
     window.fileUploaded=false;
-                id_factory=  Select2AjaxInit('txtStorageReportid_factory',function(term, page){
+            
+    id_factory=  Select2AjaxInit('txtStorageReportid_factory',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='StorageReport';
     DataPass.ParaName='id_factory';
@@ -56,7 +57,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                id_product=  Select2AjaxInit('txtStorageReportid_product',function(term, page){
+                                
+    id_product=  Select2AjaxInit('txtStorageReportid_product',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='StorageReport';
     DataPass.ParaName='id_product';
@@ -64,7 +66,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                        id_stragoe=  Select2AjaxInit('txtStorageReportid_stragoe',function(term, page){
+                                                        
+    id_stragoe=  Select2AjaxInit('txtStorageReportid_stragoe',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='StorageReport';
     DataPass.ParaName='id_stragoe';
@@ -72,7 +75,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                    
+                        
     }
     $(document).ready(function () {
     StorageReport.IntForm();
@@ -87,7 +90,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
 <th>ردیف</th>
@@ -99,9 +102,12 @@
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in StorageReportrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='عنوان کالا'>{{record.stuffname}}</td> 
- <td data-label='تعداد کل'>{{record.BCount}}</td> 
- <td data-label='تعداد جز'>{{record.COUNT}}</td> 
-                   </tr>
+ 
+<td data-label='تعداد کل'>{{record.BCount}}</td> 
+ 
+<td data-label='تعداد جز'>{{record.COUNT}}</td> 
+ 
+                  </tr>
 
  <tbody>
 </table>

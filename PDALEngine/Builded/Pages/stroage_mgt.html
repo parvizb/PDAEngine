@@ -25,7 +25,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
 <th>ردیف</th>
@@ -41,10 +41,15 @@
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in stroage_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد انبار'>{{record.id_stroage}}</td> 
-  <td data-label='عنوان'><input class="form-control" type="text" id="storage_name_{{record.rndId}}" value="{{record.storage_name}}" ng-change="ChangeState(record);"  ng-model="record.storage_name"  /></td> 
-  <td data-label='آدرس'><input class="form-control" type="text" id="addr_{{record.rndId}}" value="{{record.addr}}" ng-change="ChangeState(record);"  ng-model="record.addr"  /></td> 
-  <td data-label='مسئول انبار'><input class="form-control" type="text" id="graud_name_{{record.rndId}}" value="{{record.graud_name}}" ng-change="ChangeState(record);"  ng-model="record.graud_name"  /></td> 
-               <td data-label=''>
+ 
+ <td data-label='عنوان'><input class="form-control" type="text" id="storage_name_{{record.rndId}}" value="{{record.storage_name}}" ng-change="ChangeState(record);"  ng-model="record.storage_name"  /></td> 
+ 
+ <td data-label='آدرس'><input class="form-control" type="text" id="addr_{{record.rndId}}" value="{{record.addr}}" ng-change="ChangeState(record);"  ng-model="record.addr"  /></td> 
+ 
+ <td data-label='مسئول انبار'><input class="form-control" type="text" id="graud_name_{{record.rndId}}" value="{{record.graud_name}}" ng-change="ChangeState(record);"  ng-model="record.graud_name"  /></td> 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

@@ -45,7 +45,8 @@
         window.pageName='MoveToAccBank';
     window.fileUploaded=false;
                                                                     kamaDatepicker('txtMoveToAccBankOptDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            AccId=  Select2AjaxInit('txtMoveToAccBankAccId',function(term, page){
+                        
+    AccId=  Select2AjaxInit('txtMoveToAccBankAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='MoveToAccBank';
     DataPass.ParaName='AccId';
@@ -53,7 +54,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                            
+                                                
     }
     $(document).ready(function () {
     MoveToAccBank.IntForm();

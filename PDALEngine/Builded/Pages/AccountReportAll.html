@@ -36,11 +36,16 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in AccountReportAllrecords | orderBy:currentOrder :rev " >
 <td data-label='کد حساب'>{{record.acc_id}}</td> 
- <td data-label='عنوان حساب'>{{record.acc_name}}</td> 
- <td data-label='محل حساب'>{{record.acc_position}}</td> 
- <td data-label='شعبه حساب'>{{record.acc_brch}}</td> 
- <td data-label='مجموع'>{{ShowMoney(record.suma)}}</td> 
-                   </tr>
+ 
+<td data-label='عنوان حساب'>{{record.acc_name}}</td> 
+ 
+<td data-label='محل حساب'>{{record.acc_position}}</td> 
+ 
+<td data-label='شعبه حساب'>{{record.acc_brch}}</td> 
+ 
+<td data-label='مجموع'>{{ShowMoney(record.suma)}}</td> 
+ 
+                  </tr>
 
  <tbody>
 </table>

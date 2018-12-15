@@ -9,7 +9,11 @@ stuff_Edit.sendFiles=  function()
 {
     var data = new FormData();
  
-                                                                                        $('#loadingBar').show();
+                                                                                            var tmp=$('#txtstuff_EditFileExp')[0];
+    if(tmp.files.length>0){
+        data.append('FileExp', tmp.files[0]);
+    }
+            $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -55,6 +59,16 @@ stuff_Edit.Submit= function(obj)
         $(obj).attr('disabled',false);
         return ;
     }
+        {
+           
+        if(window.fileUploaded!=true)
+        {
+            stuff_Edit.sendFiles();
+            return ;
+        }
+
+
+    }
         var Entity=new Object();
     Entity.PageName='stuff_Edit';
     Entity.Parameters=new Array();
@@ -76,6 +90,8 @@ stuff_Edit.Submit= function(obj)
                     Entity.Parameters.push( toInput('descr',$('#txtstuff_Editdescr').val()));
     
                     Entity.Parameters.push( toInput('includeaddingBill',$('#txtstuff_EditincludeaddingBill').val()));
+    
+                    Entity.Parameters.push( toInput('FileExp',$('#txtstuff_EditFileExp').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
@@ -130,6 +146,31 @@ stuff_Edit.Validate= function()
                                                         Validator.CheckRegInteger('txtstuff_Editprice','قیمت');
                                                             
             
+                var tmp=$('#txtstuff_EditFileExp')[0];
+        if(tmp.files.length>0)
+    {
+        if(tmp.files[0].size/1024 > 10000)
+        {
+            Messager.errors.push(' اندازه فایل در کادر تصویر کالا  بیش از اندازه مجاز یعنی 10000 کیلوبایت می باشد ');
+        }
+    }
+            if(tmp.files.length>0)
+    {
+        var ex=tmp.files[0].name;
+        ex=ex.substring(ex.lastIndexOf('.')+1);
+        ex=ex.toLowerCase();
+        var isCommit=false;
+        var cc=new Array();
+                cc.push('jpg'.toLowerCase());
+                isCommit=cc.indexOf(ex)!=-1;
+        if(isCommit==false)
+        {
+            Messager.errors.push(' پسوند فایل در کادر تصویر کالا  مجاز نیست پسوند های مجاز  ' + JSON.stringify(cc));
+  
+
+        }
+    }
+        
         
     if(Messager.errors.length!=0)
     {
@@ -181,6 +222,8 @@ stuff_Edit.Serach=function(obj)
     
                     Entity.Parameters.push( toInput('includeaddingBill',$('#txtstuff_EditincludeaddingBill').val()));
     
+                    Entity.Parameters.push( toInput('FileExp',$('#txtstuff_EditFileExp').val()));
+    
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
@@ -224,34 +267,46 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     {
      
                                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].id_factory;
         o.innerHTML= data.records[0].id_factory_title ;
         id_factory.append(o);
         id_factory.val(data.records[0].id_factory  ) .trigger('change');
 
+
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].id_product;
         o.innerHTML= data.records[0].id_product_title ;
         id_product.append(o);
         id_product.val(data.records[0].id_product  ) .trigger('change');
 
+
                 $('#txtstuff_Editstuff_name').val(data.records[0].stuff_name);
 
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].unit_id;
         o.innerHTML= data.records[0].unit_id_title ;
         unit_id.append(o);
         unit_id.val(data.records[0].unit_id  ) .trigger('change');
 
+
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].unitbox_id;
         o.innerHTML= data.records[0].unitbox_id_title ;
         unitbox_id.append(o);
         unitbox_id.val(data.records[0].unitbox_id  ) .trigger('change');
+
 
                 $('#txtstuff_Editboxcount').val(data.records[0].boxcount);
 
@@ -262,7 +317,7 @@ $('#txtstuff_Editprice').val(ShowAsMoney( data.records[0].price));
 
                 $('#txtstuff_EditincludeaddingBill').val(data.records[0].includeaddingBill);
 
-}
+        }
 else
 {
     Validator.ClearErrors ();

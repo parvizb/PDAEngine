@@ -90,7 +90,8 @@
         document.title='مدیریت مشتریان';
         window.pageName='customer_Serach';
     window.fileUploaded=false;
-                                                                                                                                                                cus_group_id=  Select2AjaxInit('txtcustomer_Serachcus_group_id',function(term, page){
+                                                                                                                                                            
+    cus_group_id=  Select2AjaxInit('txtcustomer_Serachcus_group_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='customer_Serach';
     DataPass.ParaName='cus_group_id';
@@ -98,7 +99,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                    
+                                                                        
     }
     $(document).ready(function () {
     customer_Serach.IntForm();
@@ -132,15 +133,26 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in customer_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه مشتری'>{{record.cus_acc_id}}</td> 
- <td data-label='نام'>{{record.cus_fname}}</td> 
- <td data-label='نام خانوادگی'>{{record.cus_lname}}</td> 
- <td data-label='آدرس'>{{record.cus_addr}}</td> 
- <td data-label='شماره تلفن'>{{record.cus_phone}}</td> 
- <td data-label='شماره همراه'>{{record.cus_mobile}}</td> 
- <td data-label='گروه مشتریان'>{{record.cus_group_id}}</td> 
- <td data-label='توضیحات'>{{record.cus_descr}}</td> 
- <td data-label='مانده از قبل'>{{record.cus_remainBefore}}</td> 
-                <td data-label=''>
+ 
+<td data-label='نام'>{{record.cus_fname}}</td> 
+ 
+<td data-label='نام خانوادگی'>{{record.cus_lname}}</td> 
+ 
+<td data-label='آدرس'>{{record.cus_addr}}</td> 
+ 
+<td data-label='شماره تلفن'>{{record.cus_phone}}</td> 
+ 
+<td data-label='شماره همراه'>{{record.cus_mobile}}</td> 
+ 
+<td data-label='گروه مشتریان'>{{record.cus_group_id}}</td> 
+ 
+<td data-label='توضیحات'>{{record.cus_descr}}</td> 
+ 
+<td data-label='مانده از قبل'>{{record.cus_remainBefore}}</td> 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

@@ -38,7 +38,8 @@
         document.title='عملکرد شخص';
         window.pageName='ShowCusReport';
     window.fileUploaded=false;
-                Idcus=  Select2AjaxInit('txtShowCusReportIdcus',function(term, page){
+            
+    Idcus=  Select2AjaxInit('txtShowCusReportIdcus',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ShowCusReport';
     DataPass.ParaName='Idcus';
@@ -46,7 +47,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtShowCusReportstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                        kamaDatepicker('txtShowCusReportstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtShowCusReportenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                 
     }
@@ -82,16 +83,26 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in ShowCusReportrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه اقدام'>{{record.optid}}</td> 
- <td data-label='تاریخ اقدام'>{{record.optdate}}</td> 
- <td data-label='نوع اقدام'>{{record.opttype}}</td> 
- <td data-label='توضیحات'>{{record.optdescr}}</td> 
- <td data-label='تعداد'>{{ShowMoney(record.optcount)}}</td> 
- <td data-label='فی'>{{ShowMoney(record.optfee)}}</td> 
- <td data-label='تخفیف'>{{ShowMoney(record.optdis)}}</td> 
- <td data-label='مالیات بر ارزش افزوده'>{{ShowMoney(record.disadd)}}</td> 
- <td data-label='مبلغ'>{{ShowMoney(record.optamount)}}</td> 
-  <td data-label='مانده' ng-init="record.optremain=Num(ShowCusReportrecords[$index-1].optremain)+Num(record.optamount);">{{ShowMoney(record.optremain)}}</td> 
-              <td data-label=''>
+ 
+<td data-label='تاریخ اقدام'>{{record.optdate}}</td> 
+ 
+<td data-label='نوع اقدام'>{{record.opttype}}</td> 
+ 
+<td data-label='توضیحات'>{{record.optdescr}}</td> 
+ 
+<td data-label='تعداد'>{{ShowMoney(record.optcount)}}</td> 
+ 
+<td data-label='فی'>{{ShowMoney(record.optfee)}}</td> 
+ 
+<td data-label='تخفیف'>{{ShowMoney(record.optdis)}}</td> 
+ 
+<td data-label='مالیات بر ارزش افزوده'>{{ShowMoney(record.disadd)}}</td> 
+ 
+<td data-label='مبلغ'>{{ShowMoney(record.optamount)}}</td> 
+ 
+ <td data-label='مانده' ng-init="record.optremain=Num(ShowCusReportrecords[$index-1].optremain)+Num(record.optamount);">{{ShowMoney(record.optremain)}}</td> 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

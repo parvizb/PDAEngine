@@ -606,6 +606,8 @@ function Para(id) {
     }
 
 }
+
+
 function Select2AjaxDirect(pageName,pageParameter,stringValue,controllId) {
     var o=new Object();
     o.PageName=pageName;
@@ -684,6 +686,7 @@ JsEventInterface.BeforeFailReqInitAjaxAction = null;
 
 function CheckAllTable(b) {
     $('[tableCheck]').each(function () {
+ 
         $(this).attr('checked', b);
         sendCheckboxToRecord($(this)[0]);
     });

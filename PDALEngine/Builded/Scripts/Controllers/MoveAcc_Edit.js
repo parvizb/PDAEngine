@@ -208,18 +208,24 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
                                 $('#txtMoveAcc_EditmoveDate').val(data.records[0].moveDate);
 
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].sourceAcc;
         o.innerHTML= data.records[0].sourceAccTitle ;
         sourceAcc.append(o);
         sourceAcc.val(data.records[0].sourceAcc  ) .trigger('change');
 
+
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].DestAcc;
         o.innerHTML= data.records[0].DestAccTitle ;
         DestAcc.append(o);
         DestAcc.val(data.records[0].DestAcc  ) .trigger('change');
+
 
                 
 $('#txtMoveAcc_Editamount').val(ShowAsMoney( data.records[0].amount));

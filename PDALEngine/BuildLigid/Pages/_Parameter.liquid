@@ -105,8 +105,8 @@
         {% endfor -%}
       </select>
       {% endif -%}
-      {% if Para.type == 'Select2' or Para.type == 'Select2Multi' -%}
-      <select class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if Para.type == 'Select2Multi' -%} multiple="multiple" {% endif -%} {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%} onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%}  >
+      {% if Para.type == 'Select2' or Para.type == 'Select2Mulit' -%}
+      <select class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if Para.type == 'Select2Mulit' -%} multiple="multiple" {% endif -%} {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%} onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%}  >
         {% for var opt in Para.options -%}
         <option value="{{opt.value}}">{{opt.text}}</option>
         {% endfor -%}
@@ -151,7 +151,7 @@
     window.pageName='{{Page.name}}';
     window.fileUploaded=false;
     {% for para in  Page.PageParameters -%}
-    {% if Para.type == 'Select2' or Para.type == 'Select2Multi' -%}
+    {% if Para.type == 'Select2' or Para.type == 'Select2Mulit' -%}
     $('#txt{{Page.name}}{{Para.name}}').select2({});
     {% endif -%}
     {% if Para.type == 'Select2Ajax' or Para.type == 'Select2AjaxMulti'  -%}

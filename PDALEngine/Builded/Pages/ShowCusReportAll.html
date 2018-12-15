@@ -20,7 +20,8 @@
         document.title='عملکرد مشتریان';
         window.pageName='ShowCusReportAll';
     window.fileUploaded=false;
-                cus_group_id=  Select2AjaxInit('txtShowCusReportAllcus_group_id',function(term, page){
+            
+    cus_group_id=  Select2AjaxInit('txtShowCusReportAllcus_group_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ShowCusReportAll';
     DataPass.ParaName='cus_group_id';
@@ -28,7 +29,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                    
+                        
     }
     $(document).ready(function () {
     ShowCusReportAll.IntForm();
@@ -58,12 +59,18 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in ShowCusReportAllrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه مشتری'>{{record.cus_acc_id}}</td> 
- <td data-label='نام'>{{record.cus_fname}}</td> 
- <td data-label='نام خانوادگی'>{{record.cus_lname}}</td> 
- <td data-label='آدرس'>{{record.cus_addr}}</td> 
- <td data-label='شماره همراه'>{{record.cus_mobile}}</td> 
- <td data-label='مانده'>{{ShowMoney(record.amount)}}</td> 
-              <td data-label=''>
+ 
+<td data-label='نام'>{{record.cus_fname}}</td> 
+ 
+<td data-label='نام خانوادگی'>{{record.cus_lname}}</td> 
+ 
+<td data-label='آدرس'>{{record.cus_addr}}</td> 
+ 
+<td data-label='شماره همراه'>{{record.cus_mobile}}</td> 
+ 
+<td data-label='مانده'>{{ShowMoney(record.amount)}}</td> 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

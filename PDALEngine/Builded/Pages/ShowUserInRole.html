@@ -24,7 +24,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
 <th><input type="checkbox" id="checkAll" onclick="CheckAllTable(this.checked)"  /></th>
@@ -36,9 +36,12 @@
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in ShowUserInRolerecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
 <td data-label='شناسه کاربری'>{{record.UserId}}</td> 
- <td data-label='نام'>{{record.Fname}}</td> 
- <td data-label='نام خانوادگی'>{{record.Lname}}</td> 
-                   </tr>
+ 
+<td data-label='نام'>{{record.Fname}}</td> 
+ 
+<td data-label='نام خانوادگی'>{{record.Lname}}</td> 
+ 
+                  </tr>
 
  <tbody>
 </table>

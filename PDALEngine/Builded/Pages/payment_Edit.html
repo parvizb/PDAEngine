@@ -77,7 +77,8 @@
         document.title='ویرایش پرداختی ';
         window.pageName='payment_Edit';
     window.fileUploaded=false;
-                                                                cus_id=  Select2AjaxInit('txtpayment_Editcus_id',function(term, page){
+                                                            
+    cus_id=  Select2AjaxInit('txtpayment_Editcus_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='payment_Edit';
     DataPass.ParaName='cus_id';
@@ -85,8 +86,9 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                            kamaDatepicker('txtpayment_Editpayment_Date', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                                                                            acc_id=  Select2AjaxInit('txtpayment_Editacc_id',function(term, page){
+                                                                kamaDatepicker('txtpayment_Editpayment_Date', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                        
+    acc_id=  Select2AjaxInit('txtpayment_Editacc_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='payment_Edit';
     DataPass.ParaName='acc_id';
@@ -94,7 +96,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                    
+                        
     }
     $(document).ready(function () {
     payment_Edit.IntForm();

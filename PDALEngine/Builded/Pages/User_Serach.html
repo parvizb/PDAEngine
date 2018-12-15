@@ -85,11 +85,19 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in User_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه کاربری'>{{record.UserId}}</td> 
- <td data-label='نام'>{{record.Fname}}</td> 
- <td data-label='نام خانوادگی'>{{record.Lname}}</td> 
- <td data-label='آدرس'>{{record.address}}</td> 
- <td data-label='شماره تماس'>{{record.phone}}</td> 
-                 <td data-label=''>
+ 
+<td data-label='نام'>{{record.Fname}}</td> 
+ 
+<td data-label='نام خانوادگی'>{{record.Lname}}</td> 
+ 
+<td data-label='آدرس'>{{record.address}}</td> 
+ 
+<td data-label='شماره تماس'>{{record.phone}}</td> 
+ 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

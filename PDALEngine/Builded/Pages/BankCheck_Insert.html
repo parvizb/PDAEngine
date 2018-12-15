@@ -131,7 +131,8 @@
     window.fileUploaded=false;
                                                                     kamaDatepicker('txtBankCheck_InsertBankPayDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtBankCheck_InsertBankGetmentDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            BackAccID=  Select2AjaxInit('txtBankCheck_InsertBackAccID',function(term, page){
+                        
+    BackAccID=  Select2AjaxInit('txtBankCheck_InsertBackAccID',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='BankCheck_Insert';
     DataPass.ParaName='BackAccID';
@@ -139,7 +140,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                        CusAccId=  Select2AjaxInit('txtBankCheck_InsertCusAccId',function(term, page){
+                                                        
+    CusAccId=  Select2AjaxInit('txtBankCheck_InsertCusAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='BankCheck_Insert';
     DataPass.ParaName='CusAccId';
@@ -147,7 +149,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                                                                                            
+                                                                                                                                                
     }
     $(document).ready(function () {
     BankCheck_Insert.IntForm();

@@ -69,7 +69,8 @@
     window.fileUploaded=false;
                     kamaDatepicker('txtShowOptMgtstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtShowOptMgtenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            cusid=  Select2AjaxInit('txtShowOptMgtcusid',function(term, page){
+                        
+    cusid=  Select2AjaxInit('txtShowOptMgtcusid',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ShowOptMgt';
     DataPass.ParaName='cusid';
@@ -77,7 +78,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                accid=  Select2AjaxInit('txtShowOptMgtaccid',function(term, page){
+                                
+    accid=  Select2AjaxInit('txtShowOptMgtaccid',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ShowOptMgt';
     DataPass.ParaName='accid';
@@ -85,7 +87,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                    
+                                                                        
     }
     $(document).ready(function () {
     ShowOptMgt.IntForm();
@@ -116,12 +118,27 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in ShowOptMgtrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه '>{{record.id}}</td> 
- <td data-label='نوع اقدام'>{{record.opttype}}</td> 
- <td data-label='تاریخ'>{{record.odate}}</td> 
- <td data-label='حساب'>{{record.Acc}}</td> 
- <td data-label='عنوان مشتری'>{{record.CusAcc}}</td> 
- <td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
-                       <td data-label=''>
+ 
+<td data-label='نوع اقدام'>{{record.opttype}}</td> 
+ 
+<td data-label='تاریخ'>{{record.odate}}</td> 
+ 
+<td data-label='حساب'>{{record.Acc}}</td> 
+ 
+<td data-label='عنوان مشتری'>{{record.CusAcc}}</td> 
+ 
+<td data-label='مبلغ'>{{ShowMoney(record.amount)}}</td> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

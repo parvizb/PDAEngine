@@ -77,7 +77,8 @@
         document.title='دریافتی جدید';
         window.pageName='getment_Insert';
     window.fileUploaded=false;
-                                                                cus_acc_id=  Select2AjaxInit('txtgetment_Insertcus_acc_id',function(term, page){
+                                                            
+    cus_acc_id=  Select2AjaxInit('txtgetment_Insertcus_acc_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='getment_Insert';
     DataPass.ParaName='cus_acc_id';
@@ -85,7 +86,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                acc_id=  Select2AjaxInit('txtgetment_Insertacc_id',function(term, page){
+                                
+    acc_id=  Select2AjaxInit('txtgetment_Insertacc_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='getment_Insert';
     DataPass.ParaName='acc_id';
@@ -93,7 +95,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtgetment_Insertget_date', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                        kamaDatepicker('txtgetment_Insertget_date', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                                                 
     }
     $(document).ready(function () {

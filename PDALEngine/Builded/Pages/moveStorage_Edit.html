@@ -69,7 +69,8 @@
         document.title='ویرایش انتقالی انبار';
         window.pageName='moveStorage_Edit';
     window.fileUploaded=false;
-                                        sourceMoveId=  Select2AjaxInit('txtmoveStorage_EditsourceMoveId',function(term, page){
+                                    
+    sourceMoveId=  Select2AjaxInit('txtmoveStorage_EditsourceMoveId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='moveStorage_Edit';
     DataPass.ParaName='sourceMoveId';
@@ -77,7 +78,8 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                DestMoveId=  Select2AjaxInit('txtmoveStorage_EditDestMoveId',function(term, page){
+                                
+    DestMoveId=  Select2AjaxInit('txtmoveStorage_EditDestMoveId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='moveStorage_Edit';
     DataPass.ParaName='DestMoveId';
@@ -85,7 +87,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtmoveStorage_EditmoveDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                        kamaDatepicker('txtmoveStorage_EditmoveDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                                                                         
     }
     $(document).ready(function () {

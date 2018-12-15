@@ -65,9 +65,16 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in Role_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه نقش'>{{record.RoleId}}</td> 
- <td data-label='نام نقش'>{{record.RoleName}}</td> 
- <td data-label='توضیحات'>{{record.RoleDescr}}</td> 
-                  <td data-label=''>
+ 
+<td data-label='نام نقش'>{{record.RoleName}}</td> 
+ 
+<td data-label='توضیحات'>{{record.RoleDescr}}</td> 
+ 
+ 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

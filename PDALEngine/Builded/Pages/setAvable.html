@@ -42,7 +42,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
  <th  class="Pointer"  ng-click="ChageTableOrder('id_stuff')"  > <span ng-show="((currentOrder=='id_stuff') && (rev) )">V</span> <span ng-show="((currentOrder=='id_stuff') && (!rev) )">^</span>کد کالا</th> 
@@ -54,10 +54,15 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in setAvablerecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label='کد کالا'>{{record.id_stuff}}</td> 
- <td data-label='عنوان کالا'>{{record.stuff_name}}</td> 
-   <td data-label='تعداد به جز کالا'><input class="form-control" type="text" id="realCount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.rboxCount=Num(record.realCount)/Num(record.boxcount);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.realCount}}" ng-model="record.realCount"  /></td> 
+ 
+<td data-label='عنوان کالا'>{{record.stuff_name}}</td> 
+ 
+  <td data-label='تعداد به جز کالا'><input class="form-control" type="text" id="realCount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.rboxCount=Num(record.realCount)/Num(record.boxcount);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.realCount}}" ng-model="record.realCount"  /></td> 
+
   <td data-label='تعداد به کل کالا'><input class="form-control" type="text" id="rboxCount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.realCount=Num(record.rboxCount)*Num(record.boxcount);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.rboxCount}}" ng-model="record.rboxCount"  /></td> 
+
   <td data-label='ارزش'><input class="form-control" type="text" id="price_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);"   onkeyup="NumberInput(event,this)"   value="{{record.price}}" ng-model="record.price"  /></td> 
+
                   </tr>
 
  <tbody>

@@ -7,7 +7,7 @@
     <div   class="col-sm-9">
    
       
-                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" onchange='RecalcScopes();' class="form-control" id="txtaccount_Serachacc_id" placeholder="" />
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtaccount_Serachacc_id" placeholder="" />
                                                                                                     
     </div>
      </div>
@@ -56,7 +56,7 @@
                                                 <a onclick='QuickFactorSerach.SerachAndPutValue("acc_code","title");' >
         <button type="button" class="btn btn-default" >+</button>
       </a>
-                        :</label>
+                              :</label>
     <div   class="col-sm-9">
    
             <input type="text"   class="form-control" id="txtaccount_Serachacc_code" placeholder=""  placeholder="" />
@@ -116,13 +116,22 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in account_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='کد حساب'>{{record.acc_id}}</td> 
- <td data-label='عنوان حساب'>{{record.acc_name}}</td> 
- <td data-label='محل حساب'>{{record.acc_position}}</td> 
- <td data-label='مبلغ ابتدایی '>{{record.acc_startValue}}</td> 
- <td data-label='توضیحات'>{{record.acc_descr}}</td> 
- <td data-label='شماره حساب'>{{record.acc_code}}</td> 
- <td data-label='شعبه حساب'>{{record.acc_brch}}</td> 
-                <td data-label=''>
+ 
+<td data-label='عنوان حساب'>{{record.acc_name}}</td> 
+ 
+<td data-label='محل حساب'>{{record.acc_position}}</td> 
+ 
+<td data-label='مبلغ ابتدایی '>{{record.acc_startValue}}</td> 
+ 
+<td data-label='توضیحات'>{{record.acc_descr}}</td> 
+ 
+<td data-label='شماره حساب'>{{record.acc_code}}</td> 
+ 
+<td data-label='شعبه حساب'>{{record.acc_brch}}</td> 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

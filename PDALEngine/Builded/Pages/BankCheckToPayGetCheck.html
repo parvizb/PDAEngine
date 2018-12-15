@@ -45,7 +45,8 @@
         window.pageName='BankCheckToPayGetCheck';
     window.fileUploaded=false;
                                                                     kamaDatepicker('txtBankCheckToPayGetCheckOptDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            AccId=  Select2AjaxInit('txtBankCheckToPayGetCheckAccId',function(term, page){
+                        
+    AccId=  Select2AjaxInit('txtBankCheckToPayGetCheckAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='BankCheckToPayGetCheck';
     DataPass.ParaName='AccId';
@@ -53,7 +54,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                            
+                                                
     }
     $(document).ready(function () {
     BankCheckToPayGetCheck.IntForm();

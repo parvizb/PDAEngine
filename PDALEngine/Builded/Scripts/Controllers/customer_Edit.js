@@ -228,11 +228,14 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
                 $('#txtcustomer_Editcus_mobile').val(data.records[0].cus_mobile);
 
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].cus_group_id;
         o.innerHTML= data.records[0].cus_group_id_title ;
         cus_group_id.append(o);
         cus_group_id.val(data.records[0].cus_group_id  ) .trigger('change');
+
 
                 $('#txtcustomer_Editcus_descr').val(data.records[0].cus_descr);
 

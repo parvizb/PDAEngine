@@ -1949,7 +1949,19 @@ namespace PDALEngine
             if(HttpContext.Current.Session["FileSended"]!=null)
             {
                 FileSended=(Dictionary<string ,string >)HttpContext.Current.Session["FileSended"];
+                for (int k = 0; k < page.PageParameters.Count; k++)
+                {
+                    if (page.PageParameters[k].SaveFileNameExpr != "")
+                    {
+                        string oldName = FileSended[page.PageParameters[k].name];
+                        FileSended[page.PageParameters[k].name] = PDAL.ComputeExpr(page.PageParameters[k].SaveFileNameExpr, Paras, page).ToString();
+                        string newName = FileSended[page.PageParameters[k].name];
+                        string path=  HttpContext.Current.Server.MapPath(page.PageParameters[k].FilePathAtServer);
+                        System.IO.File.Move(path+oldName,path + newName);
 
+                    }
+
+                }
             }
             for (int k = 0; k < Paras.Count; k++)
             {

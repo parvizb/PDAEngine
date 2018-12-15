@@ -86,7 +86,8 @@
         document.title='مشتری جدید';
         window.pageName='customer_Insert';
     window.fileUploaded=false;
-                                                                                                                                        cus_group_id=  Select2AjaxInit('txtcustomer_Insertcus_group_id',function(term, page){
+                                                                                                                                    
+    cus_group_id=  Select2AjaxInit('txtcustomer_Insertcus_group_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='customer_Insert';
     DataPass.ParaName='cus_group_id';
@@ -94,7 +95,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                    
+                                                                        
     }
     $(document).ready(function () {
     customer_Insert.IntForm();

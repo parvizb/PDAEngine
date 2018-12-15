@@ -70,7 +70,8 @@
         window.pageName='MoveAcc_Insert';
     window.fileUploaded=false;
                     kamaDatepicker('txtMoveAcc_InsertmoveDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                            sourceAcc=  Select2AjaxInit('txtMoveAcc_InsertsourceAcc',function(term, page){
+                        
+    sourceAcc=  Select2AjaxInit('txtMoveAcc_InsertsourceAcc',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='MoveAcc_Insert';
     DataPass.ParaName='sourceAcc';
@@ -78,7 +79,8 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                DestAcc=  Select2AjaxInit('txtMoveAcc_InsertDestAcc',function(term, page){
+                                
+    DestAcc=  Select2AjaxInit('txtMoveAcc_InsertDestAcc',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='MoveAcc_Insert';
     DataPass.ParaName='DestAcc';
@@ -86,7 +88,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                                            
+                                                                                                
     }
     $(document).ready(function () {
     MoveAcc_Insert.IntForm();

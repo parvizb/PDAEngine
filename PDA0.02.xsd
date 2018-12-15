@@ -792,6 +792,11 @@
           <xs:documentation>کادر ورودی بازشو</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
+            <xs:enumeration value="InputTextArea">
+        <xs:annotation>
+          <xs:documentation>ورودی متن چند خطی</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <xs:enumeration value="InputSelect2">
         <xs:annotation>
           <xs:documentation>کادر ورودی بازشو با قابلیت جست و جو</xs:documentation>
@@ -1105,6 +1110,8 @@
                             </xs:complexType>
                             
                           </xs:element>
+                                
+                              
                                 <xs:element name="CustomHtml"   minOccurs="0" maxOccurs="unbounded">
                                   <xs:complexType >
                                    
@@ -1525,6 +1532,11 @@
                         <xs:attribute name="DefaultValueParameter" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>پارامتر مقدار پیش فرض </xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="SaveFileNameExpr" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نام نحو نام گذاری چگونه باشد</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
                         <xs:attribute name="DBSelect2Command" type="xs:string" use="optional">

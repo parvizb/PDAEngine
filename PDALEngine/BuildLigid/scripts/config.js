@@ -9,6 +9,15 @@ function DoDailog()
 
 }
 
+function ResetCheck()
+{
+    $('[tablecheck]').each(function(){
+        $(this).attr( 'checked',   angular.element($(this)[0]).scope().record.selected );
+
+    });
+
+
+}
 
 
 var mainApp = angular.module("{{App.Name}}", ['ngRoute']);

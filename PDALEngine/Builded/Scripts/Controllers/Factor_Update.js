@@ -234,18 +234,24 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
                                 $('#txtFactor_UpdateFactoryNumber').val(data.records[0].FactoryNumber);
 
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].CusAccId;
         o.innerHTML= data.records[0].cus_acc_id_title ;
         CusAccId.append(o);
         CusAccId.val(data.records[0].CusAccId  ) .trigger('change');
 
+
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].id_stroage;
         o.innerHTML= data.records[0].id_stroage_title ;
         id_stroage.append(o);
         id_stroage.val(data.records[0].id_stroage  ) .trigger('change');
+
 
                 $('#txtFactor_UpdateFactoryDate').val(data.records[0].FactoryDate);
 

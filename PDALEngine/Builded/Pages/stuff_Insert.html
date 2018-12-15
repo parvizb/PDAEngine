@@ -100,7 +100,8 @@
         document.title='جنس جدید';
         window.pageName='stuff_Insert';
     window.fileUploaded=false;
-                id_factory=  Select2AjaxInit('txtstuff_Insertid_factory',function(term, page){
+            
+    id_factory=  Select2AjaxInit('txtstuff_Insertid_factory',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='stuff_Insert';
     DataPass.ParaName='id_factory';
@@ -108,7 +109,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                id_product=  Select2AjaxInit('txtstuff_Insertid_product',function(term, page){
+                                
+    id_product=  Select2AjaxInit('txtstuff_Insertid_product',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='stuff_Insert';
     DataPass.ParaName='id_product';
@@ -116,7 +118,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                        unit_id=  Select2AjaxInit('txtstuff_Insertunit_id',function(term, page){
+                                                        
+    unit_id=  Select2AjaxInit('txtstuff_Insertunit_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='stuff_Insert';
     DataPass.ParaName='unit_id';
@@ -124,7 +127,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                unitbox_id=  Select2AjaxInit('txtstuff_Insertunitbox_id',function(term, page){
+                                
+    unitbox_id=  Select2AjaxInit('txtstuff_Insertunitbox_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='stuff_Insert';
     DataPass.ParaName='unitbox_id';
@@ -132,7 +136,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                                                                    
+                                                                                                                        
     }
     $(document).ready(function () {
     stuff_Insert.IntForm();

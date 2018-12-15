@@ -89,7 +89,8 @@
         document.title='مدیریت فاکتور های خدمات';
         window.pageName='ServiceFactor_Serach';
     window.fileUploaded=false;
-                                                                CusAccId=  Select2AjaxInit('txtServiceFactor_SerachCusAccId',function(term, page){
+                                                            
+    CusAccId=  Select2AjaxInit('txtServiceFactor_SerachCusAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ServiceFactor_Serach';
     DataPass.ParaName='CusAccId';
@@ -97,7 +98,8 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                ServiceId=  Select2AjaxInit('txtServiceFactor_SerachServiceId',function(term, page){
+                                
+    ServiceId=  Select2AjaxInit('txtServiceFactor_SerachServiceId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ServiceFactor_Serach';
     DataPass.ParaName='ServiceId';
@@ -105,7 +107,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                            kamaDatepicker('txtServiceFactor_Serachstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                kamaDatepicker('txtServiceFactor_Serachstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtServiceFactor_Serachenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                         
     }
@@ -140,18 +142,28 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in ServiceFactor_Serachrecords | orderBy:currentOrder :rev " >
 <td data-label='شناسه'>{{record.ServiceFactorId}}</td> 
-  <td data-label='دریافت یا ارائه'>
+ 
+ <td data-label='دریافت یا ارائه'>
     <span ng-show="record.GetOrProdive=='255'">هردو</span>
   <span ng-show="record.GetOrProdive=='0'">ارائه خدمات</span>
   <span ng-show="record.GetOrProdive=='1'">دریافت خدمات</span>
  </td> 
- <td data-label='مشتری'>{{record.CusAccId}}</td> 
- <td data-label='کد خدمت'>{{record.ServiceId}}</td> 
- <td data-label='هزینه'>{{ShowMoney(record.Cost)}}</td> 
- <td data-label='شماره فاکتور'>{{record.FactorNumber}}</td> 
- <td data-label='تاریخ ارائه'>{{record.ServiceDate}}</td> 
- <td data-label='توضیحات'>{{record.Descr}}</td> 
-                <td data-label=''>
+ 
+<td data-label='مشتری'>{{record.CusAccId}}</td> 
+ 
+<td data-label='کد خدمت'>{{record.ServiceId}}</td> 
+ 
+<td data-label='هزینه'>{{ShowMoney(record.Cost)}}</td> 
+ 
+<td data-label='شماره فاکتور'>{{record.FactorNumber}}</td> 
+ 
+<td data-label='تاریخ ارائه'>{{record.ServiceDate}}</td> 
+ 
+<td data-label='توضیحات'>{{record.Descr}}</td> 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

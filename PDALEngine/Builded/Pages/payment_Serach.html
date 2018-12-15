@@ -85,7 +85,8 @@
         document.title='مدیریت پرداختی ها';
         window.pageName='payment_Serach';
     window.fileUploaded=false;
-                                                                cus_id=  Select2AjaxInit('txtpayment_Serachcus_id',function(term, page){
+                                                            
+    cus_id=  Select2AjaxInit('txtpayment_Serachcus_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='payment_Serach';
     DataPass.ParaName='cus_id';
@@ -93,9 +94,10 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                            kamaDatepicker('txtpayment_Serachpayment_Date_start', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                kamaDatepicker('txtpayment_Serachpayment_Date_start', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtpayment_Serachpayment_Date_end', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                                                    acc_id=  Select2AjaxInit('txtpayment_Serachacc_id',function(term, page){
+                                                
+    acc_id=  Select2AjaxInit('txtpayment_Serachacc_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='payment_Serach';
     DataPass.ParaName='acc_id';
@@ -103,7 +105,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                    
+                        
     }
     $(document).ready(function () {
     payment_Serach.IntForm();
@@ -118,7 +120,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
 <th>ردیف</th>
@@ -137,13 +139,22 @@
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in payment_Serachrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='شناسه پرداخت'>{{record.payment_id}}</td> 
- <td data-label='مبلغ پرداختی'>{{ShowMoney(record.payment_amount)}}</td> 
- <td data-label='کد مشتری '>{{record.cus_id}}</td> 
- <td data-label='مبلغ تخفیف'>{{ShowMoney(record.dis_amount)}}</td> 
- <td data-label='مجموع'>{{ShowMoney(Num(record.payment_amount)+Num(record.dis_amount))}}</td> 
- <td data-label='تاریخ'>{{record.payment_Date}}</td> 
- <td data-label='توضیحات'>{{record.descr}}</td> 
-                <td data-label=''>
+ 
+<td data-label='مبلغ پرداختی'>{{ShowMoney(record.payment_amount)}}</td> 
+ 
+<td data-label='کد مشتری '>{{record.cus_id}}</td> 
+ 
+<td data-label='مبلغ تخفیف'>{{ShowMoney(record.dis_amount)}}</td> 
+ 
+<td data-label='مجموع'>{{ShowMoney(Num(record.payment_amount)+Num(record.dis_amount))}}</td> 
+ 
+<td data-label='تاریخ'>{{record.payment_Date}}</td> 
+ 
+<td data-label='توضیحات'>{{record.descr}}</td> 
+ 
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

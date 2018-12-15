@@ -90,7 +90,8 @@
         document.title='فاکتور خدمات جدید';
         window.pageName='ServiceFactor_Insert';
     window.fileUploaded=false;
-                                        CusAccId=  Select2AjaxInit('txtServiceFactor_InsertCusAccId',function(term, page){
+                                    
+    CusAccId=  Select2AjaxInit('txtServiceFactor_InsertCusAccId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ServiceFactor_Insert';
     DataPass.ParaName='CusAccId';
@@ -98,7 +99,8 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                ServiceId=  Select2AjaxInit('txtServiceFactor_InsertServiceId',function(term, page){
+                                
+    ServiceId=  Select2AjaxInit('txtServiceFactor_InsertServiceId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='ServiceFactor_Insert';
     DataPass.ParaName='ServiceId';
@@ -106,7 +108,7 @@
             DataPass.Parameters.push(toInput('Q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                                                            kamaDatepicker('txtServiceFactor_InsertServiceDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                                                                kamaDatepicker('txtServiceFactor_InsertServiceDate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                         
     }
     $(document).ready(function () {

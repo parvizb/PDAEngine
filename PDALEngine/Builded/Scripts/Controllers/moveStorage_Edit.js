@@ -209,18 +209,24 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     {
      
                                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].sourceMoveId;
         o.innerHTML= data.records[0].sourceMoveIdTitle ;
         sourceMoveId.append(o);
         sourceMoveId.val(data.records[0].sourceMoveId  ) .trigger('change');
 
+
                 
+        
+
         var o=document.createElement('option');
         o.value=data.records[0].DestMoveId;
         o.innerHTML= data.records[0].DestMoveIdTitle ;
         DestMoveId.append(o);
         DestMoveId.val(data.records[0].DestMoveId  ) .trigger('change');
+
 
                 $('#txtmoveStorage_EditmoveDate').val(data.records[0].moveDate);
 

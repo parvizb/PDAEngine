@@ -86,7 +86,8 @@
         document.title='ویرایش حساب مشتری ';
         window.pageName='customer_Edit';
     window.fileUploaded=false;
-                                                                                                                                                                cus_group_id=  Select2AjaxInit('txtcustomer_Editcus_group_id',function(term, page){
+                                                                                                                                                            
+    cus_group_id=  Select2AjaxInit('txtcustomer_Editcus_group_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='customer_Edit';
     DataPass.ParaName='cus_group_id';
@@ -94,7 +95,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                    
+                                                                        
     }
     $(document).ready(function () {
     customer_Edit.IntForm();

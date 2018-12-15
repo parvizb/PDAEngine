@@ -25,7 +25,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
 <th>ردیف</th>
@@ -41,14 +41,19 @@
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in billPercent_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='شناسه'>{{record.BillId}}</td> 
-   <td data-label='از تاریخ'>
+ 
+  <td data-label='از تاریخ'>
       <input  type="text"  onkeypress="return blockNonDateNumber(event)" id="startdate_{{record.rndId}}" ng-change="ChangeState(record);"  created="False" onfocus="if($(this).attr('created')=='False') { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'});  this.focus();  } " data-type="date"   onBlur="ReformatDate(this.id)"  class="form-control"   placeholder="yyyy/mm/dd" max-length="10"    value="{{record.startdate}}" ng-model="record.startdate"  ></input>
  </td> 
+
   <td data-label='تا تاریخ'>
       <input  type="text"  onkeypress="return blockNonDateNumber(event)" id="enddate_{{record.rndId}}" ng-change="ChangeState(record);"  created="False" onfocus="if($(this).attr('created')=='False') { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'});  this.focus();  } " data-type="date"   onBlur="ReformatDate(this.id)"  class="form-control"   placeholder="yyyy/mm/dd" max-length="10"    value="{{record.enddate}}" ng-model="record.enddate"  ></input>
  </td> 
+
   <td data-label='درصد'><input class="form-control" type="text" id="percent_{{record.rndId}}"   value="{{record.percent}}" ng-change="ChangeState(record);"   ng-model="record.percent"  /></td> 
-              <td data-label=''>
+
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

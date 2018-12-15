@@ -25,7 +25,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
 <th>ردیف</th>
@@ -42,14 +42,20 @@
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in moveDetail_mgtrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='شناسه ریز'>{{record.mSDid}}</td> 
-   <td data-label='کالا'><select class="form-control"   id="stuffid_{{record.rndId}}"  valc="{{record.stuffid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='moveDetail_mgt';DataPass.colname='stuffid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetProduct_asTable(MergeNow,record.stuffid);;record.total=Num(record.Count)*Num(record.stuffPrice);NormalResult();"   ng-model="record.stuffid"  >
+ 
+ 
+ <td data-label='کالا'><select class="form-control"   id="stuffid_{{record.rndId}}"  valc="{{record.stuffid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='moveDetail_mgt';DataPass.colname='stuffid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetProduct_asTable(MergeNow,record.stuffid);;record.total=Num(record.Count)*Num(record.stuffPrice);NormalResult();"   ng-model="record.stuffid"  >
  <option value="{{record.stuffid}}" selected="selected" >
      {{record.stuff_name}} </option>
 </select></td> 
   <td data-label='تعداد جز'><input class="form-control" type="text" id="count_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.BCount=Num(record.count)/Num(record.BoxCount);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.count}}" ng-model="record.count"  /></td> 
+
   <td data-label='تعداد کل'><input class="form-control" type="text" id="BCount_{{record.rndId}}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);record.count=Num(record.BCount)*Num(record.BoxCount);NormalResult();"   onkeyup="NumberInput(event,this)"   value="{{record.BCount}}" ng-model="record.BCount"  /></td> 
+
  <td data-label='توضیحات'><input class="form-control" type="text" id="descr_{{record.rndId}}" value="{{record.descr}}" ng-change="ChangeState(record);"  ng-model="record.descr"  /></td> 
-               <td data-label=''>
+ 
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">

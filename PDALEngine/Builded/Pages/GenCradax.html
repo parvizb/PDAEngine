@@ -60,7 +60,8 @@
         document.title='گزارش کاردکس کالا';
         window.pageName='GenCradax';
     window.fileUploaded=false;
-                idstuff=  Select2AjaxInit('txtGenCradaxidstuff',function(term, page){
+            
+    idstuff=  Select2AjaxInit('txtGenCradaxidstuff',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='GenCradax';
     DataPass.ParaName='idstuff';
@@ -68,7 +69,8 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                        id_stragoe=  Select2AjaxInit('txtGenCradaxid_stragoe',function(term, page){
+                                                        
+    id_stragoe=  Select2AjaxInit('txtGenCradaxid_stragoe',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='GenCradax';
     DataPass.ParaName='id_stragoe';
@@ -76,7 +78,7 @@
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtGenCradaxstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                        kamaDatepicker('txtGenCradaxstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                                 kamaDatepicker('txtGenCradaxenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                 
     }
@@ -93,7 +95,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
  <th  class="Pointer"  ng-click="ChageTableOrder('optdate')"  > <span ng-show="((currentOrder=='optdate') && (rev) )">V</span> <span ng-show="((currentOrder=='optdate') && (!rev) )">^</span>تاریخ</th> 
@@ -106,12 +108,18 @@
    </thead>
      <tr ng-init="record.viewIndex=$index" ng-repeat="record in GenCradaxrecords | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label='تاریخ'>{{record.optdate}}</td> 
- <td data-label='نوع اقدام'>{{record.opttype}}</td> 
- <td data-label='توضیحات'>{{record.optdescr}}</td> 
- <td data-label='فی'>{{ShowMoney(record.price)}}</td> 
- <td data-label='افزایش/کاهش'>{{ShowMoney(record.deltaCount)}}</td> 
-  <td data-label='موجودی' ng-init="record.count=Num(GenCradaxrecords[$index-1].count)+Num(record.deltaCount);">{{ShowMoney(record.count)}}</td> 
-                   </tr>
+ 
+<td data-label='نوع اقدام'>{{record.opttype}}</td> 
+ 
+<td data-label='توضیحات'>{{record.optdescr}}</td> 
+ 
+<td data-label='فی'>{{ShowMoney(record.price)}}</td> 
+ 
+<td data-label='افزایش/کاهش'>{{ShowMoney(record.deltaCount)}}</td> 
+ 
+ <td data-label='موجودی' ng-init="record.count=Num(GenCradaxrecords[$index-1].count)+Num(record.deltaCount);">{{ShowMoney(record.count)}}</td> 
+ 
+                  </tr>
 
  <tbody>
 </table>

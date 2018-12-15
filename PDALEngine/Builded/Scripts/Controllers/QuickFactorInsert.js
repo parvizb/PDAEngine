@@ -198,7 +198,19 @@ window.targetElement=null;
         
         
     }
- 
+    QuickFactorInsert.SerachAndPutValueSelect2Ajax=function(namePara,colName)
+    {
+        var d = getDailOpen();
+        targetElement   = document.getElementById('txt' + ( window.pageName) + namePara);
+        var s=document.querySelector('#pincQuickFactorInsert');
+        dlgScope= angular.element(s).scope();
+        $("#mdlQuickFactorInsert").modal('show');
+        OkDailogSelect=function(d){setTimeout(namePara +'.Set_Direct(\'' + SelectableRow[colName] +'\');' ,100 )};
+
+        SetupDlgScope();
+        
+        
+    }
 }
 
 
