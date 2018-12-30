@@ -606,7 +606,19 @@ function Para(id) {
     }
 
 }
-
+function Select2AjaxMultValuesSet(controllId,records,valueColumn,titleColumn) {
+    var s=document.getElementById(controllId);
+    s.innerHTML = "";
+    var vals = new Array();
+    for (var l = 0; l < records.length; l++) {
+        var o = document.createElement('option');
+        o.value = records[l][valueColumn];
+        o.innerHTML = records[l][titleColumn];
+        vals.push(records[l][valueColumn]);
+        s.appendChild(o);
+    }
+    $('#' + controllId).val(vals).trigger('change');
+}
 
 function Select2AjaxDirect(pageName,pageParameter,stringValue,controllId) {
     var o=new Object();

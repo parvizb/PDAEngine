@@ -217,17 +217,22 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtcustomer_Editcus_fname').val(data.records[0].cus_fname);
+                                        
+$('#txtcustomer_Editcus_fname').val(data.records[0].cus_fname);
 
-                $('#txtcustomer_Editcus_lname').val(data.records[0].cus_lname);
+                        
+$('#txtcustomer_Editcus_lname').val(data.records[0].cus_lname);
 
-                $('#txtcustomer_Editcus_addr').val(data.records[0].cus_addr);
+                        
+$('#txtcustomer_Editcus_addr').val(data.records[0].cus_addr);
 
-                $('#txtcustomer_Editcus_phone').val(data.records[0].cus_phone);
+                        
+$('#txtcustomer_Editcus_phone').val(data.records[0].cus_phone);
 
-                $('#txtcustomer_Editcus_mobile').val(data.records[0].cus_mobile);
+                        
+$('#txtcustomer_Editcus_mobile').val(data.records[0].cus_mobile);
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -237,9 +242,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         cus_group_id.val(data.records[0].cus_group_id  ) .trigger('change');
 
 
-                $('#txtcustomer_Editcus_descr').val(data.records[0].cus_descr);
+                        
+$('#txtcustomer_Editcus_descr').val(data.records[0].cus_descr);
 
-                
+                        
 $('#txtcustomer_Editcus_remainBefore').val(ShowAsMoney( data.records[0].cus_remainBefore));
 
 }

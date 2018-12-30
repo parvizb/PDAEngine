@@ -211,13 +211,13 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                
+                                        
 $('#txtgetment_Editget_amount').val(ShowAsMoney( data.records[0].get_amount));
 
-                
+                        
 $('#txtgetment_Editget_discount').val(ShowAsMoney( data.records[0].get_discount));
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -227,7 +227,7 @@ $('#txtgetment_Editget_discount').val(ShowAsMoney( data.records[0].get_discount)
         cus_acc_id.val(data.records[0].cus_acc_id  ) .trigger('change');
 
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -237,9 +237,11 @@ $('#txtgetment_Editget_discount').val(ShowAsMoney( data.records[0].get_discount)
         acc_id.val(data.records[0].acc_id  ) .trigger('change');
 
 
-                $('#txtgetment_Editget_date').val(data.records[0].get_date);
+                        
+$('#txtgetment_Editget_date').val(data.records[0].get_date);
 
-                $('#txtgetment_Editdescr').val(data.records[0].descr);
+                        
+$('#txtgetment_Editdescr').val(data.records[0].descr);
 
         }
 else

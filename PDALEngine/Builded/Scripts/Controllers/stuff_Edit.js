@@ -266,7 +266,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                
+                                        
         
 
         var o=document.createElement('option');
@@ -276,7 +276,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         id_factory.val(data.records[0].id_factory  ) .trigger('change');
 
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -286,9 +286,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         id_product.val(data.records[0].id_product  ) .trigger('change');
 
 
-                $('#txtstuff_Editstuff_name').val(data.records[0].stuff_name);
+                        
+$('#txtstuff_Editstuff_name').val(data.records[0].stuff_name);
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -298,7 +299,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         unit_id.val(data.records[0].unit_id  ) .trigger('change');
 
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -308,14 +309,17 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         unitbox_id.val(data.records[0].unitbox_id  ) .trigger('change');
 
 
-                $('#txtstuff_Editboxcount').val(data.records[0].boxcount);
+                        
+$('#txtstuff_Editboxcount').val(data.records[0].boxcount);
 
-                
+                        
 $('#txtstuff_Editprice').val(ShowAsMoney( data.records[0].price));
 
-                $('#txtstuff_Editdescr').val(data.records[0].descr);
+                        
+$('#txtstuff_Editdescr').val(data.records[0].descr);
 
-                $('#txtstuff_EditincludeaddingBill').val(data.records[0].includeaddingBill);
+                        
+$('#txtstuff_EditincludeaddingBill').val(data.records[0].includeaddingBill);
 
         }
 else

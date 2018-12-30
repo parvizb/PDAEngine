@@ -879,6 +879,10 @@ public class PageParameter : ILiquidizable
     public string Height;
     public string DBSelect2CommandDriectValue;
     public string DBSelect2CommandDriectValueParameterName;
+    public string AjaxActionReturnValuesName;
+    public string AjaxActionReturnValuesParameterSyntax;
+    public string AjaxActionReturnValuesValueColumn;
+    public string AjaxActionReturnValuesTitleColumn;
     public string PlaceHolder;
     public List<DBSelectCommandParameter> DBSelectCommandParameters = new List<DBSelectCommandParameter>();
     public List<option> options = new List<option>();
@@ -900,6 +904,11 @@ public class PageParameter : ILiquidizable
         this.name = node.Attr("name");
         this.ShowCond = node.Attr("ShowCond");
         this.type = node.Attr("type");
+        this.AjaxActionReturnValuesName = node.Attr("AjaxActionReturnValuesName");
+        this.AjaxActionReturnValuesParameterSyntax = node.Attr("AjaxActionReturnValuesParameterSyntax");
+        this.AjaxActionReturnValuesTitleColumn = node.Attr("AjaxActionReturnValuesTitleColumn");
+        this.AjaxActionReturnValuesValueColumn = node.Attr("AjaxActionReturnValuesValueColumn");
+
         this.source = node.Attr("source");
         this.Disabled = node.Attr("Disabled");
         this.DBSelect2CommandDriectValue = node.Attr("DBSelect2CommandDriectValue");
@@ -979,7 +988,7 @@ public class PageParameter : ILiquidizable
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { SaveFileNameExpr = this.SaveFileNameExpr, DBSelect2CommandDriectValueParameterName = this.DBSelect2CommandDriectValueParameterName, DBSelect2CommandDriectValue = this.DBSelect2CommandDriectValue, ChangeBevParameter = this.ChangeBevParameter, Buttons = this.Buttons, ShowCond = this.ShowCond, ChangeBev = this.ChangeBev, PlaceHolder = this.PlaceHolder, Width = this.Width, Height = this.Height, LinkSyntax = this.LinkSyntax, FileAllows = this.FileAllows, FilePathAtServer = this.FilePathAtServer, MaxFileSize = this.MaxFileSize, Disabled = this.Disabled, dontSendToDb = this.dontSendToDb, options = this.options, TitleParameter = this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
+        return Hash.FromAnonymousObject(new {AjaxActionReturnValuesName=this.AjaxActionReturnValuesName,AjaxActionReturnValuesParameterSyntax=this.AjaxActionReturnValuesParameterSyntax,AjaxActionReturnValuesTitleColumn=this.AjaxActionReturnValuesTitleColumn,AjaxActionReturnValuesValueColumn=this.AjaxActionReturnValuesValueColumn ,SaveFileNameExpr = this.SaveFileNameExpr, DBSelect2CommandDriectValueParameterName = this.DBSelect2CommandDriectValueParameterName, DBSelect2CommandDriectValue = this.DBSelect2CommandDriectValue, ChangeBevParameter = this.ChangeBevParameter, Buttons = this.Buttons, ShowCond = this.ShowCond, ChangeBev = this.ChangeBev, PlaceHolder = this.PlaceHolder, Width = this.Width, Height = this.Height, LinkSyntax = this.LinkSyntax, FileAllows = this.FileAllows, FilePathAtServer = this.FilePathAtServer, MaxFileSize = this.MaxFileSize, Disabled = this.Disabled, dontSendToDb = this.dontSendToDb, options = this.options, TitleParameter = this.TitleParameter, title = this.title, name = this.name, type = this.type, source = this.source, DefaultValueSource = this.DefaultValueSource, DefaultValueParameter = this.DefaultValueParameter, sorurceParameter = this.sorurceParameter, startValueType = this.startValueType, Parameter = this.Parameter, DBSelect2Command = this.DBSelect2Command, codeColumn = this.codeColumn, textColumn = this.textColumn, ParameterChecks = this.ParameterChecks, DBSelectCommandParameters = this.DBSelectCommandParameters });
 
     }
 

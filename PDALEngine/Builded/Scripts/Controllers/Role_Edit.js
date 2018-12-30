@@ -182,9 +182,11 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtRole_EditRoleName').val(data.records[0].RoleName);
+                                        
+$('#txtRole_EditRoleName').val(data.records[0].RoleName);
 
-                $('#txtRole_EditRoleDescr').val(data.records[0].RoleDescr);
+                        
+$('#txtRole_EditRoleDescr').val(data.records[0].RoleDescr);
 
 }
 else

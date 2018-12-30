@@ -215,9 +215,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtServiceFactor_EditGetOrProdive').val(data.records[0].GetOrProdive);
+                                        
+$('#txtServiceFactor_EditGetOrProdive').val(data.records[0].GetOrProdive);
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -227,7 +228,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         CusAccId.val(data.records[0].CusAccId  ) .trigger('change');
 
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -237,17 +238,20 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         ServiceId.val(data.records[0].ServiceId  ) .trigger('change');
 
 
-                
+                        
 $('#txtServiceFactor_EditCost').val(ShowAsMoney( data.records[0].Cost));
 
-                
+                        
 $('#txtServiceFactor_EditAdding').val(ShowAsMoney( data.records[0].Adding));
 
-                $('#txtServiceFactor_EditFactorNumber').val(data.records[0].FactorNumber);
+                        
+$('#txtServiceFactor_EditFactorNumber').val(data.records[0].FactorNumber);
 
-                $('#txtServiceFactor_EditServiceDate').val(data.records[0].ServiceDate);
+                        
+$('#txtServiceFactor_EditServiceDate').val(data.records[0].ServiceDate);
 
-                $('#txtServiceFactor_EditDescr').val(data.records[0].Descr);
+                        
+$('#txtServiceFactor_EditDescr').val(data.records[0].Descr);
 
 }
 else

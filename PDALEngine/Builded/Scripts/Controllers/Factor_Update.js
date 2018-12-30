@@ -231,9 +231,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtFactor_UpdateFactoryNumber').val(data.records[0].FactoryNumber);
+                                        
+$('#txtFactor_UpdateFactoryNumber').val(data.records[0].FactoryNumber);
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -243,7 +244,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         CusAccId.val(data.records[0].CusAccId  ) .trigger('change');
 
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -253,15 +254,19 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         id_stroage.val(data.records[0].id_stroage  ) .trigger('change');
 
 
-                $('#txtFactor_UpdateFactoryDate').val(data.records[0].FactoryDate);
+                        
+$('#txtFactor_UpdateFactoryDate').val(data.records[0].FactoryDate);
 
-                $('#txtFactor_UpdateFactoryGetDate').val(data.records[0].FactoryGetDate);
+                        
+$('#txtFactor_UpdateFactoryGetDate').val(data.records[0].FactoryGetDate);
 
-                $('#txtFactor_UpdateFactoryType').val(data.records[0].FactoryType);
+                        
+$('#txtFactor_UpdateFactoryType').val(data.records[0].FactoryType);
 
-                $('#txtFactor_UpdateDescr').val(data.records[0].Descr);
+                        
+$('#txtFactor_UpdateDescr').val(data.records[0].Descr);
 
-                                
+                                        
 $('#txtFactor_UpdatetotalMoveCost').val(ShowAsMoney( data.records[0].totalMoveCost));
 
                 }

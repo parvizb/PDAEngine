@@ -208,7 +208,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                
+                                        
         
 
         var o=document.createElement('option');
@@ -218,7 +218,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         sourceMoveId.val(data.records[0].sourceMoveId  ) .trigger('change');
 
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -228,13 +228,17 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         DestMoveId.val(data.records[0].DestMoveId  ) .trigger('change');
 
 
-                $('#txtmoveStorage_EditmoveDate').val(data.records[0].moveDate);
+                        
+$('#txtmoveStorage_EditmoveDate').val(data.records[0].moveDate);
 
-                $('#txtmoveStorage_EditinNumber').val(data.records[0].inNumber);
+                        
+$('#txtmoveStorage_EditinNumber').val(data.records[0].inNumber);
 
-                $('#txtmoveStorage_EditoutNumber').val(data.records[0].outNumber);
+                        
+$('#txtmoveStorage_EditoutNumber').val(data.records[0].outNumber);
 
-                $('#txtmoveStorage_Editdescr').val(data.records[0].descr);
+                        
+$('#txtmoveStorage_Editdescr').val(data.records[0].descr);
 
 }
 else

@@ -248,15 +248,19 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtBankCheck_EditSerailCheck').val(data.records[0].SerailCheck);
+                                        
+$('#txtBankCheck_EditSerailCheck').val(data.records[0].SerailCheck);
 
-                $('#txtBankCheck_EditCheckType').val(data.records[0].CheckType);
+                        
+$('#txtBankCheck_EditCheckType').val(data.records[0].CheckType);
 
-                $('#txtBankCheck_EditBankPayDate').val(data.records[0].BankPayDate);
+                        
+$('#txtBankCheck_EditBankPayDate').val(data.records[0].BankPayDate);
 
-                $('#txtBankCheck_EditBankGetmentDate').val(data.records[0].BankGetmentDate);
+                        
+$('#txtBankCheck_EditBankGetmentDate').val(data.records[0].BankGetmentDate);
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -266,10 +270,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         BackAccID.val(data.records[0].BackAccID  ) .trigger('change');
 
 
-                
+                        
 $('#txtBankCheck_Editamount').val(ShowAsMoney( data.records[0].amount));
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -279,15 +283,20 @@ $('#txtBankCheck_Editamount').val(ShowAsMoney( data.records[0].amount));
         CusAccId.val(data.records[0].CusAccId  ) .trigger('change');
 
 
-                $('#txtBankCheck_EditDescr').val(data.records[0].Descr);
+                        
+$('#txtBankCheck_EditDescr').val(data.records[0].Descr);
 
-                $('#txtBankCheck_EditbankName').val(data.records[0].bankName);
+                        
+$('#txtBankCheck_EditbankName').val(data.records[0].bankName);
 
-                $('#txtBankCheck_EditbankBranch').val(data.records[0].bankBranch);
+                        
+$('#txtBankCheck_EditbankBranch').val(data.records[0].bankBranch);
 
-                $('#txtBankCheck_EditbankAccNo').val(data.records[0].bankAccNo);
+                        
+$('#txtBankCheck_EditbankAccNo').val(data.records[0].bankAccNo);
 
-                $('#txtBankCheck_EditoldCheck').val(data.records[0].oldCheck);
+                        
+$('#txtBankCheck_EditoldCheck').val(data.records[0].oldCheck);
 
 }
 else

@@ -2274,6 +2274,7 @@ namespace PDALEngine
         }
         public class TableInfo
         {
+          
             public string[] ColumnNames;
             public string[,] Values;
             public string Message;

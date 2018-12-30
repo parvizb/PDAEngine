@@ -205,9 +205,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtMoveAcc_EditmoveDate').val(data.records[0].moveDate);
+                                        
+$('#txtMoveAcc_EditmoveDate').val(data.records[0].moveDate);
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -217,7 +218,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         sourceAcc.val(data.records[0].sourceAcc  ) .trigger('change');
 
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -227,12 +228,13 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         DestAcc.val(data.records[0].DestAcc  ) .trigger('change');
 
 
-                
+                        
 $('#txtMoveAcc_Editamount').val(ShowAsMoney( data.records[0].amount));
 
-                $('#txtMoveAcc_EditDescr').val(data.records[0].Descr);
+                        
+$('#txtMoveAcc_EditDescr').val(data.records[0].Descr);
 
-                
+                        
 $('#txtMoveAcc_EditmoveCost').val(ShowAsMoney( data.records[0].moveCost));
 
 }

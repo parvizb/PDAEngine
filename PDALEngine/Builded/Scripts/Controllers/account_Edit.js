@@ -206,18 +206,23 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtaccount_Editacc_name').val(data.records[0].acc_name);
+                                        
+$('#txtaccount_Editacc_name').val(data.records[0].acc_name);
 
-                $('#txtaccount_Editacc_position').val(data.records[0].acc_position);
+                        
+$('#txtaccount_Editacc_position').val(data.records[0].acc_position);
 
-                
+                        
 $('#txtaccount_Editacc_startValue').val(ShowAsMoney( data.records[0].acc_startValue));
 
-                $('#txtaccount_Editacc_descr').val(data.records[0].acc_descr);
+                        
+$('#txtaccount_Editacc_descr').val(data.records[0].acc_descr);
 
-                $('#txtaccount_Editacc_code').val(data.records[0].acc_code);
+                        
+$('#txtaccount_Editacc_code').val(data.records[0].acc_code);
 
-                $('#txtaccount_Editacc_brch').val(data.records[0].acc_brch);
+                        
+$('#txtaccount_Editacc_brch').val(data.records[0].acc_brch);
 
 }
 else

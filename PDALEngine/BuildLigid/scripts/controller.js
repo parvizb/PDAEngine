@@ -396,6 +396,9 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
      
         {% for para in  Page.PageParameters -%}
         {% if (para.startValueType == 'DbValueCommand') -%}
+        {% if para.AjaxActionReturnValuesName != '' %}
+        AjaxActions.{{para.AjaxActionReturnValuesName}}_asTable(function(rec){Select2AjaxMultValuesSet('txt{{Page.name}}{{para.Name}}',rec,'{{para.AjaxActionReturnValuesValueColumn}}','{{para.AjaxActionReturnValuesTitleColumn}}') },{{para.AjaxActionReturnValuesParameterSyntax}})
+        {% endif -%}
         {% if para.type == 'Select2Ajax' %}
         {% if para.DBSelect2CommandDriectValue == '' %}
 
@@ -417,7 +420,9 @@ $('#txt{{Page.name}}{{para.Name}}').attr( 'href', $('#txt{{Page.name}}{{para.Nam
 {%elseif para.type == 'Html' %} 
 setTimeout(function(){ tinymce.editors['txt{{Page.name}}{{para.Name}}'].setContent(data.records[0].{{para.Parameter}});},500);
 {%elseif para.type == 'Select2' %}
+{% if para.AjaxActionReturnValuesName == '' %}
 $('#txt{{Page.name}}{{para.Name}}').select2().val(data.records[0].{{para.Parameter}}  ) .trigger('change');
+{% endif -%}
 {%elseif para.type == 'Money' %}
 $('#txt{{Page.name}}{{para.Name}}').val(ShowAsMoney( data.records[0].{{para.Parameter}}));
 {%elseif para.type == 'FileInput' %}
@@ -433,7 +438,9 @@ if( data.records[0].{{para.Parameter}}=='True')
 }
 
 {% else -%}
+{% if para.AjaxActionReturnValuesName == '' %}
 $('#txt{{Page.name}}{{para.Name}}').val(data.records[0].{{para.Parameter}});
+{% endif -%}
 {% endif -%}          
 {% endif -%}
 {% endfor -%}

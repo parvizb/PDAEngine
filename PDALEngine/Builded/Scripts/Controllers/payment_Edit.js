@@ -210,10 +210,10 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                
+                                        
 $('#txtpayment_Editpayment_amount').val(ShowAsMoney( data.records[0].payment_amount));
 
-                
+                        
         
 
         var o=document.createElement('option');
@@ -223,14 +223,16 @@ $('#txtpayment_Editpayment_amount').val(ShowAsMoney( data.records[0].payment_amo
         cus_id.val(data.records[0].cus_id  ) .trigger('change');
 
 
-                
+                        
 $('#txtpayment_Editdis_amount').val(ShowAsMoney( data.records[0].dis_amount));
 
-                $('#txtpayment_Editpayment_Date').val(data.records[0].payment_Date);
-
-                $('#txtpayment_Editdescr').val(data.records[0].descr);
+                        
+$('#txtpayment_Editpayment_Date').val(data.records[0].payment_Date);
 
                         
+$('#txtpayment_Editdescr').val(data.records[0].descr);
+
+                                
         
 
         var o=document.createElement('option');

@@ -208,6 +208,46 @@ return;
 
 }
 window.targetElement=null;
+Factor_Serach.InitStartValues=function(){
+    var Entity=new Object();
+    Entity.PageName='Factor_Serach';
+    Entity.Parameters=new Array();
+       
+TableViewAjax('getStartValueFromServer',Entity,function(data){
+    if( data.records.length!=0)
+    {
+     
+                                                
+        
+
+        var o=document.createElement('option');
+        o.value=data.records[0].cus_acc_id;
+        o.innerHTML= data.records[0].cus_acc_id_title ;
+        CusAccId.append(o);
+        CusAccId.val(data.records[0].cus_acc_id  ) .trigger('change');
+
+
+                                
+        AjaxActions.Product_Serach_asTable(function(rec){Select2AjaxMultValuesSet('txtFactor_SerachFactoryType',rec,'value','title') },'')
+                
+                                }
+else
+{
+    Validator.ClearErrors ();
+    Messager.ShowMessage('خطا', 'رکورد مورد نظر یافت نشد');
+    BackPage();
+}
+                
+currentScope.$apply();
+return;
+          
+},function(data)
+{
+    return;
+
+});
+
+}
 
 
 

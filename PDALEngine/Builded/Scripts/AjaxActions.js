@@ -1,4 +1,90 @@
 ﻿var AjaxActions = new Object();
+AjaxActions.Product_Serach =function(   Q)
+{ 
+    var Entity=new Object();
+    Entity.actionName='Product_Serach';
+    Entity.Parameters=new Array();
+    if(JsEventInterface.BeforeInitAjaxAction!=null)
+    {
+        JsEventInterface.BeforeInitAjaxAction(Entity);
+
+    }
+      Entity.Parameters.push( toInput('Q' ,Q));
+      if(JsEventInterface.AfterInitAjaxAction!=null)
+   {
+       JsEventInterface.AfterInitAjaxAction(Entity);
+
+   }
+   ScallerAjax('AjaxAction',Entity,function(data){
+       if(JsEventInterface.BeforeOkReqInitAjaxAction!=null)
+       {
+           JsEventInterface.BeforeOkReqInitAjaxAction(Entity,data);
+
+       }
+       Messager.ShowMessage('اطلاعات', data.Message);
+       if(window.CurrentSerachMethod!=null)
+       {
+           window.CurrentSerachMethod();
+       }
+       if(JsEventInterface.AfterOkReqInitAjaxAction!=null)
+       {
+           JsEventInterface.AfterOkReqInitAjaxAction(Entity,data);
+
+       }
+       return;
+          
+   },function(data) 
+   {
+       if(JsEventInterface.BeforeFailReqInitAjaxAction!=null)
+       {
+           JsEventInterface.BeforeFailReqInitAjaxAction(Entity,data);
+
+       }
+      
+       Messager.ShowMessage('خطا', data);
+       return;
+
+   });
+   
+}
+AjaxActions.Product_Serach_asTable =function(func,   Q)
+{ 
+    var Entity=new Object();
+    Entity.actionName='Product_Serach';
+    Entity.Parameters=new Array();
+    if(JsEventInterface.BeforeInitAjaxAction!=null)
+    {
+        JsEventInterface.BeforeInitAjaxAction(Entity);
+
+    }
+        Entity.Parameters.push( toInput('Q' ,Q));
+        if(JsEventInterface.AfterInitAjaxAction!=null)
+    {
+        JsEventInterface.AfterInitAjaxAction(Entity);
+
+    }
+    TableViewAjax('AjaxActionTable',Entity,function(data){
+        if(JsEventInterface.BeforeOkReqInitAjaxAction!=null)
+        {
+            JsEventInterface.BeforeOkReqInitAjaxAction(Entity,data);
+
+        }
+        func(data.records);
+        return;
+          
+    },function(data) 
+    {
+        if(JsEventInterface.BeforeFailReqInitAjaxAction!=null)
+        {
+            JsEventInterface.BeforeFailReqInitAjaxAction(Entity,data);
+
+        }
+        return;
+
+    });
+   
+}
+
 AjaxActions.Role_Delete =function(   RoleId)
 { 
     var Entity=new Object();

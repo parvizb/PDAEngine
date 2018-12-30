@@ -195,13 +195,17 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtUser_EditFname').val(data.records[0].Fname);
+                                        
+$('#txtUser_EditFname').val(data.records[0].Fname);
 
-                $('#txtUser_EditLname').val(data.records[0].Lname);
+                        
+$('#txtUser_EditLname').val(data.records[0].Lname);
 
-                $('#txtUser_Editaddress').val(data.records[0].address);
+                        
+$('#txtUser_Editaddress').val(data.records[0].address);
 
-                $('#txtUser_Editphone').val(data.records[0].phone);
+                        
+$('#txtUser_Editphone').val(data.records[0].phone);
 
 }
 else

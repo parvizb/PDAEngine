@@ -1539,6 +1539,25 @@
                             <xs:documentation>نام نحو نام گذاری چگونه باشد</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
+                        <xs:attribute name="AjaxActionReturnValuesName" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نام تابعی جهت خواندن مقادیر و نمایش در شروع صفحه بکار می روند برای Select2Ajax چقدر مقداری</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="AjaxActionReturnValuesParameterSyntax" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نحوه صدا زدن تابع</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="AjaxActionReturnValuesValueColumn" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>عنوان ستون مقدار</xs:documentation>
+                        </xs:attribute>
+                        <xs:attribute name="AjaxActionReturnValuesTitleColumn" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>عنوان ستون نمایشی</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="DBSelect2Command" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>نام روالی برای کادر های جست و جو ajax بکار گرفته می شود</xs:documentation>
