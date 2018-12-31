@@ -1552,6 +1552,7 @@
                         <xs:attribute name="AjaxActionReturnValuesValueColumn" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>عنوان ستون مقدار</xs:documentation>
+                          </xs:annotation>
                         </xs:attribute>
                         <xs:attribute name="AjaxActionReturnValuesTitleColumn" type="xs:string" use="optional">
                           <xs:annotation>

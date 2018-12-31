@@ -397,7 +397,11 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         {% for para in  Page.PageParameters -%}
         {% if (para.startValueType == 'DbValueCommand') -%}
         {% if para.AjaxActionReturnValuesName != '' %}
+        {% if para.type == 'Select2AjaxMulti' %}
         AjaxActions.{{para.AjaxActionReturnValuesName}}_asTable(function(rec){Select2AjaxMultValuesSet('txt{{Page.name}}{{para.Name}}',rec,'{{para.AjaxActionReturnValuesValueColumn}}','{{para.AjaxActionReturnValuesTitleColumn}}') },{{para.AjaxActionReturnValuesParameterSyntax}})
+        {% endif -%}
+        {% if para.type == 'Select2Multi' %}
+        AjaxActions.{{para.AjaxActionReturnValuesName}}_asTable(function(rec){Select2AjaxMultValuesSetStatic('txt{{Page.name}}{{para.Name}}',rec,'{{para.AjaxActionReturnValuesValueColumn}}') },{{para.AjaxActionReturnValuesParameterSyntax}})
         {% endif -%}
         {% if para.type == 'Select2Ajax' %}
         {% if para.DBSelect2CommandDriectValue == '' %}
@@ -757,9 +761,7 @@ ScallerAjax('BatchCommand',Enity,function(data){
         {% if Page.SubmitBev == 'Back' -%}
         BackPage();
         {% endif  -%}
-        {% if Page.SubmitBev == '' -%}
-        BackPage();
-        {% endif  -%}
+      
         {% if Page.SubmitBev == 'GoToStaticPageWithoutReturnValue' -%}
         goToLink('#/{{Page.SubmitBevParameter}}');
         {% endif  -%}
