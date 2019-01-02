@@ -1588,6 +1588,12 @@ namespace PDALEngine
         }
         public static SqlConnection GetConnection()
         {
+            if (PDAL.loaded == false)
+            {
+                PDAL.load();
+
+
+            }
             SqlConnection Con = new SqlConnection(PDAL.App.ConnectionSetthing);
             Con.Open();
 

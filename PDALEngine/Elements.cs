@@ -1141,7 +1141,7 @@ public class NewRecordColumnValue : ILiquidizable
 public class Note : ILiquidizable
 {
     public string Text;
-
+    public string FileName;
     public void ParseEle(XmlNode node)
     {
         string ExtendedFrom = node.Attr("ExtendedFrom");
@@ -1151,12 +1151,12 @@ public class Note : ILiquidizable
             PDAL.NodeMerge(X, node);
         }
         this.Text = node.Attr("Text");
-  
+        this.FileName = node.Attr("FileName");
 
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { Text = this.Text  });
+        return Hash.FromAnonymousObject(new {FileName=this.FileName ,Text = this.Text  });
 
     }
 

@@ -403,6 +403,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
         {% if para.type == 'Select2Multi' %}
         AjaxActions.{{para.AjaxActionReturnValuesName}}_asTable(function(rec){Select2AjaxMultValuesSetStatic('txt{{Page.name}}{{para.Name}}',rec,'{{para.AjaxActionReturnValuesValueColumn}}') },{{para.AjaxActionReturnValuesParameterSyntax}})
         {% endif -%}
+        {% endif -%}
         {% if para.type == 'Select2Ajax' %}
         {% if para.DBSelect2CommandDriectValue == '' %}
 

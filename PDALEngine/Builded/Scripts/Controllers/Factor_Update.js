@@ -602,8 +602,8 @@ ScallerAjax('BatchCommand',Enity,function(data){
 
 
 
-                                BackPage();
-                 
+                      
+         
          
      
                         BackPage();

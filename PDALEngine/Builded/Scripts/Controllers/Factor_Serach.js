@@ -228,8 +228,7 @@ TableViewAjax('getStartValueFromServer',Entity,function(data){
 
 
                                 
-        AjaxActions.Product_Serach_asTable(function(rec){Select2AjaxMultValuesSet('txtFactor_SerachFactoryType',rec,'value','title') },'')
-                
+                                
                                 }
 else
 {

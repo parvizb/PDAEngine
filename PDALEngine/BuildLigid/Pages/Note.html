@@ -1,3 +1,8 @@
 ﻿  {% for No in  Page.Notes -%}
+  {% if No.FileName == '' %}
   {{No.Text}} <br/>
+  {% endif -%}
+  {% if No.FileName != '' %}
+    <div ng-include="'{{No.FileName}}}'"></div>
+  {% endif -%}
   {% endfor -%}
