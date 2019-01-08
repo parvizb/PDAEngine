@@ -1261,6 +1261,26 @@
                             <xs:documentation>ستون عملیات مخفی شود</xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
+                        <xs:attribute name="PoivtTable" type="YesNo" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>جدول به صورت محوری ایجاد شود با ستون ها و رکورد های متغیر</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="PoivtRowColumn" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نام ستونی در جدول محور به عنوان ردیف استفاده شود</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="PoivtColumnName" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نام ستونی در جدول محور به عنوان ستون استفاده شود</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="PoivtValueName" type="xs:string" use="optional">
+                          <xs:annotation>
+                            <xs:documentation>نام ستونی در جدول محور به عنوان مقدار استفاده شود</xs:documentation>
+                          </xs:annotation>
+                        </xs:attribute>
                         <xs:attribute name="AutoSelectCond" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>شرط مورد نیاز برای انتخاب در شروع بارگذاری به صورت خودکار</xs:documentation>

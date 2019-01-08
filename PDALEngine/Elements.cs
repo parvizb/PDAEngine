@@ -1525,6 +1525,10 @@ public class table : ILiquidizable
     public string Insertable = "";
     public string AutoSelectCond = "";
     public string DailogSelectable = "";
+    public string PoivtTable = "";
+    public string PoivtRowColumn = "";
+    public string PoivtColumnName = "";
+    public string PoivtValueName = "";
     public List<column> columns = new List<column>();
     public List<DisplayExpr> DisplayExprs = new List<DisplayExpr>();
     public List<NewRecordColumnValue> NewRecordColumnValues = new List<NewRecordColumnValue>();
@@ -1543,6 +1547,11 @@ public class table : ILiquidizable
         Selectable = node.Attr("Selectable");
         Insertable = node.Attr("Insertable");
         AutoSelectCond = node.Attr("AutoSelectCond");
+        PoivtColumnName = node.Attr("PoivtColumnName");
+        PoivtRowColumn = node.Attr("PoivtRowColumn");
+        PoivtTable = node.Attr("PoivtTable");
+        PoivtValueName = node.Attr("PoivtValueName");
+
         DailogSelectable = node.Attr("DailogSelectable");
         for (int i = 0; i < node.ChildNodes.Count; i++)
         {
@@ -1552,13 +1561,13 @@ public class table : ILiquidizable
                 Temp.ParseEle(node.ChildNodes[i]);
                 columns.Add(Temp);
             }
-               if (node.ChildNodes[i].Name == "DisplayExpr")
+            if (node.ChildNodes[i].Name == "DisplayExpr")
             {
                 DisplayExpr Temp = new DisplayExpr();
                 Temp.ParseEle(node.ChildNodes[i]);
                 DisplayExprs.Add(Temp);
             }
-          
+
             if (node.ChildNodes[i].Name == "NewRecordColumnValue")
             {
                 NewRecordColumnValue Temp = new NewRecordColumnValue();
@@ -1584,7 +1593,7 @@ public class table : ILiquidizable
     }
     public object ToLiquid()
     {
-        return Hash.FromAnonymousObject(new { DailogSelectable = this.DailogSelectable, DisplayExprs = this.DisplayExprs, AutoSelectCond = this.AutoSelectCond, Insertable = this.Insertable, NewRecordColumnValues = this.NewRecordColumnValues, Selectable = this.Selectable, RowNumberColumn = this.RowNumberColumn, HideActionColumnn = this.HideActionColumnn, BasicFilter = this.BasicFilter, Sortable = this.Sortable, columns = this.columns });
+        return Hash.FromAnonymousObject(new { PoivtTable = this.PoivtTable, PoivtRowColumn = this.PoivtRowColumn, PoivtColumnName = this.PoivtColumnName, PoivtValueName = this.PoivtValueName, DailogSelectable = this.DailogSelectable, DisplayExprs = this.DisplayExprs, AutoSelectCond = this.AutoSelectCond, Insertable = this.Insertable, NewRecordColumnValues = this.NewRecordColumnValues, Selectable = this.Selectable, RowNumberColumn = this.RowNumberColumn, HideActionColumnn = this.HideActionColumnn, BasicFilter = this.BasicFilter, Sortable = this.Sortable, columns = this.columns });
 
     }
 

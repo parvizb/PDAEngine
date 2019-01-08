@@ -31,6 +31,14 @@
     عملیات
 </th>
      {% endif -%}{% endfor -%}
+         {% for tab in  Page.tables -%}
+    {% if tab.PoivtTable =='Yes' -%}
+     
+    <th ng-repeat="col in  {{Page.name}}PoivtData.columns"   {% if tab.Sortable == 'Yes' -%}  class="Pointer"  ng-click="ChageTableOrder('col' + $index)"  {% endif -%} > {% if tab.Sortable == 'Yes' -%}<span ng-show="((currentOrder=='col' + $index) && (rev) )">V</span> <span ng-show="((currentOrder=='col' + $index) && (!rev) )">^</span>{% endif -%}   {% raw %}{{col}}{% endraw -%}</th>  
+
+     {% endif -%}
+  
+{% endfor -%}
  </tr>
    </thead>
      <tr ng-init="record.viewIndex=$index" {% for table in Page.tables -%} {% if table.DailogSelectable == 'Yes' -%} ng-click="SelectRow(record);" ng-dblclick="SelectNow(record);" style="cursor:pointer" {% endif -%} {% endfor -%} ng-repeat="record in {{Page.name}}records | orderBy:currentOrder :rev {% for table in Page.tables -%}  {% if table.BasicFilter == 'Yes' -%} | filter:FilterValue {% endif -%} {% endfor -%}" >
@@ -77,39 +85,39 @@
  <td data-label='{{col.title}}'><input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"  ng-model="record.{{col.name}}"  /></td> 
 {% endif -%}
 {% if (col.type == 'InputTextArea') -%}
- <td data-label='{{col.title}}'><textarea class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"  ng-model="record.{{col.name}}"  /></td> 
+ <td data-label='{{col.title}}'><textarea class="form-control" type="text" id="Textarea1" value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"  ng-model="record.{{col.name}}"  /></td> 
 {% endif -%}
  {% if (col.type == 'InputInteger') -%}
- <td data-label='{{col.title}}'><input class="form-control" type="text"  id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}" onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"    value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"  /></td> 
+ <td data-label='{{col.title}}'><input class="form-control" type="text"  id="Text1" onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"    value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"  /></td> 
 {% endif -%}
 {% if (col.type == 'InputFloat') -%}
- <td data-label='{{col.title}}'><input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   ng-model="record.{{col.name}}"  /></td> 
+ <td data-label='{{col.title}}'><input class="form-control" type="text" id="Text2"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   ng-model="record.{{col.name}}"  /></td> 
 {% endif -%}
 {% if (col.type == 'InputMoney') -%}
- <td data-label='{{col.title}}'><input class="form-control" type="text" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   onkeyup="NumberInput(event,this)"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"  /></td> 
+ <td data-label='{{col.title}}'><input class="form-control" type="text" id="Text3"  moneyType="yes"  onkeypress="return blockNonIntNumber(event)" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   onkeyup="NumberInput(event,this)"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"  /></td> 
 {% endif -%}
 {% if (col.type == 'InputDate') -%}
  <td data-label='{{col.title}}'>
-      <input  type="text"  onkeypress="return blockNonDateNumber(event)" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"  created="False" onfocus="if($(this).attr('created')=='False') {% raw -%} { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'}{% endraw -%});  this.focus();  } " data-type="date"   onBlur="ReformatDate(this.id)"  class="form-control"   placeholder="yyyy/mm/dd" max-length="10"    value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"  ></input>
+      <input  type="text"  onkeypress="return blockNonDateNumber(event)" id="Text4" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"  created="False" onfocus="if($(this).attr('created')=='False') {% raw -%} { $(this).attr('created','True')  ; kamaDatepicker(this.id,{ buttonsColor: 'red' ,sync:'true',highlightSelectedDay:'true'}{% endraw -%});  this.focus();  } " data-type="date"   onBlur="ReformatDate(this.id)"  class="form-control"   placeholder="yyyy/mm/dd" max-length="10"    value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-model="record.{{col.name}}"  ></input>
  </td> 
 {% endif -%}
 
 {% if (col.type == 'InputCombo') -%}
- <td data-label='{{col.title}}'><select class="form-control" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   ng-model="record.{{col.name}}"  >
+ <td data-label='{{col.title}}'><select class="form-control" id="Select1"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   ng-model="record.{{col.name}}"  >
 {% for opt in col.options -%}
   <option value="{{opt.value}}">{{opt.text}}</option>
 {% endfor -%}
 </select></td> 
 {% endif -%}
 {% if (col.type == 'InputSelect2') -%}
- <td data-label='{{col.title}}'><select class="form-control" id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}" type="Select2" onfocus="$('#' + this.id ).select2({}).val(this.value).trigger('change');"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   ng-model="record.{{col.name}}"  >
+ <td data-label='{{col.title}}'><select class="form-control" id="Select2" type="Select2" onfocus="$('#' + this.id ).select2({}).val(this.value).trigger('change');"   value="{{'{{'}}record.{{col.name}}{{'}}}}" ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   ng-model="record.{{col.name}}"  >
 {% for opt in col.options -%}
   <option value="{{opt.value}}">{{opt.text}}</option>
 {% endfor -%}
 </select></td> 
 {% endif -%}
 {% if (col.type == 'InputSelect2Ajax') -%}
- <td data-label='{{col.title}}'><select class="form-control"   id="{{col.name}}_{% raw-%}{{record.rndId}}{% endraw -%}"  valc="{{'{{record.'}}{{col.name}}{% raw -%}}}{% endraw -%}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='{{Page.Name}}';DataPass.colname='{{col.name}}';DataPass.Parameters=new Array();{% for Sel2 in col.DBSelectCommandParameters -%}{% if (Sel2.source == 'term' ) -%}DataPass.Parameters.push(toInput('{{Sel2.name}}',term.term));{% endif -%}{% if (Sel2.source == 'Expr' ) -%}DataPass.Parameters.push(toInput('{{Sel2.name}}',{{Sel2.Parameter}}));{% endif -%}{% if (Sel2.source == 'QueryString' ) -%}DataPass.Parameters.push(toInput('{{Sel2.name}}',routeParams.{{Sel2.Parameter}}));{% endif -%}{% endfor -%}return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   ng-model="record.{{col.name}}"  >
+ <td data-label='{{col.title}}'><select class="form-control"   id="Select3"  valc="{{'{{record.'}}{{col.name}}{% raw -%}}}{% endraw -%}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='{{Page.Name}}';DataPass.colname='{{col.name}}';DataPass.Parameters=new Array();{% for Sel2 in col.DBSelectCommandParameters -%}{% if (Sel2.source == 'term' ) -%}DataPass.Parameters.push(toInput('{{Sel2.name}}',term.term));{% endif -%}{% if (Sel2.source == 'Expr' ) -%}DataPass.Parameters.push(toInput('{{Sel2.name}}',{{Sel2.Parameter}}));{% endif -%}{% if (Sel2.source == 'QueryString' ) -%}DataPass.Parameters.push(toInput('{{Sel2.name}}',routeParams.{{Sel2.Parameter}}));{% endif -%}{% endfor -%}return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);{% if col.AjaxActionChange != '' -%}AjaxActions.{{col.AjaxActionChange}}_asTable(MergeNow{% if col.ParameterSyntax != '' -%},{{col.ParameterSyntax}}{% endif -%});{% endif -%}{% if col.StaticJavaScriptAfterChange != '' -%}{{col.StaticJavaScriptAfterChange}};NormalResult();{% endif -%}"   ng-model="record.{{col.name}}"  >
  <option value="{{'{{record.'}}{{col.name}}{% raw -%}}}{% endraw -%}" selected="selected" >
      {{'{{record.'}}{{col.TitleParameter}}{% raw -%}}}{% endraw -%}
  </option>
@@ -145,6 +153,16 @@
 </div>
 </td>
 {% endif -%}{% endfor -%}
+
+                  {% for tab in  Page.tables -%}
+    {% if tab.PoivtTable =='Yes' -%}
+     
+    <td {% raw -%} data-label='{{col}}' {% endraw -%} ng-repeat="col in  {{Page.name}}PoivtData.columns"   > {% raw %}{{ShowMoney(record['col'+$index])}}{% endraw -%}</td>  
+
+     {% endif -%}
+  
+{% endfor -%}
+
      </tr>
 
  <tbody>

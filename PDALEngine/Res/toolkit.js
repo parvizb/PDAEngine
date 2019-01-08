@@ -875,4 +875,42 @@ function GenStyleForTableResponse() {
     }
  
 }
-  
+
+function PovitTableMake(datas, row, Column, value) {
+    var rows = new Array();
+    var columns = new Array();
+    var realData = new Array();
+    var sumValues = new Array();
+    for (var i = 0; i < datas.length; i++) {
+        var r = datas[i][row];
+        var rindex = rows.indexOf(r);
+        if (rindex == -1) {
+            rows.push(r);
+            var o = new Object();
+            o.title = r;
+            realData.push(o);
+            rindex = realData.length - 1;
+        }
+        var c = datas[i][Column];
+        var cindex = columns.indexOf(c);
+        if (cindex == -1) {
+            columns.push(c);
+            sumValues.push(0);
+            cindex = columns.length - 1;
+        }
+        realData[rindex]['col' + cindex] = (realData[rindex]['col' + cindex] === undefined ? parseFloat(datas[i][value]) : realData[rindex]['col' + cindex] + datas[i][value]);
+        sumValues[cindex] += parseFloat(datas[i][value]);
+
+    }
+    var sumO = new Object();
+    sumO.title = 'جمع';
+    for (var k = 0; k < columns.length; k++) {
+        sumO['col' + k] = sumValues[k];
+
+    }
+    realData.push(sumO);
+    var returnObject = new Object();
+    returnObject.columns = columns;
+    returnObject.RealDatas = realData;
+    return returnObject;
+}

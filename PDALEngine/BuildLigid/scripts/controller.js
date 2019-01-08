@@ -288,12 +288,25 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
     currentScope.{{Page.name}}records= data.records;
-    
+    {% for tab in  Page.tables -%}
+    {% if tab.PoivtTable =='Yes' -%}
+    currentScope.{{Page.name}}PoivtData = PovitTableMake( currentScope.{{Page.name}}records,'{{tab.PoivtRowColumn}}','{{tab.PoivtColumnName}}','{{tab.PoivtValueName}}');
+currentScope.{{Page.name}}records=  currentScope.{{Page.name}}PoivtData.RealDatas ;
+{% endif -%}
+  
+{% endfor -%}
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
         dlgScope.{{Page.name}}records= data.records;
+        {% for tab in  Page.tables -%}
+        {% if tab.PoivtTable =='Yes' -%}
+        dlgScope.{{Page.name}}PoivtData = PovitTableMake( dlgScope.{{Page.name}}records,'{{tab.PoivtRowColumn}}','{{tab.PoivtColumnName}}','{{tab.PoivtValueName}}');
+dlgScope.{{Page.name}}records=  dlgScope.{{Page.name}}PoivtData.RealDatas ;
+{% endif -%}
+  
+{% endfor -%}
         dlgScope.$apply(function(){});
 
     }
