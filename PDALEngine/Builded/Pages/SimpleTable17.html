@@ -7,9 +7,7 @@
     <div   class="col-sm-4">
    
       
-                                                                                                      <select class="form-control" id="txtSimpleTable17PerId" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input ></select>
+                                                                                                      <select class="form-control" id="txtSimpleTable17PerId" ></select>
                       
     </div>
     <label  for="DateSave" class="col-sm-2 control-label">           تاریخ ثبت
@@ -17,9 +15,7 @@ Parameter name: input ></select>
     <div   class="col-sm-4">
    
       
-                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input onBlur="ReformatDate('txtSimpleTable17DateSave')"  class="form-control" id="txtSimpleTable17DateSave" placeholder="yyyy/mm/dd" max-length="10" ></input>
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtSimpleTable17DateSave')"  class="form-control" id="txtSimpleTable17DateSave" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
     </div>
      </div>
@@ -28,13 +24,14 @@ Parameter name: input onBlur="ReformatDate('txtSimpleTable17DateSave')"  class="
     </from>
   <script>
             var PerId =null;
-                     
+                
     SimpleTable17.IntForm=function()
     {
         document.title='جدول های اصل و جزیئات ';
         window.pageName='SimpleTable17';
     window.fileUploaded=false;
-                PerId=  Select2AjaxInit('txtSimpleTable17PerId',function(term, page){
+            
+    PerId=  Select2AjaxInit('txtSimpleTable17PerId',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='SimpleTable17';
     DataPass.ParaName='PerId';
@@ -42,7 +39,7 @@ Parameter name: input onBlur="ReformatDate('txtSimpleTable17DateSave')"  class="
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                    kamaDatepicker('txtSimpleTable17DateSave', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                        kamaDatepicker('txtSimpleTable17DateSave', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
                 
     }
     $(document).ready(function () {
@@ -64,14 +61,17 @@ Parameter name: input onBlur="ReformatDate('txtSimpleTable17DateSave')"  class="
 <th>
     عملیات
 </th>
-      </tr>
+                    
+ </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable17records | orderBy:currentOrder :rev " >
-  <td data-label='شهر'><select class="form-control"   id="cityid_{{record.rndId}}"  valc="{{record.cityid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='SimpleTable17';DataPass.colname='cityid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetPop_asTable(MergeNow,record.cityid);"   ng-model="record.cityid"  >
+     <tr fliterrows="SimpleTable17records" ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable17records | orderBy:currentOrder :rev " >
+ 
+ <td data-label='شهر'><select class="form-control" id="cityid_{{record.rndId}}" valc="{{record.cityid}}"  type="Select2Ajax" onfocus="Select2AjaxInitTable( this.id , function(term, page){  var DataPass=new Object();DataPass.PageName='SimpleTable17';DataPass.colname='cityid';DataPass.Parameters=new Array();DataPass.Parameters.push(toInput('q',term.term));return JSON.stringify(DataPass);});"    ng-change="ChangeState(record);AjaxActions.GetPop_asTable(MergeNow,record.cityid);"   ng-model="record.cityid"  >
  <option value="{{record.cityid}}" selected="selected" >
      {{record.}} </option>
 </select></td> 
-              <td data-label=''>
+ 
+             <td data-label=''>
  <div class="btn-group">
  <button type="button" class="btn btn-default dropdown-toggle "
  data-toggle="dropdown">
@@ -83,6 +83,9 @@ Parameter name: input onBlur="ReformatDate('txtSimpleTable17DateSave')"  class="
  </ul>
 </div>
 </td>
+
+                        
+
      </tr>
 
  <tbody>

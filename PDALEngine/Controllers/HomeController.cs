@@ -17,6 +17,7 @@ namespace PDALEngine.Controllers
         public string retrunValue;
 
     }
+
     public class HomeController : Controller
     {
         //
@@ -28,7 +29,28 @@ namespace PDALEngine.Controllers
             return View();
         }
 
+        public string CustomScaler(string Command, string pageName, inputParameter[] para)
+        {
 
+            throw new Exception("پیاده سازی نشده");
+        }
+        public class DataReturnsObject
+        {
+            public object[] Records = null;
+            public string Message = null;
+            public int Status = 0;
+
+
+
+        }
+
+
+
+        public DataReturnsObject[] CustomRecords(string Command, string pageName, inputParameter[] para)
+        {
+
+            throw new Exception("پیاده سازی نشده");
+        }
         public ActionResult LogOut()
         {
             Session["UserName"] = null;
@@ -201,8 +223,14 @@ namespace PDALEngine.Controllers
                 }
                 Res.code = 0;
                 Res.Message = "با موفقیت انجام شد";
-                Res.retrunValue = PDAL.DataTableToJson(PDAL.ReadRecords(ref Info.ValueDbCommand,PDAL.SkipParameters(Info, Parameters)), Res.code, "");
-
+                if (Info.ValueDbCommand.StartsWith("$") == false)
+                {
+                    Res.retrunValue = PDAL.DataTableToJson(PDAL.ReadRecords(ref Info.ValueDbCommand, PDAL.SkipParameters(Info, Parameters)), Res.code, "");
+                }
+                else
+                {
+                    Res.retrunValue = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(CustomRecords(Info.ValueDbCommand, Info.name, Parameters.ToArray()));
+                }
             }
             catch (SqlException Ex)
             {
@@ -253,8 +281,15 @@ namespace PDALEngine.Controllers
                 }
                 Res.code = 0;
                 Res.Message = "با موفقیت انجام شد";
-                Res.retrunValue = PDAL.ExecScaller(ref Info.DBCommand, Parameters);
+                if (Info.DBCommand.StartsWith("$") == false)
+                {
+                    Res.retrunValue = PDAL.ExecScaller(ref Info.DBCommand, Parameters);
+                }
+                else
+                {
+                    Res.retrunValue = CustomScaler(Info.DBCommand, Info.name, Parameters.ToArray());
 
+                }
             }
             catch (SqlException Ex)
             {
@@ -311,8 +346,17 @@ namespace PDALEngine.Controllers
                 }
                 Res.code = 0;
                 Res.Message = "با موفقیت انجام شد";
-                Res.retrunValue =PDAL.DataTableToJson( PDAL.ReadRecords(ref Info.DBCommand, Parameters),0,"");
+                if (Info.DBCommand.StartsWith("#") == false)
+                {
 
+                    Res.retrunValue = PDAL.DataTableToJson(PDAL.ReadRecords(ref Info.DBCommand, Parameters), 0, "");
+
+                }
+                else
+                {
+                    Res.retrunValue = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(CustomRecords(Info.DBCommand, "!AjaxActions", Parameters.ToArray()));
+
+                }
             }
             catch (SqlException Ex)
             {
@@ -347,8 +391,15 @@ namespace PDALEngine.Controllers
             px.Add(ip);
             try
             {
-                res.value = PDAL.ExecScaller(ref PP.DBSelect2CommandDriectValue, px);
+                if (PP.DBSelect2CommandDriectValue.StartsWith("$") == false)
+                {
+                    res.value = PDAL.ExecScaller(ref PP.DBSelect2CommandDriectValue, px);
+                }
+                else
+                {
+                    res.value = CustomScaler(PP.DBSelect2CommandDriectValue, "!DirectValue", px.ToArray());
 
+                }
 
             }
             catch (Exception ex)
@@ -417,8 +468,15 @@ namespace PDALEngine.Controllers
 
                 Res.code = 0;
                 Res.Message = "با موفقیت انجام شد";
-                Res.retrunValue = PDAL.DataTableToJson(PDAL.ReadRecords(ref Info.DBCommand, PDAL.SkipParameters(Info, Parameters)), Res.code, "");
+                if (Info.DBCommand.StartsWith("$") == false)
+                {
+                    Res.retrunValue = PDAL.DataTableToJson(PDAL.ReadRecords(ref Info.DBCommand, PDAL.SkipParameters(Info, Parameters)), Res.code, "");
+                }
+                else
+                {
+                    Res.retrunValue = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(CustomRecords(Info.DBCommand, PageName, Parameters.ToArray()));
 
+                }
             }
             catch (SqlException Ex)
             {
@@ -696,15 +754,29 @@ namespace PDALEngine.Controllers
                     {
                         PDAL.ConvertValuesBatch(Info, Com, records[k][k2]);
 
-                        for (int k3 = 1; k3 < records[k][k2].Length; k3++)
+                        if (Com.DBCommand.StartsWith("$") == false)
                         {
-                            List<inputParameter> par = new List<inputParameter>();
-                            par.AddRange(initValues);
-                            par.AddRange(records[k][k2][k3]);
-                          scallerValues[k]=    PDAL.ExecScallerWithConnection(ref Com.DBCommand, par, Con, Tran);
+                            for (int k3 = 1; k3 < records[k][k2].Length; k3++)
+                            {
+                                List<inputParameter> par = new List<inputParameter>();
+                                par.AddRange(initValues);
+                                par.AddRange(records[k][k2][k3]);
+                                scallerValues[k] = PDAL.ExecScallerWithConnection(ref Com.DBCommand, par, Con, Tran);
+
+                            }
+                        }
+                        else
+                        {
+                            for (int k3 = 1; k3 < records[k][k2].Length; k3++)
+                            {
+                                List<inputParameter> par = new List<inputParameter>();
+                                par.AddRange(initValues);
+                                par.AddRange(records[k][k2][k3]);
+                                scallerValues[k] = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(CustomRecords(Com.DBCommand, PageName, par.ToArray()));
+
+                            }
 
                         }
-
                     }
 
 
@@ -826,8 +898,16 @@ namespace PDALEngine.Controllers
 
                 Res.code = 0;
                 Res.Message = "با موفقیت انجام شد";
-                Res.retrunValue = PDAL.ExecScaller(ref Info.DBCommand, PDAL.SkipParameters(Info, Parameters));
+                if (Info.DBCommand.StartsWith("$") == false)
+                {
+                    Res.retrunValue = PDAL.ExecScaller(ref Info.DBCommand, PDAL.SkipParameters(Info, Parameters));
+                }
+                else
+                {
+                    Res.retrunValue = CustomScaler(Info.DBCommand, PageName, Parameters.ToArray());
 
+
+                }
             }
             catch (SqlException Ex)
             {

@@ -5,7 +5,7 @@
   </div>
     </from>
   <script>
-         
+    
     SimpleTable3.IntForm=function()
     {
         document.title='جدول ساده بدون پارامتر با پورسیجر ';
@@ -28,12 +28,18 @@
  <tr>
  <th  > کد شهر</th> 
  <th  > عنوان شهر</th> 
+               
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable3records | orderBy:currentOrder :rev " >
+     <tr fliterrows="SimpleTable3records" ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable3records | orderBy:currentOrder :rev " >
 <td data-label='کد شهر'>{{record.cityId}}</td> 
- <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
-                   </tr>
+ 
+<td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
+ 
+             
+                        
+
+     </tr>
 
  <tbody>
 </table>

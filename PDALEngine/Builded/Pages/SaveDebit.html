@@ -1,0 +1,92 @@
+﻿ثبت بدهی ها
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="Per_Id" class="col-sm-3 control-label">           دوره
+      :</label>
+    <div   class="col-sm-9">
+   
+      
+                                                                                                      <select class="form-control" id="txtSaveDebitPer_Id" ></select>
+                      
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+            var Per_Id =null;
+        
+    SaveDebit.IntForm=function()
+    {
+        document.title='ثبت بدهی ها';
+        window.pageName='SaveDebit';
+    window.fileUploaded=false;
+            
+    Per_Id=  Select2AjaxInit('txtSaveDebitPer_Id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='SaveDebit';
+    DataPass.ParaName='Per_Id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+        Per_Id.Set_Direct=function(val){
+    Select2AjaxDirect('SaveDebit','Per_Id',val,'txtSaveDebitPer_Id');
+
+    };
+                        
+    }
+    $(document).ready(function () {
+    SaveDebit.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a onclick='SaveDebit.Save()' ><button type="button" class="btn btn-default" >ثبت</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th><input type="checkbox" id="checkAll" onclick="CheckAllTable(this.checked)"  /></th>
+<th>ردیف</th>
+ <th  > کد انشاب</th> 
+ <th  > نام مشترک</th> 
+ <th  > محل آب گیری</th> 
+ <th  > سریال هک شده بروی کنتور</th> 
+               
+ </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SaveDebitrecords | orderBy:currentOrder :rev | filter:FilterValue " >
+<th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
+<td data-label="ردیف">{{$index+1}}</td>
+<td data-label='کد انشاب'>{{record.Wine_id}}</td> 
+ 
+<td data-label='نام مشترک'>{{record.subName}}</td> 
+ 
+<td data-label='محل آب گیری'>{{record.Wine_plc_dewat}}</td> 
+ 
+<td data-label='سریال هک شده بروی کنتور'>{{record.meter_serail}}</td> 
+ 
+             
+                        
+
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             SaveDebit.Serach();
+                      });
+    
+     </script>

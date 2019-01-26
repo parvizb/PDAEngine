@@ -110,7 +110,7 @@ ScallerAjax('ScallerSubmit',Entity,function(data){
   
  
 
-    Messager.ShowMessage('اطلاعات', data.Message);
+  
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);

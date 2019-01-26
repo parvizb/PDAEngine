@@ -1,0 +1,60 @@
+﻿جدول با ستون های متغیر 
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+    
+    ShowPoivtValues.IntForm=function()
+    {
+        document.title='جدول با ستون های متغیر ';
+        window.pageName='ShowPoivtValues';
+    window.fileUploaded=false;
+    
+    }
+    $(document).ready(function () {
+    ShowPoivtValues.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > شهر مقصد</th> 
+                  
+    <th ng-repeat="col in  ShowPoivtValuesPoivtData.columns"   > {{col}}</th>  
+
+       
+ </tr>
+   </thead>
+     <tr fliterrows="ShowPoivtValuesrecords" ng-init="record.viewIndex=$index" ng-repeat="record in ShowPoivtValuesrecords | orderBy:currentOrder :rev " >
+<td data-label='شهر مقصد'>{{record.title}}</td> 
+ 
+             
+                           
+    <td data-label='{{col}}' ng-repeat="col in  ShowPoivtValuesPoivtData.columns"   > {{ShowMoney(record['col'+$index])}}</td>  
+
+       
+
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             ShowPoivtValues.Serach();
+                      });
+    
+     </script>

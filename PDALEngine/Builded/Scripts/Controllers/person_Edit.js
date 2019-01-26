@@ -2,14 +2,18 @@
 
 
 
-var Person_Edit=new Object();
+var person_Edit=new Object();
 
 var currentButton;
-Person_Edit.sendFiles=  function()
+person_Edit.sendFiles=  function()
 {
     var data = new FormData();
  
-                                        $('#loadingBar').show();
+                                                                                                                    var tmp=$('#txtperson_EditpicImage')[0];
+    if(tmp.files.length>0){
+        data.append('picImage', tmp.files[0]);
+    }
+                    $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -25,7 +29,7 @@ Person_Edit.sendFiles=  function()
             window.fileUploaded=true;
             $('#loadingBar').hide();
             $('#fileStatus').hide();
-            Person_Edit.Submit(currentButton);
+            person_Edit.Submit(currentButton);
         } else {
             if((xhr.status==500) && (xhr.readyState == 4))
             {
@@ -40,30 +44,63 @@ Person_Edit.sendFiles=  function()
          
         }
     };
-    xhr.open('POST', "Home/SendFiles?PageName=Person_Edit");
+    xhr.open('POST', "Home/SendFiles?PageName=person_Edit");
     // xhr.setRequestHeader("Content-type", "multipart/form-data");
     xhr.send(data);
 }
 
 
-Person_Edit.Submit= function(obj)
+person_Edit.Submit= function(obj)
 {
     currentButton=obj;
     $(obj).attr('disabled',true);
-    if(Person_Edit.Validate()==false)
+    if(person_Edit.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
+        {
+           
+        if(window.fileUploaded!=true)
+        {
+            person_Edit.sendFiles();
+            return ;
+        }
+
+
+    }
         var Entity=new Object();
-    Entity.PageName='Person_Edit';
+    Entity.PageName='person_Edit';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('PerId',routeParams.PerId ));
-            Entity.Parameters.push( toInput('FristName',$('#txtPerson_EditFristName').val()));
+                Entity.Parameters.push( toInput('id',routeParams.id ));
+            Entity.Parameters.push( toInput('name',$('#txtperson_Editname').val()));
     
-                    Entity.Parameters.push( toInput('LastName',$('#txtPerson_EditLastName').val()));
+                    Entity.Parameters.push( toInput('grade',$('#txtperson_Editgrade').val()));
     
-                    Entity.Parameters.push( toInput('UnitId',$('#txtPerson_EditUnitId').val()));
+                    Entity.Parameters.push( toInput('cityid',$('#txtperson_Editcityid').val()));
+    
+                    Entity.Parameters.push( toInput('sextype',$('#txtperson_Editsextype').val()));
+    
+                    Entity.Parameters.push( toInput('salaryBase',$('#txtperson_EditsalaryBase').val()));
+    
+                    Entity.Parameters.push( toInput('examResult',$('#txtperson_EditexamResult').val()));
+    
+                    Entity.Parameters.push( toInput('dateBrith',$('#txtperson_EditdateBrith').val()));
+    
+                    Entity.Parameters.push( toInput('startTime',$('#txtperson_EditstartTime').val()));
+    
+                    Entity.Parameters.push( toInput('smailBio',$('#txtperson_EditsmailBio').val()));
+    
+                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtperson_EditsmailHtml'].contentDocument.body.innerHTML));
+    
+                    Entity.Parameters.push( toInput('favColor',$('#txtperson_EditfavColor').val()));
+    
+                    Entity.Parameters.push( toInput('oldImage',$('#txtperson_EditoldImage').val()));
+    
+                    Entity.Parameters.push( toInput('picImage',$('#txtperson_EditpicImage').val()));
+    
+                    Entity.Parameters.push( toInput('isBroken', $('#txtperson_EditisBroken').val()) );
+  
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
@@ -75,7 +112,7 @@ Person_Edit.Submit= function(obj)
   
  
 
-    Messager.ShowMessage('اطلاعات', data.Message);
+  
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
@@ -98,17 +135,48 @@ Person_Edit.Submit= function(obj)
 
 });
 };
-Person_Edit.Validate= function()
+person_Edit.Validate= function()
 {
     Validator.ClearErrors();
         
             
-                                Validator.CheckEmpty('txtPerson_EditFristName','نام ');
+                                Validator.CheckEmpty('txtperson_Editname','نام');
                                                                                             
-                                Validator.CheckEmpty('txtPerson_EditLastName','نام خانوادگی');
+                                                                            
+                                                        Validator.CheckRegSelect2('txtperson_Editcityid','شهر');
+                                    
+                                                                            
+                                                        Validator.CheckRegInteger('txtperson_EditsalaryBase','حقوق پایه');
+                                                            
+                                                Validator.CheckRegFloat('txtperson_EditexamResult','نمره آزمون');
+                                                            
+                                                                        Validator.CheckRegDate('txtperson_EditdateBrith','تاریخ تولد');
+                                    
+                                Validator.CheckEmpty('txtperson_EditstartTime','ساعت شروع کار');
                                                                                             
-                                                        Validator.CheckRegSelect2('txtPerson_EditUnitId','کد واحد');
-                                
+                                Validator.CheckEmpty('txtperson_EditsmailBio','خلاصه زندگی ');
+                                                                                            
+                                                                            
+                                                                            
+                var tmp=$('#txtperson_EditpicImage')[0];
+            if(tmp.files.length>0)
+    {
+        var ex=tmp.files[0].name;
+        ex=ex.substring(ex.lastIndexOf('.')+1);
+        ex=ex.toLowerCase();
+        var isCommit=false;
+        var cc=new Array();
+                isCommit=cc.indexOf(ex)!=-1;
+        if(isCommit==false)
+        {
+            Messager.errors.push(' پسوند فایل در کادر تصویر پرسنلی  مجاز نیست پسوند های مجاز  ' + JSON.stringify(cc));
+  
+
+        }
+    }
+        
+            
+                                                                        
     if(Messager.errors.length!=0)
     {
         Validator.ShowErrors();
@@ -127,37 +195,58 @@ Person_Edit.Validate= function()
 }
 
 
-Person_Edit.Serach=function(obj)
+person_Edit.Serach=function(obj)
 {
     $(obj).attr('disabled',true);
-    if(Person_Edit.Validate()==false)
+    if(person_Edit.Validate()==false)
     {
         $(obj).attr('disabled',false);
         return ;
     }
 
-    window.CurrentSerachMethod=Person_Edit.Serach;
+    window.CurrentSerachMethod=person_Edit.Serach;
     var Entity=new Object();
-    Entity.PageName='Person_Edit';
+    Entity.PageName='person_Edit';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('PerId',routeParams.PerId ));
-            Entity.Parameters.push( toInput('FristName',$('#txtPerson_EditFristName').val()));
+                Entity.Parameters.push( toInput('id',routeParams.id ));
+            Entity.Parameters.push( toInput('name',$('#txtperson_Editname').val()));
     
-                    Entity.Parameters.push( toInput('LastName',$('#txtPerson_EditLastName').val()));
+                    Entity.Parameters.push( toInput('grade',$('#txtperson_Editgrade').val()));
     
-                    Entity.Parameters.push( toInput('UnitId',$('#txtPerson_EditUnitId').val()));
+                    Entity.Parameters.push( toInput('cityid',$('#txtperson_Editcityid').val()));
+    
+                    Entity.Parameters.push( toInput('sextype',$('#txtperson_Editsextype').val()));
+    
+                    Entity.Parameters.push( toInput('salaryBase',$('#txtperson_EditsalaryBase').val()));
+    
+                    Entity.Parameters.push( toInput('examResult',$('#txtperson_EditexamResult').val()));
+    
+                    Entity.Parameters.push( toInput('dateBrith',$('#txtperson_EditdateBrith').val()));
+    
+                    Entity.Parameters.push( toInput('startTime',$('#txtperson_EditstartTime').val()));
+    
+                    Entity.Parameters.push( toInput('smailBio',$('#txtperson_EditsmailBio').val()));
+    
+                    Entity.Parameters.push( toInput('smailHtml',tinymce.editors['txtperson_EditsmailHtml'].contentDocument.body.innerHTML));
+    
+                    Entity.Parameters.push( toInput('favColor',$('#txtperson_EditfavColor').val()));
+    
+                    Entity.Parameters.push( toInput('oldImage',$('#txtperson_EditoldImage').val()));
+    
+                    Entity.Parameters.push( toInput('picImage',$('#txtperson_EditpicImage').val()));
+    
+                    Entity.Parameters.push( toInput('isBroken',$('#txtperson_EditisBroken').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
-    currentScope.Person_Editrecords= data.records;
-    
-    setTimeout(StoreCache, 200);
+    currentScope.person_Editrecords= data.records;
+        setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
-        dlgScope.Person_Editrecords= data.records;
-        dlgScope.$apply(function(){});
+        dlgScope.person_Editrecords= data.records;
+                dlgScope.$apply(function(){});
 
     }
     $('[type="Select2Ajax"]').each(function(){
@@ -179,23 +268,73 @@ return;
 
 }
 window.targetElement=null;
-Person_Edit.InitStartValues=function(){
+person_Edit.InitStartValues=function(){
     var Entity=new Object();
-    Entity.PageName='Person_Edit';
+    Entity.PageName='person_Edit';
     Entity.Parameters=new Array();
-            Entity.Parameters.push( toInput('PerId',routeParams.PerId));
+            Entity.Parameters.push( toInput('id',routeParams.id));
    
 TableViewAjax('getStartValueFromServer',Entity,function(data){
     if( data.records.length!=0)
     {
      
-                                $('#txtPerson_EditFristName').val(data.records[0].FristName);
+                                        
+$('#txtperson_Editname').val(data.records[0].name);
 
-                $('#txtPerson_EditLastName').val(data.records[0].LastName);
+                        
 
-                
+$('#txtperson_Editgrade').select2().val(data.records[0].grade  ) .trigger('change');
+
+                        
         
-Select2AjaxDirect('Person_Edit','UnitId',data.records[0].UnitId,'txtPerson_EditUnitId');
+
+        var o=document.createElement('option');
+        o.value=data.records[0].cityid;
+        o.innerHTML= data.records[0].city ;
+        cityid.append(o);
+        cityid.val(data.records[0].cityid  ) .trigger('change');
+
+
+                        
+$('#txtperson_Editsextype').val(data.records[0].sextype);
+
+                        
+$('#txtperson_EditsalaryBase').val(ShowAsMoney( data.records[0].salaryBase));
+
+                        
+$('#txtperson_EditexamResult').val(data.records[0].examResult);
+
+                        
+$('#txtperson_EditdateBrith').val(data.records[0].dateBrith);
+
+                        
+$('#txtperson_EditstartTime').val(data.records[0].startTime);
+
+                        
+$('#txtperson_EditsmailBio').val(data.records[0].smailBio);
+
+                         
+setTimeout(function(){ tinymce.editors['txtperson_EditsmailHtml'].setContent(data.records[0].smailHtml);},500);
+
+                        
+$('#txtperson_EditfavColor').val(data.records[0].favColor);
+$('#txtperson_EditfavColor').css('background',$('#txtperson_EditfavColor').val());
+
+                        
+$('#txtperson_EditoldImage').attr( 'src' ,$('#txtperson_EditoldImage').attr('linkSyntax')  +data.records[0].picImage);
+
+                        
+//Uncan do now for file
+
+
+
+                        
+console.log( data.records[0].isBroken);
+if( data.records[0].isBroken=='True')
+{
+    $('#txtperson_EditisBroken').attr('checked',true);
+
+}
 
 
 }

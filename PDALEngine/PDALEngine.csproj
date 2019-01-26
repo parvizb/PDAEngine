@@ -272,7 +272,7 @@
     <Content Include="AccSysx.Config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="PDA.Config">
+    <None Include="acc.Config">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Res\angular-route.min.js" />
@@ -308,11 +308,14 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="PDA.Config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Properties\PublishProfiles\1.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Builded\Pages\" />
-    <Folder Include="Builded\Scripts\Controllers\" />
+    <Folder Include="Builded\scripts\controllers\" />
     <Folder Include="Models\" />
     <Folder Include="Product\" />
     <Folder Include="upd\" />

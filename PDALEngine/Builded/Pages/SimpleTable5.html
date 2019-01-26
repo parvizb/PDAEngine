@@ -6,16 +6,14 @@
       :</label>
     <div   class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtSimpleTable5n" placeholder=""  Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input placeholder="" />
+            <input type="text"   class="form-control" id="txtSimpleTable5n" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
   </div>
     </from>
   <script>
-                 
+            
     SimpleTable5.IntForm=function()
     {
         document.title='جدول ساده با پارامتر  ';
@@ -40,12 +38,18 @@ Parameter name: input placeholder="" />
  <tr>
  <th  > کد شهر</th> 
  <th  > عنوان شهر</th> 
+               
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable5records | orderBy:currentOrder :rev " >
+     <tr fliterrows="SimpleTable5records" ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable5records | orderBy:currentOrder :rev " >
 <td data-label='کد شهر'>{{record.cityId}}</td> 
- <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
-                   </tr>
+ 
+<td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
+ 
+             
+                        
+
+     </tr>
 
  <tbody>
 </table>

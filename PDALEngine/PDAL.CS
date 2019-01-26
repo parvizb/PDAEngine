@@ -746,7 +746,7 @@ namespace PDALEngine
 
         public static string mgtAllonce(string tableName)
         {
-            string CommandLine = ""+ tableName +"_Serach";
+            string CommandLine = "sp_"+ tableName +"_Serach";
            
             DataTable Dt = PDAL.ReadDataTableNotCommand("select * from information_schema.parameters where specific_name='" + CommandLine + "'");
             DataTable TableInfo = PDAL.ReadDataTableNotCommand("select sys.columns.*,(select top(1) name  from sys.types where sys.types.system_type_id=sys.columns.system_type_id) name_type,(select is_primary_key from sys.indexes where sys.indexes.object_id=sys.columns.object_id and index_id=column_id ) is_primary_key from sys.columns,sys.objects where sys.columns.object_id=sys.objects.object_id and sys.objects.name='" + tableName + "' and sys.objects.type='u'");
@@ -847,7 +847,7 @@ namespace PDALEngine
 
 
             Sb.AppendLine("</Page>\r\n");
-            CommandLine = "" + tableName + "_Insert_Sp";
+            CommandLine = "sp_" + tableName + "_Insert";
             Sb.Append("<Page Title=\"" + CommandLine + "\" name=\"" + tableName +"_Insert" + "\" link=\"" + CommandLine + "\" ColumnCount=\"2\" PerKey=\"" + CommandLine + "\" type=\"ScallerForm\" DBCommand=\"" + CommandLine + "\">");
           
 
@@ -865,7 +865,7 @@ namespace PDALEngine
 
             Sb.AppendLine("</Page>\r\n");
 
-            CommandLine = "" + tableName + "_Update_Sp";
+            CommandLine = "sp_" + tableName + "_Update";
             column = "";
             for (int k = 0; k < TableInfo.Rows.Count; k++)
             {
@@ -922,7 +922,7 @@ namespace PDALEngine
 
 
 
-                 CommandLine = ""+ tableName +"_Delete_Sp";
+                 CommandLine = ""+ tableName +"Delete";
            Sb.AppendFormat(" <action name=\"{0}\"    DBCommand=\"{1}\" PerKey=\"{2}\">",tableName +"_Delete" ,CommandLine,CommandLine);
     
 

@@ -1,67 +1,191 @@
 ﻿
 
-ویرایش پرسنل
+person_Update_Sp
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="FristName" class="col-sm-2 control-label">     <span class="red" >*</span>        نام 
+    <label  for="name" class="col-sm-2 control-label">     <span class="red" >*</span>        نام
       :</label>
     <div   class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtPerson_EditFristName" placeholder=""  placeholder="" />
+            <input type="text"   class="form-control" id="txtperson_Editname" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
-    <label  for="LastName" class="col-sm-2 control-label">     <span class="red" >*</span>        نام خانوادگی
+    <label  for="grade" class="col-sm-2 control-label">     <span class="red" >*</span>        رتبه شغلی
       :</label>
     <div   class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtPerson_EditLastName" placeholder=""  placeholder="" />
+      
+                                                                                                <select class="form-control" id="txtperson_Editgrade" >
+                <option value="0">رده سوم</option>
+                <option value="1">رده دوم</option>
+                <option value="2">رده یکم</option>
+                <option value="3">رده ارشد</option>
+                <option value="4">ریاست</option>
+              </select>
+                            
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="cityid" class="col-sm-2 control-label">     <span class="red" >*</span>        شهر
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                      <select class="form-control" id="txtperson_Editcityid" ></select>
+                      
+    </div>
+    <label  for="sextype" class="col-sm-2 control-label">     <span class="red" >*</span>        جنسیت
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtperson_Editsextype" >
+                <option value="0">مرد</option>
+                <option value="1">زن</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="salaryBase" class="col-sm-2 control-label">     <span class="red" >*</span>        حقوق پایه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtperson_EditsalaryBase" placeholder="" />
+                                                                      
+    </div>
+    <label  for="examResult" class="col-sm-2 control-label">     <span class="red" >*</span>        نمره آزمون
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                              <input type="Number"  placeholder=""  class="form-control" id="txtperson_EditexamResult" placeholder="" />
+                                                                                              
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="dateBrith" class="col-sm-2 control-label">     <span class="red" >*</span>        تاریخ تولد
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtperson_EditdateBrith')"  class="form-control" id="txtperson_EditdateBrith" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
+    </div>
+    <label  for="startTime" class="col-sm-2 control-label">     <span class="red" >*</span>        ساعت شروع کار
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtperson_EditstartTime" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
      </div>
      <div class="form-group">
-    <label  for="UnitId" class="col-sm-2 control-label">     <span class="red" >*</span>        کد واحد
+    <label  for="smailBio" class="col-sm-2 control-label">     <span class="red" >*</span>        خلاصه زندگی 
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtperson_EditsmailBio" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="smailHtml" class="col-sm-2 control-label">     <span class="red" >*</span>        سایر توضیحات
       :</label>
     <div   class="col-sm-4">
    
       
-                                                                                                      <select class="form-control" id="txtPerson_EditUnitId" ></select>
-                      
+                  <textarea      class="form-control" id="txtperson_EditsmailHtml" placeholder="" />
+                                                                                                          
     </div>
+     </div>
+     <div class="form-group">
+    <label  for="favColor" class="col-sm-2 control-label">     <span class="red" >*</span>        رنگ مورد علاقه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+            <input type="text"   class="form-control white_shadow" id="txtperson_EditfavColor" placeholder="" placeholder="" />
+                                                                                                                
+    </div>
+    <label  for="oldImage" class="col-sm-2 control-label">           تصویر فعلی
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                              <input type="image"    linkSyntax="\upd\"    id="txtperson_EditoldImage"  Liquid error: Value cannot be null.
+Parameter name: inputplaceholder="" />
+                                              
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="picImage" class="col-sm-2 control-label">           تصویر پرسنلی
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                        <input type="file"       class="form-control" id="txtperson_EditpicImage"     placeholder="" />
+                                                    
+    </div>
+    <label  for="isBroken" class="col-sm-2 control-label">     <span class="red" >*</span>        دارای معولیت جسمی
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                          <input type="CheckBox"  placeholder=""   id="txtperson_EditisBroken" placeholder="" />
+                                                                                  
+    </div>
+     </div>
+     <div class="form-group">
   </div>
     </from>
   <script>
-                                    var UnitId =null;
-        
-    Person_Edit.IntForm=function()
+                                    var cityid =null;
+                                                                                                
+    person_Edit.IntForm=function()
     {
-        document.title='ویرایش پرسنل';
-        window.pageName='Person_Edit';
+        document.title='person_Update_Sp';
+        window.pageName='person_Edit';
     window.fileUploaded=false;
-                                                                                    
-    UnitId=  Select2AjaxInit('txtPerson_EditUnitId',function(term, page){
+                                                            $('#txtperson_Editgrade').select2({});
+                                
+    cityid=  Select2AjaxInit('txtperson_Editcityid',function(term, page){
     var DataPass=new Object();
-    DataPass.PageName='Person_Edit';
-    DataPass.ParaName='UnitId';
+    DataPass.PageName='person_Edit';
+    DataPass.ParaName='cityid';
     DataPass.Parameters=new Array();
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-        UnitId.Set_Direct=function(val){
-    Select2AjaxDirect('Person_Edit','UnitId',val,'txtPerson_EditUnitId');
-
-    };
-                        
+                                                                                                                kamaDatepicker('txtperson_EditdateBrith', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                                    TinyMceEditor('txtperson_EditsmailHtml');
+                                    $('#txtperson_EditfavColor').ColorPicker({
+    color: $('#txtperson_EditfavColor').val(),
+    onShow: function (colpkr) {
+    $(colpkr).fadeIn(500);
+    return false;
+    },
+    onHide: function (colpkr) {
+    $(colpkr).fadeOut(500);
+    return false;
+    },
+    onChange: function (hsb, hex, rgb) {
+    $('#txtperson_EditfavColor').css('backgroundColor', '#' + hex);
+    $('#txtperson_EditfavColor').val('#' + hex);
+    }
+    });
+                                                                                
     }
     $(document).ready(function () {
-    Person_Edit.IntForm();
-        Person_Edit.InitStartValues();
+    person_Edit.IntForm();
+        person_Edit.InitStartValues();
         
     });
   </script>
 
-<button type="button" class="btn btn-primary" onclick="Person_Edit.Submit(this)">تایید</button>
+<button type="button" class="btn btn-primary" onclick="person_Edit.Submit(this)">تایید</button>
 <button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
  

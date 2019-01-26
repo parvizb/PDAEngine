@@ -72,15 +72,15 @@ Scaller2.Submit= function(obj)
   
  
 
-    Messager.ShowMessage('اطلاعات', data.Message);
+  
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -141,23 +141,22 @@ Scaller2.Serach=function(obj)
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
     currentScope.Scaller2records= data.records;
-    
-    setTimeout(StoreCache, 200);
+        setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
         dlgScope.Scaller2records= data.records;
-        dlgScope.$apply(function(){});
+                dlgScope.$apply(function(){});
 
     }
-        $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+    $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {

@@ -72,15 +72,15 @@ SimpleTable17.Submit= function(obj)
   
  
 
-    Messager.ShowMessage('اطلاعات', data.Message);
+  
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -140,23 +140,24 @@ SimpleTable17.Serach=function(obj)
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
     currentScope.SimpleTable17records= data.records;
-    
+          
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
         dlgScope.SimpleTable17records= data.records;
+                  
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -188,30 +189,34 @@ SimpleTable17.Save_Validate=function()
     Validator.ClearErrors();
                                     Validator.CheckRegSelect2('txtSimpleTable17PerId','شخص');
                                     Validator.CheckRegDate('txtSimpleTable17DateSave','تاریخ ثبت');
-                                                                    for (var l=0;l<currentScope.SimpleTable17records.length;l++)
-    {
-        var r=currentScope.SimpleTable17records[l];
+                                                                    if(typeof ( currentScope.SimpleTable17records)!="undefined") {
+    for (var l=0;l<currentScope.SimpleTable17records.length;l++)
+{
+    var r=currentScope.SimpleTable17records[l];
 
-                if(r.selected == true){
+        if(r.selected == true){
       continue;
 }
 }
+}
+    if(typeof ( currentScope.SimpleTable17records)!="undefined") {
     for (var l=0;l<currentScope.SimpleTable17records.length;l++)
-    {
-        var r=currentScope.SimpleTable17records[l];
+{
+    var r=currentScope.SimpleTable17records[l];
 
-        if(r.RowState !='Added'){
+    if(r.RowState !='Added'){
     continue;
 }
 Validator.CheckRegSelect2('cityid_' + r.rndId,'کد شهر',r.viewIndex+1);
 }
-
+}
+if(typeof ( currentScope.SimpleTable17records)!="undefined") {
 for(var l=0;l<currentScope.SimpleTable17records.length;l++)
 { 
     var record=currentScope.SimpleTable17records[l];
     
 }
-
+}
 
 
 
@@ -231,10 +236,11 @@ SimpleTable17.Save=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
-    NullFix.push(toInput('fake',Para('fake')));
+    NullFix.push(toInput('fake','NULL'));
     informationRecords.push(NullFix);
         var rec=new Array();//hi
         //YOU ARE ASL
@@ -244,10 +250,11 @@ SimpleTable17.Save=function()
         informationRecords.push(rec);
 t.push(informationRecords);
 DataPass.push(t);
+  
     var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
-    NullFix.push(toInput('fake',Para('fake')));
+    NullFix.push(toInput('fake','NULL'));
     informationRecords.push(NullFix);
     for (var l=0;l<currentScope.SimpleTable17records.length;l++)
 {
@@ -307,8 +314,8 @@ ScallerAjax('BatchCommand',Enity,function(data){
 
 
 
-                                BackPage();
-                 
+                      
+         
          
      
                         BackPage();

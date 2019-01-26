@@ -1,0 +1,44 @@
+﻿
+
+مقادیر پیش فرض
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="cityTitle" class="col-sm-2 control-label">     <span class="red" >*</span>        عنوان
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtScallerReturnValuecityTitle" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="CITYPop" class="col-sm-2 control-label">           جمعیت
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtScallerReturnValueCITYPop" placeholder="" />
+                                                                      
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                    
+    ScallerReturnValue.IntForm=function()
+    {
+        document.title='مقادیر پیش فرض';
+        window.pageName='ScallerReturnValue';
+    window.fileUploaded=false;
+                                                    
+    }
+    $(document).ready(function () {
+    ScallerReturnValue.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="ScallerReturnValue.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

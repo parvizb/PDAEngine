@@ -1,0 +1,162 @@
+﻿مدیریت تخفیف ها
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="startprice" class="col-sm-2 control-label">           از مبلغ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtsp_discounts_Serachstartprice" placeholder="" />
+                                                                      
+    </div>
+    <label  for="endprice" class="col-sm-2 control-label">           تا مبلغ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtsp_discounts_Serachendprice" placeholder="" />
+                                                                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="disc_comment" class="col-sm-2 control-label">           توضیحات
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtsp_discounts_Serachdisc_comment" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="sub_id" class="col-sm-2 control-label">           مشترک
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                      <select class="form-control" id="txtsp_discounts_Serachsub_id" ></select>
+                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="startdate" class="col-sm-2 control-label">           از تاریخ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtsp_discounts_Serachstartdate')"  class="form-control" id="txtsp_discounts_Serachstartdate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
+    </div>
+    <label  for="enddate" class="col-sm-2 control-label">           تا تاریخ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtsp_discounts_Serachenddate')"  class="form-control" id="txtsp_discounts_Serachenddate" placeholder="yyyy/mm/dd" max-length="10" ></input>
+          
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                                    var sub_id =null;
+                        
+    sp_discounts_Serach.IntForm=function()
+    {
+        document.title='مدیریت تخفیف ها';
+        window.pageName='sp_discounts_Serach';
+    window.fileUploaded=false;
+                                                                                    
+    sub_id=  Select2AjaxInit('txtsp_discounts_Serachsub_id',function(term, page){
+    var DataPass=new Object();
+    DataPass.PageName='sp_discounts_Serach';
+    DataPass.ParaName='sub_id';
+    DataPass.Parameters=new Array();
+            DataPass.Parameters.push(toInput('q',term.term));
+                    return JSON.stringify(DataPass);
+    });
+        sub_id.Set_Direct=function(val){
+    Select2AjaxDirect('sp_discounts_Serach','sub_id',val,'txtsp_discounts_Serachsub_id');
+
+    };
+                                        kamaDatepicker('txtsp_discounts_Serachstartdate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                kamaDatepicker('txtsp_discounts_Serachenddate', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                
+    }
+    $(document).ready(function () {
+    sp_discounts_Serach.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="sp_discounts_Serach.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a href='#/discounts_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > شناسه تخفیف</th> 
+ <th  > مقدار تخفیف</th> 
+ <th  > دلیل  تخفیف</th> 
+ <th  > توضیحات</th> 
+ <th  > کد مشترک</th> 
+ <th  > تاریخ تخفیف</th> 
+<th>
+    عملیات
+</th>
+                    
+ </tr>
+   </thead>
+     <tr ng-init="record.viewIndex=$index" ng-repeat="record in sp_discounts_Serachrecords | orderBy:currentOrder :rev " >
+<td data-label='شناسه تخفیف'>{{record.disc_for_bi_id}}</td> 
+ 
+<td data-label='مقدار تخفیف'>{{ShowMoney(record.disc_amount)}}</td> 
+ 
+ <td data-label='دلیل  تخفیف'>
+    <span ng-show="record.disc_reason=='3'">سایر</span>
+  <span ng-show="record.disc_reason=='2'">اشتباه شرکت</span>
+  <span ng-show="record.disc_reason=='0'">عدم تامین توسط </span>
+ </td> 
+ 
+<td data-label='توضیحات'>{{record.disc_comment}}</td> 
+ 
+<td data-label='کد مشترک'>{{record.sub_id}}</td> 
+ 
+<td data-label='تاریخ تخفیف'>{{record.dis_date}}</td> 
+ 
+ 
+ 
+             <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a href="#/discounts_Edit/{{record.disc_for_bi_id}}" >ویرایش</a></li> 
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.discounts_Delete('{{record.disc_for_bi_id}}')});" >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+
+                        
+
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

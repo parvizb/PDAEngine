@@ -9,7 +9,7 @@ payment_Insert.sendFiles=  function()
 {
     var data = new FormData();
  
-                                                                $('#loadingBar').show();
+                                                        $('#loadingBar').show();
     $('#fileStatus').show();
     var xhr = new XMLHttpRequest();
     xhr.upload.addEventListener("progress", function (evt) {
@@ -58,19 +58,15 @@ payment_Insert.Submit= function(obj)
         var Entity=new Object();
     Entity.PageName='payment_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_Insertpayment_amount').val()));
+                Entity.Parameters.push( toInput('pay_date',$('#txtpayment_Insertpay_date').val()));
     
-                    Entity.Parameters.push( toInput('cus_id',$('#txtpayment_Insertcus_id').val()));
+                    Entity.Parameters.push( toInput('pay_type',$('#txtpayment_Insertpay_type').val()));
     
-                    Entity.Parameters.push( toInput('dis_amount',$('#txtpayment_Insertdis_amount').val()));
+                    Entity.Parameters.push( toInput('pay_amount',$('#txtpayment_Insertpay_amount').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Insertpayment_Date').val()));
+                    Entity.Parameters.push( toInput('pay_comment',$('#txtpayment_Insertpay_comment').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtpayment_Insertdescr').val()));
-    
-                    Entity.Parameters.push( toInput('total',$('#txtpayment_Inserttotal').val()));
-    
-                    Entity.Parameters.push( toInput('acc_id',$('#txtpayment_Insertacc_id').val()));
+                            Entity.Parameters.push( toInput('wine_id',$('#txtpayment_Insertwine_id').val()));
     
         ScallerAjax('ScallerSubmit',Entity,function(data){
 
@@ -109,16 +105,14 @@ payment_Insert.Validate= function()
 {
     Validator.ClearErrors();
         
-                                                        Validator.CheckRegInteger('txtpayment_Insertpayment_amount','مبلغ پرداختی');
+                                                                        Validator.CheckRegDate('txtpayment_Insertpay_date','تاریخ پرداخت');
+                                    
+                                                                            
+                                                        Validator.CheckRegInteger('txtpayment_Insertpay_amount','مبلغ پرداختی');
                                                             
-                                                        Validator.CheckRegSelect2('txtpayment_Insertcus_id','کد مشتری ');
-                                    
-            
-                                                                        Validator.CheckRegDate('txtpayment_Insertpayment_Date','تاریخ پرداخت');
-                                    
             
             
-                                                        Validator.CheckRegSelect2('txtpayment_Insertacc_id','کد حساب محل پرداخت ');
+                                                        Validator.CheckRegSelect2('txtpayment_Insertwine_id','انشعاب');
                                 
     if(Messager.errors.length!=0)
     {
@@ -151,31 +145,26 @@ payment_Insert.Serach=function(obj)
     var Entity=new Object();
     Entity.PageName='payment_Insert';
     Entity.Parameters=new Array();
-                Entity.Parameters.push( toInput('payment_amount',$('#txtpayment_Insertpayment_amount').val()));
+                Entity.Parameters.push( toInput('pay_date',$('#txtpayment_Insertpay_date').val()));
     
-                    Entity.Parameters.push( toInput('cus_id',$('#txtpayment_Insertcus_id').val()));
+                    Entity.Parameters.push( toInput('pay_type',$('#txtpayment_Insertpay_type').val()));
     
-                    Entity.Parameters.push( toInput('dis_amount',$('#txtpayment_Insertdis_amount').val()));
+                    Entity.Parameters.push( toInput('pay_amount',$('#txtpayment_Insertpay_amount').val()));
     
-                    Entity.Parameters.push( toInput('payment_Date',$('#txtpayment_Insertpayment_Date').val()));
+                    Entity.Parameters.push( toInput('pay_comment',$('#txtpayment_Insertpay_comment').val()));
     
-                    Entity.Parameters.push( toInput('descr',$('#txtpayment_Insertdescr').val()));
-    
-                    Entity.Parameters.push( toInput('total',$('#txtpayment_Inserttotal').val()));
-    
-                    Entity.Parameters.push( toInput('acc_id',$('#txtpayment_Insertacc_id').val()));
+                            Entity.Parameters.push( toInput('wine_id',$('#txtpayment_Insertwine_id').val()));
     
          
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
     currentScope.payment_Insertrecords= data.records;
-    
-    setTimeout(StoreCache, 200);
+        setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
         dlgScope.payment_Insertrecords= data.records;
-        dlgScope.$apply(function(){});
+                dlgScope.$apply(function(){});
 
     }
     $('[type="Select2Ajax"]').each(function(){

@@ -1014,7 +1014,7 @@
                             <xs:documentation>توضیحات نمایشی در درباره صفحه </xs:documentation>
                           </xs:annotation>
                         </xs:attribute>
-                        <xs:attribute name="FileName" type="xs:string" use="required">
+                        <xs:attribute name="FileName" type="xs:string" use="optional">
                           <xs:annotation>
                             <xs:documentation>افزودن فایل html سفارشی </xs:documentation>
                           </xs:annotation>

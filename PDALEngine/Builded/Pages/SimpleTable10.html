@@ -7,15 +7,13 @@
     <div   class="col-sm-4">
    
       
-                              <input type="Number"  placeholder=""  class="form-control" id="txtSimpleTable10P" Liquid error: Value cannot be null.
-Parameter name: input  Liquid error: Value cannot be null.
-Parameter name: input placeholder="" />
+                              <input type="Number"  placeholder=""  class="form-control" id="txtSimpleTable10P" placeholder="" />
                                                                                               
     </div>
   </div>
     </from>
   <script>
-                 
+            
     SimpleTable10.IntForm=function()
     {
         document.title=' انجام عملیات گزینشی   ';
@@ -34,7 +32,7 @@ Parameter name: input placeholder="" />
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
 <th><input type="checkbox" id="checkAll" onclick="CheckAllTable(this.checked)"  /></th>
@@ -42,15 +40,22 @@ Parameter name: input placeholder="" />
  <th  class="Pointer"  ng-click="ChageTableOrder('cityId')"  > <span ng-show="((currentOrder=='cityId') && (rev) )">V</span> <span ng-show="((currentOrder=='cityId') && (!rev) )">^</span>کد شهر</th> 
  <th  class="Pointer"  ng-click="ChageTableOrder('cityTitle')"  > <span ng-show="((currentOrder=='cityTitle') && (rev) )">V</span> <span ng-show="((currentOrder=='cityTitle') && (!rev) )">^</span>عنوان شهر</th> 
  <th  class="Pointer"  ng-click="ChageTableOrder('CITYPop')"  > <span ng-show="((currentOrder=='CITYPop') && (rev) )">V</span> <span ng-show="((currentOrder=='CITYPop') && (!rev) )">^</span>جمعیت </th> 
+               
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable10records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr fliterrows="SimpleTable10records" ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable10records | orderBy:currentOrder :rev | filter:FilterValue " >
 <th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
 <td data-label="ردیف">{{$index+1}}</td>
 <td data-label='کد شهر'>{{record.cityId}}</td> 
- <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
- <td data-label='جمعیت '>{{ShowMoney(record.CITYPop)}}</td> 
-                   </tr>
+ 
+<td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
+ 
+<td data-label='جمعیت '>{{ShowMoney(record.CITYPop)}}</td> 
+ 
+             
+                        
+
+     </tr>
 
  <tbody>
 </table>

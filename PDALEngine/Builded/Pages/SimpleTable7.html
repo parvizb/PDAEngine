@@ -5,7 +5,7 @@
   </div>
     </from>
   <script>
-         
+    
     SimpleTable7.IntForm=function()
     {
         document.title='شیوه مختلف نمایش اطلاعات در جدول ';
@@ -23,7 +23,7 @@
 
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
-<caption>جست و جو : <input  class="form-control" type="text" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
  <thead>
  <tr>
  <th  > شناسه</th> 
@@ -33,17 +33,31 @@
  <th  > تاریخ تولد</th> 
  <th  > معلویت جسمی</th> 
  <th  > تصویر پرسنلی</th> 
+ <th  > عبارت های محاسباتی دنباله دار</th> 
+               
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable7records | orderBy:currentOrder :rev | filter:FilterValue " >
+     <tr fliterrows="SimpleTable7records" ng-init="record.viewIndex=$index" ng-repeat="record in SimpleTable7records | orderBy:currentOrder :rev | filter:FilterValue " >
 <td data-label='شناسه'>{{record.id}}</td> 
- <td data-label='نام'>{{record.name}}</td> 
- <td data-label='حقوق پایه'>{{ShowMoney(record.salaryBase)}}</td> 
- <td data-label='نمره آزمون'>{{record.examResult}}</td> 
- <td data-label='تاریخ تولد'>{{record.dateBrith}}</td> 
-  <td data-label='معلویت جسمی'>{{ShowBoolean(record.isBroken)}}</td> 
-  <td data-label='تصویر پرسنلی'><image ng-src='/upd/{{record.picImage}}' width="150px" /></td> 
-                   </tr>
+ 
+<td data-label='نام'>{{record.name}}</td> 
+ 
+<td data-label='حقوق پایه'>{{ShowMoney(record.salaryBase)}}</td> 
+ 
+<td data-label='نمره آزمون'>{{record.examResult}}</td> 
+ 
+<td data-label='تاریخ تولد'>{{record.dateBrith}}</td> 
+ 
+ <td data-label='معلویت جسمی'>{{ShowBoolean(record.isBroken)}}</td> 
+ 
+ <td data-label='تصویر پرسنلی'><image ng-src='/upd/{{record.picImage}}' width="150px" /></td> 
+ 
+ <td data-label='عبارت های محاسباتی دنباله دار' ng-init="record.SalRunMode=Num(SimpleTable7records[$index-1].SalRunMode)+Num(record.salaryBase);">{{ShowMoney(record.SalRunMode)}}</td> 
+ 
+             
+                        
+
+     </tr>
 
  <tbody>
 </table>

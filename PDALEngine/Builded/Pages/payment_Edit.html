@@ -1,101 +1,82 @@
 ﻿
 
-ویرایش پرداختی 
+ویرایش پرداختی
 <hr />
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
-    <label  for="payment_amount" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ پرداختی
+    <label  for="pay_date" class="col-sm-2 control-label">     <span class="red" >*</span>        تاریخ پرداخت
       :</label>
     <div   class="col-sm-4">
    
       
-                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" onchange='RecalcScopes();' class="form-control" id="txtpayment_Editpayment_amount" placeholder="" />
-                                                                      
-    </div>
-    <label  for="cus_id" class="col-sm-2 control-label">     <span class="red" >*</span>        کد مشتری 
-      :</label>
-    <div   class="col-sm-4">
-   
-      
-                                                                                                      <select class="form-control" id="txtpayment_Editcus_id" ></select>
-                      
-    </div>
-     </div>
-     <div class="form-group">
-    <label  for="dis_amount" class="col-sm-2 control-label">           مبلغ تخفیف
-      :</label>
-    <div   class="col-sm-4">
-   
-      
-                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" onchange='RecalcScopes();' class="form-control" id="txtpayment_Editdis_amount" placeholder="" />
-                                                                      
-    </div>
-    <label  for="payment_Date" class="col-sm-2 control-label">     <span class="red" >*</span>        تاریخ پرداخت
-      :</label>
-    <div   class="col-sm-4">
-   
-      
-                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtpayment_Editpayment_Date')"  class="form-control" id="txtpayment_Editpayment_Date" placeholder="yyyy/mm/dd" max-length="10" ></input>
+                                                                                                                  <input  type="text"  onkeypress="return blockNonDateNumber(event)" onBlur="ReformatDate('txtpayment_Editpay_date')"  class="form-control" id="txtpayment_Editpay_date" placeholder="yyyy/mm/dd" max-length="10" ></input>
           
     </div>
-     </div>
-     <div class="form-group">
-    <label  for="descr" class="col-sm-2 control-label">           توضیحات
+    <label  for="pay_type" class="col-sm-2 control-label">     <span class="red" >*</span>        نوع پرداخت
       :</label>
     <div   class="col-sm-4">
    
-            <input type="text"   class="form-control" id="txtpayment_Editdescr" placeholder=""  placeholder="" />
+      
+                                                                                          <select class="form-control" id="txtpayment_Editpay_type" >
+                <option value="0">دستگاه Pos</option>
+                <option value="1">واریز به حساب</option>
+                <option value="2">پرداخت حضوری</option>
+                <option value="2">پرداخت طی چک</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="pay_amount" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ پرداختی
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtpayment_Editpay_amount" placeholder="" />
+                                                                      
+    </div>
+    <label  for="pay_comment" class="col-sm-2 control-label">           توضیحات 
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtpayment_Editpay_comment" placeholder=""  placeholder="" />
       
                                                                                                                 
     </div>
-    <label  for="total" class="col-sm-2 control-label">           جمع
-      :</label>
-    <div   class="col-sm-4">
-   
-      
-                                                                  <input type="Text"  onkeypress="return blockNonIntNumber(event)" moneymode="yes"  placeholder=""  disabled='' value="{{ShowMoney(Num(Para('dis_amount'))+Num(Para('payment_amount')))}}"   class="form-control" id="txtpayment_Edittotal" placeholder="" />
-                                                          
-    </div>
      </div>
      <div class="form-group">
-    <label  for="acc_id" class="col-sm-2 control-label">     <span class="red" >*</span>        کد حساب محل پرداخت 
+    <label  for="wine_id" class="col-sm-2 control-label">     <span class="red" >*</span>        انشعاب
       :</label>
     <div   class="col-sm-4">
    
       
-                                                                                                      <select class="form-control" id="txtpayment_Editacc_id" ></select>
+                                                                                                      <select class="form-control" id="txtpayment_Editwine_id" ></select>
                       
     </div>
   </div>
     </from>
   <script>
-                            var cus_id =null;
-                                                var acc_id =null;
+                                                    var wine_id =null;
         
     payment_Edit.IntForm=function()
     {
-        document.title='ویرایش پرداختی ';
+        document.title='ویرایش پرداختی';
         window.pageName='payment_Edit';
     window.fileUploaded=false;
-                                                            
-    cus_id=  Select2AjaxInit('txtpayment_Editcus_id',function(term, page){
+                                            kamaDatepicker('txtpayment_Editpay_date', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
+                                                                                                
+    wine_id=  Select2AjaxInit('txtpayment_Editwine_id',function(term, page){
     var DataPass=new Object();
     DataPass.PageName='payment_Edit';
-    DataPass.ParaName='cus_id';
+    DataPass.ParaName='wine_id';
     DataPass.Parameters=new Array();
             DataPass.Parameters.push(toInput('q',term.term));
                     return JSON.stringify(DataPass);
     });
-                                                                kamaDatepicker('txtpayment_Editpayment_Date', { buttonsColor: "red" ,sync:'true',highlightSelectedDay:'true'});
-                                                                        
-    acc_id=  Select2AjaxInit('txtpayment_Editacc_id',function(term, page){
-    var DataPass=new Object();
-    DataPass.PageName='payment_Edit';
-    DataPass.ParaName='acc_id';
-    DataPass.Parameters=new Array();
-            DataPass.Parameters.push(toInput('q',term.term));
-                    return JSON.stringify(DataPass);
-    });
+        wine_id.Set_Direct=function(val){
+    Select2AjaxDirect('payment_Edit','wine_id',val,'txtpayment_Editwine_id');
+
+    };
                         
     }
     $(document).ready(function () {

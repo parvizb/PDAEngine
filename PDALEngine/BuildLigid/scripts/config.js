@@ -185,8 +185,9 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
 
         }
         var sum=0;
-        $('[ng-repeat="record in records() | orderBy:currentOrder :rev | filter:FilterValue "]').each(function(){
-            var l=angular.element($(this)[0]).scope();
+        var d = getDailOpen();
+           
+        $('[fliterrows="' +  (d!=""? d : window.pageName) + 'records"]').each(function () {     var l=angular.element($(this)[0]).scope();
             sum+=  $scope.Num(l.record[name]);
             
 
@@ -346,7 +347,7 @@ function ($routeProvider/*, $locationProvider*/) {
 {% for Not in App.Notifactions -%}
 function Not_{{Not.name}}()
 {
-    AjaxActions.{{Not.AjaxActionName}}_asTable(function(records()){
+    AjaxActions.{{Not.AjaxActionName}}_asTable(function(records){
       
         if({{Not.returnSyntax}})
         {

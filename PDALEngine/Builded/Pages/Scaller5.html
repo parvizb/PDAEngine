@@ -3,11 +3,13 @@
 <form class="NotPrintable form-horizontal"  role="form">
   <div class="form-group">
   </div>
-    متن نمایشی توضیحاتی 1 <br/>
-    متن نمایشی توضیحاتی 2 <br/>
-    </from>
+    
+  متن نمایشی توضیحاتی 1 <br/>
+        
+  متن نمایشی توضیحاتی 2 <br/>
+        </from>
   <script>
-         
+    
     Scaller5.IntForm=function()
     {
         document.title='جدول ساده بدون پارامتر';
@@ -30,12 +32,18 @@
  <tr>
  <th  > کد شهر</th> 
  <th  > عنوان شهر</th> 
+               
  </tr>
    </thead>
-     <tr ng-init="record.viewIndex=$index" ng-repeat="record in Scaller5records | orderBy:currentOrder :rev " >
+     <tr fliterrows="Scaller5records" ng-init="record.viewIndex=$index" ng-repeat="record in Scaller5records | orderBy:currentOrder :rev " >
 <td data-label='کد شهر'>{{record.cityId}}</td> 
- <td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
-                   </tr>
+ 
+<td data-label='عنوان شهر'>{{record.cityTitle}}</td> 
+ 
+             
+                        
+
+     </tr>
 
  <tbody>
 </table>

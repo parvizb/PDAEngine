@@ -70,15 +70,15 @@ SimpleTable10.Submit= function(obj)
   
  
 
-    Messager.ShowMessage('اطلاعات', data.Message);
+  
     if(JsEventInterface.AfterOkReqSubmit!=null)
     {
         JsEventInterface.AfterOkReqSubmit(Entity,data);
     }
  
-                                        BackPage();
-                 
+                    BackPage();
          
+     
      
   
 
@@ -135,23 +135,24 @@ SimpleTable10.Serach=function(obj)
 TableViewAjax('getTableViewRecords',Entity,function(data){
           
     currentScope.SimpleTable10records= data.records;
-    
+          
     setTimeout(StoreCache, 200);
     currentScope.$apply(function(){});
     if(dlgScope!=null)
     {
         dlgScope.SimpleTable10records= data.records;
+                  
         dlgScope.$apply(function(){});
 
     }
-                $('[type="Select2Ajax"]').each(function(){
-        $(this).val($(this).attr('valc'));
+        $('[type="Select2Ajax"]').each(function(){
+    $(this).val($(this).attr('valc'));
 
-    });
-    NormalResult();
+});
+NormalResult();
         
-    $(obj).attr('disabled',false);
-    return;
+$(obj).attr('disabled',false);
+return;
           
 },function(data)
 {
@@ -170,21 +171,23 @@ SimpleTable10.SaveNow_Validate=function()
 {
     Validator.ClearErrors();
                                         Validator.CheckRegFloat('txtSimpleTable10P','درصد');
-                                for (var l=0;l<currentScope.SimpleTable10records.length;l++)
-    {
-        var r=currentScope.SimpleTable10records[l];
+                                if(typeof ( currentScope.SimpleTable10records)!="undefined") {
+    for (var l=0;l<currentScope.SimpleTable10records.length;l++)
+{
+    var r=currentScope.SimpleTable10records[l];
 
-                if(r.selected == false){
+        if(r.selected == false){
       continue;
 }
 }
-
+}
+if(typeof ( currentScope.SimpleTable10records)!="undefined") {
 for(var l=0;l<currentScope.SimpleTable10records.length;l++)
 { 
     var record=currentScope.SimpleTable10records[l];
     
 }
-
+}
 
 
 
@@ -204,10 +207,11 @@ SimpleTable10.SaveNow=function()
         return ;
     }
     var DataPass=new Array();
-        var t=new Array();
+      
+    var t=new Array();
     var  informationRecords=new Array()
     var NullFix=new Array();
-    NullFix.push(toInput('fake',Para('fake')));
+    NullFix.push(toInput('fake','NULL'));
     informationRecords.push(NullFix);
     for (var l=0;l<currentScope.SimpleTable10records.length;l++)
 {
@@ -266,8 +270,8 @@ ScallerAjax('BatchCommand',Enity,function(data){
 
 
 
-                                BackPage();
-                 
+                      
+         
          
      
                         BackPage();

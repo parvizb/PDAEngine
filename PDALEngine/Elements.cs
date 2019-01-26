@@ -126,11 +126,11 @@ public class Application : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ=X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -217,11 +217,11 @@ public class BatchCommand : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -268,11 +268,11 @@ public class Command : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -373,11 +373,11 @@ public class Parameter : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -416,11 +416,11 @@ public class Check : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -470,11 +470,11 @@ public class Menu : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -550,11 +550,11 @@ public class Item : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -756,11 +756,11 @@ public class Page : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -950,11 +950,11 @@ public class PageParameter : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -1187,11 +1187,11 @@ public class Button : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -1279,11 +1279,11 @@ public class column : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -1465,11 +1465,11 @@ public class Pages : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                       node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
@@ -1578,11 +1578,11 @@ public class table : ILiquidizable
             {
                 XmlNode X = PDAL.RootElement.SelectSingleNode(node.ChildNodes[i].Attr("XPath"));
                 String Attr = node.ChildNodes[i].Attr("Attr");
-                for (int z = 0; z < X.ChildNodes.Count; z++)
+                for (int z = X.ChildNodes.Count-1; z >=0; z--)
                 {
 
                     XmlNode zQ = X.ChildNodes[z].Clone();
-                    if ((Attr == "*") || (zQ.Name == Attr))
+                    if (((Attr == "*") || (zQ.Name == Attr))  && (zQ.Name != "CopyElements" ) )
                     {
                         node.InsertAfter(zQ, node.ChildNodes[i]);
                     }
