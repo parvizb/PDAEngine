@@ -674,6 +674,8 @@ public class Page : ILiquidizable
     public List<BatchCommand> BatchCommands = new List<BatchCommand>();
     public Boolean NoneFormParameters = false;
     public Boolean MustSendFiles = false;
+    public string HideDefaultButton = "";
+
     public void ParseEle(XmlNode node)
     {
         string ExtendedFrom = node.Attr("ExtendedFrom");
@@ -687,6 +689,7 @@ public class Page : ILiquidizable
         this.Title = node.Attr("Title");
         this.id = node.Attr("id");
         this.link = node.Attr("link");
+        this.HideDefaultButton = node.Attr("HideDefaultButton");
         this.ColumnCount = node.Attr("ColumnCount");
         this.PerKey = node.Attr("PerKey");
         this.type = node.Attr("type");
@@ -796,7 +799,7 @@ public class Page : ILiquidizable
                 v= (int)Math.Floor( ((12f / float.Parse(ColumnCount)) * .25f));
                 break;
         }
-        return Hash.FromAnonymousObject(new {isDailog=this.isDailog,ShowCond=this.ShowCond,SubmitBev=this.SubmitBev,SubmitBevParameter=this.SubmitBevParameter , Notes=this.Notes, MustSendFiles=this.MustSendFiles.ToString() ,  BatchCommands=this.BatchCommands ,NoneFormParameters=this.NoneFormParameters.ToString(),JSStart=this.JSStart,HerSize =h, ValSize =v, Title = this.Title, id = this.id, link = this.link, ColumnCount = this.ColumnCount, PerKey = this.PerKey, type = this.type, DBCommand = this.DBCommand,  name = this.name, queryString = this.queryString, ValueDbCommand = this.ValueDbCommand, PageParameters = this.PageParameters, Buttons = this.Buttons, tables = this.tables, ValueParameters = this.ValueParameters,CustomValidates=this.CustomValidates });
+        return Hash.FromAnonymousObject(new {HideDefaultButton=this.HideDefaultButton,isDailog=this.isDailog,ShowCond=this.ShowCond,SubmitBev=this.SubmitBev,SubmitBevParameter=this.SubmitBevParameter , Notes=this.Notes, MustSendFiles=this.MustSendFiles.ToString() ,  BatchCommands=this.BatchCommands ,NoneFormParameters=this.NoneFormParameters.ToString(),JSStart=this.JSStart,HerSize =h, ValSize =v, Title = this.Title, id = this.id, link = this.link, ColumnCount = this.ColumnCount, PerKey = this.PerKey, type = this.type, DBCommand = this.DBCommand,  name = this.name, queryString = this.queryString, ValueDbCommand = this.ValueDbCommand, PageParameters = this.PageParameters, Buttons = this.Buttons, tables = this.tables, ValueParameters = this.ValueParameters,CustomValidates=this.CustomValidates });
 
     }
 

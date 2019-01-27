@@ -325,6 +325,12 @@ function ($routeProvider/*, $locationProvider*/) {
             ).
     
                 
+    when('/CustomRecords', {
+        templateUrl: 'CustomRecords.htm',
+        controller: 'mainController' }
+            ).
+    
+                
     when('/SimpleTable2', {
         templateUrl: 'SimpleTable2.htm',
         controller: 'mainController' }

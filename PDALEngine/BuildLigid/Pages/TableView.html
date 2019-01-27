@@ -1,10 +1,12 @@
 ﻿{{Page.title}}
 <hr />
 {% include "Parameter" %}
+{% if Page.HideDefaultButton != 'Yes' -%}
 {% if (Page.NoneFormParameters == 'True' ) -%} 
 <button type="button" class="btn btn-primary" onclick="{{Page.name}}.Serach(this)">نمایش</button>
 {% endif -%}
 <button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+{% endif -%}
 {% include "PageButton" %}
 <div class="table-responsive">
 <table class="table table-bordered table table-striped">
@@ -21,7 +23,7 @@
 {% endfor -%}
 {% for table in Page.tables -%}
 {% for col in table.columns -%}
-{% if (col.type == 'DisplayValue')  or (col.type == 'Image')  or (col.type == 'RunningTotalValues') or (col.type == 'InputTextArea')     or (col.type == 'RangeValues') or (col.type == 'Html') or  (col.type == 'DownloadFile')   or  (col.type == 'Expr') or     (col.type == 'Money') or  (col.type == 'InputDate') or  (col.type == 'InputSelect2Ajax') or  (col.type == 'InputSelect2') or  (col.type == 'InputCombo')  or  (col.type == 'InputString')  or  (col.type == 'InputInteger')  or  (col.type == 'InputFloat')  or  (col.type == 'InputMoney')  or  (col.type == 'InputCombo') or  (col.type == 'Boolean') -%}
+{% if (col.type == 'DisplayValue')  or (col.type == 'Image')  or (col.type == 'Html')  or (col.type == 'RunningTotalValues') or (col.type == 'InputTextArea')     or (col.type == 'RangeValues') or (col.type == 'Html') or  (col.type == 'DownloadFile')   or  (col.type == 'Expr') or     (col.type == 'Money') or  (col.type == 'InputDate') or  (col.type == 'InputSelect2Ajax') or  (col.type == 'InputSelect2') or  (col.type == 'InputCombo')  or  (col.type == 'InputString')  or  (col.type == 'InputInteger')  or  (col.type == 'InputFloat')  or  (col.type == 'InputMoney')  or  (col.type == 'InputCombo') or  (col.type == 'Boolean') -%}
  <th  {% if table.Sortable == 'Yes' -%} {% if col.Width != '' -%}width='{{col.Width}}'{% endif -%} class="Pointer"  ng-click="ChageTableOrder('{{col.name}}')"  {% endif -%} > {% if table.Sortable == 'Yes' -%}<span ng-show="((currentOrder=='{{col.name}}') && (rev) )">V</span> <span ng-show="((currentOrder=='{{col.name}}') && (!rev) )">^</span>{% endif -%} {{col.title}}</th> 
 {% endif -%}
 {% endfor -%}

@@ -46,9 +46,18 @@ namespace PDALEngine.Controllers
 
 
 
-        public DataReturnsObject[] CustomRecords(string Command, string pageName, inputParameter[] para)
+        public DataReturnsObject CustomRecords(string Command, string pageName, inputParameter[] para)
         {
-
+            if (Command == "$CustomData")
+            {
+                DataReturnsObject Dr = new DataReturnsObject();
+                Dr.Status = 0;
+                Dr.Message = "با موفقیت برگردانده شد";
+                var q = new  { a = "parviz", b = 10 };
+                var q2 = new { a = "reza", b = 20 };
+                Dr.Records = new object[] { q,q2 };
+                return Dr;
+            }
             throw new Exception("پیاده سازی نشده");
         }
         public ActionResult LogOut()

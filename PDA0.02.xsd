@@ -1876,6 +1876,11 @@
                       <xs:documentation>عنوان </xs:documentation>
                     </xs:annotation>
                   </xs:attribute>
+                  <xs:attribute name="HideDefaultButton" type="YesNo" use="optional">
+                    <xs:annotation>
+                      <xs:documentation>آیا دکمه پیش فرض مخفی شوند </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
                   <xs:attribute name="isDailog" type="YesNo" use="optional">
                     <xs:annotation>
                       <xs:documentation>آیا کادر باز می باشد </xs:documentation>

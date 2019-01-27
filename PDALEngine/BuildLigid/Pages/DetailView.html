@@ -1,11 +1,12 @@
 ﻿{{Page.title}}
 <hr />
 {% include "Parameter" %}
- 
+ {% if Page.HideDefaultButton != 'Yes' -%}
 {% if (Page.NoneFormParameters == 'True' ) -%} 
 <button type="button" class="btn btn-primary" onclick="{{Page.name}}.Serach(this)">نمایش</button>
 {% endif -%}
 <button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+{% endif -%}
 {% include "PageButton" %}
      <script>
          $(document).ready(function () {
