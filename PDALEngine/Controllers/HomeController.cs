@@ -355,7 +355,7 @@ namespace PDALEngine.Controllers
                 }
                 Res.code = 0;
                 Res.Message = "با موفقیت انجام شد";
-                if (Info.DBCommand.StartsWith("#") == false)
+                if (Info.DBCommand.StartsWith("$") == false)
                 {
 
                     Res.retrunValue = PDAL.DataTableToJson(PDAL.ReadRecords(ref Info.DBCommand, Parameters), 0, "");
@@ -567,7 +567,7 @@ namespace PDALEngine.Controllers
                if (PP.MaxFileSize != "")
                {
 
-                   if (long.Parse(PP.MaxFileSize) * 512 < C.InputStream.Length)
+                   if (long.Parse(PP.MaxFileSize) * 1024 < C.InputStream.Length)
                    {
                        throw new Exception("اندازه غیر مجاز!!!");
 
