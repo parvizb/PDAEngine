@@ -1,0 +1,191 @@
+﻿
+
+ویرایش خریدار
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="fristName" class="col-sm-2 control-label">     <span class="red" >*</span>        نام
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtBuyer_EditfristName" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="lastName" class="col-sm-2 control-label">     <span class="red" >*</span>        نام خانوادگی
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtBuyer_EditlastName" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="address" class="col-sm-2 control-label">     <span class="red" >*</span>        آدرس
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtBuyer_Editaddress" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="moblile" class="col-sm-2 control-label">     <span class="red" >*</span>        تلفن همراه
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtBuyer_Editmoblile" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="ejraPrice" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ اجاره
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtBuyer_EditejraPrice" placeholder="" />
+                                                                      
+    </div>
+    <label  for="rehanPrice" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ رهن
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtBuyer_EditrehanPrice" placeholder="" />
+                                                                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="sellPrice" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ فروش
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtBuyer_EditsellPrice" placeholder="" />
+                                                                      
+    </div>
+    <label  for="size" class="col-sm-2 control-label">     <span class="red" >*</span>        متراژ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtBuyer_Editsize" placeholder="" />
+                                                                                                    
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="floor" class="col-sm-2 control-label">     <span class="red" >*</span>        طبقه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtBuyer_Editfloor" >
+                <option value="255">تفاوتی ندارد</option>
+                <option value="0">همکف</option>
+                <option value="1">طبقه 1</option>
+                <option value="2">طبقه2</option>
+                <option value="3">طبقه 3</option>
+                <option value="4">طبقه 4</option>
+                <option value="5">طبقه5</option>
+                <option value="6">طبقه 6</option>
+                <option value="7">طبقه 7</option>
+                <option value="8">طبقه8</option>
+                <option value="9">طبقه 9</option>
+              </select>
+                                  
+    </div>
+    <label  for="typeBuild" class="col-sm-2 control-label">     <span class="red" >*</span>        نوع 
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtBuyer_EdittypeBuild" >
+                <option value="255">تفاوتی ندارد</option>
+                <option value="0">ویلایی مسکونی </option>
+                <option value="1">ویلایی تجاری </option>
+                <option value="2"> آپارتمان مسکونی</option>
+                <option value="3"> آپارتمان تجاری</option>
+                <option value="4">زمین</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="elev" class="col-sm-2 control-label">     <span class="red" >*</span>        آسانسور دارد؟
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtBuyer_Editelev" >
+                <option value="255">تفاوتی ندارد</option>
+                <option value="0">ندارد</option>
+                <option value="1">دارد</option>
+              </select>
+                                  
+    </div>
+    <label  for="gazkesh" class="col-sm-2 control-label">     <span class="red" >*</span>        گازکشی شده است؟
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtBuyer_Editgazkesh" >
+                <option value="255">تفاوتی ندارد</option>
+                <option value="0">ندارد</option>
+                <option value="1">دارد</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="parking" class="col-sm-2 control-label">     <span class="red" >*</span>        پارکنیگ دارد؟
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtBuyer_Editparking" >
+                <option value="255">تفاوتی ندارد</option>
+                <option value="0">ندارد</option>
+                <option value="1">دارد</option>
+              </select>
+                                  
+    </div>
+    <label  for="buildYear" class="col-sm-2 control-label">     <span class="red" >*</span>        سال ساخت؟
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtBuyer_EditbuildYear" placeholder="" />
+                                                                                                    
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="comment" class="col-sm-2 control-label">           توضیحات و سایر امکانات
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtBuyer_Editcomment" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+  </div>
+    </from>
+  <script>
+                                                                                                                                    
+    Buyer_Edit.IntForm=function()
+    {
+        document.title='ویرایش خریدار';
+        window.pageName='Buyer_Edit';
+    window.fileUploaded=false;
+                                                                                                                                                                                                                                                                                                                                                                                                    
+    }
+    $(document).ready(function () {
+    Buyer_Edit.IntForm();
+        Buyer_Edit.InitStartValues();
+        
+    });
+  </script>
+<button type="button" class="btn btn-primary" onclick="Buyer_Edit.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

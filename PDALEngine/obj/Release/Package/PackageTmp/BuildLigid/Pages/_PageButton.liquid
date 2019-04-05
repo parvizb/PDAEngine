@@ -14,6 +14,15 @@
 {% if btn.action == 'BatchCommand'  -%}
 <a onclick='{{Page.name}}.{{btn.actionParameter}}()' ><button type="button" class="btn btn-default" >{{btn.title}}</button></a>
 {% endif -%}
+{% if btn.action == 'ShowDailogAndPutValue'  -%}
+<a onclick='{{btn.actionParameter}}.Scaler("{{btn.actionParameter2}}");' ><button type="button" class="btn btn-default" >{{btn.title}}</button></a>
+{% endif -%}
+{% if btn.action == 'ShowDailogAndSelectValue'  -%}
+<a onclick='{{btn.actionParameter}}.SerachAndPutValue("{{btn.actionParameter2}}","{{btn.actionParameter3}}");' ><button type="button" class="btn btn-default" >{{btn.title}}</button></a>
+{% endif -%}
+{% if btn.action == 'ShowDailogAndSelectValueSelect2'  -%}
+<a onclick='{{btn.actionParameter}}.SerachAndPutValueSelect2Ajax("{{btn.actionParameter2}}","{{btn.actionParameter3}}");' ><button type="button" class="btn btn-default" >{{btn.title}}</button></a>
+{% endif -%}
 {% if btn.action == 'ExportXls'  -%}
 <a onclick='ExportXls();' ><button type="button" class="btn btn-default" >{{btn.title}}</button></a>
 {% endif -%}

@@ -319,196 +319,88 @@ function ($routeProvider/*, $locationProvider*/) {
     //$locationProvider.hashPrefix('!');
     $routeProvider.
                 
-    when('/SimpleTable1', {
-        templateUrl: 'SimpleTable1.htm',
+    when('/User_Serach', {
+        templateUrl: 'User_Serach.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/CustomRecords', {
-        templateUrl: 'CustomRecords.htm',
+    when('/User_Insert', {
+        templateUrl: 'User_Insert.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/SimpleTable2', {
-        templateUrl: 'SimpleTable2.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable3', {
-        templateUrl: 'SimpleTable3.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable4', {
-        templateUrl: 'SimpleTable4.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable5', {
-        templateUrl: 'SimpleTable5.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable6', {
-        templateUrl: 'SimpleTable6.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable7', {
-        templateUrl: 'SimpleTable7.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable8', {
-        templateUrl: 'SimpleTable8.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable9', {
-        templateUrl: 'SimpleTable9.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable10', {
-        templateUrl: 'SimpleTable10.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable11', {
-        templateUrl: 'SimpleTable11.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable12', {
-        templateUrl: 'SimpleTable12.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable13', {
-        templateUrl: 'SimpleTable13.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable14', {
-        templateUrl: 'SimpleTable14.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable16', {
-        templateUrl: 'SimpleTable16.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable17', {
-        templateUrl: 'SimpleTable17.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/SimpleTable18', {
-        templateUrl: 'SimpleTable18.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/person_Serach', {
-        templateUrl: 'person_Serach.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/person_Insert', {
-        templateUrl: 'person_Insert.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/person_Edit/:id', {
-        templateUrl: 'person_Edit.htm',
+    when('/User_Edit/:UserId', {
+        templateUrl: 'User_Edit.htm',
         controller: 'mainController'
     }).
                 
-    when('/Scaller1', {
-        templateUrl: 'Scaller1.htm',
+    when('/UserPassEdit/:UserId', {
+        templateUrl: 'UserPassEdit.htm',
+        controller: 'mainController'
+    }).
+                
+    when('/Role_Serach', {
+        templateUrl: 'Role_Serach.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/Scaller2', {
-        templateUrl: 'Scaller2.htm',
+    when('/Role_Insert', {
+        templateUrl: 'Role_Insert.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/Scaller3', {
-        templateUrl: 'Scaller3.htm',
+    when('/Role_Edit/:RoleId', {
+        templateUrl: 'Role_Edit.htm',
+        controller: 'mainController'
+    }).
+                
+    when('/ShowUserInRole/:RoleId', {
+        templateUrl: 'ShowUserInRole.htm',
+        controller: 'mainController'
+    }).
+                
+    when('/ShowPerInRole/:RoleId', {
+        templateUrl: 'ShowPerInRole.htm',
+        controller: 'mainController'
+    }).
+                
+    when('/Seller_Serach', {
+        templateUrl: 'Seller_Serach.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/Scaller4', {
-        templateUrl: 'Scaller4.htm',
+    when('/Seller_Insert', {
+        templateUrl: 'Seller_Insert.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/Scaller5', {
-        templateUrl: 'Scaller5.htm',
+    when('/Seller_Edit/:SellerId', {
+        templateUrl: 'Seller_Edit.htm',
+        controller: 'mainController'
+    }).
+                
+    when('/Buyer_Serach', {
+        templateUrl: 'Buyer_Serach.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/Scaller6', {
-        templateUrl: 'Scaller6.htm',
+    when('/Buyer_Insert', {
+        templateUrl: 'Buyer_Insert.htm',
         controller: 'mainController' }
             ).
     
                 
-    when('/Scaller7', {
-        templateUrl: 'Scaller7.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/OtherInformation', {
-        templateUrl: 'OtherInformation.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/ScallerReturnValue', {
-        templateUrl: 'ScallerReturnValue.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/CopyingAttr', {
-        templateUrl: 'CopyingAttr.htm',
-        controller: 'mainController' }
-            ).
-    
-                
-    when('/ShowPoivtValues', {
-        templateUrl: 'ShowPoivtValues.htm',
-        controller: 'mainController' }
-            ).
-    
+    when('/Buyer_Edit/:BuyerId', {
+        templateUrl: 'Buyer_Edit.htm',
+        controller: 'mainController'
+    }).
                 when('/welcome', {
         templateUrl: 'welcome.html',
         controller: 'mainController'}
@@ -517,18 +409,3 @@ function ($routeProvider/*, $locationProvider*/) {
 }]);
 
 
-function Not_Not1()
-{
-    AjaxActions.GetPop_asTable(function(records){
-      
-        if(records.length>=1)
-        {
-            
-            ConfirmAsk('خوش آمدید تست اعلان',function(){goToLink("#SimpleTable1")});
-
-        }
-    },'1');
-
-        setTimeout("Not_Not1",60000*10);
-    }
-    

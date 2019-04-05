@@ -1,0 +1,43 @@
+﻿
+
+نقش
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="RoleName" class="col-sm-2 control-label">     <span class="red" >*</span>        نام نقش
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtRole_InsertRoleName" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="RoleDescr" class="col-sm-2 control-label">           توضیحات
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtRole_InsertRoleDescr" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                    
+    Role_Insert.IntForm=function()
+    {
+        document.title='نقش';
+        window.pageName='Role_Insert';
+    window.fileUploaded=false;
+                                                    
+    }
+    $(document).ready(function () {
+    Role_Insert.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-primary" onclick="Role_Insert.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

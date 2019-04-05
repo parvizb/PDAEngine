@@ -1,24 +1,77 @@
 ﻿var currentScope=null;
-var mainApp = angular.module("{{App.Name}}", ['ngRoute']);
+var SelectableRow=null;
+var OkDailogSelect=null;
+var dlgScope=null;
+function DoDailog()
+{
+    OkDailogSelect(SelectableRow);
+    BackPage();
 
+}
+
+function ResetCheck()
+{
+    $('[tablecheck]').each(function(){
+        $(this).attr( 'checked',   angular.element($(this)[0]).scope().record.selected );
+
+    });
+
+
+}
+
+
+var mainApp = angular.module("{{App.Name}}", ['ngRoute']);
+mainApp.controller("dlgController",function ($scope, $routeParams) {
+    $scope.ShowBoolean=function(v)
+    {
+        return ShowBoolean(v);
+
+    }
+
+});
 mainApp.controller("mainController",function ($scope, $routeParams) {
+    if(currentScope!=null)
+    {
+        console.log(currentScope.$id); 
+    }
+ 
     currentScope=$scope;
+    console.log(currentScope.$id);
     routeParams=$routeParams;
     $scope.ShowBoolean=function(v)
     {
         return ShowBoolean(v);
 
     }
+    $scope.SelectRow=function(a)
+    {
+        SelectableRow=a;
+     
+
+    }
+    $scope.SelectNow=function(a)
+    {
+        $scope.SelectRow(a);
+        window.DoDailog();
+
+    }
     $scope.mergeArray=function(a1,b1)
     {
         console.log(a1);
         console.log(b1);
-      var keys=   Object.keys(b1);
-      for(var i=0;i<keys.length;i++)
-      {
-          a1[keys[i]]=b1[keys[i]];
+        var keys=   Object.keys(b1);
+        for(var i=0;i<keys.length;i++)
+        {
+            a1[keys[i]]=b1[keys[i]];
 
-      }
+        }
+
+    }
+    $scope.records=function()
+    {
+        var d = getDailOpen();
+        return $scope[  (d!=""? d : window.pageName) +"records"]; 
+
 
     }
     $scope.AjaxActions=window.AjaxActions;
@@ -68,33 +121,33 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
     $scope.Para=window.Para;
     $scope.Sum=function(name)
     {
-        console.log(currentScope.records);
-        if(currentScope.records===undefined)
+        console.log(currentScope.records());
+        if(currentScope.records()===undefined)
         {
             return 0;
 
         }
         var sum=0;
-        for(var l=0;l<currentScope.records.length;l++)
+        for(var l=0;l<currentScope.records().length;l++)
         {
-            sum+=$scope.Num(currentScope.records[l][name]);
+            sum+=$scope.Num(currentScope.records()[l][name]);
 
         }
         return sum;
     }
     $scope.Max=function(name)
     {
-        console.log(currentScope.records);
-        if(currentScope.records===undefined)
+        console.log(currentScope.records());
+        if(currentScope.records()===undefined)
         {
             return 0;
 
         }
         var Max=-9999999999999;
-        for(var l=0;l<currentScope.records.length;l++)
+        for(var l=0;l<currentScope.records().length;l++)
         {
             
-            var mi=    $scope.Num(currentScope.records[l][name]);
+            var mi=    $scope.Num(currentScope.records()[l][name]);
             if(mi>Max)
             {
                 Max=mi;
@@ -105,17 +158,17 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
 
     $scope.Min=function(name)
     {
-        console.log(currentScope.records);
-        if(currentScope.records===undefined)
+        console.log(currentScope.records());
+        if(currentScope.records()===undefined)
         {
             return 0;
 
         }
         var Min=9999999999999;
-        for(var l=0;l<currentScope.records.length;l++)
+        for(var l=0;l<currentScope.records().length;l++)
         {
             
-            var mi=    $scope.Num(currentScope.records[l][name]);
+            var mi=    $scope.Num(currentScope.records()[l][name]);
             if(mi<Min)
             {
                 Min=mi;
@@ -126,15 +179,16 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
     $scope.SubSum=function(name)
     {
          
-        if(currentScope.records===undefined)
+        if(currentScope.records()===undefined)
         {
             return 0;
 
         }
         var sum=0;
-        $('[ng-repeat="record in records | orderBy:currentOrder :rev | filter:FilterValue "]').each(function(){
-            var l=angular.element($(this)[0]).scope();
-           sum+=  $scope.Num(l.record[name]);
+        var d = getDailOpen();
+           
+        $('[fliterrows="' +  (d!=""? d : window.pageName) + 'records"]').each(function () {     var l=angular.element($(this)[0]).scope();
+            sum+=  $scope.Num(l.record[name]);
             
 
         });
@@ -145,31 +199,31 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
     $scope.Query=window.Query;
     $scope.Avg=function(name)
     {
-        console.log(currentScope.records);
-        if(currentScope.records===undefined)
+        console.log(currentScope.records());
+        if(currentScope.records()===undefined)
         {
             return 0;
 
         }
         var sum=0;
         var count=0;
-        for(var l=0;l<currentScope.records.length;l++)
+        for(var l=0;l<currentScope.records().length;l++)
         {
-            sum+=$scope.Num(currentScope.records[l][name]);
+            sum+=$scope.Num(currentScope.records()[l][name]);
             count+=1;
         }
         return sum/count;
     }
     $scope.Count=function(name)
     {
-        console.log(currentScope.records);
-        if(currentScope.records===undefined)
+        console.log(currentScope.records());
+        if(currentScope.records()===undefined)
         {
             return 0;
 
         }
      
-        return currentScope.records.length;
+        return currentScope.records().length;
     }
     $scope.$apply();
     $scope.Round=function(v)
@@ -217,19 +271,19 @@ mainApp.controller("mainController",function ($scope, $routeParams) {
         if(item.RowState===undefined)
         {
                    
-            $scope.DeletedRows.push(     $scope.records.splice(  $scope.records.indexOf(item),1)[0])
+            $scope.DeletedRows.push(     $scope.records().splice(  $scope.records().indexOf(item),1)[0])
         }
         else
         {
             if(item.RowState==='Added')
             {
-                $scope.records.splice(  $scope.records.indexOf(item),1);
+                $scope.records().splice(  $scope.records().indexOf(item),1);
 
             }
             else
             {
                 item.RowState='Deleted';
-                $scope.DeletedRows.push(     $scope.records.splice(  $scope.records.indexOf(item),1)[0])
+                $scope.DeletedRows.push(     $scope.records().splice(  $scope.records().indexOf(item),1)[0])
             }
         }
         if(con!=null)
@@ -278,7 +332,7 @@ function ($routeProvider/*, $locationProvider*/) {
     when('/{{Page.name}}{{Page.queryString}}', {
         templateUrl: '{{Page.name}}.htm',
         controller: 'mainController'
-        }).
+    }).
     {% endif -%}
     {% endfor -%}
     {% endfor -%}
@@ -303,6 +357,6 @@ function Not_{{Not.name}}()
         }
     }{% if Not.ParameterSyntax != '' -%},{{Not.ParameterSyntax}}{% endif -%});
 
-    setTimeout("Not_{{Not.name}}",60000*{{Not.TimeFire}});
-}
-{% endfor -%}
+        setTimeout("Not_{{Not.name}}",60000*{{Not.TimeFire}});
+    }
+    {% endfor -%}

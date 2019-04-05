@@ -94,8 +94,9 @@ var currentButton;
 {% endif -%}
 {% endfor -%}
 ScallerAjax('ScallerSubmit',Entity,function(data){
-
-    {% if Page.SubmitBev == 'BackAndShowReturnValue' -%}
+    {% if Page.SubmitBev == '' -%}
+    Messager.ShowMessage('اطلاعات', data.Message  );
+    {% else if Page.SubmitBev == 'BackAndShowReturnValue' -%}
     Messager.ShowMessage('اطلاعات', data.Message + ' شناسه پیگیری : ' + data.retrunValue );
     {% else  if Page.SubmitBev == 'PutValueAtTargetElement' -%}
     if(targetElement!=null)

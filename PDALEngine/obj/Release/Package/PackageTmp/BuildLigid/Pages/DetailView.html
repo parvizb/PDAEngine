@@ -1,11 +1,12 @@
 ﻿{{Page.title}}
 <hr />
 {% include "Parameter" %}
- 
+ {% if Page.HideDefaultButton != 'Yes' -%}
 {% if (Page.NoneFormParameters == 'True' ) -%} 
 <button type="button" class="btn btn-primary" onclick="{{Page.name}}.Serach(this)">نمایش</button>
 {% endif -%}
 <button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+{% endif -%}
 {% include "PageButton" %}
      <script>
          $(document).ready(function () {
@@ -14,7 +15,7 @@
              {% endif -%}
          });
      </script>
-<div class="form-horizontal" role="form" ng-repeat="record in records">
+<div class="form-horizontal" role="form" fliterrows="{{Page.name}}records" ng-repeat="record in {{Page.name}}records">
 {% assign i=0 -%}
   <div class="form-group">
 {% for table in Page.tables -%}

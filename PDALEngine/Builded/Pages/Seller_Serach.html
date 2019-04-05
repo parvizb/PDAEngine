@@ -1,0 +1,338 @@
+﻿فروشنده ها
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="SellerId" class="col-sm-2 control-label">           شناسه فروشنده
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtSeller_SerachSellerId" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="fristName" class="col-sm-2 control-label">           نام
+      :</label>
+    <div   class="col-sm-2">
+   
+            <input type="text"   class="form-control" id="txtSeller_SerachfristName" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="lastName" class="col-sm-2 control-label">           نام خانوادگی
+      :</label>
+    <div   class="col-sm-2">
+   
+            <input type="text"   class="form-control" id="txtSeller_SerachlastName" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="address" class="col-sm-2 control-label">           آدرس
+      :</label>
+    <div   class="col-sm-2">
+   
+            <input type="text"   class="form-control" id="txtSeller_Serachaddress" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="moblile" class="col-sm-2 control-label">           تلفن همراه
+      :</label>
+    <div   class="col-sm-2">
+   
+            <input type="text"   class="form-control" id="txtSeller_Serachmoblile" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="ejraPriceStart" class="col-sm-2 control-label">           مبلغ اجاره از
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_SerachejraPriceStart" placeholder="" />
+                                                                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="ejraPriceEnd" class="col-sm-2 control-label">           مبلغ اجاره تا
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_SerachejraPriceEnd" placeholder="" />
+                                                                      
+    </div>
+    <label  for="rehanPriceStart" class="col-sm-2 control-label">           مبلغ رهن از 
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_SerachrehanPriceStart" placeholder="" />
+                                                                      
+    </div>
+    <label  for="rehanPriceEnd" class="col-sm-2 control-label">           مبلغ رهن تا 
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_SerachrehanPriceEnd" placeholder="" />
+                                                                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="sellPricestart" class="col-sm-2 control-label">           مبلغ فروش از 
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_SerachsellPricestart" placeholder="" />
+                                                                      
+    </div>
+    <label  for="sellPriceend" class="col-sm-2 control-label">           مبلغ فروش تا 
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_SerachsellPriceend" placeholder="" />
+                                                                      
+    </div>
+    <label  for="sizeStart" class="col-sm-2 control-label">           متراژ از
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_SerachsizeStart" placeholder="" />
+                                                                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="sizeEnd" class="col-sm-2 control-label">           متراژ تا
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_SerachsizeEnd" placeholder="" />
+                                                                      
+    </div>
+    <label  for="floor" class="col-sm-2 control-label">           طبقه
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_Serachfloor" >
+                <option value="255">فرقی نمی کند</option>
+                <option value="0">همکف</option>
+                <option value="1">طبقه 1</option>
+                <option value="2">طبقه2</option>
+                <option value="3">طبقه 3</option>
+                <option value="4">طبقه 4</option>
+                <option value="5">طبقه5</option>
+                <option value="6">طبقه 6</option>
+                <option value="7">طبقه 7</option>
+                <option value="8">طبقه8</option>
+                <option value="9">طبقه 9</option>
+              </select>
+                                  
+    </div>
+    <label  for="typeBuild" class="col-sm-2 control-label">           نوع 
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_SerachtypeBuild" >
+                <option value="255">فرقی نمی کند</option>
+                <option value="0">ویلایی مسکونی </option>
+                <option value="1">ویلایی تجاری </option>
+                <option value="2"> آپارتمان مسکونی</option>
+                <option value="3"> آپارتمان تجاری</option>
+                <option value="4">زمین</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="countOfUnits" class="col-sm-2 control-label">           تعداد واحد ها
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtSeller_SerachcountOfUnits" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="elev" class="col-sm-2 control-label">           آسانسور دارد؟
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_Serachelev" >
+                <option value="255">فرقی نمی کند</option>
+                <option value="0">ندارد</option>
+                <option value="1">دارد</option>
+              </select>
+                                  
+    </div>
+    <label  for="gazkesh" class="col-sm-2 control-label">           گازکشی شده است؟
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_Serachgazkesh" >
+                <option value="255">فرقی نمی کند</option>
+                <option value="0">ندارد</option>
+                <option value="1">دارد</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="parking" class="col-sm-2 control-label">           پارکنیگ دارد؟
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_Serachparking" >
+                <option value="255">فرقی نمی کند</option>
+                <option value="0">ندارد</option>
+                <option value="1">دارد</option>
+              </select>
+                                  
+    </div>
+    <label  for="buildYear" class="col-sm-2 control-label">           سال ساخت؟
+      :</label>
+    <div   class="col-sm-2">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtSeller_SerachbuildYear" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="comment" class="col-sm-2 control-label">           توضیحات و سایر امکانات
+      :</label>
+    <div   class="col-sm-2">
+   
+            <input type="text"   class="form-control" id="txtSeller_Serachcomment" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                                                                                                                                                                            
+    Seller_Serach.IntForm=function()
+    {
+        document.title='فروشنده ها';
+        window.pageName='Seller_Serach';
+    window.fileUploaded=false;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    }
+    $(document).ready(function () {
+    Seller_Serach.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="Seller_Serach.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a href='#/Seller_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > نام</th> 
+ <th  > آدرس</th> 
+ <th  > تلفن همراه</th> 
+ <th  > مبلغ اجاره</th> 
+ <th  > مبلغ رهن</th> 
+ <th  > مبلغ فروش</th> 
+ <th  > متراژ</th> 
+ <th  > طبقه</th> 
+ <th  > نوع </th> 
+ <th  > تعداد واحد ها</th> 
+ <th  > سال ساخت؟</th> 
+ <th  > امکانات و توضیحات</th> 
+<th>
+    عملیات
+</th>
+                    
+ </tr>
+   </thead>
+     <tr fliterrows="Seller_Serachrecords" ng-init="record.viewIndex=$index" ng-repeat="record in Seller_Serachrecords | orderBy:currentOrder :rev " >
+<td data-label='نام'>{{record.fullName}}</td> 
+          
+<td data-label='آدرس'>{{record.address}}</td> 
+          
+<td data-label='تلفن همراه'>{{record.moblile}}</td> 
+          
+<td data-label='مبلغ اجاره'>{{ShowMoney(record.ejraPrice)}}</td> 
+          
+<td data-label='مبلغ رهن'>{{ShowMoney(record.rehanPrice)}}</td> 
+          
+<td data-label='مبلغ فروش'>{{ShowMoney(record.sellPrice)}}</td> 
+          
+<td data-label='متراژ'>{{ShowMoney(record.size)}}</td> 
+          
+ <td data-label='طبقه'>
+    <span ng-show="record.floor=='255'">فرقی نمی کند</span>
+  <span ng-show="record.floor=='0'">همکف</span>
+  <span ng-show="record.floor=='1'">طبقه 1</span>
+  <span ng-show="record.floor=='2'">طبقه2</span>
+  <span ng-show="record.floor=='3'">طبقه 3</span>
+  <span ng-show="record.floor=='4'">طبقه 4</span>
+  <span ng-show="record.floor=='5'">طبقه5</span>
+  <span ng-show="record.floor=='6'">طبقه 6</span>
+  <span ng-show="record.floor=='7'">طبقه 7</span>
+  <span ng-show="record.floor=='8'">طبقه8</span>
+  <span ng-show="record.floor=='9'">طبقه 9</span>
+ </td> 
+          
+ <td data-label='نوع '>
+    <span ng-show="record.typeBuild=='255'">فرقی نمی کند</span>
+  <span ng-show="record.typeBuild=='0'">ویلایی مسکونی </span>
+  <span ng-show="record.typeBuild=='1'">ویلایی تجاری </span>
+  <span ng-show="record.typeBuild=='2'"> آپارتمان مسکونی</span>
+  <span ng-show="record.typeBuild=='3'"> آپارتمان تجاری</span>
+  <span ng-show="record.typeBuild=='4'">زمین</span>
+ </td> 
+          
+<td data-label='تعداد واحد ها'>{{record.countOfUnits}}</td> 
+          
+<td data-label='سال ساخت؟'>{{record.buildYear}}</td> 
+          
+          <td data-label='امکانات و توضیحات'><p class="MonView" >{{record.commentAuto}}</p><textarea class="MobView" class="form-control" disabled  value="{{record.commentAuto}}"    >{{record.commentAuto}}</textarea></td> 
+ 
+          
+          
+             <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a href="#/Seller_Edit/{{record.SellerId}}" >ویرایش</a></li> 
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.Seller_Delete('{{record.SellerId}}')});" >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+
+                        
+
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

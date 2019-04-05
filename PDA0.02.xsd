@@ -146,7 +146,7 @@
           <xs:documentation>دریافت فایل</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
-      <xs:enumeration value="TextArea">
+      <xs:enumeration value="LongDisplayText">
         <xs:annotation>
           <xs:documentation>کادر متن چند خطی</xs:documentation>
         </xs:annotation>
@@ -714,7 +714,11 @@
           <xs:documentation>نمایش مستقیم مقدار</xs:documentation>
         </xs:annotation>
       </xs:enumeration>
- 
+      <xs:enumeration value="LongDisplayText">
+        <xs:annotation>
+          <xs:documentation>نمایش عبارت های طولانی </xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
       <xs:enumeration value="Image">
         <xs:annotation>
           <xs:documentation> 

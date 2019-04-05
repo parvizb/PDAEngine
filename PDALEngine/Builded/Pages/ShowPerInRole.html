@@ -1,0 +1,66 @@
+﻿نمایش مجوز این گروه
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+  </div>
+    </from>
+  <script>
+            
+    ShowPerInRole.IntForm=function()
+    {
+        document.title='نمایش مجوز این گروه';
+        window.pageName='ShowPerInRole';
+    window.fileUploaded=false;
+                            
+    }
+    $(document).ready(function () {
+    ShowPerInRole.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a onclick='ShowPerInRole.Save()' ><button type="button" class="btn btn-default" >ذخیره</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption>جست و جو : <input  class="form-control" type="text" onkeyup="ResetCheck();" ng-model="FilterValue" placeholder="عبارت مورد نظر جهت جست و جو"  /> </caption>
+ <thead>
+ <tr>
+<th><input type="checkbox" id="checkAll" onclick="CheckAllTable(this.checked)"  /></th>
+ <th  > شناسه مجوز</th> 
+ <th  > عبارت کلید</th> 
+ <th  > گروه</th> 
+ <th  > نوع اقدام</th> 
+               
+ </tr>
+   </thead>
+     <tr fliterrows="ShowPerInRolerecords" ng-init="record.viewIndex=$index" ng-repeat="record in ShowPerInRolerecords | orderBy:currentOrder :rev | filter:FilterValue " >
+<th><input type="checkbox" tableCheck="yes" id="selected_{{record.rndId}}" onchange="sendCheckboxToRecord(this)"  /></th>
+<td data-label='شناسه مجوز'>{{record.PerId}}</td> 
+          
+<td data-label='عبارت کلید'>{{record.PerKey}}</td> 
+          
+<td data-label='گروه'>{{record.PerGroup}}</td> 
+          
+<td data-label='نوع اقدام'>{{record.PerTitle}}</td> 
+          
+             
+                        
+
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+             
+             ShowPerInRole.Serach();
+                      });
+    
+     </script>

@@ -4,6 +4,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+
+    <meta name="application-name" content="@ViewBag.App.Name" />
     <title>@ViewBag.App.Title</title>
         <script src="~/Res/jquery-3.2.1.min.js"></script>
     
@@ -13,7 +15,7 @@
     <link href="~/Res/bootstrap-rtl.min.css" rel="stylesheet" />
     <script src="~/Res/angular.min.js"></script>
     <script src="~/Res/angular-route.min.js"></script>
-    <link href="~/Res/main.css" rel="stylesheet" />
+  
       <link href="~/Res/select2.min.css" rel="stylesheet" />
      <script src="~/Res/toolkit.js"></script>
      <script src="~/Res/kamadatepicker.min.js"></script>
@@ -24,6 +26,7 @@
     <script src="~/Res/colorpicker.js"></script>
     
     <script src="~/customJavaScript.js"></script>
+      <link href="~/Res/main.css" rel="stylesheet" />
     <script>
         window.confirmFun = null;
     </script>
@@ -45,8 +48,6 @@
       <button data-toggle="collapse" class="btn visible-xs " data-target="#menu">...</button>
     </div>
 <ul class="nav navbar-nav" class="collapse" id="menu">
-
- 
 @foreach(var  menu in  ViewBag.App.Menus) {
 foreach(var item in  menu.Items ){
   if ((item.Type != "PDATextboxLink") && ((item.PerKey == "") || (PDALEngine.PDALSect.GetCheckPer(item.PerKey, null, null)==PDALEngine.PDALSect.AccessResult.Permitted)))
@@ -89,11 +90,15 @@ foreach(var item in  menu.Items ){
      {
          foreach (var Page in pages._Pages)
          {
+             if(Page.isDailog!="Yes")
+             {
             <text>
              <script type="text/ng-template" id="@(Page.name).htm" >
              <div ng-include="'Builded/Pages/@(Page.name).html'"></div>
             </script>
-           </text>}}
+           </text>
+             }
+        }}
        <script src="~/builded/scripts/config.js"></script>
           @foreach (var pages in ViewBag.App.Pagess)
           {
@@ -104,9 +109,39 @@ foreach(var item in  menu.Items ){
            </text>
               }
           }
-      
+
+
     <script src="~/builded/scripts/AjaxActions.js"></script>
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+         @foreach (var pages in ViewBag.App.Pagess)
+     {
+         foreach (var Page in pages._Pages)
+         {
+             if(Page.isDailog=="Yes")
+             {
+            <text>
+     <div class="modal fade" id="mdl@(Page.name)" isDailog="yes" PageName="@(Page.name)" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+</button>
+<h4 class="modal-title">
+ @Page.title
+</h4>
+</div>
+<div class="modal-body"  ng-contoller="dlgController">
+  <div ng-include="'Builded/Pages/@(Page.name).html'" id="pinc@(Page.name)"></div>
+</div>
+ 
+</div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+
+           </text>
+             }
+        }}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
@@ -116,7 +151,7 @@ foreach(var item in  menu.Items ){
  
 </h4>
 </div>
-<div class="modal-body">
+<div class="modal-body" n="1">
  
 </div>
 <div class="modal-footer">
@@ -140,7 +175,7 @@ data-dismiss="modal">تایید
  
 </h4>
 </div>
-<div class="modal-body" name="inputBody">
+<div class="modal-body" n="1" name="inputBody">
  
 </div>
 <div class="modal-footer">
@@ -169,7 +204,7 @@ data-dismiss="modal" onclick ="window.confirmInputBox();">تایید
  
 </h4>
 </div>
-<div class="modal-body">
+<div class="modal-body" n="1">
  
 </div>
 <div class="modal-footer">
@@ -192,7 +227,7 @@ data-dismiss="modal" onclick="window.confirmFun()">بله
  
 </h4>
 </div>
-<div class="modal-body">
+<div class="modal-body" n="1">
  
 </div>
 <div class="modal-footer">
@@ -204,6 +239,13 @@ data-dismiss="modal">تایید
 </div><!-- /.modal-content -->
 </div><!-- /.modal -->
 </div>
+
+  
+
+
+    
+
+
 
   <div class="modal fade" id="myModelSendingFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">

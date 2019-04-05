@@ -746,7 +746,7 @@ namespace PDALEngine
 
         public static string mgtAllonce(string tableName)
         {
-            string CommandLine = "sp_"+ tableName +"_Serach";
+            string CommandLine = ""+ tableName +"_Serach";
            
             DataTable Dt = PDAL.ReadDataTableNotCommand("select * from information_schema.parameters where specific_name='" + CommandLine + "'");
             DataTable TableInfo = PDAL.ReadDataTableNotCommand("select sys.columns.*,(select top(1) name  from sys.types where sys.types.system_type_id=sys.columns.system_type_id) name_type,(select is_primary_key from sys.indexes where sys.indexes.object_id=sys.columns.object_id and index_id=column_id ) is_primary_key from sys.columns,sys.objects where sys.columns.object_id=sys.objects.object_id and sys.objects.name='" + tableName + "' and sys.objects.type='u'");
@@ -847,7 +847,7 @@ namespace PDALEngine
 
 
             Sb.AppendLine("</Page>\r\n");
-            CommandLine = "sp_" + tableName + "_Insert";
+            CommandLine = "" + tableName + "_Insert";
             Sb.Append("<Page Title=\"" + CommandLine + "\" name=\"" + tableName +"_Insert" + "\" link=\"" + CommandLine + "\" ColumnCount=\"2\" PerKey=\"" + CommandLine + "\" type=\"ScallerForm\" DBCommand=\"" + CommandLine + "\">");
           
 
@@ -865,7 +865,7 @@ namespace PDALEngine
 
             Sb.AppendLine("</Page>\r\n");
 
-            CommandLine = "sp_" + tableName + "_Update";
+            CommandLine = "" + tableName + "_Update";
             column = "";
             for (int k = 0; k < TableInfo.Rows.Count; k++)
             {
@@ -1261,7 +1261,7 @@ namespace PDALEngine
         public static string CreateBaseProcForTable(string Name)
         {
             StringBuilder Sb = new StringBuilder();
-            Sb.AppendLine("Create Proc " + Name + "_Insert_sp ");
+            Sb.AppendLine("Create Proc " + Name + "_Insert ");
             DataTable Dt = PDAL.ReadDataTableNotCommand("select sys.columns.*,(select top(1) name  from sys.types where sys.types.system_type_id=sys.columns.system_type_id) name_type,(select is_primary_key from sys.indexes where sys.indexes.object_id=sys.columns.object_id and index_id=column_id ) is_primary_key from sys.columns,sys.objects where sys.columns.object_id=sys.objects.object_id and sys.objects.name='" + Name + "' and sys.objects.type='u'");
             string s = AllEditableColumns(Sb, Dt);
             Sb.AppendLine("as begin");
@@ -1317,7 +1317,7 @@ namespace PDALEngine
             Sb.AppendLine(s);
             Sb.AppendLine("\r\nend\r\ngo");
 
-            Sb.AppendLine("Create Proc " + Name + "_Update_sp ");
+            Sb.AppendLine("Create Proc " + Name + "_Update ");
             s = "";
             s = AllColumns(Sb, Dt);
 
@@ -1349,7 +1349,7 @@ namespace PDALEngine
             Sb.AppendLine(s);
             Sb.AppendLine(" \r\nend\r\ngo");
 
-            Sb.AppendLine("Create Proc " + Name + "_Delete_sp ");
+            Sb.AppendLine("Create Proc " + Name + "Delete ");
             s = PrimaryKeyParameter(Dt, s);
             Sb.AppendLine(s);
             Sb.AppendLine(" as begin");

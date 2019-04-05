@@ -1,0 +1,195 @@
+﻿
+
+فروشنده جدید
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="fristName" class="col-sm-2 control-label">     <span class="red" >*</span>        نام
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtSeller_InsertfristName" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="lastName" class="col-sm-2 control-label">     <span class="red" >*</span>        نام خانوادگی
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtSeller_InsertlastName" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="address" class="col-sm-2 control-label">     <span class="red" >*</span>        آدرس
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtSeller_Insertaddress" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+    <label  for="moblile" class="col-sm-2 control-label">     <span class="red" >*</span>        تلفن همراه
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtSeller_Insertmoblile" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="ejraPrice" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ اجاره
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_InsertejraPrice" placeholder="" />
+                                                                      
+    </div>
+    <label  for="rehanPrice" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ رهن
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_InsertrehanPrice" placeholder="" />
+                                                                      
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="sellPrice" class="col-sm-2 control-label">     <span class="red" >*</span>        مبلغ فروش
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                      <input type="Text"  onkeypress="return blockNonIntNumber(event)" placeholder="" moneytype="yes"  onkeyup="NumberInput(event,this)" class="form-control" id="txtSeller_InsertsellPrice" placeholder="" />
+                                                                      
+    </div>
+    <label  for="size" class="col-sm-2 control-label">     <span class="red" >*</span>        متراژ
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtSeller_Insertsize" placeholder="" />
+                                                                                                    
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="floor" class="col-sm-2 control-label">     <span class="red" >*</span>        طبقه
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_Insertfloor" >
+                <option value="0">همکف</option>
+                <option value="1">طبقه 1</option>
+                <option value="2">طبقه2</option>
+                <option value="3">طبقه 3</option>
+                <option value="4">طبقه 4</option>
+                <option value="5">طبقه5</option>
+                <option value="6">طبقه 6</option>
+                <option value="7">طبقه 7</option>
+                <option value="8">طبقه8</option>
+                <option value="9">طبقه 9</option>
+              </select>
+                                  
+    </div>
+    <label  for="typeBuild" class="col-sm-2 control-label">     <span class="red" >*</span>        نوع 
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_InserttypeBuild" >
+                <option value="0">ویلایی مسکونی </option>
+                <option value="1">ویلایی تجاری </option>
+                <option value="2"> آپارتمان مسکونی</option>
+                <option value="3"> آپارتمان تجاری</option>
+                <option value="4">زمین</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="countOfUnits" class="col-sm-2 control-label">     <span class="red" >*</span>        تعداد واحد ها
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtSeller_InsertcountOfUnits" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="elev" class="col-sm-2 control-label">     <span class="red" >*</span>        آسانسور دارد؟
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_Insertelev" >
+                <option value="0">ندارد</option>
+                <option value="1">دارد</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="gazkesh" class="col-sm-2 control-label">     <span class="red" >*</span>        گازکشی شده است؟
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_Insertgazkesh" >
+                <option value="0">ندارد</option>
+                <option value="1">دارد</option>
+              </select>
+                                  
+    </div>
+    <label  for="parking" class="col-sm-2 control-label">     <span class="red" >*</span>        پارکنیگ دارد؟
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                                                                                          <select class="form-control" id="txtSeller_Insertparking" >
+                <option value="0">ندارد</option>
+                <option value="1">دارد</option>
+              </select>
+                                  
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="buildYear" class="col-sm-2 control-label">     <span class="red" >*</span>        سال ساخت؟
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtSeller_InsertbuildYear" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="comment" class="col-sm-2 control-label">           توضیحات و سایر امکانات
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtSeller_Insertcomment" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+  </div>
+    </from>
+  <script>
+                                                                                                                                    
+    Seller_Insert.IntForm=function()
+    {
+        document.title='فروشنده جدید';
+        window.pageName='Seller_Insert';
+    window.fileUploaded=false;
+                                                                                                                                                                                                                                                                                                                                                                                                    
+    }
+    $(document).ready(function () {
+    Seller_Insert.IntForm();
+        
+    });
+  </script>
+<button type="button" class="btn btn-primary" onclick="Seller_Insert.Submit(this)">تایید</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+ 

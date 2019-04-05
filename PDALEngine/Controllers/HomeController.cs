@@ -154,8 +154,8 @@ namespace PDALEngine.Controllers
             }
             if (needToBuildFiles)
             {
-              PDAL.BuildApp();
-              System.IO.File.WriteAllText(Server.MapPath("~/builded.dat"), ""); 
+                PDAL.BuildApp();
+                System.IO.File.WriteAllText(Server.MapPath("~/builded.dat"), "");
             }
           
          // nodes = Xml.GetElementsByTagName("xs:element" );
@@ -191,7 +191,10 @@ namespace PDALEngine.Controllers
             return     RedirectToAction("GetErrorAsText",  new {  errMsg="عدم امکان با بانک یا عدم پیکربندی صحیح در فایل PDA.Config : " + ex.Message });
              
            }
-     
+           if (PDALSect.isLogined() == false)
+           {
+               return RedirectToAction("Login");
+           }
             ViewBag.App = PDAL.App;
             return View();
         }
@@ -234,7 +237,7 @@ namespace PDALEngine.Controllers
                 Res.Message = "با موفقیت انجام شد";
                 if (Info.ValueDbCommand.StartsWith("$") == false)
                 {
-                    Res.retrunValue = PDAL.DataTableToJson(PDAL.ReadRecords(ref Info.ValueDbCommand, PDAL.SkipParameters(Info, Parameters)), Res.code, "");
+                    Res.retrunValue = PDAL.DataTableToJson(PDAL.ReadRecords(ref Info.ValueDbCommand, Parameters), Res.code, "");
                 }
                 else
                 {

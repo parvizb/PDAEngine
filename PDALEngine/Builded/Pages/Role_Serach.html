@@ -1,0 +1,109 @@
+﻿مدیریت نقش ها
+<hr />
+<form class="NotPrintable form-horizontal"  role="form">
+  <div class="form-group">
+    <label  for="RoleId" class="col-sm-2 control-label">           شناسه نقش
+      :</label>
+    <div   class="col-sm-4">
+   
+      
+                        <input type="Number" onkeypress="return blockNonIntNumber(event)" placeholder="" class="form-control" id="txtRole_SerachRoleId" placeholder="" />
+                                                                                                    
+    </div>
+    <label  for="RoleName" class="col-sm-2 control-label">           نام نقش
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtRole_SerachRoleName" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+     </div>
+     <div class="form-group">
+    <label  for="RoleDescr" class="col-sm-2 control-label">           توضیحات
+      :</label>
+    <div   class="col-sm-4">
+   
+            <input type="text"   class="form-control" id="txtRole_SerachRoleDescr" placeholder=""  placeholder="" />
+      
+                                                                                                                
+    </div>
+  </div>
+    </from>
+  <script>
+                            
+    Role_Serach.IntForm=function()
+    {
+        document.title='مدیریت نقش ها';
+        window.pageName='Role_Serach';
+    window.fileUploaded=false;
+                                                                            
+    }
+    $(document).ready(function () {
+    Role_Serach.IntForm();
+        
+    });
+  </script>
+
+<button type="button" class="btn btn-primary" onclick="Role_Serach.Serach(this)">نمایش</button>
+<button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+<a href='#/Role_Insert' ><button type="button" class="btn btn-default" >جدید</button></a>
+
+
+<div class="table-responsive">
+<table class="table table-bordered table table-striped">
+<caption></caption>
+ <thead>
+ <tr>
+ <th  > شناسه نقش</th> 
+ <th  > نام نقش</th> 
+ <th  > توضیحات</th> 
+<th>
+    عملیات
+</th>
+                    
+ </tr>
+   </thead>
+     <tr fliterrows="Role_Serachrecords" ng-init="record.viewIndex=$index" ng-repeat="record in Role_Serachrecords | orderBy:currentOrder :rev " >
+<td data-label='شناسه نقش'>{{record.RoleId}}</td> 
+          
+<td data-label='نام نقش'>{{record.RoleName}}</td> 
+          
+<td data-label='توضیحات'>{{record.RoleDescr}}</td> 
+          
+          
+          
+          
+          
+             <td data-label=''>
+ <div class="btn-group">
+ <button type="button" class="btn btn-default dropdown-toggle "
+ data-toggle="dropdown">
+ عملیات <span class="caret"></span>
+ </button>
+ <ul class="dropdown-menu" role="menu">
+ <li ><a href="#/Role_Edit/{{record.RoleId}}" >ویرایش</a></li> 
+ <li ><a href="#/ShowUserInRole/{{record.RoleId}}" >تعیین کاربران</a></li> 
+ <li ><a href="#/ShowPerInRole/{{record.RoleId}}" >تعیین مجوزها</a></li> 
+ <li ><a  pdaAjaxSyntax="ConfirmAsk('آیا مطممن هستید?',function(){AjaxActions.Role_Delete('{{record.RoleId}}')});" >حذف</a></li> 
+
+ </ul>
+</div>
+</td>
+
+                        
+
+     </tr>
+
+ <tbody>
+</table>
+         <form class="form-horizontal" role="form">
+  <div class="form-group">
+ 
+
+</div>
+     <script>
+         $(document).ready(function () {
+                      });
+    
+     </script>

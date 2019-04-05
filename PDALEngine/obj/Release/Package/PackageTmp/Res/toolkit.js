@@ -16,7 +16,7 @@
             // it's a quirk, but the JSON data comes back in a property called "d"; {"d":"Hello Aidy F"}
         },
         error: function (xhr, status) {
-
+            alert(xhr.response);
             $('#loadingBar').hide();
             fnFail(xhr);
 
@@ -152,9 +152,16 @@ Validator.CheckRegSelect2 = function (id, caption,row) {
 
 }
 function BackPage() {
+    if (getDailOpen() == "") {
 
-    window.history.back(-1);
-    setTimeout(LoadCache, 1000);
+
+        window.history.back(0);
+        setTimeout(LoadCache, 1000);
+    }
+    else {
+        return $("#mdl" + getDailOpen()).modal('hide');
+
+    }
 }
 
 Validator.ShowErrors = function () {
@@ -164,7 +171,7 @@ Validator.ShowErrors = function () {
         str += Messager.errors[l] + "</br>";
 
     }
-    $('.modal-body').html(str);
+    $('.modal-body[n]').html(str);
     $('#myModal').modal()
 }
 Validator.RegEmail = function (id, caption) {
@@ -188,7 +195,7 @@ Messager.ShowInfo = function (title) {
         str += Messager.info[l] + "</br>";
 
     }
-    $('.modal-body').html(str);
+    $('.modal-body[n]').html(str);
     $('#myModal').modal()
 }
 function LoadCache() {
@@ -558,29 +565,109 @@ function goToLink(link) {
 
     document.removeChild(d);
 }
+
+function getDailOpen() {
+    var r = "";
+    $('div[isDailog]').each(function () {
+        if ($(this)[0].style.display == 'block') {
+            r= $(this).attr('PageName');
+        }
+      
+       
+
+    });
+
+    return r;
+}
+
+var ScopeDlg = new Array();
 function Para(id) {
  
-    r = document.getElementById('txt' + id);
+    var d = getDailOpen();
+    r = document.getElementById('txt' + (d!=""? d : window.pageName) + id);
     if (r != null) {
         if (r.getAttribute('Type') == 'Number') {
-            return parseFloat($('#txt' + id).val());
+            return parseFloat($('#' + r.id).val());
         }
         else {
             if ($('#txt' + id).attr('moneymode') != 'yes') {
-                return $('#txt' + id).val()
+                return $('#' + r.id).val();
             }
             else {
 
-                return Num(   $('#txt' + id).val());
+                return Num(   $('#' + r.id).val());
             }
          
         }
     }
     else {
-        return $('#txt' + id).val();
+        return $('#' + r.id).val();
 
     }
 
+}
+function Select2AjaxMultValuesSetStatic(controllId, records, valueColumn) {
+    var s = document.getElementById(controllId);
+
+    var vals = new Array();
+    for (var l = 0; l < records.length; l++) {
+     
+        vals.push(records[l][valueColumn]);
+      
+    }
+    $('#' + controllId).val(vals).trigger('change');
+}
+function Select2AjaxMultValuesSet(controllId,records,valueColumn,titleColumn) {
+    var s=document.getElementById(controllId);
+    s.innerHTML = "";
+    var vals = new Array();
+    for (var l = 0; l < records.length; l++) {
+        var o = document.createElement('option');
+        o.value = records[l][valueColumn];
+        o.innerHTML = records[l][titleColumn];
+        vals.push(records[l][valueColumn]);
+        s.appendChild(o);
+    }
+    $('#' + controllId).val(vals).trigger('change');
+}
+
+function Select2AjaxDirect(pageName,pageParameter,stringValue,controllId) {
+    var o=new Object();
+    o.PageName=pageName;
+    o.PageParameterName=pageParameter;
+    o.value=stringValue;
+
+    Ajax("Home", "getDBSelect2DirectValue", JSON.stringify(o), function (data) {
+        var o = document.createElement('option');
+        o.value = stringValue;
+        o.innerHTML = data.value;
+     
+      
+        document.getElementById(controllId).innerHTML = "";
+        document.getElementById(controllId).appendChild(o);
+
+        $('#' + controllId).trigger('change');
+
+    },
+    function (d) {
+        if (d.status == 200) {
+
+
+        }
+        else {
+            alert('خطا دریافت اطلاعات');
+
+        }
+    });
+}
+
+
+function GetElement(id) {
+
+    var d = getDailOpen();
+    r = document.getElementById('txt' + (d != "" ? d : window.pageName) + id);
+    
+    return r;
 }
 function Query(id) {
 
@@ -622,6 +709,7 @@ JsEventInterface.BeforeFailReqInitAjaxAction = null;
 
 function CheckAllTable(b) {
     $('[tableCheck]').each(function () {
+ 
         $(this).attr('checked', b);
         sendCheckboxToRecord($(this)[0]);
     });
@@ -737,7 +825,25 @@ function ExportXls() {
     a.click();
     document.body.removeChild(a);
 }
+function RecalcScopes() {
+    currentScope.$apply(function () { });
+    if (dlgScope != null) {
+        dlgScope.$apply(function () { });
+    }
+}
 
+function SetupDlgScope() {
+
+    (Object.getOwnPropertyNames(currentScope).filter(function (p) {
+        var s= (typeof currentScope[p] === 'function') ;
+        if(s==true)
+            {
+            dlgScope[p] = currentScope[p];
+
+        }
+    }));
+
+}
 function LogOut() {
     var a = document.createElement('a');
     a.innerHTML = "Click here";
@@ -767,7 +873,44 @@ function GenStyleForTableResponse() {
         r+='td:nth-of-type(' + (l+1).toString() +'):before { content: "' + th[l].innerText +'"; }'
 
     }
-    var sty = document.createElement('style');
-    sty.innerHTML = r;
-    document.body.appendChild(sty);
+ 
+}
+
+function PovitTableMake(datas, row, Column, value) {
+    var rows = new Array();
+    var columns = new Array();
+    var realData = new Array();
+    var sumValues = new Array();
+    for (var i = 0; i < datas.length; i++) {
+        var r = datas[i][row];
+        var rindex = rows.indexOf(r);
+        if (rindex == -1) {
+            rows.push(r);
+            var o = new Object();
+            o.title = r;
+            realData.push(o);
+            rindex = realData.length - 1;
+        }
+        var c = datas[i][Column];
+        var cindex = columns.indexOf(c);
+        if (cindex == -1) {
+            columns.push(c);
+            sumValues.push(0);
+            cindex = columns.length - 1;
+        }
+        realData[rindex]['col' + cindex] = (realData[rindex]['col' + cindex] === undefined ? parseFloat(datas[i][value]) : realData[rindex]['col' + cindex] + datas[i][value]);
+        sumValues[cindex] += parseFloat(datas[i][value]);
+
+    }
+    var sumO = new Object();
+    sumO.title = 'جمع';
+    for (var k = 0; k < columns.length; k++) {
+        sumO['col' + k] = sumValues[k];
+
+    }
+    realData.push(sumO);
+    var returnObject = new Object();
+    returnObject.columns = columns;
+    returnObject.RealDatas = realData;
+    return returnObject;
 }

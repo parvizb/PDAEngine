@@ -3,7 +3,8 @@
 {{Page.title}}
 <hr />
 {% include "Parameter"  %}
-
+{% if Page.HideDefaultButton != 'Yes' -%}
 <button type="button" class="btn btn-primary" onclick="{{Page.name}}.Submit(this)">تایید</button>
 <button type="button" class="btn btn-default" onclick="BackPage()">بازگشت</button>
+{% endif -%}
  {% include "PageButton" %}
