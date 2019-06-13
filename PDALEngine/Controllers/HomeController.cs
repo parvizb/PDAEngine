@@ -784,7 +784,7 @@ namespace PDALEngine.Controllers
                                 List<inputParameter> par = new List<inputParameter>();
                                 par.AddRange(initValues);
                                 par.AddRange(records[k][k2][k3]);
-                                scallerValues[k] = new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(CustomRecords(Com.DBCommand, PageName, par.ToArray()));
+                                scallerValues[k] = CustomScaler (Com.DBCommand, PageName, par.ToArray());
 
                             }
 
