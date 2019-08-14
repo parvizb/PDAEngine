@@ -749,82 +749,49 @@ function GoValuePage(e, st, link) {
         document.body.removeChild(d);
     }
 }
-function ExportXls() {
-    tableTarget = document.getElementsByTagName('table')[0];
-    var data = "<?xml version=\"1.0\" standalone=\"yes\"?><DocumentElement>";
-    var header = new Array();
-    var th = tableTarget.getElementsByTagName('th');
+function ExportXls(id) {
+    var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+    var textRange; var j = 0;
+    tab = $('.table-bordered')[0]; // id of table
 
-    for (var q = 0; q < th.length; q++) {
-        header.push(th[q].innerText.replace(/ /g, '_').replace(/\\/g, '_').replace(/\(/g, '_').replace(/\)/g, '_'));
-    }
-    var row = tableTarget.getElementsByTagName('tr');
-    for (var k = 0; k < row.length; k++) {
-        {
-            if (true) {
-                q = row[k].getElementsByTagName('td');
-                if (q.length != 0) {
-                    data += "<report>\r\n";
-                    for (var e = 0; e < q.length; e++) {
-                        if (q[e].innerText.length == 10) {
-                            var kw = q[e].innerText.split('\\');
-
-                            if (kw.length == 3) {
-
-                                data += "<" + header[e] + ">" + kw[2] + '\\' + kw[1] + '\\' + kw[0] + "</" + header[e] + ">\r\n"
-                            }
-                            else {
-
-                                data += "<" + header[e] + ">" + q[e].innerText + "</" + header[e] + ">\r\n"
-                            }
-                        }
-                        else {
-
-                            data += "<" + header[e] + ">" + q[e].innerText + "</" + header[e] + ">\r\n"
-                        }
-
-
-                    }
-
-                    data += "\r\n</report>\r\n";
-
-                }
-
-            }
-
-        }
-
+    for (j = 0 ; j < tab.rows.length ; j++) {
+        tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+        //tab_text=tab_text+"</tr>";
     }
 
-    /*
-    var row = tableTarget.getElementsByTagName('tr');
-    for (var k = 0; k < row.length; k++) {
-        {
-            if (isHidden(row[k]) == false) {
-                var q = row[k].getElementsByTagName('th');
-                for (var w = 0; w < q.length; w++) {
-                    data += '"' + q[w].innerText + '";';
-                }
-                q = row[k].getElementsByTagName('td');
-                for (var w = 0; w < q.length; w++) {
-                    data += '"' + q[w].innerText + '";';
-                }
-                data += "\r\n";
-            }
+    tab_text = tab_text + "</table>";
+    tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+    tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+    tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+    tab_text = tab_text.replace(/V/gi, "");
+    tab_text = tab_text.replace(/^/gi, "");
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
 
-        }
-
-    }*/
-    data += "</DocumentElement>";
-    var a = document.createElement('a');
-    a.innerHTML = "Click here";
-    a.href = 'data:application/csv;charset=utf-8,' + encodeURIComponent(data);
-    a.target = '_blank';
-    a.download = 'report.xls';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+    {
+        txtArea1.document.open("txt/html", "replace");
+        txtArea1.document.write(tab_text);
+        txtArea1.document.close();
+        txtArea1.focus();
+        sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+    }
+    else                 //other browser not tested on IE 11
+    {
+        var a = document.createElement('a');
+        a.innerHTML = "Click here";
+        a.href = 'data:application/vnd.ms-excel,' + encodeURIComponent(tab_text);
+        a.target = '_blank';
+        a.download = window.pageName +'.xls';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
 }
+
+
+
+ 
 function RecalcScopes() {
     currentScope.$apply(function () { });
     if (dlgScope != null) {
@@ -888,6 +855,7 @@ function PovitTableMake(datas, row, Column, value) {
             rows.push(r);
             var o = new Object();
             o.title = r;
+            o.sumValue = 0;
             realData.push(o);
             rindex = realData.length - 1;
         }
@@ -899,14 +867,16 @@ function PovitTableMake(datas, row, Column, value) {
             cindex = columns.length - 1;
         }
         realData[rindex]['col' + cindex] = (realData[rindex]['col' + cindex] === undefined ? parseFloat(datas[i][value]) : realData[rindex]['col' + cindex] + datas[i][value]);
+        realData[rindex]['sumValue'] +=  parseFloat( datas[i][value] )
         sumValues[cindex] += parseFloat(datas[i][value]);
 
     }
     var sumO = new Object();
     sumO.title = 'جمع';
+    
     for (var k = 0; k < columns.length; k++) {
         sumO['col' + k] = sumValues[k];
-
+      
     }
     realData.push(sumO);
     var returnObject = new Object();

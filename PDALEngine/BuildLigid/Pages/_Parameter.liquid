@@ -119,7 +119,7 @@
       <TextArea class="form-control" id="txt{{Page.name}}{{Para.name}}" {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%} onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%}></TextArea>
       {% endif -%}
       {% if Para.type == 'Date' -%}
-      <input  type="text"  onkeypress="return blockNonDateNumber(event)" {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%} onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%} onBlur="ReformatDate('txt{{Page.name}}{{Para.name}}')"  class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="yyyy/mm/dd" max-length="10" ></input>
+      <input  type="text"    {% if  Para.Disabled == 'Yes'  -%} disabled='' {% endif -%}  {% if  Para.ChangeBev == 'ReCalcExprs'  -%} onchange='RecalcScopes();' {% endif -%}{% if  Para.ChangeBev == 'JavaScript'  -%} onchange='{{Para.ChangeBevParameter}}' {% endif -%} onBlur="ReformatDate('txt{{Page.name}}{{Para.name}}')"  class="form-control" id="txt{{Page.name}}{{Para.name}}" placeholder="yyyy/mm/dd" max-length="10" ></input>
       {% endif -%}
     
     </div>
